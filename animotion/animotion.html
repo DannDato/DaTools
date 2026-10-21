@@ -11,9 +11,50 @@
 <main class="layout">
 <aside class="sidebar">
  <div class="heading"><div><div class="eyebrow">MOTION TOOL</div><h1>Animotion</h1><p>De un guion a escenas animadas.</p></div></div>
- <section class="panel"><h2>01 · Proyecto</h2><label for="srtFile">Subtítulos SRT (opcional)</label><input id="srtFile" type="file" accept=".srt,text/plain"><label for="srtText">O pega tu SRT</label><textarea id="srtText" rows="4" placeholder="1&#10;00:00:01,000 --> 00:00:04,000&#10;Aquí empieza el video"></textarea><div class="actions"><button id="readSrt">Leer SRT</button><button id="srtExample" class="subtle">Ejemplo</button></div><p class="hint" id="srtInfo">Los tiempos del SRT se usarán como referencia.</p></section>
- <section class="panel"><h2>02 · Escenas</h2><label for="jsonFile">Importar JSON de ChatGPT</label><input id="jsonFile" type="file" accept=".json,application/json"><label for="jsonText">Guion de animación JSON</label><textarea id="jsonText" rows="9" spellcheck="false" placeholder="Pega aquí el JSON generado por ChatGPT..."></textarea><div class="actions"><button class="primary" id="applyJson">Aplicar escenas</button><button id="downloadJson">Guardar JSON</button></div><p id="jsonInfo" class="hint" role="status">Carga un ejemplo o importa tu proyecto.</p></section>
- <section class="panel"><h2>03 · Ajustes</h2><div class="two"><div><label for="orientation">Formato</label><select id="orientation"><option value="landscape">Horizontal · 2560×1440</option><option value="portrait">Vertical · 1440×2560</option></select></div><div><label for="fps">FPS</label><select id="fps"><option value="30">30</option><option value="60" selected>60</option></select></div></div><label for="bg">Fondo del video</label><input id="bg" type="color" value="#000000"><p class="hint">La previsualización y la exportación usan el mismo motor de dibujo.</p></section>
+ 
+ <section class="panel"><h2>01 · Proyecto</h2><label for="srtFile">Subir SRT o TXT (opcional)</label><input id="srtFile" type="file" accept=".srt,.txt,text/plain"><label for="srtText">Subtítulos SRT o texto normal</label><textarea id="srtText" rows="5" placeholder="Pega subtítulos con tiempos o un texto normal. Animotion detectará el formato."></textarea><div class="actions"><button id="readSrt">Preparar texto</button><button id="srtExample" class="subtle">Ejemplo</button></div><p class="hint" id="srtInfo" role="status">Si no hay timestamps, se calculan tiempos de lectura aproximados (160 palabras/minuto).</p></section>
+ 
+ <section class="panel"><h2>02 · Dirección para IA</h2>
+   <div class="two">
+     <div><label for="orientation">Formato</label><select id="orientation"><option value="landscape">Horizontal · 2560×1440</option><option value="portrait">Vertical · 1440×2560</option></select></div>
+     <div><label for="fps">FPS</label><select id="fps"><option value="30">30</option><option value="60" selected>60</option></select></div>
+   </div>
+   <div class="triple color-grid">
+     <div><label for="bg">Fondo</label><input id="bg" type="color" value="#000000"></div>
+     <div><label for="fg">Color principal</label><input id="fg" type="color" value="#FFFFFF"></div>
+     <div><label for="accent">Color accent</label><input id="accent" type="color" value="#AA98FF"></div>
+   </div>
+   <div class="swatches">
+     <span class="swatch"><i id="bgSwatch"></i><strong id="bgValue">#000000</strong></span>
+     <span class="swatch"><i id="fgSwatch"></i><strong id="fgValue">#FFFFFF</strong></span>
+     <span class="swatch"><i id="accentSwatch"></i><strong id="accentValue">#AA98FF</strong></span>
+   </div>
+   <div class="two">
+     <div><label for="layoutStyle">Composición</label><select id="layoutStyle"><option value="centered">Centrada y limpia</option><option value="balanced" selected>Balanceada</option><option value="editorial">Editorial / asimétrica</option><option value="dynamic">Dinámica / energética</option></select></div>
+     <div><label for="density">Densidad visual</label><select id="density"><option value="minimal">Minimal</option><option value="balanced" selected>Balanceada</option><option value="rich">Más cargada</option></select></div>
+   </div>
+   <div class="two">
+     <div><label for="textUsage">Uso de texto</label><select id="textUsage"><option value="low">Poco texto</option><option value="balanced" selected>Equilibrado</option><option value="high">Más texto en pantalla</option></select></div>
+     <div><label for="maxObjects">Objetos máx. por escena</label><select id="maxObjects"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>8</option><option>10</option><option>12</option></select></div>
+   </div>
+   <div class="control-stack">
+     <label for="lineHeightPref">Interlineado sugerido <span id="lineHeightValue" class="value">1.18×</span></label>
+     <input id="lineHeightPref" type="range" min="0.9" max="1.7" step="0.01" value="1.18">
+   </div>
+   <div class="control-stack">
+     <label for="textWidthPref">Ancho máx. del texto <span id="textWidthValue" class="value">70%</span></label>
+     <input id="textWidthPref" type="range" min="40" max="90" step="1" value="70">
+   </div>
+   <div class="control-stack">
+     <label for="safeAreaPref">Zona segura <span id="safeAreaValue" class="value">10%</span></label>
+     <input id="safeAreaPref" type="range" min="4" max="18" step="1" value="10">
+   </div>
+   <button id="copyPrompt" class="primary full prompt-copy" type="button">✦ Copiar prompt para ChatGPT</button>
+   <p class="hint" id="promptInfo">El prompt incluirá formato, colores, interlineado, ancho de texto, zona segura y reglas exactas del JSON.</p>
+ </section>
+ 
+ <section class="panel"><h2>03 · Escenas</h2><label for="jsonFile">Importar JSON de ChatGPT</label><input id="jsonFile" type="file" accept=".json,application/json,.txt,text/plain"><label for="jsonText">Guion de animación JSON</label><textarea id="jsonText" rows="9" spellcheck="false" placeholder="Pega aquí el JSON generado por ChatGPT... También acepta bloques ```json```."></textarea><div class="actions"><button class="primary" id="applyJson">Aplicar escenas</button><button id="downloadJson">Guardar JSON</button></div><p id="jsonInfo" class="hint" role="status">Carga un ejemplo o importa tu proyecto. También puedes pegar un bloque ```json``` completo.</p></section>
+ 
  <section class="panel"><h2>04 · Exportar</h2><button id="exportVideo" class="primary full">Exportar video</button><div class="progress"><div id="progressBar"></div></div><p id="exportInfo" role="status" class="hint">MP4 si el navegador lo permite; si no, WebM.</p></section>
 </aside>
 <section class="workspace"><div class="panel preview"><div class="previewHead"><div><h2>Vista previa</h2><p class="hint">Negro para superponer en DaVinci</p></div><span id="resolution" class="tag">2560 × 1440</span></div><div id="stage" class="stage"><canvas id="canvas" width="2560" height="1440" aria-label="Previsualización de animaciones"></canvas></div><div class="transport"><button id="play">▶ Reproducir</button><input id="seek" aria-label="Buscar posición" type="range" min="0" max="1000" value="0"><span id="clock">00:00 / 00:00</span></div><p id="previewInfo" class="hint">Las escenas se ubican según segundos absolutos.</p></div><div class="panel scenes"><div class="previewHead"><h2>Escenas</h2><span id="sceneCount" class="tag">0 escenas</span></div><div id="sceneList" class="sceneList"></div></div></section>
