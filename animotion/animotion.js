@@ -57,7 +57,78 @@ const EXAMPLE = {
 const allowedTypes = new Set(["text", "rect", "circle", "line", "icon"]);
 const allowedEnter = new Set(["none", "fade", "pop", "zoom", "slide", "bounce", "elastic", "punch", "wipe"]);
 const allowedIdle = new Set(["none", "float", "breathe", "pulse", "spin", "wiggle"]);
-const allowedIcons = new Set(["sparkles", "play", "heart", "star", "bolt", "check", "arrow", "gear", "bulb", "chart", "monitor", "brain", "camera", "music", "clock"]);
+const legacyIcons = ["sparkles", "play", "heart", "star", "bolt", "check", "arrow", "gear", "bulb", "chart", "monitor", "brain", "camera", "music", "clock"];
+const iconData = window.ANIMOTION_ICONS || {};
+const iconGroups = window.ANIMOTION_ICON_GROUPS || {};
+const allowedIcons = new Set([...legacyIcons, ...Object.keys(iconData)]);
+const iconPaths = new Map();
+function vectorIcon(name, size) {
+  const data = iconData[name];
+  if (!data || typeof Path2D === "undefined") return false;
+  let paths = iconPaths.get(name);
+  if (!paths) {
+    paths = data[2].map(d => new Path2D(d));
+    iconPaths.set(name, paths);
+  }
+  const [width, height] = data;
+  const scale = size / Math.max(width, height);
+  ctx.save();
+  ctx.scale(scale, scale);
+  ctx.translate(-width / 2, -height / 2);
+  for (const path of paths) ctx.fill(path);
+  ctx.restore();
+  return true;
+}
+function showIconCatalog(filter = "") {
+  const host = $("iconCatalog");
+  if (!host) return;
+  host.replaceChildren();
+  let total = 0;
+  for (const [category, names] of Object.entries(iconGroups)) {
+    const matched = names.filter(name => name.toLowerCase().includes(filter.toLowerCase()));
+    if (!matched.length) continue;
+    total += matched.length;
+    const section = document.createElement("section");
+    section.className = "icon-category";
+    const title = document.createElement("h3");
+    title.textContent = `${category} · ${matched.length}`;
+    section.append(title);
+    const grid = document.createElement("div");
+    grid.className = "icon-grid";
+    for (const name of matched) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "icon-choice";
+      button.title = `Copiar nombre: ${name}`;
+      const [width, height, paths] = iconData[name];
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("aria-hidden", "true");
+      for (const d of paths) {
+        const path = document.createElementNS(ns, "path");
+        path.setAttribute("d", d);
+        path.setAttribute("fill", "currentColor");
+        svg.append(path);
+      }
+      const caption = document.createElement("span");
+      caption.textContent = name;
+      button.append(svg, caption);
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(name);
+          $("iconCatalogInfo").textContent = `Copiado: ${name}`;
+        } catch {
+          $("iconCatalogInfo").textContent = `Nombre: ${name} (selecciónalo para copiar)`;
+        }
+      });
+      grid.append(button);
+    }
+    section.append(grid);
+    host.append(section);
+  }
+  $("iconCatalogInfo").textContent = `${total} íconos disponibles · pulsa uno para copiar su nombre`;
+}
 const allowedAlign = new Set(["left", "center", "right"]);
 
 function fmt(seconds) {
@@ -209,7 +280,10 @@ Reglas técnicas:
 
 Animaciones enter permitidas: none, fade, pop, zoom, slide, bounce, elastic, punch, wipe.
 Movimientos idle permitidos: none, float, breathe, pulse, spin, wiggle.
-Iconos válidos: sparkles, play, heart, star, bolt, check, arrow, gear, bulb, chart, monitor, brain, camera, music, clock.
+ÍCONOS DISPONIBLES (usa exactamente estos nombres, sin inventar nuevos):
+${Object.entries(iconGroups).map(([category, names]) => `${category}: ${names.join(", ")}`).join("\n")}
+Compatibilidad previa: ${legacyIcons.join(", ")}.
+Elige íconos que expresen el significado de cada frase. Evita repetir el mismo símbolo constantemente.
 
 Usa valores hexadecimales #RRGGBB, peso entre 100 y 900, y no inventes tipos, propiedades, nombres ni efectos. Evita escenas superpuestas innecesariamente. Límite 1200 escenas en total. Usa solo la información del guion, sin suponer hechos externos.
 
@@ -574,7 +648,7 @@ function drawObject(object, t, total, w, h) {
   }
 
   if (object.type === "icon") {
-    iconPath(object.name, size);
+    if (!vectorIcon(object.name, size)) iconPath(object.name, size);
   }
 
   ctx.restore();
@@ -834,6 +908,14 @@ $("exportVideo").addEventListener("click", async () => {
   }
 });
 
+$("iconSearch").addEventListener("input", event => showIconCatalog(event.target.value.trim()));
+$("iconCatalogToggle").addEventListener("click", () => {
+  const holder = $("iconCatalogHolder");
+  const open = holder.hidden;
+  holder.hidden = !open;
+  $("iconCatalogToggle").textContent = open ? "Ocultar catálogo" : "Explorar 200 íconos";
+  if (open) showIconCatalog($("iconSearch").value.trim());
+});
 updateColorChips();
 updatePromptControlLabels();
 resize();
