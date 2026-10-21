@@ -1,0 +1,33 @@
+/* Portada DannTools */
+:root{color-scheme:dark;font-family:Outfit,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--color-background);color:#f6f6f7;font-synthesis:none}
+    *{box-sizing:border-box}
+    body{min-height:100vh;margin:0;background:radial-gradient(ellipse 70% 45% at 50% -18%,#292832 0%,transparent 85%),var(--color-background)}
+    a{color:inherit;text-decoration:none}
+    .shell{width:min(1050px,calc(100% - 48px));margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+    header{display:flex;align-items:center;gap:13px;padding:34px 0 28px;border-bottom:1px solid var(--color-border)}
+    .brand-logo{width:39px;height:39px;object-fit:contain}
+    .brand-name{font-size:24px;letter-spacing:-.06em;font-weight:800;line-height:1}
+    .brand-name span{color:#a59db6}
+    main{flex:1;padding:clamp(50px,9vh,100px) 0 90px}
+    .eyebrow{color:#afa9bb;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin:0 0 14px}
+    h1{font-size:clamp(40px,6vw,68px);letter-spacing:-.065em;line-height:1.04;margin:0 0 18px;font-weight:700}
+    .intro{margin:0;color:var(--color-text-muted);font-size:clamp(15px,2vw,18px);line-height:1.6;max-width:580px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:46px}
+    .tool{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:265px;padding:30px;border:1px solid #29292e;border-radius:22px;background:linear-gradient(145deg,#202025,#151518 70%);overflow:hidden;isolation:isolate;transition:transform .22s ease,border-color .22s ease,background .22s ease;outline-offset:5px}
+    .tool::after{content:"";position:absolute;inset:auto -40px -100px auto;width:250px;height:250px;border-radius:50%;background:var(--glow);filter:blur(70px);opacity:.24;z-index:-1;pointer-events:none;transition:opacity .22s ease}
+    .tool:hover{transform:translateY(-5px);border-color:#62606b}.tool:hover::after{opacity:.43}
+    .tool:focus-visible{outline:2px solid #c7b7ff}
+    .tool-top,.tool-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .tool-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#ffffff10;border:1px solid #ffffff10}
+    .tool-icon svg{width:31px;height:31px}
+    .arrow{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#ffffff0c;color:#e7e7e9;font-size:23px;transition:background .2s ease,transform .2s ease}
+    .tool:hover .arrow{background:#ffffff22;transform:translate(2px,-2px)}
+    h2{font-size:clamp(28px,3vw,34px);letter-spacing:-.055em;line-height:1.1;margin:0 0 8px;font-weight:700}
+    .description{color:#aaa9b2;font-size:15px;line-height:1.5;margin:0}
+    .trazio{--glow:#7569e9}.submotion{--glow:#c9b9fc}
+    .soon{font-size:13px;color:#797981;margin:22px 0 0;text-align:center}
+    footer{padding:22px 0 30px;border-top:1px solid var(--color-border);color:#777780;font-size:13px;display:flex;justify-content:space-between;gap:15px}
+    @media(max-width:680px){.shell{width:min(100% - 32px,480px)}header{padding:23px 0}.brand-logo{width:34px;height:34px}.brand-name{font-size:22px}main{padding:58px 0 65px}.grid{grid-template-columns:1fr;gap:13px;margin-top:32px}.tool{min-height:210px;padding:24px;border-radius:19px}.tool-icon{width:50px;height:50px}.tool-icon svg{width:27px;height:27px}footer{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){.tool,.tool::after,.arrow{transition:none}.tool:hover{transform:none}}
+
+.animotion{--glow:#6bcfaf}

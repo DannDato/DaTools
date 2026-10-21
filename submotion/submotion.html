@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Submotion — Generador SRT</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAKMWlDQ1BJQ0MgUHJvZmlsZQAAeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEErAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AB0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzmOGCsOTkc6oZPQxpnQ1df11Jbr1uoO6M3rGelF6hXrtevf0Cfos/ST9Hfq9+lMGOgYhBgUGrQa3DfGGLMMUw12G/YavjYyNYow2GHUZPTJWMw4wzjduNb5rQjZxN1lm0mByzRRjyjJNM91tetkMNrM3SzGrMRsyh80dzAXmu82HLdAWThZCiwaLG0wS05OZw2xljlrSLYMtCy27LJ9ZGVjFW22z6rf6aG1vnW7daH3HhmITaFNo02Pzq62ZLde2xvbaXPJc37mr53bPfW5nbse322N3055qH2K/wb7X/oODo4PIoc1h0tHAMdGx1vEGi8YKY21mnXdCO3k5rXY65vTW2cFZ7HzY+RcXpkuaS4vLo3nG8/jzGueNueq5clzrXaVuDLdEt71uUnddd457g/sDD30PnkeTx4SnqWeq50HPZ17WXiKvDq/XbGf2SvYpb8Tbz7vEe9CH4hPlU+1z31fPN9m31XfKz95vhd8pf7R/kP82/xsBWgHcgOaAqUDHwJWBfUGkoAVB1UEPgs2CRcE9IXBIYMj2kLvzDecL53eFgtCA0O2h98KMw5aFfR+OCQ8Lrwl/GGETURDRv4C6YMmClgWvIr0iyyLvRJlESaJ6oxWjE6Kbo1/HeMeUx0hjrWJXxl6K04gTxHXHY+Oj45vipxf6LNy5cDzBPqE44foi40V5iy4s1licvvj4EsUlnCVHEtGJMYktie85oZwGzvTSgKW1S6e4bO4u7hOeB28Hb5Lvyi/nTyS5JpUnPUp2Td6ePJninlKR8lTAFlQLnqf6p9alvk4LTduf9ik9Jr09A5eRmHFUSBGmCfsytTPzMoezzLOKs6TLnJftXDYlChI1ZUPZi7K7xTTZz9SAxESyXjKa45ZTk/MmNzr3SJ5ynjBvYLnZ8k3LJ/J9879egVrBXdFboFuwtmB0pefK+lXQqqWrelfrry5aPb7Gb82BtYS1aWt/KLQuLC98uS5mXU+RVtGaorH1futbixWKRcU3NrhsqNuI2ijYOLhp7qaqTR9LeCUXS61LK0rfb+ZuvviVzVeVX33akrRlsMyhbM9WzFbh1uvb3LcdKFcuzy8f2x6yvXMHY0fJjpc7l+y8UGFXUbeLsEuyS1oZXNldZVC1tep9dUr1SI1XTXutZu2m2te7ebuv7PHY01anVVda926vYO/Ner/6zgajhop9mH05+x42Rjf2f836urlJo6m06cN+4X7pgYgDfc2Ozc0tmi1lrXCrpHXyYMLBy994f9Pdxmyrb6e3lx4ChySHHn+b+O31w0GHe4+wjrR9Z/hdbQe1o6QT6lzeOdWV0iXtjusePhp4tLfHpafje8vv9x/TPVZzXOV42QnCiaITn07mn5w+lXXq6enk02O9S3rvnIk9c60vvG/wbNDZ8+d8z53p9+w/ed71/LELzheOXmRd7LrkcKlzwH6g4wf7HzoGHQY7hxyHui87Xe4Znjd84or7ldNXva+euxZw7dLI/JHh61HXb95IuCG9ybv56Fb6ree3c27P3FlzF3235J7SvYr7mvcbfjT9sV3qID0+6j068GDBgztj3LEnP2X/9H686CH5YcWEzkTzI9tHxyZ9Jy8/Xvh4/EnWk5mnxT8r/1z7zOTZd794/DIwFTs1/lz0/NOvm1+ov9j/0u5l73TY9P1XGa9mXpe8UX9z4C3rbf+7mHcTM7nvse8rP5h+6PkY9PHup4xPn34D94Tz+6TMXDkAABOzSURBVHja7Z17cFRVnsc/93YnQIABA2qRCCgxPGRAs8Bo+QAEXLAWSlDWMLp/uDxFS9aqtcb9w1XYqdktdGt211URZdwtVl2pxVXQMjpEdzGrjIAReQxKQBDIqMMbIZDuvve3f9x7bk5uukMn6U7ffvyqbiXpTnffPr/v7/t7nN85xyD7xABM96cFiO/53kAZMAwY4f4sB64EBgD9gBKg2L1CQDMQBS4CPwKngGPAd8C3QAPwNdAI/BDnnkLt3E/gBzNbxHSvmO/xMuB64GfAeKACuBroleLPFxcQ3wC/Bz4FdgB7fPekwGlnAxiMLLF2S3usGPgTYApwh6v8yxIoTDQlGL7vayR4DQleF+//bWA/sBmoBf4X+KOPGfDdf0GStPaQ77EbgZXAbp9yxR3gmHtZmvWl+rK1z4nFef4E8CZwHzDQB7ZQljFuRmlep/e/ArbGGeyoq4R0KTtZQFjuvVi+544Cz7uuKV68UJB2LH6sO3jHfYMdTbOFp4ohLN9jm4B7gHAc95DXYvgG4nrgP9yoXLd0K6AKTwYM+mNfAH/pxjHxvn9eif7FRwJrgAs+xdtZqPhkWOFzoDpf3YLu5/sDvwTOaYPTxq8bhiGhUEhyAAyWjxV+C9yST25B/4LVbgqVUPE5fFkaI1jAc0BpLrOB7uuGAv+ZjOINwxBAysvLZebMmbkIBP27HwDm5iIb6GndvcAf4lhB3CsUColhGPLcc8+JiMiwYcPEMAwxTTMXgaB+/43GBuHuVE66KN92a++rgHXAIPcLm5f6fNu2ERFGjx6NbdvcfPPNiAiGkXMMqcbJBua7ZeZb3XHKWpeg0FsJ/C5Zq/fT/xVXXCG7du0SEZFdu3ZJ7969xTRN7/kcvKLuz2bgwSwq27e6UaX8P8OZPdO/WFKXivpnz54tlmWJZVkiIrJo0SIBJBwO53qQqH5/QYsHQtmgfHWTD2q+LdbRQVAAeOCBB0REJBaLiWVZ8v3338vYsWPzAQR6IanGTZkDDQJD8+m/9NXKpbMAmD9/voiI2LbtscC2bdtk4MCB3v/lYFAYzyXUuxlUIEGgK/+5VOT1CgCLFi0SEfGUr37W19dLVVVVm2JROBz2QGEYRoeuLADBQeC67soQOkP7L6eqjKsAsHjx4laK138/ffq0rFy5UkaOHJmSgVYgUlfAgk3lDo4AY1LFBEaKLN9yg5Wl7o12GZ2hUAjLsli8eDGrV6/Gtm1M02yVIqq/T58+zc6dO6mtrWXv3r2cPXuWhoYGzpw5g2EYiLQ05hiGgW3bnDt3zksz1fslzJVN03ud/l4ZEMtV+lGcZpiv3L873XASToHlx4BnUqn8pAoYpomIYNs2/fv3Z+LEiUycONF7/ocffuD8+fNtb9pV5IULF7Asi1gshogQiUQ4deoU27dv58CBA9i2TX19Pfv37ycajbYCpvrcDNULLOAq4D3gdpyeRdNl3Izk+Y93Js3rigvwi23bEovFvEwhVXLy5EnZuXOnvPLKKzJnzhzp3bu3d38Zdg8xLTDs301FvbiTOvPSNZGjALBgwYJLAiAeIFTW0JFLB1G8z9u/f788/fTTMnr06Db3mUEQvA8UdWfFUCn/Rpz5+7R06MRLA7tbFIj8zHL69Gl5/vnnZdiwYZlmA8W6z3dXeqhange6s1dCmrp1FACmT58uTU1NGQOBLgoMSr777jtZunRpK7eQQRAsTDcI9M7Wdztb4etISqaqfZ9//nmrQlCmRcUcSl588UXp169fq/vOQMXwPDAhnfGACvp+kY6grz0WeOaZZ7xycJBEB8KWLVtkyJAhmWICxcK7gT4aU6fc709wZ6m6pXtHDWRlZaWcO3dOLMvKuBuIJ5FIRERE6urqpKioKFNMoAxyVapdgSr29AK+TKffbw8E69atExGRaDQqQRQFglWrVolpmpkIDG0NBLNSCYKQb4In2p3IVgNZWVkpjY2NbfxvkETd15w5czKVIqqM7CDOcrkuuwIVTIxxU76MNG6qgbzrrrvazAcEDQC2bcunn34qxcXFmUoNVWD+z11lAX2SZ1O6o/5kQfDQQw95dBtEd6CAeccdd2SKBdQUfAQY15WsQCn/7kwr3x8P3H777dLQ0NAqEg9KcKjcwNq1azPZwKp0Veubqu8wA/TEWf9uE5DlWcqihgwZImvWrGml+CAAQQGgrq4uKNPHnQoI1T8vCIr1xwMBIJMnT5b333+/leL18m13A0J93rfffivXXnttJiuESmfb3BpO0gGh2gyhN7AvSNbvrxTqAztp0iRZs2aNNDY2XnLGUL/UxI+aQEoVACKRiMyYMSOTANBBcE9HWCDQ1k+CxSPq70GDBsm8efPkjTfekN27d3dqJjHRbGBHAHDx4kWZOnVqUACwLdFsoZHg7zCw3U3/7GxoR1bdQXqjhmmajBkzhltvvZVoNMqgQYMYP348JSUlFBUVYRgGPXv2pH///lx22WX06dOHHj16dOk+1MKV5uZmZs6cSW1tLaZpZqqBBFd/JjAD+OBSHURK0bO6u+KXSkZQ5diysjJ58skn5fDhwzJ37ty4/x8Oh6W0tFQqKirkhhtukClTpsj9998vmzdv7hQL6Awwbdq0TDOAzgI1yaSEigHeI/4GB4FXvvp9wYIFcvjwYU8xS5Ys8bqGkynQFBcXy4EDBzrlQgIGALXkLIKz80orEJi+qp/g7K03JRNtRp2uWBmG10Q6dOhQ1q1bx5o1axg8eDDNzc2ICLFYDMuyEJE2TaKGYWCaJqZpEg6Hvb6/SCRCDojav7AIeMDv+s041n8/0MN9kZEtvt+yLO655x4+/vhj7r33XizLwrZtwuFwu4tJFSBs28a2bSzLwrIsDxg5IkrPc4Gf6Lo1fcFCD1rWqJvZoHzVqr18+XLWr1/PkCFDsCyLUCjUqo28M8FcDonqGh7sZ3dTC/7ErR2PdH8PNABCoRC2bTNw4EBeffVVnnrqKc+SQ6HCBlwJsgEB/lxhXO/yUTLHpYZu6+/vrPKVv3/rrbeoqqrCsizPjxckYYZnANNwWslPA4a+6XIYuDNBfSBwyq+oqGDTpk1UVVURi8UIhUK5uHFEqoNBG7gCUCtoQvouHT8FRgXZ/+vKf+edd6isrMSyLMLhcEG9ybsBgD9VbkCfIJhEy27cgTMl0zSxLIvhw4dTU1PDqFGjvGCvIB3OBiariqC+pmxSUOlfrecbOnQoGzdupLKy0qP9gnTYDYCzbc+1enpQgrPXfuAAoPx6aWkp69evZ8SIEcRisQLtd60opLbc9yhhOM7uXYEDgFoFPGPGDMaPH1/w+amTm3QAjHKzgMBW//r27Ytt24VIP3UyVgfA9UG/W5XnFyRlccAwoFSN6HWBv+suWn6BOdpkAmVAuYkzSzQ4qBlAKhmkIJ6I6/KHm8DlQQ0AUym9evUqqL01AFAAKKXlgKPc26bcpf558+Z5TFBwBx4ArjZdXxAiyw487Khcc801XHnllQXbb23oZaZG/7kZ8bh1hKuuuoqbbrrJ6/4pCACXmxr95ywDqI7cyZMnt2kJy3MGKDVp2WYsZ0dF+fxZs2bRr1+/QkGpRX5i4mwpktuJr9s6VlFRwS233FJwAy0M0NvE6QPM/bDXpf3q6uqCG2iRHiYthxjmBQtUV1czbtw4RKQQDEJR3oyA2jS6R48ePP744wUGUIaBs2IkL0R1Et99991UV1e32YE8DyVq4mz7Rj4xgWmavP7664wdOzbfQdBs4hzbmjeiVu+uXbuWgwcPeu1meSbK/50P4/SH66lBzopqIv3www9ZuHBhYV4AzprA8XwAgIr6o9EoK1as8MCQp8Gg+tInTeC7fPjGiuZra2upq6vz2szzXI6ZOGf5WrnOAGq172uvveb9nceiGOAPJnBScwM5yYeK/o8dO8aWLVu8x/JYFPoPmcAx4PtcBwDAJ598wjfffJOvkX88ADSYOJs/H8llACh5++23CxNBLQCwgH1qJH6f63l/U1MTDQ0NhYmgFiNvBI4qAOzIdQAcOXKErVu3Fvx/y1rQgyoNBNiLsyo453oDlbJra2u9xSWFiSDAOfzDWySwT6sH5OTobNmyxWODggDwOwUAE2jC2Rk0ZwFQUlJSULmj2xDODPAXOgAAPs5lAOR52ucPABvcy9scEmCzGyCEcz0dzPMAUFxdW7h7BCnT2IVzHLkeKRakC8FnAFlHbQn0W1UPMDW/EMM5iJgCA6RgpE2T4mKn3TIggafa+/GYywDg7hGky39rgChIJ0T1HhYXF9O/f/8g3Zra+b0WpwfExN0lTD1puJnA17TsKVeQTlC/YRicOXOGQ4cOtapFBIT+/0thVa8DqN+bgfWFOKBrAADYu3cv27dvDwoA1KERR4EPdf2acVKE19w8MedXDKcTAJFIhFgs5rmEAAAA17jP6rr17xZuuJnARwUW6JqovoMAzDzqQf6/+4N8M46fAFhNy+lhBelg9C8i1NTUBCn3B/gfnPq/nvq3AYBigRqcKWI1b1yQZEbazft37tzJZ5991uqxTCYm7vWsHvwlAoBoweC/FBigcxnAunXruHjxYhC6ji1Xn1/g1HjaGLSZgDIMNxjc76eMgiRWvmmanDp1ivXr1wcp/QP4ezcGMEng8+OxwHlgpQuGQjaQBP0bhsGvf/1rGhoaMn1WoLL+EPA58HYiQzbbebEBvIrTLFJggUsoPxQKsX//fp599tmgpH5K/o6WIwAkWQCo5y4Cf5uPLJCsElWPoWVZLFu2jLNnzwYBAMr6PwLecXVpJVJye+lDCGd+4EMuceRothRokpVYLJYUhaslZqtWraKmpiYI1C+uwUaBX1zKcM1LvJG6/pqWZeSS65ZvGAajRo2ivLzceywRSMLhMBs2bOCxxx4LylpDVfZd5fr/UHvu20zizUJuAeEfs5kFotFoh6j/zjvvpF+/fglXECvl7969m4ULF9Lc3OydYRgA5X8LrEgmdjM78Ka/wmkaCWdjQDhy5MhL+mZF34MHD2bZsmUJm0iV8g8ePEh1dTXHjx8PgvWLlsIvw1nyl7LYTfUH/AxnoihGS3tRtxwIvWjRog4f5Kz/f319vfeeiQ6PVoc8v/TSSyIiEovF2hwMHY1GRURk9+7dMmrUqCAcDu0/JfxFn85SJuqclr9xPyiaDQCwbVts25bjx4/L8OHDxTCMuApTnzN16lSJRCJiWZZ3ErgfDBs2bJCysrI2J5Zn8FLNHntw9n3UT4NLXXxEy+mT7/lQF1gA6Mp74YUXBJBwOBzX8vv06SNfffWV9zm2bUssFvM+MxKJyMqVK73/D4jybVcPF4Ab02X9esxg4Jw++Y0PfYEFgGKB5uZmmTJligBSVFTkuQOl0JdfftlTtJ/+a2trZeLEiW1AE4BLMfHSdCvfHw/chLOgxEpnPKAAsGTJkk4DQIFAROTEiRNy2223ee+t3n/p0qVtXnP+/Hn54IMPZM6cOa2sPlEMkUHlr+ou5fvjgZ9rrsBOJwCmTZsmlmW1sczOBITHjx+X2bNnt/qM+vp6+fHHH2XPnj1SW1srjzzyiFRVVcV1FQFT/iac3V5DdPPsbbcFhcri3nzzzbjReWeYQERk9erVMmDAAAFkzJgxMnr06Lh+PWBWr8deO4EBHUjpUx4UKhD8UzpBYJqmGIYh5eXlsm/fvi65AgUCBaLly5fHBVwoFPI+N0CK15V/ELgmU8r3ZwYAL6UTBMoyp0+fLrZti2VZnQaBem1jY6NUVFR47x9QhcdT/hFajvrL+BoOQ8sOfqOBwE4XCFTA1lkQKOt/9NFHg5TOJav8RloO+gzMAh5Do6EX0hkYKmU9/PDDcYs0yQaCdXV1UlJSkg1Wr7PqIWC0LwYjiCD4lVaksNIFgvnz58uxY8c8EOgBXiLfb1mWNDU1yYQJE4IY2ben/B3A1UGz/PZAsFSjrVi6QDBixAjZunVrUmygnluxYkU2UL+tjdv7wGVBV368wHAWzmrUtASHSoF9+/aVJ554Qi5cuNDK0v3Ub9u2fPnll9KnT5+gU7/Omi9qdJ9Vi3bVTY8AtqYrLtApfMKECbJx48ZWFq+AoH7OnTs36NavDKUZeKiDU/eBE4XY3sDLcb5kygpFukJnz54t27Zt84AQiUTEtm159913vXQvoFavLP9rYKI2hlm9PkNH7l/gbEur2MBKNRso5fbs2VMefPBB2bFjhweEcePGBdX69Rjp37TqXpgcET04vBpY5/vyKXULuoJLSkpk1qxZMnPmzKDm9rZW2bs3DnvmlOhf6ufalHLKgeB3C+11AmWY7m23djIgVyg/GZeg2KAUZ/VRU7qBEKDOHZ3uPwIm5brVJ8MG1+GsXY/4AkWb4Jdok83n9XhnJ3CfbyzyciGu4QPCeOD1OECwsljx+mM7gIVArwTfP2/F9A3EDThdLid8A6rAYGeRtds4O3PN9UX1BcVfIj4AKAceAT5LUDCJZRgMaq4jHksdBf4Vp5WeAt13jRHA6UH8B5zFKYmCq1iaGcLWPife/MYJnG3Y7gMGxnF1gVN80JGo6gf6crQiN1aYCkwDxmoTJbroitG/q9HOd5c4Pw0S75dk42yi8RHOHjybgR/i0LwV5AHONvcQ8z1eDvwUpyf+RrfQdDWQ6v3hVTPGIZz9k/7Pjeb3+O5JNcfYZMFC2mz0RXoHkhVnkEuAMuBaoBIYBgwGLnfrDqXu3EQR0IOWE9QjOBMwp3HW1Z3UFH7Arc8fBf6YIKVNdD+Blv8HnDTq77GMakcAAAAASUVORK5CYII=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Gotham";
+      src: local("Gotham"), local("Gotham Book"), local("Gotham Bold");
+      font-display: swap
+    }
+
+    :root {
+      color-scheme: dark;
+      font-family: "Outfit", system-ui, Segoe UI, Arial, sans-serif;
+      background: #0b0b0c;
+      color: #f5f5f5
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0
+    }
+
+    header {
+      padding: 22px 30px;
+      border-bottom: 1px solid #242426;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.5px
+    }
+
+    header small,
+    .muted {
+      color: #85858d
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(290px, 340px) minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px;
+      max-width: 1700px;
+      margin: auto
+    }
+
+    .panel {
+      background: #141416;
+      border-radius: 16px;
+      padding: 20px
+    }
+
+    .panel h2 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      color: #a4a4ad;
+      margin: 3px 0 18px
+    }
+
+    label {
+      display: block;
+      color: #aaaab1;
+      font-size: 12px;
+      margin: 15px 0 7px
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit
+    }
+
+    input:not([type=file]):not([type=range]):not([type=color]),
+    select,
+    textarea {
+      width: 100%;
+      color: #eee;
+      background: #222226;
+      border: 0;
+      border-radius: 9px;
+      padding: 11px;
+      outline: none
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: inherit;
+      font-size: 12px;
+      line-height: 1.55
+    }
+
+    input[type=range] {
+      width: 100%;
+      accent-color: #ae9fff
+    }
+
+    input[type=color] {
+      background: transparent;
+      border: 0;
+      width: 42px;
+      height: 32px;
+      vertical-align: middle;
+      padding: 0
+    }
+
+    input[type=file] {
+      max-width: 100%;
+      font-size: 12px
+    }
+
+    button {
+      border: 0;
+      background: #2b2b30;
+      color: #fff;
+      padding: 11px 15px;
+      border-radius: 10px;
+      cursor: pointer
+    }
+
+    button:hover {
+      background: #3c3c44
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed
+    }
+
+    .primary {
+      background: #aa98ff;
+      color: #100f15;
+      font-weight: 750
+    }
+
+    .primary:hover {
+      background: #c0b4ff
+    }
+
+    .group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px
+    }
+
+    .group label {
+      margin-top: 12px
+    }
+
+    .stage {
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 75vh;
+      margin: auto
+    }
+
+    .stage.vertical {
+      aspect-ratio: 9/16;
+      width: min(100%, 420px)
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: contain
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0
+    }
+
+    .time {
+      font-size: 12px;
+      color: #b4b4bc;
+      font-variant-numeric: tabular-nums
+    }
+
+    #seek {
+      flex: 1;
+      min-width: 140px
+    }
+
+    .status {
+      font-size: 12px;
+      color: #a5a5ae;
+      line-height: 1.6;
+      min-height: 30px
+    }
+
+    .hint {
+      line-height: 1.5;
+      font-size: 12px;
+      color: #85858e
+    }
+
+    .section {
+      border-top: 1px solid #2a2a2d;
+      margin-top: 19px;
+      padding-top: 5px
+    }
+
+    .pill {
+      font-size: 11px;
+      color: #aa9aff;
+      background: #30283e;
+      padding: 5px 10px;
+      border-radius: 20px
+    }
+
+    .value {
+      float: right;
+      color: #fff
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap
+    }
+
+    .actions>* {
+      flex: 1
+    }
+
+    .export {
+      margin-top: 17px
+    }
+
+    .progress {
+      height: 5px;
+      background: #2b2b31;
+      border-radius: 50px;
+      overflow: hidden;
+      margin-top: 12px
+    }
+
+    .progress>div {
+      height: 100%;
+      width: 0;
+      background: #aa98ff;
+      transition: width .15s
+    }
+
+    #cues {
+      max-height: 270px;
+      overflow: auto;
+      margin-top: 12px
+    }
+
+    .cue {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      width: 100%;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 12px;
+      padding: 10px
+    }
+
+    .cue:hover,
+    .cue.active {
+      background: #28252e
+    }
+
+    .cue span {
+      color: #9c9ba7;
+      white-space: nowrap
+    }
+
+    @media(max-width:880px) {
+      main {
+        grid-template-columns: 1fr;
+        padding: 14px
+      }
+      header {
+        padding: 20px
+      }
+      .panel {
+        padding: 16px
+      }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0
+    }
+
+    .brand-logo {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex: none
+    }
+
+    .brand h1 {
+      white-space: nowrap;
+      letter-spacing: -.4px;
+      font-weight: 800
+    }
+
+    @media(max-width:560px) {
+      .brand {
+        gap: 8px
+      }
+      .brand-logo {
+        width: 26px;
+        height: 26px
+      }
+    }
+
+    /* Distribución compacta y adaptable */
+
+    header {
+      padding: 16px clamp(16px, 2.3vw, 32px);
+      gap: 12px;
+      min-height: 62px
+    }
+
+    main {
+      grid-template-columns: minmax(300px, 350px) minmax(0, 1fr);
+      gap: 16px;
+      padding: 16px clamp(16px, 2.3vw, 32px) 32px;
+      max-width: 1800px;
+      align-items: start
+    }
+
+    main>aside,
+    main>section {
+      min-width: 0
+    }
+
+    .panel {
+      padding: 18px;
+      border-radius: 14px
+    }
+
+    .panel h2 {
+      margin: 0 0 12px
+    }
+
+    label {
+      margin: 11px 0 6px
+    }
+
+    .group {
+      gap: 9px 12px
+    }
+
+    .group label {
+      margin-top: 10px
+    }
+
+    input:not([type=file]):not([type=range]):not([type=color]),
+    select,
+    textarea {
+      padding: 9px 11px;
+      min-height: 40px
+    }
+
+    textarea {
+      min-height: 95px
+    }
+
+    button {
+      padding: 9px 13px;
+      min-height: 39px
+    }
+
+    .section {
+      margin-top: 15px;
+      padding-top: 15px
+    }
+
+    .section h2 {
+      margin-bottom: 9px
+    }
+
+    .hint {
+      margin: 8px 0;
+      font-size: 11px
+    }
+
+    .actions {
+      gap: 8px
+    }
+
+    .stage {
+      width: 100%;
+      max-height: none;
+      aspect-ratio: 16/9
+    }
+
+    .stage.vertical {
+      width: min(100%, 440px, calc(67vh * 9 / 16));
+      max-height: 67vh;
+      aspect-ratio: 9/16
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      margin: 12px 0 6px;
+      align-items: center
+    }
+
+    .toolbar #seek {
+      min-width: 0
+    }
+
+    .time {
+      white-space: nowrap
+    }
+
+    .export {
+      margin-top: 14px
+    }
+
+    .progress {
+      margin-top: 10px
+    }
+
+    .status {
+      min-height: 0;
+      margin-bottom: 0
+    }
+
+    #cues {
+      max-height: 230px
+    }
+
+    .cue {
+      align-items: flex-start;
+      min-width: 0;
+      padding: 9px
+    }
+
+    .cue div {
+      min-width: 0;
+      overflow-wrap: anywhere
+    }
+
+    .cue span {
+      flex-shrink: 0
+    }
+
+    .preview-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px
+    }
+
+    .preview-head h2 {
+      margin: 0
+    }
+
+    .fragment-panel {
+      margin-top: 14px
+    }
+
+    @media (min-width:1500px) {
+      main {
+        grid-template-columns: minmax(340px, 380px) minmax(0, 1fr);
+        gap: 20px
+      }
+      .panel {
+        padding: 20px
+      }
+      .stage.vertical {
+        width: min(100%, 470px, calc(70vh * 9 / 16));
+        max-height: 70vh
+      }
+    }
+
+    @media (min-width:881px) and (max-width:1100px) {
+      main {
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px
+      }
+      .panel {
+        padding: 14px
+      }
+      .toolbar {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 8px
+      }
+      .toolbar .time {
+        grid-column: 1/-1;
+        text-align: right
+      }
+    }
+
+    @media (max-width:880px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 740px;
+        gap: 14px;
+        padding: 14px
+      }
+      .panel {
+        padding: 18px
+      }
+      .stage.vertical {
+        width: min(100%, 410px, calc(58vh * 9 / 16));
+        max-height: 58vh
+      }
+      #cues {
+        max-height: 200px
+      }
+    }
+
+    @media (max-width:560px) {
+      header {
+        padding: 14px 16px;
+        min-height: 58px
+      }
+      header h1 {
+        font-size: 16px
+      }
+      header small {
+        font-size: 10px;
+        text-align: right
+      }
+      main {
+        padding: 10px;
+        gap: 10px
+      }
+      .panel {
+        padding: 14px;
+        border-radius: 12px
+      }
+      .panel h2 {
+        font-size: 12px;
+        margin-bottom: 10px
+      }
+      .group {
+        gap: 8px 10px
+      }
+      label {
+        margin: 10px 0 5px
+      }
+      .stage {
+        border-radius: 8px
+      }
+      .stage.vertical {
+        width: min(100%, 340px, calc(53vh * 9 / 16));
+        max-height: 53vh
+      }
+      .toolbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        row-gap: 8px
+      }
+      .toolbar #play {
+        justify-self: start
+      }
+      .toolbar #seek {
+        grid-column: 1/-1;
+        grid-row: 2;
+        width: 100%;
+        height: 24px
+      }
+      .toolbar .time {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 11px
+      }
+      .preview-head {
+        margin-bottom: 10px
+      }
+      .pill {
+        font-size: 10px;
+        white-space: nowrap
+      }
+      .fragment-panel {
+        margin-top: 10px
+      }
+      .cue {
+        gap: 8px
+      }
+      .cue span {
+        font-size: 11px
+      }
+    }
+
+    @media (max-width:360px) {
+      header small {
+        max-width: 110px
+      }
+      .group {
+        gap: 8px
+      }
+      .panel {
+        padding: 12px
+      }
+      .actions button {
+        padding: 8px 6px;
+        font-size: 12px
+      }
+      .toolbar #play {
+        font-size: 12px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand"><img class="brand-logo" src="data:image/png;base64,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"
+        alt="Logo de Submotion">
+      <h1>SUB<span style="color:#ad9aff">MOTION</span></h1>
+    </div><small>SRT → Animated video · Local</small></header>
+  <main>
+    <aside class="panel">
+      <h2>01 / Subtítulos</h2>
+      <label for="file">Importar archivo .srt</label><input id="file" type="file" accept=".srt,text/plain">
+      <label for="srt">O pegar SRT aquí</label><textarea id="srt" spellcheck="false" placeholder="1&#10;00:00:01,000 --> 00:00:03,000&#10;Este texto aparece animado"></textarea>
+      <div class="actions" style="margin-top:10px"><button id="load">Cargar subtítulos</button><button id="example">Ejemplo</button></div>
+      <div class="section">
+        <h2>02 / Apariencia</h2><label for="font">Fuente</label><select id="font"><option value="Outfit">Outfit</option><option value="Bebas Neue">Bebas Neue</option><option value="Gotham">Gotham</option><option value="Arial">Arial</option><option value="Impact">Impact</option><option value="Verdana">Verdana</option><option value="Georgia">Georgia</option><option value="Tahoma">Tahoma</option><option value="Trebuchet MS">Trebuchet</option><option value="system-ui">System UI</option></select>
+        <p
+          class="hint">Outfit y Bebas Neue requieren internet la primera vez. Para Gotham, usa una fuente instalada o carga tu archivo de
+          fuente autorizado.</p><label for="gothamFile">Cargar Gotham (.woff, .woff2, .ttf, .otf) · opcional</label>
+          <input
+            type="file" id="gothamFile" accept=".woff,.woff2,.ttf,.otf,font/woff,font/woff2,font/ttf,font/otf">
+            <label for="textCase">Capitalización</label><select id="textCase"><option value="original">Original (como en el SRT)</option><option value="upper">TODO EN MAYÚSCULAS</option><option value="sentence">Primera letra mayúscula</option><option value="title">Cada Palabra Con Mayúscula</option><option value="lower">todo en minúsculas</option></select>
+            <div class="group">
+              <div><label for="size">Tamaño <span id="sizeValue" class="value">100</span></label><input id="size" type="range"
+                  min="24" max="230" value="100"></div>
+              <div><label for="weight">Peso</label><select id="weight"><option value="700">Bold</option><option value="400">Normal</option><option value="900">Black</option></select></div>
+            </div>
+            <div class="group">
+              <div><label for="textColor">Texto</label><input id="textColor" type="color" value="#ffffff"></div>
+              <div><label for="backColor">Fondo</label><input id="backColor" type="color" value="#000000"></div>
+            </div>
+            <div class="group">
+              <div><label for="posX">Posición X <span id="posXValue" class="value">50%</span></label><input id="posX" type="range"
+                  min="0" max="100" value="50"></div>
+              <div><label for="posY">Posición Y <span id="posYValue" class="value">50%</span></label><input id="posY" type="range"
+                  min="0" max="100" value="50"></div>
+            </div>
+            <div class="section">
+              <h2>03 / Animación</h2><label for="animation">Estilo de entrada y salida</label><select id="animation"><option value="pop">Pop (escala)</option><option value="fade">Fade</option><option value="slide">Slide vertical</option><option value="zoom">Zoom suave</option><option value="bounce">Bounce · rebote</option><option value="elastic">Elastic · elástico</option><option value="punch">Punch · impacto</option><option value="swing">Swing · balanceo</option><option value="rise">Rise · elevación</option><option value="cascade">Cascade · por palabra</option><option value="none">Sin animación</option></select>
+              <label for="speed">Duración animación <span id="speedValue" class="value">250 ms</span></label><input id="speed"
+                type="range" min="0" max="800" step="25" value="250">
+              <label for="idleEffect">Movimiento mientras se muestra</label><select id="idleEffect"><option value="none">Ninguno · estático</option><option value="breathe">Respirar · escala suave</option><option value="float">Flotar · movimiento sutil</option><option value="jump">Letras inquietas · pequeños saltos</option><option value="wave">Ola · letras en secuencia</option><option value="sparkle">Destellos · brillitos blancos</option><option value="shimmer">Brillo viajero · barrido suave</option><option value="pulse">Latido · pequeños impulsos</option></select>
+              <div class="group">
+                <div><label for="idleStrength">Intensidad <span id="idleStrengthValue" class="value">35%</span></label>
+                  <input
+                    id="idleStrength" type="range" min="0" max="100" step="5" value="35"></div>
+                <div><label for="idleRate">Velocidad <span id="idleRateValue" class="value">1.0×</span></label><input id="idleRate"
+                    type="range" min="25" max="200" step="5" value="100"></div>
+              </div>
+              <p class="hint">Se activa después de la entrada y se detiene al salir. Compatible con cualquier animación inicial.</p>
+              <label for="lineHeight">Interlineado <span id="lineHeightValue" class="value">1.15</span></label><input id="lineHeight"
+                type="range" min="90" max="180" value="115"></div>
+    </aside>
+    <section>
+      <div class="panel">
+        <div class="preview-head">
+          <h2>Vista previa</h2><span class="pill" id="resolution">2560 × 1440</span></div>
+        <div class="stage"><canvas id="canvas" width="2560" height="1440"></canvas></div>
+        <div class="toolbar"><button id="play">▶ Reproducir</button><input type="range" id="seek" min="0" max="1000" value="0"><span class="time"
+            id="time">00:00.00 / 00:00.00</span></div>
+        <div class="group">
+          <div><label for="orientation">Formato</label><select id="orientation"><option value="horizontal">Horizontal · 16:9</option><option value="vertical">Vertical · 9:16</option></select></div>
+          <div><label for="fps">Fotogramas</label><select id="fps"><option value="30">30 FPS</option><option value="60">60 FPS</option></select></div>
+          <div><label for="tail">Segundos adicionales al final</label><select id="tail"><option value="0">0 s</option><option value="0.5">0.5 s</option><option value="1" selected>1 s</option><option value="2">2 s</option></select></div>
+        </div>
+        <div class="export"><button id="export" class="primary" style="width:100%">Exportar video 2K</button>
+          <div class="progress">
+            <div id="bar"></div>
+          </div>
+          <p class="status" id="status">Carga un SRT para comenzar. El navegador intentará exportar MP4 y usará WebM si no está disponible.</p>
+        </div>
+      </div>
+      <div class="panel fragment-panel">
+        <h2>Fragmentos <span id="count" class="muted">(0)</span></h2>
+        <p class="hint">Haz clic en cualquier fragmento para saltar a su posición. Los tiempos del SRT se conservan desde el segundo cero.</p>
+        <div
+          id="cues"></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id),
+        canvas = $('canvas'),
+        ctx = canvas.getContext('2d');
+      let W = canvas.width,
+        H = canvas.height;
+
+      function setOrientation() {
+        const vertical = $('orientation').value === 'vertical';
+        W = vertical ? 1440 : 2560;
+        H = vertical ? 2560 : 1440;
+        if (canvas.width !== W || canvas.height !== H) {
+          canvas.width = W;
+          canvas.height = H;
+        }
+        canvas.parentElement.classList.toggle('vertical', vertical);
+        $('resolution').textContent = W + ' × ' + H;
+      }
+      let cues = [],
+        duration = 0,
+        current = 0,
+        playing = false,
+        playOrigin = 0,
+        frameHandle = 0,
+        recording = false;
+      let gothamLoaded = false;
+      async function ensureFont() {
+        const family = $('font').value,
+          weight = $('weight').value;
+        if (family === 'Gotham' && !gothamLoaded && !document.fonts.check('16px Gotham')) {
+          $('status').textContent =
+            'Gotham no está disponible. Carga tu archivo de fuente o instálala en el sistema.';
+          return false;
+        }
+        if (family === 'Outfit' || family === 'Bebas Neue') {
+          try {
+            await document.fonts.load(`${weight} 100px "${family}"`);
+          } catch {}
+          if (!document.fonts.check(`${weight} 100px "${family}"`)) {
+            $('status').textContent = 'No se pudo cargar ' + family + '. Revisa tu conexión a internet.';
+            return false;
+          }
+        }
+        return true;
+      }
+      const settings = ['font', 'textCase', 'size', 'weight', 'textColor', 'backColor', 'posX', 'posY', 'animation',
+        'speed', 'idleEffect', 'idleStrength', 'idleRate', 'lineHeight', 'fps', 'tail', 'orientation'
+      ];
+      try {
+        const saved = JSON.parse(localStorage.getItem('subtitle-motion-settings') || '{}');
+        for (const key of settings)
+          if (saved[key] !== undefined) $(key).value = saved[key];
+      } catch {}
+
+      function save() {
+        const data = {};
+        for (const key of settings) data[key] = $(key).value;
+        localStorage.setItem('subtitle-motion-settings', JSON.stringify(data));
+      }
+
+      function labelValues() {
+        for (const id of ['size', 'posX', 'posY', 'speed', 'lineHeight', 'idleStrength', 'idleRate']) {
+          const v = $(id).value;
+          $(id + 'Value').textContent = id === 'speed' ? v + ' ms' : id === 'posX' || id === 'posY' ? v + '%' : id ===
+            'lineHeight' ? (v / 100).toFixed(2) : id === 'idleStrength' ? v + '%' : id === 'idleRate' ? (v / 100).toFixed(
+              2) + '×' : v;
+        }
+      }
+
+      function parseTime(s) {
+        const m = s.trim().match(/^(?:(\d+):)?(\d{1,2}):(\d{2})[,.](\d{1,3})$/);
+        if (!m) return NaN;
+        return (+(m[1] || 0)) * 3600 + (+m[2]) * 60 + (+m[3]) + (+m[4].padEnd(3, '0')) / 1000;
+      }
+
+      function parseSRT(src) {
+        const normalized = src.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
+        const blocks = normalized.trim().split(/\n\s*\n/);
+        const out = [];
+        for (const block of blocks) {
+          const lines = block.split('\n');
+          const idx = lines.findIndex(l => l.includes('-->'));
+          if (idx < 0) continue;
+          const tm = lines[idx].match(
+            /(\d{1,}:\d{2}:\d{2}[,.]\d{1,3}|\d{1,2}:\d{2}[,.]\d{1,3})\s*-->\s*(\d{1,}:\d{2}:\d{2}[,.]\d{1,3}|\d{1,2}:\d{2}[,.]\d{1,3})/
+          );
+          if (!tm) continue;
+          const start = parseTime(tm[1]),
+            end = parseTime(tm[2]);
+          const text = lines.slice(idx + 1).join('\n').replace(/<[^>]*>/g, '').trim();
+          if (Number.isFinite(start) && end > start && text) out.push({
+            start,
+            end,
+            text
+          });
+        }
+        return out.sort((a, b) => a.start - b.start);
+      }
+
+      function formatText(text) {
+        const mode = $('textCase').value;
+        if (mode === 'upper') return text.toLocaleUpperCase('es');
+        if (mode === 'lower') return text.toLocaleLowerCase('es');
+        if (mode === 'sentence') {
+          const lower = text.toLocaleLowerCase('es');
+          return lower.replace(/\p{L}/u, letter => letter.toLocaleUpperCase('es'));
+        }
+        if (mode === 'title') return text.toLocaleLowerCase('es').replace(/(^|[^\p{L}\p{N}])([\p{L}])/gu, (_,
+          separator, letter) => separator + letter.toLocaleUpperCase('es'));
+        return text;
+      }
+
+      function updateCueTexts() {
+        for (const node of $('cues').children) {
+          const cue = cues[Number(node.dataset.index)];
+          if (cue) node.firstElementChild.textContent = formatText(cue.text);
+        }
+      }
+
+      function fmt(t) {
+        const m = Math.floor(t / 60),
+          s = (t % 60).toFixed(2).padStart(5, '0');
+        return String(m).padStart(2, '0') + ':' + s;
+      }
+
+      function getDuration() {
+        return cues.length ? Math.max(...cues.map(c => c.end)) + Number($('tail').value) : 0;
+      }
+
+      function load() {
+        if (recording) return;
+        const parsed = parseSRT($('srt').value);
+        if (!parsed.length) {
+          $('status').textContent = 'No encontré subtítulos SRT válidos. Revisa los timestamps.';
+          return;
+        }
+        pause();
+        cues = parsed;
+        duration = getDuration();
+        current = 0;
+        $('count').textContent = '(' + cues.length + ')';
+        $('cues').replaceChildren();
+        cues.forEach((cue, i) => {
+          const b = document.createElement('button');
+          b.className = 'cue';
+          const text = document.createElement('div');
+          text.textContent = formatText(cue.text);
+          const time = document.createElement('span');
+          time.textContent = fmt(cue.start);
+          b.append(text, time);
+          b.onclick = () => {
+            pause();
+            current = cue.start;
+            draw(current);
+          };
+          b.dataset.index = i;
+          $('cues').appendChild(b);
+        });
+        $('status').textContent = cues.length + ' fragmentos cargados · duración ' + fmt(duration);
+        draw(0);
+      }
+
+      function splitLines(text, maxWidth) {
+        const explicit = text.split('\n'),
+          result = [];
+        for (const original of explicit) {
+          let line = '';
+          for (const word of original.split(/\s+/)) {
+            const test = line ? line + ' ' + word : word;
+            if (line && ctx.measureText(test).width > maxWidth) {
+              result.push(line);
+              line = word;
+            } else line = test;
+          }
+          result.push(line || ' ');
+        }
+        return result;
+      }
+
+      function clamp01(v) {
+        return Math.max(0, Math.min(1, v));
+      }
+
+      function easeOut(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function easeBack(t) {
+        const c = 1.70158;
+        return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2);
+      }
+
+      function easeBounce(t) {
+        const n = 7.5625,
+          d = 2.75;
+        if (t < 1 / d) return n * t * t;
+        if (t < 2 / d) {
+          t -= 1.5 / d;
+          return n * t * t + .75;
+        }
+        if (t < 2.5 / d) {
+          t -= 2.25 / d;
+          return n * t * t + .9375;
+        }
+        t -= 2.625 / d;
+        return n * t * t + .984375;
+      }
+
+      function easeElastic(t) {
+        return t === 0 || t === 1 ? t : Math.pow(2, -10 * t) * Math.sin((10 * t - .75) * (2 * Math.PI) / 3) + 1;
+      }
+
+      function activeCue(t) {
+        return cues.find(c => t >= c.start && t < c.end);
+      }
+      // Deterministic, cue-relative effects: seeking and exported frames stay identical.
+      function livingText(lines, lh, age, power, rate, mode) {
+        const time = age * rate,
+          center = (lines.length - 1) / 2;
+        if (mode === 'jump' || mode === 'wave') {
+          let index = 0;
+          for (let i = 0; i < lines.length; i++) {
+            const chars = Array.from(lines[i]);
+            const widths = chars.map(ch => ctx.measureText(ch).width);
+            let left = -widths.reduce((a, b) => a + b, 0) / 2;
+            for (let j = 0; j < chars.length; j++) {
+              const glyph = chars[j],
+                half = widths[j] / 2;
+              if (glyph.trim()) {
+                const phase = mode === 'wave' ? time * 5 - index * .38 : time * 2.6 - index * .87;
+                const jump = mode === 'wave' ? Math.sin(phase) * power * 13 : Math.pow(Math.max(0, Math.sin(phase)),
+                  10) * power * 29;
+                ctx.save();
+                ctx.translate(left + half, (i - center) * lh - jump);
+                const bump = mode === 'jump' ? 1 + Math.max(0, jump) * .002 : 1;
+                ctx.scale(bump, bump);
+                ctx.fillText(glyph, 0, 0);
+                ctx.restore();
+              }
+              left += widths[j];
+              index++;
+            }
+          }
+          return;
+        }
+        lines.forEach((line, i) => ctx.fillText(line, 0, (i - center) * lh));
+        if (mode === 'sparkle') {
+          ctx.save();
+          ctx.fillStyle = '#fff';
+          const size = parseFloat(ctx.font.match(/(\d+(?:\.\d+)?)px/) ? .[1] || '100');
+          for (let i = 0; i < 12; i++) {
+            const period = 1.15 + (i % 4) * .23;
+            const phase = (time + i * .37) % period / period;
+            const visible = Math.pow(Math.max(0, 1 - Math.abs(phase - .4) * 3), 2) * power;
+            if (visible < .015) continue;
+            const lineIndex = i % lines.length,
+              line = lines[lineIndex];
+            const width = ctx.measureText(line).width;
+            const px = (Math.sin(i * 93.71) * .48) * width;
+            const py = (lineIndex - center) * lh + Math.cos(i * 27.3) * size * .66 - phase * size * .18;
+            const r = (2 + size * .042) * visible;
+            ctx.globalAlpha = Math.min(1, visible * .88);
+            ctx.beginPath();
+            ctx.moveTo(px - r * 2, py);
+            ctx.lineTo(px, py - r * .28);
+            ctx.lineTo(px + r * 2, py);
+            ctx.lineTo(px, py + r * .28);
+            ctx.closePath();
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(px, py - r * 2);
+            ctx.lineTo(px + r * .28, py);
+            ctx.lineTo(px, py + r * 2);
+            ctx.lineTo(px - r * .28, py);
+            ctx.closePath();
+            ctx.fill();
+          }
+          ctx.restore();
+        } else if (mode === 'shimmer') {
+          // Moving highlight through the glyphs, without touching the black backdrop.
+          ctx.save();
+          ctx.fillStyle = '#fff';
+          const sweep = (Math.sin(time * 2.5) + 1) / 2;
+          ctx.globalAlpha = .13 * power + .23 * power * sweep;
+          ctx.shadowColor = '#fff';
+          ctx.shadowBlur = (6 + 16 * sweep) * power;
+          lines.forEach((line, i) => ctx.fillText(line, 0, (i - center) * lh));
+          ctx.restore();
+        }
+      }
+
+      function render(t) {
+        ctx.fillStyle = $('backColor').value;
+        ctx.fillRect(0, 0, W, H);
+        const cue = activeCue(t);
+        if (!cue) return;
+        const x = W * Number($('posX').value) / 100,
+          y = H * Number($('posY').value) / 100;
+        const sz = Number($('size').value),
+          speed = Number($('speed').value) / 1000;
+        ctx.font = `${$('weight').value} ${sz}px "${$('font').value}", Arial, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const lines = splitLines(formatText(cue.text), W * .85),
+          lh = sz * Number($('lineHeight').value) / 100;
+        const anim = $('animation').value;
+        // Clamp transitions to half the cue length: tiny SRT cues must remain readable.
+        const transition = Math.min(speed, (cue.end - cue.start) / 2);
+        const entering = transition > 0 ? clamp01((t - cue.start) / transition) : 1;
+        const exiting = transition > 0 ? clamp01((cue.end - t) / transition) : 1;
+        const exit = easeOut(exiting);
+        let alpha = 1,
+          scale = 1,
+          scaleX = 1,
+          scaleY = 1,
+          dy = 0,
+          rotation = 0;
+        if (transition > 0 && anim !== 'none') {
+          const p = easeOut(entering),
+            q = Math.min(p, exit);
+          if (anim === 'fade') alpha = q;
+          if (anim === 'pop') {
+            scale = .7 + .3 * q;
+            alpha = q;
+          }
+          if (anim === 'zoom') {
+            scale = 1.16 - .16 * q;
+            alpha = q;
+          }
+          if (anim === 'slide') {
+            dy = (1 - q) * 65;
+            alpha = q;
+          }
+          if (anim === 'bounce') {
+            const b = easeBounce(entering);
+            scale = .65 + .35 * b;
+            dy = (1 - b) * 110;
+            if (exiting < 1) {
+              scale *= .88 + .12 * exit;
+              dy += (1 - exit) * 38;
+              alpha = exit;
+            }
+          }
+          if (anim === 'elastic') {
+            scale = .5 + .5 * easeElastic(entering);
+            alpha = clamp01(entering * 5);
+            if (exiting < 1) {
+              scale *= .86 + .14 * exit;
+              alpha *= exit;
+            }
+          }
+          if (anim === 'punch') {
+            const b = easeBack(entering);
+            scale = .45 + .55 * b;
+            alpha = clamp01(entering * 7);
+            if (exiting < 1) {
+              scale *= .78 + .22 * exit;
+              alpha *= exit;
+            }
+          }
+          if (anim === 'swing') {
+            const b = easeBack(entering);
+            rotation = (1 - b) * -.18;
+            dy = (1 - p) * 42;
+            alpha = clamp01(entering * 4);
+            if (exiting < 1) {
+              rotation += (1 - exit) * .1;
+              alpha *= exit;
+            }
+          }
+          if (anim === 'rise') {
+            dy = (1 - p) * 95;
+            alpha = clamp01(entering * 3) * exit;
+            if (exiting < 1) dy -= (1 - exit) * 34;
+          }
+          if (anim === 'cascade') alpha = exit;
+        }
+        const idle = $('idleEffect').value;
+        const power = Number($('idleStrength').value) / 100;
+        const rate = Number($('idleRate').value) / 100;
+        const age = Math.max(0, t - cue.start - transition);
+        const live = idle !== 'none' && power > 0 && t >= cue.start + transition;
+        // Do not interrupt the entrance; ease movement away as the exit starts.
+        const livePower = live ? power * (exiting < 1 ? easeOut(exiting) : 1) : 0;
+        if (livePower && idle === 'breathe') scale *= 1 + Math.sin(age * rate * 2.5) * .034 * livePower;
+        if (livePower && idle === 'pulse') scale *= 1 + Math.pow(Math.max(0, Math.sin(age * rate * 3.5)), 8) * .075 *
+          livePower;
+        if (livePower && idle === 'float') dy += Math.sin(age * rate * 2.4) * 22 * livePower;
+        ctx.save();
+        ctx.globalAlpha = clamp01(alpha);
+        ctx.translate(x, y + dy);
+        ctx.rotate(rotation);
+        ctx.scale(scale * scaleX, scale * scaleY);
+        ctx.fillStyle = $('textColor').value;
+        if (anim === 'cascade' && transition > 0 && !(livePower && ['jump', 'wave', 'sparkle', 'shimmer'].includes(
+            idle))) {
+          // Each word has a small stagger; measure glyph widths to keep centered lines.
+          const words = lines.map(line => line.trim().split(/\s+/).filter(Boolean));
+          const count = words.reduce((sum, line) => sum + line.length, 0);
+          const stagger = Math.min(.075, transition / Math.max(1, count));
+          const wordTransition = Math.max(.03, transition - stagger * Math.max(0, count - 1));
+          let index = 0;
+          words.forEach((parts, i) => {
+            const gap = ctx.measureText(' ').width;
+            const widths = parts.map(word => ctx.measureText(word).width);
+            const width = widths.reduce((a, b) => a + b, 0) + gap * Math.max(0, parts.length - 1);
+            let left = -width / 2;
+            parts.forEach((word, j) => {
+              const wp = clamp01((t - cue.start - index * stagger) / wordTransition);
+              const smooth = easeBack(wp);
+              ctx.save();
+              ctx.globalAlpha *= clamp01(wp * 4);
+              ctx.translate(left + widths[j] / 2, (i - (lines.length - 1) / 2) * lh + (1 - easeOut(wp)) * 35);
+              const grow = .7 + .3 * smooth;
+              ctx.scale(grow, grow);
+              ctx.fillText(word, 0, 0);
+              ctx.restore();
+              left += widths[j] + gap;
+              index++;
+            });
+          });
+        } else if (livePower && ['jump', 'wave', 'sparkle', 'shimmer'].includes(idle)) livingText(lines, lh, age,
+          livePower, rate, idle);
+        else lines.forEach((line, i) => ctx.fillText(line, 0, (i - (lines.length - 1) / 2) * lh));
+        ctx.restore();
+      }
+
+      function draw(t) {
+        render(t);
+        $('seek').value = duration ? Math.round(t / duration * 1000) : 0;
+        $('time').textContent = fmt(t) + ' / ' + fmt(duration);
+        const cue = activeCue(t);
+        for (const node of $('cues').children) node.classList.toggle('active', cue === cues[Number(node.dataset.index)]);
+      }
+
+      function tick(now) {
+        if (!playing) return;
+        current = Math.min(duration, (now - playOrigin) / 1000);
+        draw(current);
+        if (current >= duration) {
+          pause();
+          return;
+        }
+        frameHandle = requestAnimationFrame(tick);
+      }
+
+      function pause() {
+        playing = false;
+        cancelAnimationFrame(frameHandle);
+        $('play').textContent = '▶ Reproducir';
+      }
+
+      function togglePlay() {
+        if (recording || !duration) return;
+        if (playing) {
+          pause();
+          return;
+        }
+        if (current >= duration) current = 0;
+        playOrigin = performance.now() - current * 1000;
+        playing = true;
+        $('play').textContent = 'Ⅱ Pausar';
+        frameHandle = requestAnimationFrame(tick);
+      }
+
+      function formatMime() {
+        if (typeof MediaRecorder === 'undefined') return null;
+        for (const type of ['video/mp4;codecs="avc1.640032"', 'video/mp4;codecs=avc1', 'video/mp4',
+            'video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'
+          ])
+          if (MediaRecorder.isTypeSupported(type)) return type;
+        return null;
+      }
+
+      function download(blob, ext) {
+        const url = URL.createObjectURL(blob),
+          a = document.createElement('a');
+        a.href = url;
+        a.download = 'submotion-' + ($('orientation').value === 'vertical' ? 'vertical' : 'horizontal') + '-2k.' +
+          ext;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+      }
+      async function exportVideo() {
+        if (!cues.length || recording) return;
+        if (!('captureStream' in canvas)) {
+          $('status').textContent = 'Este navegador no permite capturar Canvas.';
+          return;
+        }
+        const mime = formatMime();
+        if (!mime) {
+          $('status').textContent = 'Este navegador no soporta MP4 ni WebM con MediaRecorder.';
+          return;
+        }
+        if (!await ensureFont()) return;
+        pause();
+        recording = true;
+        $('export').disabled = true;
+        $('play').disabled = true;
+        $('load').disabled = true;
+        $('bar').style.width = '0%';
+        $('orientation').disabled = true;
+        duration = getDuration();
+        current = 0;
+        draw(0);
+        const fps = Number($('fps').value),
+          stream = canvas.captureStream(fps),
+          chunks = [];
+        let recorder, raf = 0,
+          started = performance.now(),
+          stopped = false;
+        try {
+          recorder = new MediaRecorder(stream, {
+            mimeType: mime,
+            videoBitsPerSecond: 18000000
+          });
+        } catch (err) {
+          stream.getTracks().forEach(t => t.stop());
+          recording = false;
+          $('export').disabled = false;
+          $('play').disabled = false;
+          $('load').disabled = false;
+          $('orientation').disabled = false;
+          $('status').textContent = 'No se pudo iniciar el codificador: ' + err.message;
+          return;
+        }
+        const finish = () => {
+          cancelAnimationFrame(raf);
+          stream.getTracks().forEach(t => t.stop());
+          recording = false;
+          $('export').disabled = false;
+          $('play').disabled = false;
+          $('load').disabled = false;
+          $('orientation').disabled = false;
+        };
+        recorder.ondataavailable = e => {
+          if (e.data.size) chunks.push(e.data)
+        };
+        recorder.onerror = e => {
+          $('status').textContent = 'Error durante grabación: ' + (e.error ? .message || 'desconocido');
+        };
+        recorder.onstop = () => {
+          finish();
+          if (!chunks.length) {
+            $('status').textContent = 'No se recibieron datos de video.';
+            return;
+          }
+          const blob = new Blob(chunks, {
+            type: recorder.mimeType
+          });
+          const mp4 = recorder.mimeType.toLowerCase().includes('mp4');
+          download(blob, mp4 ? 'mp4' : 'webm');
+          $('bar').style.width = '100%';
+          $('status').textContent = 'Exportación completada: ' + (mp4 ? 'MP4' : 'WebM') + ' · ' + W + '×' + H +
+            ' · ' + fps + ' FPS. Si necesitas MP4 y salió WebM, puedes convertirlo sin perder el fondo negro.';
+          current = 0;
+          draw(0);
+        };
+        try {
+          recorder.start(1000);
+          started = performance.now();
+          $('status').textContent = 'Grabando a tiempo real en ' + (mime.includes('mp4') ? 'MP4' : 'WebM') +
+            ' · mantén esta pestaña visible hasta terminar.';
+          const step = now => {
+            if (!recording || stopped) return;
+            current = Math.min(duration, (now - started) / 1000);
+            draw(current);
+            $('bar').style.width = (duration ? 100 * current / duration : 100) + '%';
+            if (current >= duration) {
+              stopped = true;
+              setTimeout(() => {
+                if (recorder.state !== 'inactive') recorder.stop();
+              }, 150);
+              return;
+            }
+            raf = requestAnimationFrame(step);
+          };
+          raf = requestAnimationFrame(step);
+        } catch (err) {
+          finish();
+          $('status').textContent = 'Falló la grabación: ' + err.message;
+        }
+      }
+      $('gothamFile').addEventListener('change', async e => {
+        const file = e.target.files ? .[0];
+        if (!file) return;
+        try {
+          const face = new FontFace('Gotham', await file.arrayBuffer());
+          await face.load();
+          document.fonts.add(face);
+          gothamLoaded = true;
+          $('font').value = 'Gotham';
+          save();
+          draw(current);
+          $('status').textContent = 'Gotham cargada para esta sesión.';
+        } catch (err) {
+          $('status').textContent = 'No se pudo cargar la fuente: ' + err.message;
+        }
+      });
+      $('font').addEventListener('change', async () => {
+        await ensureFont();
+        if (!playing && !recording) draw(current);
+      });
+      $('file').addEventListener('change', async e => {
+        const file = e.target.files ? .[0];
+        if (!file) return;
+        $('srt').value = await file.text();
+        load();
+      });
+      $('load').onclick = load;
+      $('example').onclick = () => {
+        $('srt').value =
+          '1\n00:00:01,000 --> 00:00:03,300\nESTO ES UNA PRUEBA\n\n2\n00:00:03,500 --> 00:00:05,600\nDE SUBTÍTULOS ANIMADOS\n\n3\n00:00:06,000 --> 00:00:08,400\nLISTOS PARA DAVINCI';
+        load();
+      };
+      $('play').onclick = togglePlay;
+      $('seek').oninput = e => {
+        if (recording) return;
+        pause();
+        current = duration * Number(e.target.value) / 1000;
+        draw(current);
+      };
+      $('export').onclick = exportVideo;
+      for (const id of settings) $(id).addEventListener('input', () => {
+        if (recording) return;
+        if (id === 'orientation') setOrientation();
+        save();
+        labelValues();
+        if (id === 'tail') duration = getDuration();
+        if (id === 'textCase') updateCueTexts();
+        if (!playing && !recording) draw(current);
+      });
+      setOrientation();
+      labelValues();
+      draw(0);
+      $('example').click();
+    })();
+  </script>
+</body>
+
+</html>

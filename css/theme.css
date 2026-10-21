@@ -1,0 +1,23 @@
+/* DannTools: cambia estos tokens para personalizar todas las herramientas. */
+:root {
+  color-scheme: dark;
+  --font-ui: "Outfit", system-ui, "Segoe UI", Arial, sans-serif;
+  --color-background: #0b0b0d;
+  --color-surface: #141416;
+  --color-control: #222226;
+  --color-control-hover: #3c3c44;
+  --color-border: #242428;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a6a5ad;
+  --color-text-subtle: #85858d;
+  --color-accent: #aa98ff;
+  --color-accent-hover: #c0b4ff;
+  --color-accent-soft: #30283e;
+  --radius-small: 9px;
+  --radius-medium: 12px;
+  --radius-large: 16px;
+  --space-page: clamp(16px, 2.3vw, 32px);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background-color: var(--color-background); color: var(--color-text); font-family: var(--font-ui); }
+button, input, select, textarea { font: inherit; }
