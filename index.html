@@ -14,6 +14,12 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/home.css">
+  <style>
+    .tool-grid .tool{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+    .tool-grid .tool.is-reordering{opacity:.42;transform:scale(.97);box-shadow:none;transition:opacity .12s,transform .12s}
+    .tool-grid .tool.is-drop-target{outline:2px solid var(--tool-accent);outline-offset:3px}
+    @media (prefers-reduced-motion:reduce){.tool-grid .tool.is-reordering{transition:none}}
+  </style>
 </head>
 <body class="home-page min-h-screen" id="inicio">
   <div class="page-shell min-h-screen flex flex-col">
@@ -114,5 +120,101 @@
       </div>
     </footer>
   </div>
+  <script>
+    (() => {
+      const grid = document.querySelector('.tool-grid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll(':scope > a.tool'));
+      const key = 'datools.home.card-order.v1';
+      const cardId = card => [...card.classList].find(name => name !== 'tool' && name !== 'group' && !name.startsWith('is-'));
+      const ids = new Set(cards.map(cardId));
+      try {
+        const stored = JSON.parse(localStorage.getItem(key) || '[]');
+        if (Array.isArray(stored)) {
+          stored.filter(id => typeof id === 'string' && ids.has(id)).forEach(id => {
+            const card = cards.find(item => cardId(item) === id);
+            if (card) grid.appendChild(card);
+          });
+        }
+      } catch (_) { /* La página funciona aunque el almacenamiento no esté disponible. */ }
+
+      let gesture = null;
+      let blockClick = false;
+      const save = () => {
+        try { localStorage.setItem(key, JSON.stringify([...grid.children].map(cardId))); } catch (_) {}
+      };
+      const clean = () => {
+        grid.querySelectorAll('.is-reordering,.is-drop-target').forEach(card => {
+          card.classList.remove('is-reordering', 'is-drop-target');
+        });
+      };
+      const finish = () => {
+        if (!gesture) return;
+        clearTimeout(gesture.hold);
+        if (gesture.dragging) {
+          blockClick = true;
+          save();
+          // Algunos navegadores no generan click después de un drag táctil.
+          setTimeout(() => { blockClick = false; }, 350);
+        }
+        clean();
+        gesture = null;
+      };
+
+      grid.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || !event.isPrimary) return;
+        const card = event.target.closest('a.tool');
+        if (!card || card.parentElement !== grid) return;
+        blockClick = false;
+        gesture = {
+          card, pointerId: event.pointerId, x: event.clientX, y: event.clientY,
+          touch: event.pointerType === 'touch', ready: event.pointerType !== 'touch',
+          dragging: false, hold: null
+        };
+        if (gesture.touch) {
+          gesture.hold = setTimeout(() => {
+            if (gesture) {
+              gesture.ready = true;
+              gesture.dragging = true;
+              card.classList.add('is-reordering');
+              card.setPointerCapture(event.pointerId);
+            }
+          }, 320);
+        }
+      });
+      grid.addEventListener('pointermove', event => {
+        if (!gesture || event.pointerId !== gesture.pointerId) return;
+        const dx = event.clientX - gesture.x, dy = event.clientY - gesture.y;
+        if (!gesture.ready) {
+          if (Math.hypot(dx, dy) > 9) { clearTimeout(gesture.hold); gesture = null; }
+          return;
+        }
+        if (!gesture.dragging) {
+          if (Math.hypot(dx, dy) < 8) return;
+          gesture.dragging = true;
+          gesture.card.classList.add('is-reordering');
+          gesture.card.setPointerCapture(event.pointerId);
+        }
+        event.preventDefault();
+        const under = document.elementFromPoint(event.clientX, event.clientY)?.closest('a.tool');
+        grid.querySelectorAll('.is-drop-target').forEach(card => card.classList.remove('is-drop-target'));
+        if (!under || under === gesture.card || under.parentElement !== grid) return;
+        const card = gesture.card;
+        const current = [...grid.children];
+        const before = current.indexOf(card) < current.indexOf(under);
+        grid.insertBefore(card, before ? under.nextSibling : under);
+        under.classList.add('is-drop-target');
+      });
+      grid.addEventListener('pointerup', finish);
+      grid.addEventListener('pointercancel', finish);
+      window.addEventListener('blur', finish);
+      grid.addEventListener('click', event => {
+        if (!blockClick) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        blockClick = false;
+      }, true);
+    })();
+  </script>
 </body>
 </html>

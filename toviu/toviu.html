@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#120B0D">
 <title>Toviu HUB</title>
 <!-- Importación de la fuente Outfit desde Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,13 +20,6 @@
 
 
 
-  <header class="toviu-topbar">
-    <a class="toviu-brand" href="../index.html"><img src="../img/DaTools.png" alt="" width="32" height="32"><span>DaTools</span></a>
-    <span class="toviu-crumb">/ Toviu</span>
-    <button id="btn-menu" class="menu-btn" type="button" aria-expanded="false" aria-controls="sidebar-menu" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
   <div id="sidebar-overlay" class="sidebar-overlay hidden" data-close-sidebar="true"></div>
   <aside id="sidebar-menu" class="sidebar hidden" aria-hidden="true">
     <div class="sidebar-header">
@@ -39,14 +32,19 @@
     </div>
   </aside>
   <main class="toviu-main">
-    <section class="marquee-wrap">
-      <div class="eyebrow">TU ESPACIO PERSONAL</div>
-      <h1>Toviu <span>HUB</span></h1>
-      <p>Abre tus sitios favoritos, ordénalos y personalízalos a tu manera.</p>
-    </section>
-    <section class="library-toolbar" aria-label="Administrar aplicaciones">
-      <div class="library-summary"><strong>Mis aplicaciones</strong><span id="links-count" class="library-count"></span></div>
-      <div class="library-actions"><label class="search-wrap"><span class="sr-only">Buscar aplicaciones</span><input id="link-search" type="search" placeholder="Buscar aplicación…" autocomplete="off"></label><button id="btn-add-main" class="btn-primary" type="button">+ Agregar</button></div>
+    <section class="marquee-wrap" aria-label="Aplicaciones y búsqueda">
+      <div class="toviu-heading">
+        <div class="eyebrow">TU ESPACIO PERSONAL</div>
+        <h1>Toviu <span>HUB</span></h1>
+      </div>
+      <div class="library-actions">
+        <label class="search-wrap"><span class="sr-only">Buscar aplicaciones</span><input id="link-search" type="search" placeholder="Buscar aplicación…" autocomplete="off"></label>
+        <button id="btn-add-main" class="btn-primary" type="button">+ Agregar</button>
+        <button id="btn-menu" class="menu-btn" type="button" aria-expanded="false" aria-controls="sidebar-menu" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <span id="links-count" class="sr-only" aria-live="polite"></span>
     </section>
     <div id="links-grid" class="grid"></div>
   </main>

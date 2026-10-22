@@ -36,3 +36,124 @@ html{scroll-behavior:smooth}body{min-height:100vh;margin:0;background:radial-gra
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 @media(max-width:750px){.toviu-main{width:calc(100% - 28px)}.toviu-main .marquee-wrap{padding:28px 0 25px}.library-toolbar{align-items:stretch}.library-actions{width:100%}.search-wrap{flex:1}.search-wrap input{width:100%}.tile,.tile-open{min-height:180px}.tile-open{padding:14px 12px 48px}.tile-controls{inset:auto 6px 7px 6px}.tile-controls .icon-btn{width:28px;height:29px}}
 @media(max-width:440px){.toviu-main{width:calc(100% - 24px)}.toviu-main .grid{gap:9px}.tile,.tile-open{min-height:162px}.tile-label{font-size:17px}.tile-mark{font-size:10px}.tile-controls{gap:3px}.tile-controls .icon-btn{width:26px;height:27px;font-size:13px}}
+
+/* Toviu · identidad rojo teatro y launcher a ancho completo */
+:root{--toviu-accent:#C5A16A;--toviu-accent-hover:#E2BE83;--toviu-accent-soft:rgba(197,161,106,.14);--toviu-panel:#1C1915}
+body{background:radial-gradient(ellipse 60% 32% at 50% -13%,rgba(99,72,35,.2),transparent 88%),#0B0B0D}
+.toviu-topbar,.toviu-main{width:90%;max-width:none}
+.toviu-topbar{border-bottom-color:rgba(255,255,255,.07)}
+.toviu-main .marquee-wrap{width:100%;padding:clamp(22px,3vw,36px) 0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;min-width:0}
+.toviu-heading{min-width:0}
+.toviu-main .marquee-wrap h1{font-size:clamp(35px,4.3vw,58px);margin:5px 0 0;line-height:1}
+.marquee-wrap h1 span{color:#D9B77F}
+.eyebrow{color:#B9AA96}
+.library-actions{display:flex;align-items:center;gap:10px;min-width:0;margin-left:auto}
+.search-wrap{min-width:0;display:block}
+.search-wrap input{width:clamp(220px,23vw,370px);max-width:100%;background:#22201C;border:1px solid #383127;color:var(--color-text)}
+.search-wrap input:focus-visible{outline:2px solid var(--toviu-accent);outline-offset:1px}
+.btn-primary{background:var(--toviu-accent);color:#241A0D}
+.btn-primary:hover{background:var(--toviu-accent-hover)}
+.tile.is-active{border-color:var(--toviu-accent)}
+.tile.is-drop-target{outline-color:var(--toviu-accent)}
+.tile:hover,.tile:focus-within{border-color:rgba(217,106,115,.48)}
+.tile-open:focus-visible{outline-color:var(--toviu-accent)}
+.tile-controls .icon-btn:first-child{background:#3B3022;color:#F2D8AE}
+.tile-controls .icon-btn:hover,.tile-controls .icon-btn:focus-visible{background:var(--toviu-accent);color:#21170C}
+.launch-spinner{border-top-color:var(--toviu-accent)}
+#link-form input:focus{outline-color:var(--toviu-accent)}
+.toviu-main .grid{width:100%;margin:10px 0 55px}
+@media(max-width:750px){
+  .toviu-topbar,.toviu-main{width:calc(100% - 28px)}
+  .toviu-main .marquee-wrap{align-items:stretch;flex-direction:column;gap:17px;padding:24px 0 16px}
+  .library-actions{width:100%;margin-left:0}
+  .search-wrap{flex:1}
+  .search-wrap input{width:100%}
+}
+@media(max-width:440px){
+  .toviu-topbar,.toviu-main{width:calc(100% - 24px)}
+  .toviu-main .marquee-wrap h1{font-size:40px}
+  .library-actions .btn-primary{padding-inline:12px;white-space:nowrap}
+}
+
+/* Tarjetas: tono dominante y degradado teatral hacia negro */
+.toviu-main .tile{
+  background-color:var(--tile-color,#292128);
+  background-image:linear-gradient(to top,#09090b 0%,rgba(9,9,11,.92) 18%,rgba(9,9,11,.48) 62%,transparent 100%);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:background-color .4s ease,transform .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+/* Las acciones aparecen tras 1.1 segundos continuos de hover. */
+.toviu-main .tile .tile-controls{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(8px);
+  transition:opacity .23s ease,transform .23s ease,visibility .23s;
+}
+.toviu-main .tile.actions-visible .tile-controls,
+.toviu-main .tile .tile-controls:focus-within{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.tile-action-toggle{display:none;position:absolute;right:9px;top:9px;z-index:3;border:1px solid #ffffff24;border-radius:9px;background:#131217d9;color:#fff;font-weight:800;width:34px;height:34px;cursor:pointer}
+@media (hover:none), (pointer:coarse){
+  .tile-action-toggle{display:block}
+  .toviu-main .tile .tile-controls{opacity:0;visibility:hidden;pointer-events:none}
+  .toviu-main .tile.actions-visible .tile-controls{opacity:1;visibility:visible;pointer-events:auto}
+}
+@media (prefers-reduced-motion:reduce){.toviu-main .tile .tile-controls{transition:none}}
+
+/* Acabado dorado: iconos sobre el degradado, sin bordes en los cards. */
+.toviu-main .tile,
+.toviu-main .tile:hover,
+.toviu-main .tile:focus-within,
+.toviu-main .tile:focus-visible,
+.toviu-main .tile.is-active,
+.toviu-main .tile.is-drop-target{
+  border:0!important;
+  outline:0;
+}
+.toviu-main .tile{padding:0;box-shadow:none;will-change:transform;}
+.toviu-main .tile:hover{box-shadow:0 16px 36px rgba(0,0,0,.26)}
+.toviu-main .tile.is-active:not(.is-dragging),
+.toviu-main .tile:focus-within:not(.is-dragging){animation:toviu-card-breathe 2.5s ease-in-out infinite;}
+@keyframes toviu-card-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.toviu-main .tile.is-dragging{animation:none!important}
+.toviu-main .tile-open{position:relative;isolation:isolate;}
+.toviu-main .tile-favicon{
+  position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:92px;height:92px;object-fit:contain;border-radius:8px;
+  filter:drop-shadow(0 7px 16px rgba(0,0,0,.24));pointer-events:none;
+}
+.toviu-main .tile-label,.toviu-main .tile-mark{position:relative;z-index:1}
+.toviu-main .tile-open:focus-visible{outline:0!important}
+.tile-action-toggle{border:0!important}
+@media(max-width:750px){.toviu-main .tile-favicon{width:76px;height:76px;top:50%}}
+@media(prefers-reduced-motion:reduce){.toviu-main .tile.is-active,.toviu-main .tile:focus-within{animation:none!important}}
+
+/* Identificar la tarjeta seleccionada sin agregar bordes al hover normal. */
+.toviu-main .tile.is-active,
+.toviu-main .tile:focus-within{
+  border:2px solid #E2BE83!important;
+}
+.toviu-main .tile:not(.is-active):not(:focus-within){
+  border:0!important;
+}
+
+/* Menú integrado al encabezado de Toviu, desplegado desde la derecha. */
+.toviu-main .menu-btn{margin-left:0;flex:0 0 44px;background:#26221C;border:0}
+.toviu-main .menu-btn:hover,.toviu-main .menu-btn[aria-expanded="true"]{background:#3B3022}
+.toviu-main .menu-btn span{background:#E2BE83}
+.sidebar{left:auto;right:0;box-shadow:-12px 0 45px #0007}
+.sidebar.hidden{transform:translateX(110%)}
+@media(max-width:440px){.toviu-main .menu-btn{flex-basis:42px;width:42px;height:42px}}
+
+/* Centra la biblioteca verticalmente solo cuando sobra espacio.
+   Si la cuadrícula crece, los márgenes automáticos se colapsan y
+   las tarjetas empiezan justo debajo del encabezado, como antes. */
+.toviu-main{display:flex;flex-direction:column}
+.toviu-main #links-grid{margin-top:auto;margin-bottom:auto}

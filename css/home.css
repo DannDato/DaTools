@@ -28,7 +28,7 @@
 .tool-category{display:block;color:var(--tool-accent);font-size:10px;letter-spacing:.13em;font-weight:700;margin-bottom:9px}
 .tool-bottom h3{font-size:clamp(25px,2vw,31px);font-weight:700;letter-spacing:-.05em;line-height:1.12;margin:0 0 8px;color:#f7f6fa}
 .tool-bottom p{max-width:310px;color:#a9a7b3;font-size:13px;line-height:1.5;margin:0}
-.trazio{--tool-accent:#b5a6ff;--tool-glow:#6e59ce}
+.trazio{--tool-accent:#ffa947;--tool-glow:#b86b19}
 .submotion{--tool-accent:#e2d4ff;--tool-glow:#9c77dd}
 .animotion{--tool-accent:#a9e4d2;--tool-glow:#3d937c}
 .toviu{--tool-accent:#ffdab0;--tool-glow:#b57548}

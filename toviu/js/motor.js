@@ -1,4 +1,5 @@
 const STORAGE_KEY = "toviuHubLinks";
+const tileColorCache = new Map();
 
 const defaultLinks = [
 	{ name: "YouTube", url: "https://youtube.com", tag: "Video" },
@@ -133,7 +134,7 @@ function renderLinks() {
     tile.dataset.index = String(index);
     tile.draggable = !query;
     if (visibleIndex === activeIndex) tile.classList.add("is-active");
-    tile.style.setProperty("--tile-bg", getTileBackground(link.url));
+    applyTileColor(tile, link.url);
 
     const open = document.createElement("a");
     open.className = "tile-open";
@@ -143,6 +144,17 @@ function renderLinks() {
     open.tabIndex = visibleIndex === activeIndex ? 0 : -1;
     open.setAttribute("aria-label", `Abrir ${link.name}`);
     open.addEventListener("click", onTileLaunch);
+
+    const favicon = document.createElement("img");
+    favicon.className = "tile-favicon";
+    favicon.alt = "";
+    favicon.loading = "lazy";
+    favicon.decoding = "async";
+    try {
+      const host = new URL(link.url).hostname;
+      favicon.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128`;
+    } catch { favicon.hidden = true; }
+    favicon.addEventListener("error", () => { favicon.hidden = true; });
 
     const label = document.createElement("span");
     label.className = "tile-label";
@@ -158,8 +170,41 @@ function renderLinks() {
       controlButton("Mover abajo", "↓", () => moveLink(index, 1)),
       controlButton("Eliminar " + link.name, "×", () => deleteLink(index))
     );
-    open.append(label, mark);
-    tile.append(open, controls);
+    const actionToggle = document.createElement("button");
+    actionToggle.type = "button";
+    actionToggle.className = "tile-action-toggle";
+    actionToggle.textContent = "···";
+    actionToggle.setAttribute("aria-label", `Opciones de ${link.name}`);
+    actionToggle.setAttribute("aria-expanded", "false");
+    actionToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const openActions = !tile.classList.contains("actions-visible");
+      linksGrid.querySelectorAll(".tile.actions-visible").forEach(other => {
+        if (other !== tile) other.classList.remove("actions-visible");
+      });
+      tile.classList.toggle("actions-visible", openActions);
+      actionToggle.setAttribute("aria-expanded", String(openActions));
+    });
+    let hoverTimer;
+    tile.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse") return;
+      window.clearTimeout(hoverTimer);
+      hoverTimer = window.setTimeout(() => tile.classList.add("actions-visible"), 1100);
+    });
+    tile.addEventListener("pointerleave", () => {
+      window.clearTimeout(hoverTimer);
+      tile.classList.remove("actions-visible");
+      actionToggle.setAttribute("aria-expanded", "false");
+    });
+    tile.addEventListener("focusout", (event) => {
+      if (!tile.contains(event.relatedTarget) && !tile.matches(":hover")) {
+        tile.classList.remove("actions-visible");
+        actionToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+    open.append(favicon, label, mark);
+    tile.append(open, actionToggle, controls);
     if (!query) {
       tile.addEventListener("dragstart", onTileDragStart);
       tile.addEventListener("dragend", onTileDragEnd);
@@ -590,6 +635,60 @@ function clearDragVisualState() {
 	const draggingTiles = linksGrid.querySelectorAll(".tile.is-dragging");
 	draggingTiles.forEach((tile) => tile.classList.remove("is-dragging"));
 	clearDropTargets();
+}
+
+// Los favicons pueden ser de terceros: si el canvas queda bloqueado por CORS,
+// conservamos un tono de respaldo estable, sin afectar la navegación.
+function fallbackTileColor(url) {
+  let host = "";
+  try { host = new URL(url).hostname.replace(/^www\./, ""); } catch { return "#423039"; }
+  const branded = [
+    [/youtube/i, "#9F1735"], [/netflix/i, "#921E32"],
+    [/twitch/i, "#6547A0"], [/spotify/i, "#147A51"],
+    [/disney/i, "#255F8D"], [/primevideo|amazon/i, "#146A90"],
+    [/max\.com|hbo/i, "#62538E"]
+  ];
+  for (const [pattern, color] of branded) if (pattern.test(host)) return color;
+  let hash = 0;
+  for (const char of host) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return `hsl(${hash % 360} 35% 28%)`;
+}
+
+function applyTileColor(tile, url) {
+  const fallback = fallbackTileColor(url);
+  tile.style.setProperty("--tile-color", tileColorCache.get(url) || fallback);
+  if (tileColorCache.has(url)) return;
+  let host;
+  try { host = new URL(url).hostname; } catch { return; }
+  const image = new Image();
+  image.crossOrigin = "anonymous";
+  image.onload = () => {
+    try {
+      const sample = document.createElement("canvas");
+      sample.width = sample.height = 40;
+      const context = sample.getContext("2d", { willReadFrequently: true });
+      context.drawImage(image, 0, 0, 40, 40);
+      const pixels = context.getImageData(0, 0, 40, 40).data;
+      const bins = new Map();
+      for (let i = 0; i < pixels.length; i += 4) {
+        if (pixels[i + 3] < 150) continue;
+        const [r,g,b] = [pixels[i],pixels[i+1],pixels[i+2]];
+        const max = Math.max(r,g,b), min = Math.min(r,g,b);
+        if (max < 45 || min > 215 || max-min < 35) continue;
+        const key = [r,g,b].map(n => Math.min(255, Math.round(n/32)*32)).join(",");
+        bins.set(key, (bins.get(key) || 0) + (max-min));
+      }
+      const best = [...bins].sort((a,b) => b[1]-a[1])[0];
+      if (!best) return;
+      const [r,g,b] = best[0].split(",").map(Number);
+      const color = `rgb(${Math.round(r*.67)} ${Math.round(g*.67)} ${Math.round(b*.67)})`;
+      tileColorCache.set(url, color);
+      // Evitar afectar tarjetas ya reemplazadas por una nueva búsqueda.
+      if (tile.isConnected) tile.style.setProperty("--tile-color", color);
+    } catch { /* CORS: queda el color de respaldo. */ }
+  };
+  image.onerror = () => {};
+  image.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128`;
 }
 
 function getTileBackground(url) {
