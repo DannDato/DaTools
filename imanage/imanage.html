@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="description" content="Imanage: optimiza imágenes JPG, PNG y WebP en tu navegador, una a una o por lotes, sin subir archivos a ningún servidor.">
+  <title>Imanage — DaTools</title>
+  <link rel="icon" type="image/png" href="../img/DaTools.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/imanage.css">
+  <script src="imanage.js" defer></script>
+</head>
+<body>
+  <div class="im-shell">
+    <header class="im-topbar">
+      <a class="im-back" href="../index.html" aria-label="Volver a DaTools">
+        <img src="../img/DaTools.png" alt="" width="29" height="29">
+        <span>Da<span class="im-muted-brand">Tools</span></span>
+      </a>
+      <span class="im-title-top">Imanage</span>
+      <span class="im-private"><span class="im-private-dot"></span>100% LOCAL</span>
+    </header>
+
+    <main class="im-main">
+      <div class="im-layout">
+        <aside class="im-sidebar" aria-label="Archivos y configuración">
+          <section class="im-panel im-upload-panel">
+            <div class="im-section-head"><div><div class="im-eyebrow">01 · ENTRADA</div><h2>Seleccionar imágenes</h2></div></div>
+            <div class="im-dropzone" id="dropzone" tabindex="0" role="button" aria-label="Seleccionar imágenes JPG, PNG o WebP; también puedes arrastrarlas aquí">
+              <div class="im-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
+              <strong>Arrastra tus imágenes</strong>
+              <span>o haz clic para explorar archivos</span>
+              <small>JPG · PNG · WEBP</small>
+            </div>
+            <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
+            <div class="im-upload-foot"><span>Una o varias a la vez</span><span><span class="im-dot"></span> Sin subir archivos</span></div>
+          </section>
+
+          <section class="im-panel im-settings-panel">
+            <div class="im-section-head"><div><div class="im-eyebrow">02 · AJUSTES</div><h2>Compresión</h2></div></div>
+            <div class="im-control-head"><label for="quality">Calidad de JPG y WebP</label><output id="quality-value" for="quality">80%</output></div>
+            <input id="quality" type="range" min="35" max="95" value="80" step="1">
+            <div class="im-range-ticks"><span>Menor peso</span><span>Mayor calidad</span></div>
+            <label class="im-select-label" for="max-size">Resolución máxima</label>
+            <select id="max-size">
+              <option value="0">Mantener original</option>
+              <option value="2560">Hasta 2560 px</option>
+              <option value="1920">Hasta 1920 px</option>
+              <option value="1280">Hasta 1280 px</option>
+              <option value="800">Hasta 800 px</option>
+            </select>
+            <div class="im-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>Se conserva el formato. Los PNG se reexportan sin ajustar su calidad. Si optimizar aumenta el peso, mantenemos el original.</span></div>
+            <button type="button" id="optimize" class="im-primary" disabled><span class="im-button-icon" aria-hidden="true">✦</span> Optimizar imágenes <span aria-hidden="true">→</span></button>
+            <button type="button" id="cancel" class="im-cancel" hidden>Cancelar procesamiento</button>
+          </section>
+        </aside>
+
+        <section class="im-results" aria-label="Resultados de compresión">
+          <div class="im-panel im-files-panel">
+            <div class="im-files-head"><h2>Archivos <span id="files-count">0</span></h2><button id="clear" type="button" class="im-text-button" disabled>Limpiar todo</button></div>
+            <div class="im-progress" id="progress-block" hidden>
+              <div class="im-progress-info"><span id="progress-label">Procesando...</span><strong id="progress-percent">0%</strong></div>
+              <div class="im-track" role="progressbar" aria-label="Progreso de optimización" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><div id="progress-fill"></div></div>
+            </div>
+            <div id="empty-state" class="im-empty"><div class="im-empty-icon" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="2"><rect x="19" y="12" width="82" height="65" rx="12"/><circle cx="45" cy="36" r="7"/><path d="m30 64 21-20 14 13 14-20 12 14" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 86h26" stroke-linecap="round"/></svg></div><strong>Aún no hay imágenes</strong><span>Arrastra archivos al recuadro o selecciónalos para empezar.</span></div>
+            <div id="file-list" class="im-file-list" aria-live="polite"></div>
+            <div class="im-footer-actions" id="download-area" hidden>
+              <div class="im-download-copy"><strong id="download-heading">Tus imágenes están listas</strong><span id="download-caption">Mismo nombre. Mismo formato.</span></div>
+              <button type="button" id="download-all" class="im-primary im-download-button" disabled>Descargar</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <p class="im-bottom-note"><span class="im-private-dot"></span> Tus archivos nunca salen de este dispositivo. Algunas imágenes ya optimizadas pueden no reducir más su peso. La reexportación puede eliminar metadatos.</p>
+    </main>
+  </div>
+  <div id="toast" class="im-toast" role="status" aria-live="polite"></div>
+</body>
+</html>
