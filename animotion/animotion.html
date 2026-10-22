@@ -70,7 +70,7 @@
    <div class="settings-group prompt-group">
      <div class="settings-group-heading"><span class="settings-kicker">AL GENERAR</span><h3>Dirección para ChatGPT</h3><p>Estos parámetros solo afectan el prompt que copias. Si ya aplicaste escenas, tendrás que generar/importar el JSON de nuevo para verlos reflejados.</p></div>
    <div class="control-stack motion-boldness"><label for="motionBoldness">Audacia del movimiento <strong id="motionBoldnessValue">95%</strong></label><input id="motionBoldness" type="range" min="0" max="100" step="5" value="95"><p class="hint">Define la intensidad de las animaciones al generar el prompt.</p></div>
-   <div class="control-stack"><label for="artDirection">Dirección artística</label><select id="artDirection"><option value="kinetic">Kinetic · enérgica</option><option value="cinematic" selected>Cinematic · cinematográfica</option><option value="graphic">Graphic · gráfica</option><option value="experimental">Experimental · atrevida</option></select></div>
+   <div class="control-stack"><label for="artDirection">Dirección artística</label><select id="artDirection"><option value="illustrative" selected>Illustrative · ilustrativa</option><option value="kinetic">Kinetic · enérgica</option><option value="cinematic">Cinematic · cinematográfica</option><option value="graphic">Graphic · gráfica</option><option value="experimental">Experimental · atrevida</option></select></div>
    <div class="two">
      <div><label for="layoutStyle">Composición</label><select id="layoutStyle"><option value="centered">Centrada y limpia</option><option value="balanced" selected>Balanceada</option><option value="editorial">Editorial / asimétrica</option><option value="dynamic">Dinámica / energética</option></select></div>
      <div><label for="density">Densidad visual</label><select id="density"><option value="minimal">Minimal</option><option value="balanced">Balanceada</option><option value="rich" selected>Más cargada</option></select></div>
@@ -91,7 +91,7 @@
      <input id="safeAreaPref" type="range" min="4" max="18" step="1" value="10">
    </div>
    <button id="copyPrompt" class="primary full prompt-copy" type="button">✦ Copiar prompt para ChatGPT</button>
-   <p class="hint" id="promptInfo">El prompt prioriza diagramas completos, contenedores, flechas, componentes y coreografías explicativas, además de los parámetros visuales y reglas JSON.</p>
+   <p class="hint" id="promptInfo">Predeterminado ilustrativo: personajes, objetos, dibujos de pizarra, escenas compuestas y acciones visuales que expliquen el guion. Diagramas solo cuando ayuden a entender.</p>
    </div>
  </section>
  <section class="panel"><h2>03 · Escenas</h2><label for="jsonFile">Importar JSON de ChatGPT</label><input id="jsonFile" type="file" accept=".json,application/json,.txt,text/plain"><label for="jsonText">Guion de animación JSON</label><textarea id="jsonText" rows="9" spellcheck="false" placeholder="Pega aquí el JSON generado por ChatGPT... También acepta bloques ```json```."></textarea><div class="actions"><button class="primary" id="applyJson">Aplicar escenas</button><button id="downloadJson">Guardar JSON</button></div><p id="jsonInfo" class="hint" role="status">Carga un ejemplo o importa tu proyecto. También puedes pegar un bloque ```json``` completo.</p></section>

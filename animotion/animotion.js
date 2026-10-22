@@ -226,7 +226,7 @@ function paletteSettings() {
     density: $("density").value,
     textUsage: $("textUsage").value,
     motionBoldness: Number($("motionBoldness")?.value ?? 75),
-    artDirection: $("artDirection")?.value ?? "cinematic"
+    artDirection: $("artDirection")?.value ?? "illustrative"
   };
 }
 
@@ -245,10 +245,17 @@ function buildPrompt(items) {
     rich: "Permite composiciones visualmente ricas y varias capas de información, pero selecciona la gramática visual según el contenido. No conviertas riqueza en acumular paneles, cajas o conectores: una ilustración detallada, una metáfora espacial, una explosión de piezas o una transformación pueden ser más apropiadas."
   }[settings.density];
   const textGuidance = {
-    low: "Reduce las frases a palabras clave o titulares breves; deja que los iconos y las formas expliquen el resto.",
+    low: "Reduce las frases a palabras clave o titulares breves; deja que las ilustraciones y las acciones expliquen el resto.",
     balanced: "Usa titulares breves y etiquetas solo cuando ayuden a entender la idea; evita párrafos largos.",
     high: "Puedes incluir más texto, pero divídelo en bloques breves, con alineación consistente, jerarquía clara y suficiente separación."
   }[settings.textUsage];
+  const artDirectionGuidance = {
+    illustrative: "ILUSTRATIVA (estilo predeterminado): piensa como ilustrador editorial y director de animación explicativa. Construye escenas con personajes sencillos reconocibles (incluidas figuras de palitos cuando encajen), objetos cotidianos, herramientas, máquinas, libros, computadoras y piezas que interactúan. Usa trazos blancos finos y expresivos tipo dibujo a mano/pizarra, con grosor visual ligero y consistente; evita contornos pesados, bloques blancos y líneas que compitan con la forma. Como guía, usa strokeWidth entre 0.025 y 0.06 en la mayoría de shapes, reservando 0.07–0.09 solo para contornos principales puntuales. Prioriza siluetas claras y, cuando ayude, ilustraciones planas de color con pocos tonos vivos. Prefiere escenas completas y narrativas: un personaje usa un objeto, un objeto se abre y revela sus partes, varias piezas se conectan o un sistema transforma una entrada en una salida. Combina iconos del catálogo con vectores originales compuestos por varias shapes. No dibujes detalles decorativos sin función; cada elemento debe contar parte de la explicación.",
+    kinetic: "Kinetic: movimiento enérgico y legible, con entradas escalonadas, desplazamientos expresivos e impactos que subrayen relaciones causales. Mantén las ilustraciones y objetos como protagonistas, no conviertas todo en tipografía cinética.",
+    cinematic: "Cinematic: usa escala, profundidad sugerida, revelaciones progresivas, pausas y transiciones conectadas. La escena debe sentirse como un plano narrativo, no como una diapositiva corporativa.",
+    graphic: "Graphic: lenguaje gráfico limpio con siluetas, geometría, contraste y composición editorial. Alterna ilustraciones, objetos y diagramas según lo que explique mejor la idea.",
+    experimental: "Experimental: metáforas visuales audaces, cambios de escala y transformaciones inesperadas, manteniendo reconocibles los objetos y comprensible la explicación."
+  }[settings.artDirection] || "Ilustrativa: prioriza escenas dibujadas y narrativas.";
 
   return `Actúa como director creativo de motion graphics para Animotion v1, una herramienta que renderiza escenas declarativas sobre Canvas.
 
@@ -276,6 +283,7 @@ DIRECCIÓN VISUAL PREDEFINIDA:
 - Cantidad de objetos: adaptativa; no existe un objetivo ni un máximo fijo. Añade todos los elementos que la explicación necesite.
 - Audacia del movimiento: ${settings.motionBoldness}/100
 - Dirección artística: ${settings.artDirection}
+- Guía de estilo seleccionada: ${artDirectionGuidance}
 
 SISTEMA DE COMPOSICIÓN Y LAYOUT (OBLIGATORIO):
 - Antes de colocar objetos, decide qué idea debe captar primero la mirada. Cada escena debe tener una jerarquía visual clara: foco principal, sistemas secundarios y detalles informativos; puede incluir muchos objetos si forman parte de una explicación compleja.
@@ -298,7 +306,15 @@ SISTEMA DE COMPOSICIÓN Y LAYOUT (OBLIGATORIO):
 - Las relaciones deben ser visibles, pero no todas necesitan líneas: usa posición, escala, superposición intencional, dirección de movimiento, continuidad de formas, cambios de estado, ritmo y contraste. Construye un diagrama solo cuando un diagrama sea la mejor explicación.
 - El fondo, su color y su preset se controlan exclusivamente en la interfaz de Animotion. No generes ni configures fondos en el JSON; no incluyas el campo "background" en la respuesta. El fondo local se compone por separado detrás de las escenas.
 
-ESTILO: dirección artística de alto nivel, como una pieza explicativa hecha a mano por un diseñador de motion, no una presentación corporativa con iconos. Cada escena debe tener una idea visual propia y memorable. Integra texto dentro de la composición solo si aporta; no hagas que cada escena necesite texto. Prefiere una imagen protagonista con acción y detalles significativos a una etiqueta acompañada por un pictograma. Variedad, especificidad y ritmo narrativo por encima de plantillas repetibles. No impongas cajas, paneles, flechas ni una cantidad mínima de elementos. Distribuye escenas de 3 a 8 segundos cuando el discurso lo permita.
+ESTILO ILUSTRATIVO Y NARRATIVO (PRIORIDAD ALTA): el resultado debe parecer una secuencia de ilustraciones explicativas animadas, no una presentación corporativa. Piensa en dibujos de pizarra con líneas blancas y personajes de palitos, combinados con objetos ilustrados de colores cuando sea útil. Usa personajes, accesorios y escenarios mínimos para representar acciones concretas; por ejemplo, alguien estudia junto a una mesa con libros y cuaderno, una computadora recibe código y lo convierte en bits, o las piezas internas de un sistema aparecen y se conectan. Estas son referencias de lenguaje visual, no escenas obligatorias: inventa la metáfora específica para cada guion.
+- Construye ilustraciones reconocibles con varios objetos coordinados. Un personaje puede estar compuesto por cabeza, torso, brazos y piernas vectoriales; un objeto puede tener silueta, interior y detalles funcionales. Separa partes en objetos independientes cuando necesiten moverse por separado.
+- Combina trazo blanco tipo boceto con rellenos planos vivos para objetos importantes. Mantén paleta reducida, contraste alto y formas legibles a tamaño de vídeo. No fuerces que todos los elementos sean blancos ni que todos sean iconos de colores: elige el tratamiento según la escena.
+- Muestra acciones observables: cargar, abrir, escribir, estudiar, señalar, ensamblar, separar, transferir, crecer, fallar, comparar o transformar. La pose, la dirección, la escala y el movimiento deben comunicar la acción sin depender de un título.
+- Si una idea es abstracta, conviértela en una situación ilustrada o un mecanismo visual concreto. Añade objetos de apoyo cuando hagan falta para entender contexto, causa y efecto. No rellenes la escena con iconos sueltos sin interacción.
+- Los iconos locales son recursos auxiliares. Para personajes, objetos específicos o escenas que no existan en el catálogo, dibuja vectores originales con múltiples shapes coordinadas. Usa únicamente los tipos, campos y efectos admitidos por el esquema del renderer; no inventes imágenes externas, SVG, código ni tipos de objeto.
+- Conserva la gramática visual de las referencias: fondo controlado desde la interfaz, trazos de alto contraste, personajes y objetos grandes, composiciones simples pero explicativas, y detalles de color solo donde aporten significado. No configures el fondo en el JSON.
+- Integra texto solo si aporta comprensión; no hagas que cada escena necesite un título. Prioriza la ilustración protagonista y su acción. Alterna escenas de pizarra, ilustraciones planas, metáforas narrativas y diagramas cuando el contenido lo requiera.
+- Distribuye escenas de 3 a 8 segundos cuando el discurso lo permita. La animación debe hacer que la ilustración se dibuje, entre, se arme, reaccione o se transforme; no te limites a hacer aparecer toda la composición de golpe.
 
 RESPUESTA: entrega el resultado únicamente dentro de un único bloque de código con lenguaje json, listo para copiar. No agregues explicación, introducción ni texto fuera del bloque.
 
@@ -338,12 +354,12 @@ ${Object.entries(iconGroups).map(([category, names]) => `${category}: ${names.jo
 - Para dibujar uno, crea un objeto JSON con type:"icon" y name:"nombre-exacto", por ejemplo: {"type":"icon","name":"database","x":0.5,"y":0.5,"size":100,"color":"${settings.primary}"}. Usa también solo las propiedades permitidas en el esquema.
 - Animotion resuelve los iconos disponibles desde sus datos vectoriales locales. No escribas SVG, Path2D, código JavaScript ni imports.
 - Si ningún icono disponible representa bien la idea, NO te conformes con un icono aproximado: crea un objeto type:"vector" y dibuja una ilustración original mediante shapes y coordenadas. Úsalo para mecanismos, dispositivos, moléculas, piezas, diagramas, símbolos técnicos, mapas conceptuales y objetos específicos.
-- Cada shape puede ser kind:"line" o "path" con points:[{"x":-0.5,"y":-0.5},{"x":0.5,"y":0.5}], kind:"circle" con x/y/r, kind:"rect" con x/y/width/height o kind:"polygon" con points. Coordenadas locales entre -1 y 1. Usa fill:true para rellenar formas cerradas; strokeWidth controla el grosor relativo del trazo.
+- Cada shape puede ser kind:"line" o "path" con points:[{"x":-0.5,"y":-0.5},{"x":0.5,"y":0.5}], kind:"circle" con x/y/r, kind:"rect" con x/y/width/height o kind:"polygon" con points. Coordenadas locales entre -1 y 1. Usa fill:true para rellenar formas cerradas; strokeWidth controla el grosor relativo del trazo. Para un acabado ilustrativo fino, usa normalmente strokeWidth:0.025–0.06; evita valores mayores de 0.08 salvo para acentos excepcionales.
 - Construye ilustraciones compuestas con múltiples shapes coordinadas. Prioriza siluetas reconocibles, detalles funcionales, piezas internas, conectores y anotaciones. No uses formas aleatorias como relleno; cada trazo debe ayudar a reconocer o explicar el objeto.
 - Usa enter:"draw" para revelar progresivamente un dibujo vectorial de forma secuencial, como si se estuviera trazando. Todo objeto vector debe usar enter:"draw" salvo que exista una razón narrativa clara. Para diagramas complejos, separa las partes en varios objetos vector y escalona sus delays para animar cada parte de forma independiente.
 - Nombres heredados compatibles: ${legacyIcons.join(", ")}. Úsalos solo si son apropiados; prioriza los nombres del catálogo por categoría.
 - Si ningún icono disponible representa bien la idea, NO te conformes con un icono aproximado: crea un objeto type:"vector" y dibuja una ilustración original mediante shapes y coordenadas. Úsalo para mecanismos, dispositivos, moléculas, piezas, diagramas, símbolos técnicos, mapas conceptuales y objetos específicos.
-- Cada shape puede ser kind:"line" o "path" con points:[{"x":-0.5,"y":-0.5},{"x":0.5,"y":0.5}], kind:"circle" con x/y/r, kind:"rect" con x/y/width/height o kind:"polygon" con points. Coordenadas locales entre -1 y 1. Usa fill:true para rellenar formas cerradas; strokeWidth controla el grosor relativo del trazo.
+- Cada shape puede ser kind:"line" o "path" con points:[{"x":-0.5,"y":-0.5},{"x":0.5,"y":0.5}], kind:"circle" con x/y/r, kind:"rect" con x/y/width/height o kind:"polygon" con points. Coordenadas locales entre -1 y 1. Usa fill:true para rellenar formas cerradas; strokeWidth controla el grosor relativo del trazo. Para un acabado ilustrativo fino, usa normalmente strokeWidth:0.025–0.06; evita valores mayores de 0.08 salvo para acentos excepcionales.
 - Construye ilustraciones compuestas con múltiples shapes coordinadas. Prioriza siluetas reconocibles, detalles funcionales, piezas internas, conectores y anotaciones. No uses formas aleatorias como relleno; cada trazo debe ayudar a reconocer o explicar el objeto.
 - Usa enter:"draw" para revelar progresivamente un dibujo vectorial de forma secuencial, como si se estuviera trazando. Todo objeto vector debe usar enter:"draw" salvo que exista una razón narrativa clara. Para diagramas complejos, separa las partes en varios objetos vector y escalona sus delays para animar cada parte de forma independiente.
 No traduzcas cada frase a un icono. Usa iconos solo cuando un símbolo convencional sea la representación más clara. En el resto de los casos, crea una imagen compuesta, una acción o una transformación. Evita repetir el mismo recurso visual constantemente.
@@ -748,7 +764,7 @@ function drawObject(object, t, total, w, h) {
   }
 
   if (object.type === "line") {
-    ctx.lineWidth = Math.max(2, size * 0.065);
+    ctx.lineWidth = Math.max(1.25, size * 0.035);
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(-(object.width * w) / 2, 0);
@@ -769,7 +785,7 @@ function drawObject(object, t, total, w, h) {
       const localProgress = clamp(progress * totalShapes - index, 0, 1);
       if (localProgress <= 0) return;
       ctx.save();
-      ctx.lineWidth = Math.max(1, shape.strokeWidth * size);
+      ctx.lineWidth = Math.max(0.8, shape.strokeWidth * size * 0.58);
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       const px = value => value * unit;
