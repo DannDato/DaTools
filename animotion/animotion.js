@@ -539,9 +539,14 @@ function wrapTextLines(text, maxWidth) {
   return lines;
 }
 
+// Multiplicador visual: no modifica los valores strokeWidth guardados en el JSON.
+function strokeScale() {
+  return Number($("strokeAdjust").value) / 100;
+}
+
 function iconPath(name, size) {
   const s = size / 2;
-  ctx.lineWidth = size * 0.09;
+  ctx.lineWidth = size * 0.09 * strokeScale();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.beginPath();
@@ -764,7 +769,7 @@ function drawObject(object, t, total, w, h) {
   }
 
   if (object.type === "line") {
-    ctx.lineWidth = Math.max(1.25, size * 0.035);
+    ctx.lineWidth = Math.max(0.25, size * 0.035 * strokeScale());
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(-(object.width * w) / 2, 0);
@@ -785,7 +790,7 @@ function drawObject(object, t, total, w, h) {
       const localProgress = clamp(progress * totalShapes - index, 0, 1);
       if (localProgress <= 0) return;
       ctx.save();
-      ctx.lineWidth = Math.max(0.8, shape.strokeWidth * size * 0.58);
+      ctx.lineWidth = Math.max(0.2, shape.strokeWidth * size * 0.58 * strokeScale());
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       const px = value => value * unit;
@@ -1301,9 +1306,15 @@ $("copyPrompt").addEventListener("click", copyPrompt);
 $("applyJson").addEventListener("click", () => apply(false));
 $("textSizeAdjust").addEventListener("input", updateSizeAdjustments);
 $("iconSizeAdjust").addEventListener("input", updateSizeAdjustments);
+$("strokeAdjust").addEventListener("input", () => {
+  $("strokeAdjustValue").textContent = `${$("strokeAdjust").value}%`;
+  render(position);
+});
 $("resetSizeAdjust").addEventListener("click", () => {
   $("textSizeAdjust").value = "200";
   $("iconSizeAdjust").value = "200";
+  $("strokeAdjust").value = "100";
+  $("strokeAdjustValue").textContent = "100%";
   updateSizeAdjustments();
 });
 
@@ -1470,6 +1481,7 @@ document.querySelectorAll("input[id], select[id], textarea[id]").forEach(control
 const restoredState = restoreUiState();
 updateColorChips();
 updatePromptControlLabels();
+$("strokeAdjustValue").textContent = `${$("strokeAdjust").value}%`;
 $("bgOpacityValue").textContent = `${$("bgOpacity").value}%`;
 resize();
 if (restoredState && $("jsonText").value.trim()) {
