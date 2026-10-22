@@ -1,33 +1,47 @@
-/* Portada DannTools */
-:root{color-scheme:dark;font-family:Outfit,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--color-background);color:#f6f6f7;font-synthesis:none}
-    *{box-sizing:border-box}
-    body{min-height:100vh;margin:0;background:radial-gradient(ellipse 70% 45% at 50% -18%,#292832 0%,transparent 85%),var(--color-background)}
-    a{color:inherit;text-decoration:none}
-    .shell{width:min(1050px,calc(100% - 48px));margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
-    header{display:flex;align-items:center;gap:13px;padding:34px 0 28px;border-bottom:1px solid var(--color-border)}
-    .brand-logo{width:39px;height:39px;object-fit:contain}
-    .brand-name{font-size:24px;letter-spacing:-.06em;font-weight:800;line-height:1}
-    .brand-name span{color:#a59db6}
-    main{flex:1;padding:clamp(50px,10vh,100px) 0 90px}
-    .eyebrow{color:#afa9bb;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin:0 0 14px}
-    h1{font-size:clamp(40px,6vw,68px);letter-spacing:-.065em;line-height:1.04;margin:0 0 18px;font-weight:700}
-    .intro{margin:0;color:var(--color-text-muted);font-size:clamp(15px,2vw,18px);line-height:1.6;max-width:580px}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:46px}
-    .tool{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:265px;padding:30px;border:1px solid #29292e;border-radius:22px;background:linear-gradient(145deg,#202025,#151518 70%);overflow:hidden;isolation:isolate;transition:transform .22s ease,border-color .22s ease,background .22s ease;outline-offset:5px}
-    .tool::after{content:"";position:absolute;inset:auto -40px -100px auto;width:250px;height:250px;border-radius:50%;background:var(--glow);filter:blur(70px);opacity:.24;z-index:-1;pointer-events:none;transition:opacity .22s ease}
-    .tool:hover{transform:translateY(-5px);border-color:#62606b}.tool:hover::after{opacity:.43}
-    .tool:focus-visible{outline:2px solid #c7b7ff}
-    .tool-top,.tool-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px}
-    .tool-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#ffffff10;border:1px solid #ffffff10}
-    .tool-icon svg{width:31px;height:31px}
-    .arrow{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#ffffff0c;color:#e7e7e9;font-size:23px;transition:background .2s ease,transform .2s ease}
-    .tool:hover .arrow{background:#ffffff22;transform:translate(2px,-2px)}
-    h2{font-size:clamp(28px,3vw,34px);letter-spacing:-.055em;line-height:1.1;margin:0 0 8px;font-weight:700}
-    .description{color:#aaa9b2;font-size:15px;line-height:1.5;margin:0}
-    .trazio{--glow:#7569e9}.submotion{--glow:#c9b9fc}
-    .soon{font-size:13px;color:#797981;margin:22px 0 0;text-align:center}
-    footer{padding:22px 0 30px;border-top:1px solid var(--color-border);color:#777780;font-size:13px;display:flex;justify-content:space-between;gap:15px}
-    @media(max-width:680px){.shell{width:min(100% - 32px,480px)}header{padding:23px 0}.brand-logo{width:34px;height:34px}.brand-name{font-size:22px}main{padding:58px 0 65px}.grid{grid-template-columns:1fr;gap:13px;margin-top:32px}.tool{min-height:210px;padding:24px;border-radius:19px}.tool-icon{width:50px;height:50px}.tool-icon svg{width:27px;height:27px}footer{font-size:12px}}
-    @media(prefers-reduced-motion:reduce){.tool,.tool::after,.arrow{transition:none}.tool:hover{transform:none}}
-
-.animotion{--glow:#6bcfaf}
+/* DaTools · Launcher. El diseño global hereda tokens desde theme.css. */
+.home-page{color-scheme:dark;background:radial-gradient(ellipse 65% 36% at 53% -15%,rgba(125,125,125,.09),transparent 80%),#0b0b0b;color:var(--color-text);font-family:var(--font-ui);font-synthesis:none}
+.home-page a{color:inherit;text-decoration:none}
+.home-page .dt-wrap{width:calc(100% - 48px);max-width:1740px;margin-inline:auto}
+.page-shell{min-height:100vh;display:flex;flex-direction:column}
+.page-shell>main{flex:1}
+.site-header{border-bottom:1px solid #262626;background:rgba(12,12,12,.5)}
+.site-header>.dt-wrap{display:flex;align-items:center;justify-content:space-between;padding-block:16px}
+.brand{display:inline-flex;align-items:center;gap:12px;width:fit-content;white-space:nowrap}
+.brand-logo{width:38px;height:38px;object-fit:contain}
+.brand-name{font-size:22px;font-weight:800;letter-spacing:-.055em;line-height:1}
+.brand-name span{color:#bdbdbd}
+.tools-section{padding-top:30px;padding-bottom:40px}
+.section-heading{display:flex;align-items:center;min-height:46px;margin-bottom:18px}
+.section-heading h1{font-size:clamp(24px,2.2vw,32px);font-weight:720;letter-spacing:-.048em;line-height:1.15;margin:0}
+.section-period{color:#999999}
+.tool-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tool{--tool-accent:#b6a4ff;--tool-glow:#6c5dd5;position:relative;display:flex;flex-direction:column;justify-content:space-between;min-width:0;min-height:244px;padding:23px;border:1px solid #2b2931;border-radius:19px;background:linear-gradient(155deg,#202026 0%,#16161a 72%,#141417 100%);isolation:isolate;overflow:hidden;outline-offset:4px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.tool::before{content:"";position:absolute;inset:auto -90px -160px auto;width:290px;height:290px;border-radius:50%;background:var(--tool-glow);opacity:.12;filter:blur(70px);pointer-events:none;z-index:-1;transition:opacity .2s}
+.tool:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--tool-accent) 49%,#28252e);box-shadow:0 18px 38px #00000026}
+.tool:hover::before{opacity:.28}
+.tool:focus-visible{outline:2px solid #c7baff}
+.tool-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.tool-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:color-mix(in srgb,var(--tool-accent) 9%,transparent);color:var(--tool-accent);flex:none}
+.tool-icon svg{width:32px;height:32px}
+.arrow{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#ffffff0b;color:#e2e0e9;font-size:22px;transition:background .2s,transform .2s}
+.tool:hover .arrow{background:#ffffff22;transform:translate(2px,-2px)}
+.tool-category{display:block;color:var(--tool-accent);font-size:10px;letter-spacing:.13em;font-weight:700;margin-bottom:9px}
+.tool-bottom h3{font-size:clamp(25px,2vw,31px);font-weight:700;letter-spacing:-.05em;line-height:1.12;margin:0 0 8px;color:#f7f6fa}
+.tool-bottom p{max-width:310px;color:#a9a7b3;font-size:13px;line-height:1.5;margin:0}
+.trazio{--tool-accent:#b5a6ff;--tool-glow:#6e59ce}
+.submotion{--tool-accent:#e2d4ff;--tool-glow:#9c77dd}
+.animotion{--tool-accent:#a9e4d2;--tool-glow:#3d937c}
+.toviu{--tool-accent:#ffdab0;--tool-glow:#b57548}
+.site-footer{border-top:1px solid #262626;background:linear-gradient(180deg,#121212 0%,#0b0b0b 100%)}
+.footer-inner{padding-block:24px 18px}
+.footer-main{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-brand .brand-logo{width:29px;height:29px}
+.footer-brand .brand-name{font-size:18px}
+.footer-links{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,2vw,28px);flex-wrap:wrap}
+.footer-links a,.footer-bottom{font-size:12px;color:#999999}
+.footer-links a:hover,.footer-bottom a:hover{color:#f5f5f5}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #292929;margin-top:21px;padding-top:16px}
+.footer-bottom a{color:#999999}
+@media(max-width:1279px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.home-page .dt-wrap{width:calc(100% - 30px)}.site-header>.dt-wrap{padding-block:14px}.brand-logo{width:34px;height:34px}.brand-name{font-size:20px}.tools-section{padding-top:20px;padding-bottom:28px}.section-heading{margin-bottom:14px}.tool-grid{grid-template-columns:1fr;gap:12px}.tool{min-height:190px;padding:20px;border-radius:16px}.tool-icon{width:52px;height:52px;border-radius:14px}.tool-icon svg{width:28px;height:28px}.tool-bottom h3{font-size:25px}.footer-inner{padding-block:22px 16px}.footer-main{align-items:flex-start}.footer-links{justify-content:flex-start;gap:12px 18px}}
+@media(prefers-reduced-motion:reduce){.tool,.tool::before,.arrow{transition:none}.tool:hover{transform:none}}

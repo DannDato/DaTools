@@ -545,8 +545,10 @@ function strokeScale() {
 }
 
 function iconPath(name, size) {
-  const s = size / 2;
-  ctx.lineWidth = size * 0.09 * strokeScale();
+  const compactLineIcon = name === "sparkles" || name === "star";
+  const safeSize = compactLineIcon ? size * 0.76 : size;
+  const s = safeSize / 2;
+  ctx.lineWidth = safeSize * (compactLineIcon ? 0.075 : 0.09) * strokeScale();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.beginPath();
@@ -576,9 +578,10 @@ function iconPath(name, size) {
     return;
   }
   if (name === "sparkles" || name === "star") {
+    const reach = s * 0.84;
     for (let j = 0; j < 4; j++) {
       const a = j * Math.PI / 2;
-      ctx.moveTo(Math.cos(a) * s, Math.sin(a) * s);
+      ctx.moveTo(Math.cos(a) * reach, Math.sin(a) * reach);
       ctx.lineTo(0, 0);
     }
     ctx.stroke();
@@ -742,15 +745,49 @@ function drawObject(object, t, total, w, h) {
     ctx.textBaseline = "middle";
     ctx.textAlign = object.align;
 
-    const maxWidth = Math.max(40, w * object.maxWidth);
-    const visibleText = object.enter === "type" ? object.text.slice(0, Math.max(0, Math.ceil(object.text.length * clamp(time / object.duration, 0, 1)))) : object.text;
-    const lines = wrapTextLines(visibleText, maxWidth);
-    const lineHeight = size * object.lineHeight;
-    const anchorX = object.align === "center" ? 0 : (object.align === "left" ? -maxWidth / 2 : maxWidth / 2);
-
+    // El tamaño interno del Canvas es fijo, pero el JSON puede pedir tipografías
+    // desproporcionadas o ubicadas cerca del borde. Ajustar SOLO el objeto,
+    // nunca escalar toda la escena en función del tamaño visual del dock.
+    const safeMargin = Math.min(w, h) * 0.055;
+    const motionScale = Math.max(1, Math.abs(scale));
+    const visibleText = object.enter === "type"
+      ? object.text.slice(0, Math.max(0, Math.ceil(object.text.length * clamp(time / object.duration, 0, 1))))
+      : object.text;
+    const allowedWidth = Math.max(60, Math.min(w * object.maxWidth, w - 2 * safeMargin) / motionScale);
+    const maxBlockHeight = (h - 2 * safeMargin) / motionScale;
+    let fittedSize = Math.min(size, h * 0.15 / motionScale);
+    let lines = [];
+    let lineHeight = 0;
+    // Reducir lo mínimo necesario para mantener incluso párrafos largos visibles.
+    for (let attempt = 0; attempt < 24; attempt++) {
+      ctx.font = `${object.weight} ${fittedSize}px "${$("fontFamily").value}", sans-serif`;
+      lines = wrapTextLines(visibleText, allowedWidth);
+      lineHeight = fittedSize * object.lineHeight;
+      if (lines.length * lineHeight <= maxBlockHeight || fittedSize <= 12) break;
+      fittedSize *= 0.88;
+    }
+    const lineWidths = lines.map(line => Math.min(ctx.measureText(line).width, allowedWidth));
+    const blockWidth = Math.max(0, ...lineWidths);
+    const blockHeight = Math.max(0, lines.length * lineHeight);
+    const anchorX = object.align === "center" ? 0 : (object.align === "left" ? -allowedWidth / 2 : allowedWidth / 2);
+    const localMinX = object.align === "center" ? -blockWidth / 2 : object.align === "left" ? anchorX : anchorX - blockWidth;
+    const localMaxX = object.align === "center" ? blockWidth / 2 : object.align === "left" ? anchorX + blockWidth : anchorX;
+    const localMinY = -blockHeight / 2;
+    const localMaxY = blockHeight / 2;
+    // Los desplazamientos se calculan sobre el lienzo original, por lo que
+    // el fotograma exportado será idéntico al mostrado en la vista previa.
+    const desiredX = object.x * w + dx * w / 2560;
+    const desiredY = object.y * h + dy * h / 1440;
+    const left = desiredX + localMinX * motionScale;
+    const right = desiredX + localMaxX * motionScale;
+    const top = desiredY + localMinY * motionScale;
+    const bottom = desiredY + localMaxY * motionScale;
+    const shiftX = left < safeMargin ? safeMargin - left : right > w - safeMargin ? w - safeMargin - right : 0;
+    const shiftY = top < safeMargin ? safeMargin - top : bottom > h - safeMargin ? h - safeMargin - bottom : 0;
+    ctx.translate(shiftX / scale, shiftY / scale);
     lines.forEach((line, index) => {
       const y = (index - (lines.length - 1) / 2) * lineHeight;
-      ctx.fillText(line, anchorX, y, maxWidth);
+      ctx.fillText(line, anchorX, y, allowedWidth);
     });
   }
 
@@ -1374,10 +1411,30 @@ $("downloadJson").addEventListener("click", () => {
   }
 });
 
+function formatRenderTime(seconds) {
+  const t = Math.max(0, Math.floor(seconds));
+  return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
+}
+
+function renderProgress(time, total) {
+  const pct = total > 0 ? Math.min(100, Math.max(0, time / total * 100)) : 0;
+  $("renderFill").style.width = `${pct.toFixed(1)}%`;
+  $("renderPercent").textContent = `${Math.floor(pct)}%`;
+  $("renderElapsed").textContent = `Transcurrido ${formatRenderTime(time)}`;
+  $("renderRemaining").textContent = `Restante aprox. ${formatRenderTime(Math.max(0, total - time))}`;
+  $("renderOverlay").querySelector('[role="progressbar"]').setAttribute("aria-valuenow", String(Math.floor(pct)));
+  $("progressBar").style.width = `${pct.toFixed(1)}%`;
+}
+
 $("exportVideo").addEventListener("click", async () => {
   if (exporting || !duration) return;
   if (!("MediaRecorder" in window) || !canvas.captureStream) {
     $("exportInfo").textContent = "Tu navegador no admite grabación de Canvas.";
+    return;
+  }
+  const mime = preferredMime();
+  if (!mime) {
+    $("exportInfo").textContent = "No hay formato de grabación compatible.";
     return;
   }
 
@@ -1386,52 +1443,75 @@ $("exportVideo").addEventListener("click", async () => {
   const button = $("exportVideo");
   button.disabled = true;
   $("play").disabled = true;
-
+  const overlay = $("renderOverlay");
+  const cancelButton = $("renderCancel");
   const fps = Number($("fps").value);
-  const mime = preferredMime();
-  if (!mime) {
-    $("exportInfo").textContent = "No hay formato de grabación compatible.";
-    exporting = false;
-    button.disabled = false;
-    $("play").disabled = false;
-    return;
-  }
-
-  let stream;
-  let recorder;
-  const chunks = [];
-  let exportStart;
-  let raf;
+  let stream, recorder, raf = 0, exportStart = 0;
+  let chunks = [];
   let finished = false;
+  let cancelled = false;
+  let finalized = false;
+  let stopped = false;
+  let started = false;
 
-  const cleanup = () => {
-    if (finished) return;
-    finished = true;
+  const previousFocus = document.activeElement;
+  overlay.hidden = false;
+  overlay.setAttribute("aria-hidden", "false");
+  $("renderFormat").textContent = `${canvas.width} × ${canvas.height} · ${fps} FPS`;
+  $("renderMime").textContent = mime.includes("mp4") ? "MP4" : "WebM";
+  renderProgress(0, duration);
+  cancelButton.disabled = false;
+  cancelButton.focus();
+
+  const finish = () => {
+    if (finalized) return;
+    finalized = true;
     cancelAnimationFrame(raf);
     stream?.getTracks().forEach(track => track.stop());
+    chunks = [];
     exporting = false;
     button.disabled = false;
     $("play").disabled = false;
+    overlay.hidden = true;
+    overlay.setAttribute("aria-hidden", "true");
+    previousFocus?.focus?.();
     seek(0);
   };
-
+  const abort = () => {
+    if (finished || cancelled) return;
+    cancelled = true;
+    cancelButton.disabled = true;
+    $("exportInfo").textContent = "Exportación cancelada. No se guardó ningún archivo.";
+    chunks = [];
+    cancelAnimationFrame(raf);
+    try {
+      if (recorder && recorder.state !== "inactive") recorder.stop();
+      else finish();
+    } catch {
+      finish();
+    }
+    // onstop limpia los recursos, sin generar archivos cuando se cancela.
+  };
+  cancelButton.onclick = abort;
   try {
     await document.fonts.ready;
+    if (cancelled) { finish(); return; }
     render(0);
     stream = canvas.captureStream(fps);
     recorder = new MediaRecorder(stream, {
       mimeType: mime,
       videoBitsPerSecond: Math.min(24000000, Math.max(8000000, canvas.width * canvas.height * fps * 0.095))
     });
-
     recorder.ondataavailable = event => {
-      if (event.data.size) chunks.push(event.data);
+      if (!cancelled && event.data.size) chunks.push(event.data);
     };
     recorder.onerror = () => {
       $("exportInfo").textContent = "Error al grabar el video.";
-      cleanup();
+      chunks = [];
+      finish();
     };
     recorder.onstop = () => {
+      if (cancelled || finalized) { finish(); return; }
       if (chunks.length) {
         const actual = recorder.mimeType || mime;
         const ext = actual.includes("mp4") ? "mp4" : "webm";
@@ -1443,32 +1523,33 @@ $("exportVideo").addEventListener("click", async () => {
         a.click();
         setTimeout(() => URL.revokeObjectURL(url), 60000);
         $("exportInfo").textContent = `Video generado: ${ext.toUpperCase()} · ${(blob.size / 1048576).toFixed(1)} MB`;
-      } else {
-        $("exportInfo").textContent = "No se generaron datos de video.";
-      }
-      cleanup();
+      } else $("exportInfo").textContent = "No se generaron datos de video.";
+      finish();
     };
-
     recorder.start(1000);
+    started = true;
     $("exportInfo").textContent = "Grabando en tiempo real: mantén esta pestaña visible.";
     exportStart = performance.now();
-
     const step = now => {
-      if (!exporting) return;
-      const t = Math.min((now - exportStart) / 1000, duration);
-      render(t);
-      $("progressBar").style.width = `${((t / duration) * 100).toFixed(1)}%`;
-      if (t >= duration) {
+      if (!exporting || cancelled || finalized) return;
+      const elapsed = Math.min((now - exportStart) / 1000, duration);
+      render(elapsed);
+      renderProgress(elapsed, duration);
+      if (elapsed >= duration) {
+        finished = true;
+        cancelButton.disabled = true;
         if (recorder.state === "recording") recorder.stop();
         return;
       }
       raf = requestAnimationFrame(step);
     };
-
     raf = requestAnimationFrame(step);
   } catch (error) {
     $("exportInfo").textContent = `No se pudo exportar: ${error.message}`;
-    cleanup();
+    if (started && recorder?.state === "recording") {
+      cancelled = true;
+      recorder.stop();
+    } else finish();
   }
 });
 

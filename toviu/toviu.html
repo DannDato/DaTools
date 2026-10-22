@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0b0d">
+<title>Toviu HUB</title>
+<!-- Importación de la fuente Outfit desde Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/DaTools.png">
+<link rel="stylesheet" href="../css/theme.css">
+<link rel="stylesheet" href="../css/toviu.css">
+<style>
+
+</style>
+</head>
+<body>
+
+
+
+  <header class="toviu-topbar">
+    <a class="toviu-brand" href="../index.html"><img src="../img/DaTools.png" alt="" width="32" height="32"><span>DaTools</span></a>
+    <span class="toviu-crumb">/ Toviu</span>
+    <button id="btn-menu" class="menu-btn" type="button" aria-expanded="false" aria-controls="sidebar-menu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  <div id="sidebar-overlay" class="sidebar-overlay hidden" data-close-sidebar="true"></div>
+  <aside id="sidebar-menu" class="sidebar hidden" aria-hidden="true">
+    <div class="sidebar-header">
+      <h2>Menú</h2>
+      <button id="btn-close-menu" class="icon-btn" type="button" aria-label="Cerrar menú">×</button>
+    </div>
+    <div class="sidebar-actions">
+      <button id="btn-add" class="btn-primary" type="button">+ Nuevo enlace</button>
+      <button id="btn-reset" class="btn-ghost" type="button">Restablecer enlaces</button>
+    </div>
+  </aside>
+  <main class="toviu-main">
+    <section class="marquee-wrap">
+      <div class="eyebrow">TU ESPACIO PERSONAL</div>
+      <h1>Toviu <span>HUB</span></h1>
+      <p>Abre tus sitios favoritos, ordénalos y personalízalos a tu manera.</p>
+    </section>
+    <section class="library-toolbar" aria-label="Administrar aplicaciones">
+      <div class="library-summary"><strong>Mis aplicaciones</strong><span id="links-count" class="library-count"></span></div>
+      <div class="library-actions"><label class="search-wrap"><span class="sr-only">Buscar aplicaciones</span><input id="link-search" type="search" placeholder="Buscar aplicación…" autocomplete="off"></label><button id="btn-add-main" class="btn-primary" type="button">+ Agregar</button></div>
+    </section>
+    <div id="links-grid" class="grid"></div>
+  </main>
+
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Agregar enlace</h2>
+      <form id="link-form" novalidate>
+        <label for="link-name">Nombre</label>
+        <input id="link-name" name="name" type="text" maxlength="40" placeholder="Ej: Netflix" required>
+
+        <label for="link-url">URL</label>
+        <input id="link-url" name="url" type="url" maxlength="200" placeholder="https://ejemplo.com" required>
+
+        <label for="link-tag">Etiqueta</label>
+        <input id="link-tag" name="tag" type="text" maxlength="25" placeholder="Streaming">
+
+        <div class="form-error" id="form-error" aria-live="polite"></div>
+
+        <div class="modal-actions">
+          <button type="button" id="btn-cancel" class="btn-ghost">Cancelar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">Arrastra para ordenar · Flechas para navegar · Enter para abrir · N para agregar</footer>
+  <div id="launch-overlay" class="launch-overlay" role="status" aria-live="polite" aria-hidden="true"><div class="launch-spinner"></div><span id="launch-label">Abriendo enlace…</span></div>
+
+  <script src="js/motor.js"></script>
+</body>
+</html>

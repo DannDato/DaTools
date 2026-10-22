@@ -653,6 +653,102 @@
     @media(max-width:880px){.topbar{position:relative}.tag{font-size:9px}.sidebar{gap:12px}main{gap:14px}.workspace{gap:12px}}
     @media(max-width:560px){.topbar{padding:12px 14px;gap:8px;flex-wrap:wrap}.brand-logo{width:26px;height:26px}.crumb{font-size:12px}.tag{margin-left:auto;padding:6px 8px;max-width:48%;overflow:hidden;text-overflow:ellipsis}.topbar-spacer{display:none}.tool-intro h1{font-size:29px}.panel{padding:14px}.controls-panel{padding:12px}.section{padding:11px}.preview-head h2{font-size:15px}.shift-row{grid-template-columns:1fr}.shift-row button{width:100%}.export-actions{grid-template-columns:1fr 1.3fr}}
 
+  
+    /* Workspace libre: ordenar paneles y redimensionar en una malla fina. */
+    .submotion-shell{display:block!important;max-width:1900px;width:100%;margin:0 auto;padding:16px clamp(12px,2vw,26px) 32px}
+    .dock-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 2px 14px}
+    .dock-toolbar>div{display:flex;flex-wrap:wrap;align-items:center;gap:9px;color:var(--sm-muted);font-size:12px}
+    .dock-toolbar strong{color:#eeeaf9;font-size:13px;font-weight:750}
+    .dock-toolbar button{white-space:nowrap;min-height:36px;padding:8px 12px;background:#22212b;border:1px solid rgba(170,152,255,.18)}
+    .dock-grid{display:grid;grid-template-columns:repeat(96,minmax(0,1fr));grid-auto-rows:8px;grid-auto-flow:row dense;gap:8px 4px;width:100%;min-width:0;align-items:stretch}
+    .dock-grid>.dock-card{min-width:0;min-height:0!important;height:auto!important;max-height:none!important;grid-column:span 32;grid-row:span 25;align-self:stretch;box-sizing:border-box;position:relative;overflow:hidden!important;padding:0!important;scrollbar-width:none}
+    .dock-card .dock-body{box-sizing:border-box;width:100%;height:100%;min-height:0;overflow:auto;padding:17px 18px 24px;scrollbar-width:thin;scrollbar-color:#514968 transparent;overscroll-behavior:auto}
+    .dock-card.preview-panel .dock-body,.dock-card.fragment-panel .dock-body{padding:18px 18px 26px}
+    .dock-card.preview-panel .stage{min-height:0}
+    .dock-card.fragment-panel #cues{max-height:430px;overflow:auto}
+    .dock-card .panel-title{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;position:static;min-width:0;padding:0;margin-bottom:12px}
+    .dock-card .panel-title>div{flex:1;min-width:0}
+    .dock-card .preview-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .dock-card .preview-head>div:first-child{min-width:0;flex:1}
+    .dock-card .preview-head .preview-head-actions{margin-left:auto}
+    .dock-card .section{min-width:0}
+    .dock-card.appearance-panel .section,.dock-card.animation-panel .section{margin:0;padding:0;border:0;background:none;border-radius:0}
+    .dock-actions{display:inline-flex;align-items:center;gap:5px;margin-left:auto;flex:none}
+    .dock-grip{width:33px;min-width:33px;height:33px;min-height:33px!important;display:grid;place-items:center;font-size:20px!important;line-height:1;color:#c6b3ff!important;background:rgba(170,152,255,.10)!important;border:1px solid rgba(170,152,255,.22)!important;border-radius:8px!important;cursor:grab!important;touch-action:none;user-select:none;padding:0!important}
+    .dock-grip:hover,.dock-grip:focus-visible{background:rgba(170,152,255,.22)!important;border-color:rgba(170,152,255,.5)!important;outline:none}
+    .dock-grip:active{cursor:grabbing!important}
+    .dock-resizer{position:absolute!important;right:3px;bottom:3px;z-index:5;width:29px;height:29px;min-height:29px!important;padding:0!important;border:0!important;border-radius:0 0 12px 0!important;background:linear-gradient(135deg,transparent 42%,rgba(170,152,255,.10) 100%)!important;cursor:nwse-resize!important;touch-action:none;user-select:none}
+    .dock-resizer::after{content:'';position:absolute;right:6px;bottom:6px;width:14px;height:14px;background:repeating-linear-gradient(135deg,transparent 0 3px,rgba(189,171,255,.92) 3px 4.5px,transparent 4.5px 7px);clip-path:polygon(100% 0,100% 100%,0 100%);opacity:.74}
+    .dock-resizer:hover,.dock-resizer:focus-visible{background:rgba(170,152,255,.18)!important;outline:none!important}
+    .dock-resizer:hover::after,.dock-resizer:focus-visible::after{opacity:1}
+    .dock-card.is-resizing{outline:1px solid rgba(186,164,255,.60);box-shadow:0 0 0 2px rgba(170,152,255,.12)}
+    .dock-card.is-reflowing{will-change:transform}
+    .dock-card .dock-grip,.dock-resizer{transition:background .16s ease,transform .16s ease}
+    .dock-card .dock-grip:hover{transform:translateY(-1px)}
+    .dock-resizer:hover{transform:scale(1.09);transform-origin:bottom right}
+    .dock-resize-outline{position:fixed;z-index:2990;pointer-events:none;border:1px solid rgba(191,172,255,.75);background:rgba(170,152,255,.06);box-shadow:0 0 0 3px rgba(170,152,255,.075),0 10px 50px rgba(0,0,0,.15);border-radius:18px;will-change:width,height,transform}
+    @media(prefers-reduced-motion:reduce){.dock-card .dock-grip,.dock-resizer{transition:none!important}}
+    .dock-placeholder{min-height:0;border:2px dashed rgba(181,158,255,.7);background:rgba(170,152,255,.08);border-radius:17px;display:flex;align-items:center;justify-content:center;gap:10px;color:#d8ccff;font-size:12px;font-weight:700;pointer-events:none}
+    .dock-ghost{will-change:transform;position:fixed;z-index:3000;left:0;top:0;pointer-events:none;transform:translate(-50%,-50%);padding:12px 18px;background:rgba(29,26,42,.96);border:1px solid rgba(188,165,255,.6);box-shadow:0 18px 40px rgba(0,0,0,.55);border-radius:13px;font-size:14px;font-weight:800;color:#f6f2ff;white-space:nowrap;backdrop-filter:blur(14px)}
+    body.dock-is-dragging,body.dock-is-dragging *{cursor:grabbing!important;user-select:none!important}
+    body.dock-is-resizing,body.dock-is-resizing *{cursor:nwse-resize!important;user-select:none!important}
+    .dock-notice{min-height:0;margin-top:8px;font-size:11px;color:var(--sm-muted)}
+    .dock-card.preview-panel:fullscreen{display:block;padding:0;background:#09090d;width:100%;height:100%!important;max-height:none!important;overflow:hidden}
+    .dock-card.preview-panel:fullscreen .dock-body{padding:20px;overflow:auto;height:100%}
+    .dock-card.preview-panel:fullscreen .stage{max-height:calc(100vh - 220px)}
+    .dock-card.preview-panel:fullscreen .preview-head{position:sticky;top:0;background:#09090d;padding-bottom:10px;z-index:2}
+    .dock-card.preview-panel:fullscreen .dock-actions,.dock-card.preview-panel:fullscreen .dock-resizer{display:none}
+    .resize-handle,.row-divider{display:none!important}
+    @media(max-width:760px){
+      .dock-grid{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto;gap:12px}
+      .dock-grid>.dock-card{grid-column:1/-1!important;grid-row:auto!important;height:auto!important;max-height:none!important;min-height:0!important}
+      .dock-card .dock-body{height:auto;max-height:540px;overflow:auto}
+      .dock-card.preview-panel .dock-body{max-height:none}
+      .dock-card.fragment-panel .dock-body{max-height:690px}
+      .dock-resizer{display:none!important}
+      .dock-toolbar{align-items:start}
+      .dock-toolbar>div span{display:none}
+    }
+
+    /* Opciones de exportación dentro de Fragmentos, adaptadas al ancho redimensionable. */
+    .fragment-export{margin:14px 0 16px;padding:15px;border-radius:13px;background:rgba(255,255,255,.022);border:1px solid rgba(170,152,255,.12);min-width:0}
+    .fragment-export h3{margin:0 0 7px;font-size:12px;line-height:1.3;font-weight:750;color:#cfc4ff;letter-spacing:.015em}
+    .fragment-export .format-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr))!important;gap:8px 10px!important}
+    .fragment-export .format-row>div{min-width:0}
+    .fragment-export .format-row label{display:block;white-space:normal;overflow:visible;text-overflow:clip;margin:8px 0 5px;line-height:1.4}
+    .fragment-export .format-row select{min-width:0;width:100%;text-overflow:ellipsis}
+    .fragment-export .export{margin-top:13px}
+    .fragment-export .export-actions{grid-template-columns:repeat(auto-fit,minmax(min(100%,135px),1fr));gap:8px}
+    .fragment-export .export-actions button{min-width:0}
+    .fragment-export .status{overflow-wrap:anywhere;margin-bottom:0}
+
+  
+    /* Workspace v4 — distribución inicial de seis paneles, completamente reorganizable. */
+    .dock-card.subtitles-panel .dock-body{display:flex;flex-direction:column;min-height:0}
+    .dock-card.subtitles-panel #srt{flex:1 1 auto;min-height:180px;height:auto!important;resize:none}
+    .dock-card.subtitles-panel .dock-body>.actions{flex:0 0 auto}
+    .dock-card.export-panel .dock-body{padding:17px 17px 25px}
+    .dock-card.export-panel .panel-title{margin-bottom:14px}
+    .dock-card.export-panel .format-row{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:4px!important}
+    .dock-card.export-panel .format-row>div{min-width:0}
+    .dock-card.export-panel .format-row label{margin:8px 0 5px;white-space:normal;line-height:1.45}
+    .dock-card.export-panel .format-row select{min-width:0;width:100%}
+    .dock-card.export-panel .export-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+    .dock-card.export-panel .export-actions button{min-width:0}
+    .dock-card.export-panel .status{overflow-wrap:anywhere;margin-bottom:0}
+    .dock-card.export-panel .export{margin-top:15px}
+    .dock-card.fragment-panel #cues{max-height:none}
+    /* Reducir distracciones al mover/redimensionar: énfasis mínimo y animaciones suaves. */
+    .dock-ghost{transition:box-shadow .18s ease,border-color .18s ease;box-shadow:0 16px 35px rgba(0,0,0,.38)!important}
+    .dock-placeholder{transition:border-color .16s ease,background .16s ease}
+    .dock-resize-outline{background:rgba(170,152,255,.035)!important;box-shadow:0 0 0 2px rgba(170,152,255,.06)!important}
+    @media(max-width:760px){
+      .dock-card.subtitles-panel #srt{min-height:250px;flex:none}
+      .dock-card.subtitles-panel .dock-body{display:block}
+      .dock-card.export-panel .dock-body{max-height:none}
+      .dock-card.export-panel .export-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
   </style>
 </head>
 
@@ -662,161 +758,156 @@
     <img class="brand-logo" src="../img/DaTools.png" alt="" width="30" height="30">
     <span>DaTools</span>
   </a>
-  <span class="crumb">/ Submotion</span>
-  <span class="topbar-spacer"></span>
+  <div class="page-title">Submotion</div>
   <span class="tag"><span class="status-dot"></span> SUBTITLE MOTION · LOCAL</span>
 </header>
-  <main>
-    <aside class="sidebar">
-      <div class="tool-intro">
-        <div class="eyebrow">MOTION TOOL</div>
-        <h1>Submotion</h1>
-        <p>Convierte subtítulos en texto animado listo para editar y exportar.</p>
-      </div>
-      <div class="panel controls-panel">
-      <div class="panel-title"><span class="step">01</span><div><h2>Subtítulos</h2><p>Importa o pega un archivo SRT.</p></div></div>
-      <label for="file">Importar archivo .srt</label><input id="file" type="file" accept=".srt,text/plain">
-      <label for="srt">Pegar SRT o texto normal</label><textarea id="srt" rows="9" spellcheck="false" placeholder="Pega aquí un SRT con marcas de tiempo o texto normal.&#10;&#10;Texto normal: cada párrafo será un subtítulo y se calcularán tiempos de lectura automáticamente."></textarea><p class="hint">Con timestamps conserva los tiempos originales. Si pegas texto plano, cada párrafo se convierte en un fragmento con duración estimada a 160 palabras por minuto.</p>
-      <div class="actions" style="margin-top:10px"><button id="load">Cargar subtítulos</button><button id="example">Ejemplo</button></div>
-      <div class="section realtime-section">
-        <div class="panel-title"><span class="step">02</span><div><h2>Apariencia</h2><p>Los cambios se aplican en la vista previa.</p></div></div><label for="font">Fuente</label><select id="font">
-  <option value="Abril Fatface">Abril Fatface</option>
-  <option value="Anton">Anton</option>
-  <option value="Archivo">Archivo</option>
-  <option value="Archivo Black">Archivo Black</option>
-  <option value="Arial">Arial · sistema</option>
-  <option value="Barlow">Barlow</option>
-  <option value="Barlow Condensed">Barlow Condensed</option>
-  <option value="Barlow Semi Condensed">Barlow Semi Condensed</option>
-  <option value="Bebas Neue">Bebas Neue</option>
-  <option value="Cabin">Cabin</option>
-  <option value="Caveat">Caveat</option>
-  <option value="Comfortaa">Comfortaa</option>
-  <option value="Cormorant Garamond">Cormorant Garamond</option>
-  <option value="Dancing Script">Dancing Script</option>
-  <option value="DM Sans">DM Sans</option>
-  <option value="DM Serif Display">DM Serif Display</option>
-  <option value="Fira Code">Fira Code</option>
-  <option value="Fira Sans">Fira Sans</option>
-  <option value="Georgia">Georgia · sistema</option>
-  <option value="Gotham">Gotham · solo si está instalada localmente</option>
-  <option value="IBM Plex Mono">IBM Plex Mono</option>
-  <option value="IBM Plex Sans">IBM Plex Sans</option>
-  <option value="Impact">Impact · sistema</option>
-  <option value="Inconsolata">Inconsolata</option>
-  <option value="Inter">Inter</option>
-  <option value="Josefin Sans">Josefin Sans</option>
-  <option value="Karla">Karla</option>
-  <option value="Lato">Lato</option>
-  <option value="League Spartan">League Spartan</option>
-  <option value="Lexend">Lexend</option>
-  <option value="Libre Franklin">Libre Franklin</option>
-  <option value="Lora">Lora</option>
-  <option value="Manrope">Manrope</option>
-  <option value="Merriweather">Merriweather</option>
-  <option value="Montserrat">Montserrat</option>
-  <option value="Mulish">Mulish</option>
-  <option value="Nunito">Nunito</option>
-  <option value="Nunito Sans">Nunito Sans</option>
-  <option value="Open Sans">Open Sans</option>
-  <option value="Oswald">Oswald</option>
-  <option value="Outfit">Outfit</option>
-  <option value="Permanent Marker">Permanent Marker</option>
-  <option value="Playfair Display">Playfair Display</option>
-  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
-  <option value="Poppins">Poppins</option>
-  <option value="PT Sans">PT Sans</option>
-  <option value="PT Serif">PT Serif</option>
-  <option value="Quicksand">Quicksand</option>
-  <option value="Raleway">Raleway</option>
-  <option value="Righteous">Righteous</option>
-  <option value="Roboto">Roboto</option>
-  <option value="Roboto Condensed">Roboto Condensed</option>
-  <option value="Roboto Mono">Roboto Mono</option>
-  <option value="Rubik">Rubik</option>
-  <option value="Sora">Sora</option>
-  <option value="Source Code Pro">Source Code Pro</option>
-  <option value="Source Sans 3">Source Sans 3</option>
-  <option value="Space Grotesk">Space Grotesk</option>
-  <option value="Space Mono">Space Mono</option>
-  <option value="system-ui">System UI · sistema</option>
-  <option value="Tahoma">Tahoma · sistema</option>
-  <option value="Titillium Web">Titillium Web</option>
-  <option value="Trebuchet MS">Trebuchet MS · sistema</option>
-  <option value="Urbanist">Urbanist</option>
-  <option value="Verdana">Verdana · sistema</option>
-  <option value="Work Sans">Work Sans</option>
+  <main class="submotion-shell">
+  <div class="dock-toolbar">
+    <div><strong>Paneles</strong><span>Mueve desde ⠿ · redimensiona desde la esquina · Alt + rueda para ver dentro de un panel</span></div>
+    <button type="button" id="resetDock">Restablecer distribución</button>
+  </div>
+  <section id="dockGrid" class="dock-grid" aria-label="Espacio de trabajo reorganizable">
+    <div class="panel tool-panel subtitles-panel dock-card" data-dock="subtitles" id="subtitlesPanel"><div class="panel-title"><span class="step">01</span><div><h2>Subtítulos</h2><p>Importa o pega un archivo SRT.</p></div><div class="dock-actions"><button aria-label="Mover Subtítulos" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div>
+<label for="file">Importar archivo .srt</label><input accept=".srt,text/plain" id="file" type="file"/>
+<label for="srt">Pegar SRT o texto normal</label><textarea id="srt" placeholder="Pega aquí un SRT con marcas de tiempo o texto normal.
+
+Texto normal: cada párrafo será un subtítulo y se calcularán tiempos de lectura automáticamente." rows="9" spellcheck="false"></textarea><p class="hint">Con timestamps conserva los tiempos originales. Si pegas texto plano, cada párrafo se convierte en un fragmento con duración estimada a 160 palabras por minuto.</p>
+<div class="actions" style="margin-top:10px"><button id="load">Cargar subtítulos</button><button id="example">Ejemplo</button></div>
+</div>
+    <div class="panel tool-panel appearance-panel dock-card" data-dock="appearance" id="appearancePanel"><div class="section realtime-section">
+<div class="panel-title"><span class="step">02</span><div><h2>Apariencia</h2><p>Los cambios se aplican en la vista previa.</p></div><div class="dock-actions"><button aria-label="Mover Apariencia" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div><label for="font">Fuente</label><select id="font">
+<option value="Abril Fatface">Abril Fatface</option>
+<option value="Anton">Anton</option>
+<option value="Archivo">Archivo</option>
+<option value="Archivo Black">Archivo Black</option>
+<option value="Arial">Arial · sistema</option>
+<option value="Barlow">Barlow</option>
+<option value="Barlow Condensed">Barlow Condensed</option>
+<option value="Barlow Semi Condensed">Barlow Semi Condensed</option>
+<option value="Bebas Neue">Bebas Neue</option>
+<option value="Cabin">Cabin</option>
+<option value="Caveat">Caveat</option>
+<option value="Comfortaa">Comfortaa</option>
+<option value="Cormorant Garamond">Cormorant Garamond</option>
+<option value="Dancing Script">Dancing Script</option>
+<option value="DM Sans">DM Sans</option>
+<option value="DM Serif Display">DM Serif Display</option>
+<option value="Fira Code">Fira Code</option>
+<option value="Fira Sans">Fira Sans</option>
+<option value="Georgia">Georgia · sistema</option>
+<option value="Gotham">Gotham · solo si está instalada localmente</option>
+<option value="IBM Plex Mono">IBM Plex Mono</option>
+<option value="IBM Plex Sans">IBM Plex Sans</option>
+<option value="Impact">Impact · sistema</option>
+<option value="Inconsolata">Inconsolata</option>
+<option value="Inter">Inter</option>
+<option value="Josefin Sans">Josefin Sans</option>
+<option value="Karla">Karla</option>
+<option value="Lato">Lato</option>
+<option value="League Spartan">League Spartan</option>
+<option value="Lexend">Lexend</option>
+<option value="Libre Franklin">Libre Franklin</option>
+<option value="Lora">Lora</option>
+<option value="Manrope">Manrope</option>
+<option value="Merriweather">Merriweather</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Mulish">Mulish</option>
+<option value="Nunito">Nunito</option>
+<option value="Nunito Sans">Nunito Sans</option>
+<option value="Open Sans">Open Sans</option>
+<option value="Oswald">Oswald</option>
+<option value="Outfit">Outfit</option>
+<option value="Permanent Marker">Permanent Marker</option>
+<option value="Playfair Display">Playfair Display</option>
+<option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+<option value="Poppins">Poppins</option>
+<option value="PT Sans">PT Sans</option>
+<option value="PT Serif">PT Serif</option>
+<option value="Quicksand">Quicksand</option>
+<option value="Raleway">Raleway</option>
+<option value="Righteous">Righteous</option>
+<option value="Roboto">Roboto</option>
+<option value="Roboto Condensed">Roboto Condensed</option>
+<option value="Roboto Mono">Roboto Mono</option>
+<option value="Rubik">Rubik</option>
+<option value="Sora">Sora</option>
+<option value="Source Code Pro">Source Code Pro</option>
+<option value="Source Sans 3">Source Sans 3</option>
+<option value="Space Grotesk">Space Grotesk</option>
+<option value="Space Mono">Space Mono</option>
+<option value="system-ui">System UI · sistema</option>
+<option value="Tahoma">Tahoma · sistema</option>
+<option value="Titillium Web">Titillium Web</option>
+<option value="Trebuchet MS">Trebuchet MS · sistema</option>
+<option value="Urbanist">Urbanist</option>
+<option value="Verdana">Verdana · sistema</option>
+<option value="Work Sans">Work Sans</option>
 </select>
-        <p
-          class="hint">Las fuentes de Google requieren internet; Gotham solo funcionará si está instalada en tu sistema la primera vez. Para Gotham, usa una fuente instalada o carga tu archivo de
+<p class="hint">Las fuentes de Google requieren internet; Gotham solo funcionará si está instalada en tu sistema la primera vez. Para Gotham, usa una fuente instalada o carga tu archivo de
           fuente autorizado.</p><label for="gothamFile">Cargar Gotham (.woff, .woff2, .ttf, .otf) · opcional</label>
-          <input
-            type="file" id="gothamFile" accept=".woff,.woff2,.ttf,.otf,font/woff,font/woff2,font/ttf,font/otf">
-            <label for="textCase">Capitalización</label><select id="textCase"><option value="original">Original (como en el SRT)</option><option value="upper">TODO EN MAYÚSCULAS</option><option value="sentence">Primera letra mayúscula</option><option value="title">Cada Palabra Con Mayúscula</option><option value="lower">todo en minúsculas</option></select>
-            <div class="group">
-              <div><label for="size">Tamaño <span id="sizeValue" class="value">100</span></label><input id="size" type="range"
-                  min="24" max="230" value="100"></div>
-              <div><label for="weight">Peso</label><select id="weight"><option value="700">Bold</option><option value="400">Normal</option><option value="900">Black</option></select></div>
-            </div>
-            <div class="group">
-              <div><label for="textColor">Texto</label><input id="textColor" type="color" value="#ffffff"></div>
-              <div><label for="backColor">Fondo</label><input id="backColor" type="color" value="#000000"></div>
-            </div>
-            <div class="group">
-              <div><label for="posX">Posición X <span id="posXValue" class="value">50%</span></label><input id="posX" type="range"
-                  min="0" max="100" value="50"></div>
-              <div><label for="posY">Posición Y <span id="posYValue" class="value">50%</span></label><input id="posY" type="range"
-                  min="0" max="100" value="50"></div>
-            </div>
-      </div><!-- cierre de Apariencia: Animación es una herramienta independiente -->
-      <div class="section realtime-section animation-section">
-              <div class="panel-title"><span class="step">03</span><div><h2>Animación</h2><p>Controla la entrada y el movimiento del texto.</p></div></div><label for="animation">Estilo de entrada y salida</label><select id="animation"><option value="pop">Pop (escala)</option><option value="fade">Fade</option><option value="slide">Slide vertical</option><option value="zoom">Zoom suave</option><option value="bounce">Bounce · rebote</option><option value="elastic">Elastic · elástico</option><option value="punch">Punch · impacto</option><option value="swing">Swing · balanceo</option><option value="rise">Rise · elevación</option><option value="cascade">Cascade · por palabra</option><option value="none">Sin animación</option></select>
-              <label for="speed">Duración animación <span id="speedValue" class="value">250 ms</span></label><input id="speed"
-                type="range" min="0" max="800" step="25" value="250">
-              <label for="idleEffect">Movimiento mientras se muestra</label><select id="idleEffect"><option value="none">Ninguno · estático</option><option value="breathe">Respirar · escala suave</option><option value="float">Flotar · movimiento sutil</option><option value="jump">Letras inquietas · pequeños saltos</option><option value="wave">Ola · letras en secuencia</option><option value="sparkle">Destellos · brillitos blancos</option><option value="shimmer">Brillo viajero · barrido suave</option><option value="pulse">Latido · pequeños impulsos</option></select>
-              <div class="group">
-                <div><label for="idleStrength">Intensidad <span id="idleStrengthValue" class="value">35%</span></label>
-                  <input
-                    id="idleStrength" type="range" min="0" max="100" step="5" value="35"></div>
-                <div><label for="idleRate">Velocidad <span id="idleRateValue" class="value">1.0×</span></label><input id="idleRate"
-                    type="range" min="25" max="200" step="5" value="100"></div>
-              </div>
-              <p class="hint">Se activa después de la entrada y se detiene al salir. Compatible con cualquier animación inicial.</p>
-              <label for="lineHeight">Interlineado <span id="lineHeightValue" class="value">1.15</span></label><input id="lineHeight"
-                type="range" min="90" max="180" value="115"></div>
+<input accept=".woff,.woff2,.ttf,.otf,font/woff,font/woff2,font/ttf,font/otf" id="gothamFile" type="file"/>
+<label for="textCase">Capitalización</label><select id="textCase"><option value="original">Original (como en el SRT)</option><option value="upper">TODO EN MAYÚSCULAS</option><option value="sentence">Primera letra mayúscula</option><option value="title">Cada Palabra Con Mayúscula</option><option value="lower">todo en minúsculas</option></select>
+<div class="group">
+<div><label for="size">Tamaño <span class="value" id="sizeValue">100</span></label><input id="size" max="230" min="24" type="range" value="100"/></div>
+<div><label for="weight">Peso</label><select id="weight"><option value="700">Bold</option><option value="400">Normal</option><option value="900">Black</option></select></div>
+</div>
+<div class="group">
+<div><label for="textColor">Texto</label><input id="textColor" type="color" value="#ffffff"/></div>
+<div><label for="backColor">Fondo</label><input id="backColor" type="color" value="#000000"/></div>
+</div>
+<div class="group">
+<div><label for="posX">Posición X <span class="value" id="posXValue">50%</span></label><input id="posX" max="100" min="0" type="range" value="50"/></div>
+<div><label for="posY">Posición Y <span class="value" id="posYValue">50%</span></label><input id="posY" max="100" min="0" type="range" value="50"/></div>
+</div>
+</div><!-- cierre de Apariencia: Animación es una herramienta independiente -->
+</div>
+    <div class="panel tool-panel animation-panel dock-card" data-dock="animation" id="animationPanel"><div class="section realtime-section animation-section">
+<div class="panel-title"><span class="step">03</span><div><h2>Animación</h2><p>Controla la entrada y el movimiento del texto.</p></div><div class="dock-actions"><button aria-label="Mover Animación" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div><label for="animation">Estilo de entrada y salida</label><select id="animation"><option value="pop">Pop (escala)</option><option value="fade">Fade</option><option value="slide">Slide vertical</option><option value="zoom">Zoom suave</option><option value="bounce">Bounce · rebote</option><option value="elastic">Elastic · elástico</option><option value="punch">Punch · impacto</option><option value="swing">Swing · balanceo</option><option value="rise">Rise · elevación</option><option value="cascade">Cascade · por palabra</option><option value="none">Sin animación</option></select>
+<label for="speed">Duración animación <span class="value" id="speedValue">250 ms</span></label><input id="speed" max="800" min="0" step="25" type="range" value="250"/>
+<label for="idleEffect">Movimiento mientras se muestra</label><select id="idleEffect"><option value="none">Ninguno · estático</option><option value="breathe">Respirar · escala suave</option><option value="float">Flotar · movimiento sutil</option><option value="jump">Letras inquietas · pequeños saltos</option><option value="wave">Ola · letras en secuencia</option><option value="sparkle">Destellos · brillitos blancos</option><option value="shimmer">Brillo viajero · barrido suave</option><option value="pulse">Latido · pequeños impulsos</option></select>
+<div class="group">
+<div><label for="idleStrength">Intensidad <span class="value" id="idleStrengthValue">35%</span></label>
+<input id="idleStrength" max="100" min="0" step="5" type="range" value="35"/></div>
+<div><label for="idleRate">Velocidad <span class="value" id="idleRateValue">1.0×</span></label><input id="idleRate" max="200" min="25" step="5" type="range" value="100"/></div>
+</div>
+<p class="hint">Se activa después de la entrada y se detiene al salir. Compatible con cualquier animación inicial.</p>
+<label for="lineHeight">Interlineado <span class="value" id="lineHeightValue">1.15</span></label><input id="lineHeight" max="180" min="90" type="range" value="115"/></div></div>
+    <div class="panel preview-panel dock-card" data-dock="preview" id="previewPanel">
+<div class="preview-head">
+<div><div class="eyebrow">PREVIEW</div><h2>Vista previa</h2></div><div class="preview-head-actions"><span class="pill" id="resolution">2560 × 1440</span><button id="fullscreenPreview" type="button">⛶ Pantalla completa</button></div><div class="dock-actions"><button aria-label="Mover Reproductor" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div>
+<div class="stage"><canvas height="1440" id="canvas" width="2560"></canvas></div>
+<div class="toolbar"><button id="play">▶ Reproducir</button><input id="seek" max="1000" min="0" type="range" value="0"/><span class="time" id="time">00:00.00 / 00:00.00</span></div>
+</div>
+    <div class="panel export-panel dock-card" data-dock="export" id="exportPanel">
+      <div class="panel-title"><span class="step">04</span><div><h2>Exportación</h2><p>Configura y genera el video.</p></div><div class="dock-actions"><button aria-label="Mover Exportación" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div>
+
+<div class="group format-row">
+<div><label for="orientation">Formato</label><select id="orientation"><option value="horizontal">Horizontal · 16:9</option><option value="vertical">Vertical · 9:16</option></select></div>
+<div><label for="fps">Fotogramas</label><select id="fps"><option value="30">30 FPS</option><option value="60">60 FPS</option></select></div>
+<div><label for="tail">Segundos adicionales al final</label><select id="tail"><option value="0">0 s</option><option value="0.5">0.5 s</option><option selected="" value="1">1 s</option><option value="2">2 s</option></select></div>
+</div>
+<div class="export"><div class="export-actions"><button id="downloadSrt" type="button">Descargar SRT</button><button class="primary" id="export">Exportar video</button></div>
+<div class="progress">
+<div id="bar"></div>
+</div>
+<p class="status" id="status">Carga un SRT para comenzar. El navegador intentará exportar MP4 y usará WebM si no está disponible.</p>
+</div>
     </div>
-    </aside>
-    <section class="workspace">
-      <div class="panel">
-        <div class="preview-head">
-          <div><div class="eyebrow">PREVIEW</div><h2>Vista previa</h2><p class="hint">Revisa el ritmo y la legibilidad antes de exportar.</p></div><span class="pill" id="resolution">2560 × 1440</span></div>
-        <div class="stage"><canvas id="canvas" width="2560" height="1440"></canvas></div>
-        <div class="toolbar"><button id="play">▶ Reproducir</button><input type="range" id="seek" min="0" max="1000" value="0"><span class="time"
-            id="time">00:00.00 / 00:00.00</span></div>
-        <div class="group">
-          <div><label for="orientation">Formato</label><select id="orientation"><option value="horizontal">Horizontal · 16:9</option><option value="vertical">Vertical · 9:16</option></select></div>
-          <div><label for="fps">Fotogramas</label><select id="fps"><option value="30">30 FPS</option><option value="60">60 FPS</option></select></div>
-          <div><label for="tail">Segundos adicionales al final</label><select id="tail"><option value="0">0 s</option><option value="0.5">0.5 s</option><option value="1" selected>1 s</option><option value="2">2 s</option></select></div>
-        </div>
-        <div class="export"><div class="export-actions"><button id="downloadSrt" type="button">Descargar SRT</button><button id="export" class="primary">Exportar video</button></div>
-          <div class="progress">
-            <div id="bar"></div>
-          </div>
-          <p class="status" id="status">Carga un SRT para comenzar. El navegador intentará exportar MP4 y usará WebM si no está disponible.</p>
-        </div>
-      </div>
-      <div class="panel fragment-panel">
-        <div class="preview-head"><div><div class="eyebrow">SUBTITLE TRACK</div><h2>Fragmentos <span id="count" class="muted">(0)</span></h2></div><span class="pill" id="qualityBadge">Esperando SRT</span></div>
-        <p class="hint">Selecciona un fragmento para saltar a su tiempo. Las alertas ayudan a detectar líneas largas, lectura rápida y solapamientos.</p>
-        <div class="cue-tools">
-          <label for="cueSearch">Buscar en subtítulos</label><input id="cueSearch" type="search" placeholder="Buscar palabras…">
-          <div class="shift-row"><div><label for="shiftSeconds">Desplazar todos los tiempos (segundos)</label><input id="shiftSeconds" type="number" value="0" step="0.1"></div><button id="shiftTimes" type="button">Aplicar ajuste</button></div>
-        </div>
-        <div class="quality-stats" id="qualityStats" aria-live="polite"><span>0 fragmentos</span><span>Sin alertas</span></div>
-        <div id="cues"></div><section id="cueEditor" class="scene-editor" hidden><div class="editor-head"><h3>Editar subtítulo</h3><button id="closeCueEditor" type="button" aria-label="Cerrar editor">×</button></div><div class="editor-grid"><div><label for="editStart">Inicio (segundos)</label><input id="editStart" type="number" min="0" step="0.01"></div><div><label for="editEnd">Fin (segundos)</label><input id="editEnd" type="number" min="0.01" step="0.01"></div><div style="grid-column:1/-1"><label for="editText">Texto</label><textarea id="editText"></textarea></div></div><div class="editor-actions"><button id="saveCueEdit" class="primary" type="button">Guardar cambios</button><button id="cancelCueEdit" type="button">Cerrar</button></div></section>
-      </div>
-    </section>
-  </main>
+    <div class="panel fragment-panel dock-card" data-dock="fragments" id="fragmentPanel">
+<div class="preview-head"><div><div class="eyebrow">SUBTITLE TRACK</div><h2>Fragmentos <span class="muted" id="count">(0)</span></h2></div><span class="pill" id="qualityBadge">Esperando SRT</span><div class="dock-actions"><button aria-label="Mover Fragmentos" class="dock-grip" title="Arrastra para reorganizar. También puedes usar las flechas del teclado." type="button">⠿</button></div></div>
+<p class="hint">Selecciona un fragmento para saltar a su tiempo. Las alertas ayudan a detectar líneas largas, lectura rápida y solapamientos.</p>
+<div class="cue-tools">
+<label for="cueSearch">Buscar en subtítulos</label><input id="cueSearch" placeholder="Buscar palabras…" type="search"/>
+<div class="shift-row"><div><label for="shiftSeconds">Desplazar todos los tiempos (segundos)</label><input id="shiftSeconds" step="0.1" type="number" value="0"/></div><button id="shiftTimes" type="button">Aplicar ajuste</button></div>
+</div>
+<div aria-live="polite" class="quality-stats" id="qualityStats"><span>0 fragmentos</span><span>Sin alertas</span></div>
+
+<div id="cues"></div><section class="scene-editor" hidden="" id="cueEditor"><div class="editor-head"><h3>Editar subtítulo</h3><button aria-label="Cerrar editor" id="closeCueEditor" type="button">×</button></div><div class="editor-grid"><div><label for="editStart">Inicio (segundos)</label><input id="editStart" min="0" step="0.01" type="number"/></div><div><label for="editEnd">Fin (segundos)</label><input id="editEnd" min="0.01" step="0.01" type="number"/></div><div style="grid-column:1/-1"><label for="editText">Texto</label><textarea id="editText"></textarea></div></div><div class="editor-actions"><button class="primary" id="saveCueEdit" type="button">Guardar cambios</button><button id="cancelCueEdit" type="button">Cerrar</button></div>
+</section>
+</div>
+  </section>
+  <div id="dockNotice" class="dock-notice" role="status" aria-live="polite"></div>
+</main>
   <script>
     (() => {
       'use strict';
@@ -1560,9 +1651,300 @@
         if (id === 'textCase') updateCueTexts();
         if (!playing && !recording) draw(current);
       });
+
+      // El tamaño de cada panel se ajusta por celdas pequeñas y se guarda sin tocar el motor Canvas.
+      const dockGrid = $('dockGrid');
+      const previewPanel = $('previewPanel');
+      const fullscreenPreview = $('fullscreenPreview');
+      const DOCK_KEY = 'submotion.workspace.v4';
+      const defaultOrder = ['subtitles','appearance','preview','export','animation','fragments'];
+      const defaultSizes = {
+        subtitles:{cols:24,rows:68},appearance:{cols:16,rows:34},preview:{cols:40,rows:34},
+        export:{cols:16,rows:48},animation:{cols:16,rows:34},fragments:{cols:40,rows:34}
+      };
+      const dockCards = new Map(Array.from(dockGrid.querySelectorAll('.dock-card')).map(card=>[card.dataset.dock,card]));
+      let dragDock = null;
+      let resizeDock = null;
+      const prefersReducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || false;
+      const clampSize = (value,min,max)=>Math.max(min,Math.min(max,Math.round(value)));
+      const readDock = key=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch(_){return null}};
+
+      // El contenido conserva sus nodos/IDs y listeners; un contenedor interior permite scroll sin mover la esquina.
+      for (const card of dockCards.values()) {
+        const body = document.createElement('div');
+        body.className = 'dock-body';
+        while(card.firstChild) body.appendChild(card.firstChild);
+        card.appendChild(body);
+        const handle = document.createElement('button');
+        handle.type='button';handle.className='dock-resizer';
+        const name=card.querySelector('h2')?.textContent.trim()||'panel';
+        handle.setAttribute('aria-label','Redimensionar '+name);
+        handle.title='Arrastra para cambiar ancho y alto · Flechas del teclado para ajustar';
+        card.appendChild(handle);
+      }
+
+      function dockUnits() {
+        const style=getComputedStyle(dockGrid);
+        const colGap=parseFloat(style.columnGap)||0;
+        const rowGap=parseFloat(style.rowGap)||0;
+        const width=dockGrid.clientWidth;
+        return {x:(width-95*colGap)/96+colGap,y:8+rowGap};
+      }
+      function minCols(card) {
+        const target=card.dataset.dock==='preview'?390:card.dataset.dock==='fragments'?300:card.dataset.dock==='export'?235:235;
+        const x=dockUnits().x;
+        return clampSize(Math.ceil((target+(parseFloat(getComputedStyle(dockGrid).columnGap)||0))/x),8,96);
+      }
+      function minRows(card) {return card.dataset.dock==='preview'?21:card.dataset.dock==='fragments'?18:card.dataset.dock==='export'?22:14;}
+      function setDockSize(card,cols,rows) {
+        const c=clampSize(cols,minCols(card),96);
+        const r=clampSize(rows,minRows(card),140);
+        card.dataset.cols=String(c);card.dataset.rows=String(r);
+        card.style.gridColumn='span '+c;
+        card.style.gridRow='span '+r;
+      }
+      function getDockState() {
+        const order=Array.from(dockGrid.querySelectorAll('.dock-card')).map(card=>card.dataset.dock);
+        const sizes={};for(const [id,card] of dockCards)sizes[id]={cols:Number(card.dataset.cols),rows:Number(card.dataset.rows)};
+        return {order,sizes};
+      }
+      function saveDock() {
+        try{localStorage.setItem(DOCK_KEY,JSON.stringify(getDockState()));}
+        catch(_){$('dockNotice').textContent='El navegador no permitió guardar la distribución.';}
+      }
+      // Redistribución animada, sin alterar ni clonar los controles internos de cada panel.
+      function animateReflow(mutate,exclude=null){
+        if(prefersReducedMotion||window.innerWidth<=760){mutate();return;}
+        const before=new Map();
+        for(const card of dockCards.values()){
+          if(card!==exclude&&card.isConnected&&card.style.display!=='none'){
+            card.getAnimations().forEach(animation=>animation.cancel());
+            before.set(card,card.getBoundingClientRect());
+          }
+        }
+        mutate();
+        for(const [card,first] of before){
+          const last=card.getBoundingClientRect();
+          const dx=first.left-last.left,dy=first.top-last.top;
+          if(Math.abs(dx)<2&&Math.abs(dy)<2)continue;
+          card.animate([{transform:`translate3d(${dx}px,${dy}px,0)`},{transform:'translate3d(0,0,0)'}],
+            {duration:250,easing:'cubic-bezier(.18,.84,.22,1)'});
+        }
+      }
+
+      // El scroll vertical debe recorrer la página desde cualquier tarjeta.
+      // Alt+rueda o las barras visibles permiten navegar dentro de un panel largo.
+      dockGrid.addEventListener('wheel',event=>{
+        if(event.ctrlKey||event.metaKey||event.altKey||recording)return;
+        const textarea=event.target.closest('textarea');
+        if(textarea&&textarea===document.activeElement&&textarea.scrollHeight>textarea.clientHeight)return;
+        const maxScroll=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+        if(maxScroll<=1)return;
+        const factor=event.deltaMode===1?16:event.deltaMode===2?window.innerHeight:1;
+        const dy=event.deltaY*factor;
+        if((dy>0&&window.scrollY>=maxScroll-1)||(dy<0&&window.scrollY<=1))return;
+        event.preventDefault();
+        window.scrollBy({top:dy,left:event.deltaX*factor,behavior:'instant'});
+      },{passive:false});
+
+      function restoreDock() {
+        // V4 incorpora Exportación como sexta tarjeta y estrena el acomodo elegido.
+        // No reutilizamos las dimensiones incompatibles de layouts anteriores.
+        const stored=readDock(DOCK_KEY);
+        const ids=defaultOrder;
+        const order=stored&&Array.isArray(stored.order)&&stored.order.length===ids.length&&
+          new Set(stored.order).size===ids.length&&stored.order.every(id=>dockCards.has(id))?stored.order:ids;
+        for(const id of order)dockGrid.appendChild(dockCards.get(id));
+        for(const id of ids){
+          const card=dockCards.get(id),defaults=defaultSizes[id];
+          const saved=stored?.sizes?.[id];
+          const cols=saved&&Number.isFinite(Number(saved.cols))?Number(saved.cols):defaults.cols;
+          const rows=saved&&Number.isFinite(Number(saved.rows))?Number(saved.rows):defaults.rows;
+          setDockSize(card,cols,rows);
+        }
+        if(!stored)saveDock();
+      }
+      function restoreDefaultDock() {
+        if(recording||dragDock||resizeDock)return;
+        for(const id of defaultOrder){
+          const card=dockCards.get(id),size=defaultSizes[id];
+          setDockSize(card,size.cols,size.rows);dockGrid.appendChild(card);
+        }
+        saveDock();$('dockNotice').textContent='Distribución original restaurada.';draw(current);
+      }
+      $('resetDock').addEventListener('click',restoreDefaultDock);
+
+      function stopDockResize(event,commit) {
+        if(!resizeDock||event.pointerId!==resizeDock.pointerId)return;
+        const resize=resizeDock;resizeDock=null;
+        window.removeEventListener('pointermove',moveDockResize);
+        window.removeEventListener('pointerup',commitDockResize);
+        window.removeEventListener('pointercancel',cancelDockResize);
+        resize.outline?.remove();
+        resize.card.classList.remove('is-resizing');document.body.classList.remove('dock-is-resizing');
+        if(!commit)setDockSize(resize.card,resize.cols,resize.rows);
+        else{saveDock();$('dockNotice').textContent='Tamaño guardado.';}
+        draw(current);
+      }
+      function updateResizeOutline(event){
+        if(!resizeDock?.outline)return;
+        const resize=resizeDock;
+        const width=Math.max(100,resize.rect.width+event.clientX-resize.x);
+        const height=Math.max(100,resize.rect.height+event.clientY-resize.y);
+        Object.assign(resize.outline.style,{
+          left:resize.rect.left+'px',top:resize.rect.top+'px',
+          width:width+'px',height:height+'px'
+        });
+      }
+      function moveDockResize(event) {
+        if(!resizeDock||event.pointerId!==resizeDock.pointerId)return;
+        event.preventDefault();
+        const {card,x,y,cols,rows,unitX,unitY}=resizeDock;
+        const nextCols=cols+Math.round((event.clientX-x)/unitX);
+        const nextRows=rows+Math.round((event.clientY-y)/unitY);
+        if(nextCols!==Number(card.dataset.cols)||nextRows!==Number(card.dataset.rows)){
+          animateReflow(()=>setDockSize(card,nextCols,nextRows),card);
+          if(card===previewPanel&&!playing)draw(current);
+        }
+        updateResizeOutline(event);
+      }
+      function commitDockResize(event){stopDockResize(event,true);}
+      function cancelDockResize(event){stopDockResize(event,false);}
+      for(const card of dockCards.values()){
+        const handle=card.querySelector('.dock-resizer');
+        handle.addEventListener('pointerdown',event=>{
+          if(recording||dragDock||resizeDock||event.button!==0||window.innerWidth<=760)return;
+          event.preventDefault();
+          const units=dockUnits();
+          const rect=card.getBoundingClientRect();
+          const outline=document.createElement('div');outline.className='dock-resize-outline';
+          document.body.appendChild(outline);
+          resizeDock={card,pointerId:event.pointerId,x:event.clientX,y:event.clientY,
+            cols:Number(card.dataset.cols),rows:Number(card.dataset.rows),unitX:units.x,unitY:units.y,
+            rect,outline};
+          updateResizeOutline(event);
+          card.classList.add('is-resizing');document.body.classList.add('dock-is-resizing');
+          window.addEventListener('pointermove',moveDockResize);
+          window.addEventListener('pointerup',commitDockResize);
+          window.addEventListener('pointercancel',cancelDockResize);
+        });
+        handle.addEventListener('keydown',event=>{
+          if(recording||dragDock||resizeDock||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;
+          event.preventDefault();const d=event.shiftKey?3:1;
+          animateReflow(()=>setDockSize(card,Number(card.dataset.cols)+(event.key==='ArrowRight'?d:event.key==='ArrowLeft'?-d:0),
+            Number(card.dataset.rows)+(event.key==='ArrowDown'?d:event.key==='ArrowUp'?-d:0)),card);
+          saveDock();if(card===previewPanel)draw(current);
+        });
+        const grip=card.querySelector('.dock-grip');
+        grip.addEventListener('pointerdown',event=>{
+          if(recording||dragDock||resizeDock||event.button!==0)return;
+          event.preventDefault();
+          dragDock={card,grip,pointerId:event.pointerId,x:event.clientX,y:event.clientY,active:false,
+            originalOrder:Array.from(dockGrid.querySelectorAll('.dock-card')).map(item=>item.dataset.dock)};
+          window.addEventListener('pointermove',dockPointerMove);
+          window.addEventListener('pointerup',dockPointerUp);
+          window.addEventListener('pointercancel',dockPointerCancel);
+        });
+        grip.addEventListener('keydown',event=>{
+          if(recording||resizeDock||!['ArrowLeft','ArrowUp','ArrowRight','ArrowDown'].includes(event.key))return;
+          event.preventDefault();
+          const cards=Array.from(dockGrid.querySelectorAll('.dock-card'));
+          const index=cards.indexOf(card);
+          const next=index+(['ArrowLeft','ArrowUp'].includes(event.key)?-1:1);
+          if(next<0||next>=cards.length)return;
+          animateReflow(()=>dockGrid.insertBefore(card,next>index?cards[next].nextSibling:cards[next]));
+          saveDock();grip.focus();draw(current);
+        });
+      }
+      function startDockDrag(event){
+        const drag=dragDock;drag.active=true;
+        drag.placeholder=document.createElement('div');
+        drag.placeholder.className='dock-placeholder';drag.placeholder.textContent='Soltar aquí';
+        drag.placeholder.style.gridColumn='span '+drag.card.dataset.cols;
+        drag.placeholder.style.gridRow='span '+drag.card.dataset.rows;
+        drag.card.after(drag.placeholder);drag.card.style.display='none';
+        drag.ghost=document.createElement('div');drag.ghost.className='dock-ghost';
+        drag.ghost.textContent=drag.card.querySelector('h2')?.textContent.trim()||'Panel';
+        document.body.appendChild(drag.ghost);document.body.classList.add('dock-is-dragging');
+        drag.lastX=event.clientX;drag.lastY=event.clientY;moveGhost(event);
+        drag.scrollRaf=requestAnimationFrame(dockAutoScroll);
+      }
+      function moveGhost(event){
+        if(!dragDock?.ghost)return;
+        dragDock.ghost.style.left=event.clientX+'px';dragDock.ghost.style.top=event.clientY+'px';
+      }
+      function repositionDockPlaceholder(x,y){
+        const drag=dragDock;if(!drag?.active)return;
+        const hovered=document.elementFromPoint(x,y);
+        const target=hovered?.closest('.dock-card');
+        if(target&&target!==drag.card&&dockGrid.contains(target)){
+          const rect=target.getBoundingClientRect();
+          const relativeY=y-rect.top;
+          const after=relativeY>rect.height*.75?true:relativeY<rect.height*.25?false:x>rect.left+rect.width/2;
+          const reference=after?target.nextSibling:target;
+          if(reference!==drag.placeholder&&reference!==drag.placeholder.nextSibling)animateReflow(()=>dockGrid.insertBefore(drag.placeholder,reference));
+        }else if(hovered?.closest('#dockGrid')){
+          const cards=Array.from(dockGrid.querySelectorAll('.dock-card')).filter(card=>card!==drag.card);
+          const last=cards.at(-1);
+          if(last&&y>last.getBoundingClientRect().bottom)animateReflow(()=>dockGrid.append(drag.placeholder));
+        }
+      }
+      function dockAutoScroll(){
+        const drag=dragDock;if(!drag?.active)return;
+        const edge=75,y=drag.lastY;
+        const delta=y<edge?-Math.min(18,(edge-y)*.34):y>innerHeight-edge?Math.min(18,(y-innerHeight+edge)*.34):0;
+        if(delta){window.scrollBy(0,delta);repositionDockPlaceholder(drag.lastX,drag.lastY);}
+        drag.scrollRaf=requestAnimationFrame(dockAutoScroll);
+      }
+      function dockPointerMove(event){
+        const drag=dragDock;if(!drag||event.pointerId!==drag.pointerId)return;
+        if(!drag.active){if(Math.hypot(event.clientX-drag.x,event.clientY-drag.y)<8)return;startDockDrag(event);}
+        event.preventDefault();moveGhost(event);
+        drag.lastX=event.clientX;drag.lastY=event.clientY;
+        repositionDockPlaceholder(event.clientX,event.clientY);
+      }
+      function clearDockListeners(){
+        window.removeEventListener('pointermove',dockPointerMove);
+        window.removeEventListener('pointerup',dockPointerUp);
+        window.removeEventListener('pointercancel',dockPointerCancel);
+      }
+      function finishDockDrag(commit,event){
+        const drag=dragDock;if(!drag||event.pointerId!==drag.pointerId)return;
+        clearDockListeners();dragDock=null;
+        if(drag.active){
+          cancelAnimationFrame(drag.scrollRaf);
+          const gridRect=dockGrid.getBoundingClientRect();
+          if(commit&&event.clientX>=gridRect.left&&event.clientX<=gridRect.right&&event.clientY>=gridRect.top&&event.clientY<=gridRect.bottom){
+            animateReflow(()=>dockGrid.insertBefore(drag.card,drag.placeholder));
+            saveDock();$('dockNotice').textContent='Nuevo orden guardado.';
+          }else{for(const id of drag.originalOrder)dockGrid.appendChild(dockCards.get(id));}
+          drag.card.style.removeProperty('display');drag.placeholder.remove();drag.ghost.remove();
+          document.body.classList.remove('dock-is-dragging');
+          if(commit&&!prefersReducedMotion)drag.card.animate([
+            {opacity:.78,transform:'translate3d(0,7px,0) scale(.99)'},
+            {opacity:1,transform:'translate3d(0,0,0) scale(1)'}
+          ],{duration:210,easing:'cubic-bezier(.2,.9,.2,1)'});
+          draw(current);
+        }
+      }
+      function dockPointerUp(event){finishDockDrag(true,event);}
+      function dockPointerCancel(event){finishDockDrag(false,event);}
+      async function togglePreviewFullscreen() {
+        try{
+          if(document.fullscreenElement)await document.exitFullscreen();
+          else await previewPanel.requestFullscreen();
+        }catch(err){$('status').textContent='No se pudo abrir pantalla completa: '+err.message;}
+      }
+      function syncPreviewFullscreenButton(){
+        fullscreenPreview.textContent=document.fullscreenElement===previewPanel?'✕ Salir de pantalla completa':'⛶ Pantalla completa';
+      }
+      fullscreenPreview.addEventListener('click',togglePreviewFullscreen);
+      document.addEventListener('fullscreenchange',syncPreviewFullscreenButton);
+      restoreDock();
       setOrientation();
+      syncPreviewFullscreenButton();
       labelValues();
-      if ($('srt').value.trim()) { load(); } else { $('example').click(); }
+      if($('srt').value.trim())load();else $('example').click();
     })();
   </script>
 </body>

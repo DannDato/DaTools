@@ -7,99 +7,109 @@
 <link rel="stylesheet" href="../css/theme.css"><link rel="stylesheet" href="../css/animotion.css">
 </head>
 <body>
-<header class="topbar"><a class="brand" href="../index.html"><img src="../img/DaTools.png" alt="" width="30" height="30"><span>DaTools</span></a><span class="crumb">/ Animotion</span><span class="tag">BETA · motor local</span></header>
-<main class="layout">
-<aside class="sidebar">
- <div class="heading"><div><div class="eyebrow">MOTION TOOL</div><h1>Animotion</h1><p>De un guion a escenas animadas.</p></div></div>
- 
- <section class="panel"><h2>01 · Proyecto</h2><label for="srtFile">Subir SRT o TXT (opcional)</label><input id="srtFile" type="file" accept=".srt,.txt,text/plain"><label for="srtText">Subtítulos SRT o texto normal</label><textarea id="srtText" rows="5" placeholder="Pega subtítulos con tiempos o un texto normal. Animotion detectará el formato."></textarea><div class="actions"><button id="readSrt">Preparar texto</button><button id="srtExample" class="subtle">Ejemplo</button></div><p class="hint" id="srtInfo" role="status">Si no hay timestamps, se calculan tiempos de lectura aproximados (160 palabras/minuto).</p></section>
- 
- <section class="panel"><h2>02 · Dirección y controles</h2>
-   <div class="settings-group realtime-group">
-     <div class="settings-group-heading"><span class="settings-kicker">EN VIVO</span><h3>Vista, fondo y apariencia</h3><p>Estos controles actualizan la vista previa y la exportación sin regenerar las escenas.</p></div>
-   <div class="two">
-     <div><label for="orientation">Formato</label><select id="orientation"><option value="landscape">Horizontal · 2560×1440</option><option value="portrait">Vertical · 1440×2560</option></select></div>
-     <div><label for="fps">FPS</label><select id="fps"><option value="30">30</option><option value="60" selected>60</option></select></div>
-   </div>
-   <div class="triple color-grid">
-     <div><label for="bg">Fondo</label><input id="bg" type="color" value="#000000"></div>
-     <div><label for="fg">Color principal</label><input id="fg" type="color" value="#FFFFFF"></div>
-     <div><label for="accent">Color accent</label><input id="accent" type="color" value="#AA98FF"></div>
-   </div>
-   <div class="swatches">
-     <span class="swatch"><i id="bgSwatch"></i><strong id="bgValue">#000000</strong></span>
-     <span class="swatch"><i id="fgSwatch"></i><strong id="fgValue">#FFFFFF</strong></span>
-     <span class="swatch"><i id="accentSwatch"></i><strong id="accentValue">#AA98FF</strong></span>
-   </div>
-   <div class="global-palette-control">
-     <label class="check-label" for="applyGlobalPalette"><input id="applyGlobalPalette" type="checkbox"> Aplicar paleta global a las escenas cargadas</label>
-     <p class="hint">Activado: los cambios de Color principal y Color accent recolorean el texto y las formas/iconos. Al desactivarlo, se detienen las recoloraciones futuras; los colores ya aplicados se conservan.</p>
-   </div>
-   <div class="control-stack">
-     <label for="fontFamily">Tipografía de escenas</label>
-     <select id="fontFamily">
-       <option value="Outfit">Outfit · Geométrica</option>
-       <option value="Inter">Inter · Neutra</option>
-       <option value="DM Sans">DM Sans · Moderna</option>
-       <option value="Montserrat">Montserrat · Editorial</option>
-       <option value="Poppins">Poppins · Redondeada</option>
-       <option value="Oswald">Oswald · Condensada</option>
-       <option value="Space Grotesk">Space Grotesk · Técnica</option>
-     </select>
-     <p class="hint">Se aplica localmente a todas las escenas, sin pedirle a la IA que la configure.</p>
-   </div>
-   <div class="control-stack">
-     <label for="backgroundPreset">Estilo de fondo</label>
-     <select id="backgroundPreset">
-       <option value="solid">Sólido</option>
-       <option value="gradient">Gradient</option>
-       <option value="grid">Cuadrícula fina</option>
-       <option value="diagonal">Cuadros grandes diagonales</option>
-     </select>
-     <p class="hint">Se aplica a la vista previa y al vídeo exportado, sin modificar las escenas generadas por IA.</p>
-     <div class="two background-colors">
-       <div><label for="bgEffectColor">Color del efecto</label><input id="bgEffectColor" type="color" value="#AA98FF"></div>
-       <div><label for="bgEffectColor2">Segundo color</label><input id="bgEffectColor2" type="color" value="#5A8DFF"></div>
-     </div>
-     <div class="control-stack">
-       <label for="bgOpacity">Opacidad del efecto <span id="bgOpacityValue" class="value">35%</span></label>
-       <input id="bgOpacity" type="range" min="0" max="100" step="1" value="35">
-     </div>
-   </div>
-   </div>
-   <div class="settings-group prompt-group">
-     <div class="settings-group-heading"><span class="settings-kicker">AL GENERAR</span><h3>Dirección para ChatGPT</h3><p>Estos parámetros solo afectan el prompt que copias. Si ya aplicaste escenas, tendrás que generar/importar el JSON de nuevo para verlos reflejados.</p></div>
-   <div class="control-stack motion-boldness"><label for="motionBoldness">Audacia del movimiento <strong id="motionBoldnessValue">95%</strong></label><input id="motionBoldness" type="range" min="0" max="100" step="5" value="95"><p class="hint">Define la intensidad de las animaciones al generar el prompt.</p></div>
-   <div class="control-stack"><label for="artDirection">Dirección artística</label><select id="artDirection"><option value="illustrative" selected>Illustrative · ilustrativa</option><option value="kinetic">Kinetic · enérgica</option><option value="cinematic">Cinematic · cinematográfica</option><option value="graphic">Graphic · gráfica</option><option value="experimental">Experimental · atrevida</option></select></div>
-   <div class="two">
-     <div><label for="layoutStyle">Composición</label><select id="layoutStyle"><option value="centered">Centrada y limpia</option><option value="balanced" selected>Balanceada</option><option value="editorial">Editorial / asimétrica</option><option value="dynamic">Dinámica / energética</option></select></div>
-     <div><label for="density">Densidad visual</label><select id="density"><option value="minimal">Minimal</option><option value="balanced">Balanceada</option><option value="rich" selected>Más cargada</option></select></div>
-   </div>
-   <div class="control-stack">
-     <label for="textUsage">Uso de texto</label><select id="textUsage"><option value="low">Poco texto</option><option value="balanced" selected>Equilibrado</option><option value="high">Más texto en pantalla</option></select>
-   </div>
-   <div class="control-stack">
-     <label for="lineHeightPref">Interlineado sugerido <span id="lineHeightValue" class="value">1.18×</span></label>
-     <input id="lineHeightPref" type="range" min="0.9" max="1.7" step="0.01" value="1.18">
-   </div>
-   <div class="control-stack">
-     <label for="textWidthPref">Ancho máx. del texto <span id="textWidthValue" class="value">70%</span></label>
-     <input id="textWidthPref" type="range" min="40" max="90" step="1" value="70">
-   </div>
-   <div class="control-stack">
-     <label for="safeAreaPref">Zona segura <span id="safeAreaValue" class="value">10%</span></label>
-     <input id="safeAreaPref" type="range" min="4" max="18" step="1" value="10">
-   </div>
-   <button id="copyPrompt" class="primary full prompt-copy" type="button">✦ Copiar prompt para ChatGPT</button>
-   <p class="hint" id="promptInfo">Predeterminado ilustrativo: personajes, objetos, dibujos de pizarra, escenas compuestas y acciones visuales que expliquen el guion. Diagramas solo cuando ayuden a entender.</p>
-   </div>
- </section>
- <section class="panel"><h2>03 · Escenas</h2><label for="jsonFile">Importar JSON de ChatGPT</label><input id="jsonFile" type="file" accept=".json,application/json,.txt,text/plain"><label for="jsonText">Guion de animación JSON</label><textarea id="jsonText" rows="9" spellcheck="false" placeholder="Pega aquí el JSON generado por ChatGPT... También acepta bloques ```json```."></textarea><div class="actions"><button class="primary" id="applyJson">Aplicar escenas</button><button id="downloadJson">Guardar JSON</button></div><p id="jsonInfo" class="hint" role="status">Carga un ejemplo o importa tu proyecto. También puedes pegar un bloque ```json``` completo.</p></section>
- 
- <section class="panel"><h2>04 · Exportar</h2><button id="exportVideo" class="primary full">Exportar video</button><div class="progress"><div id="progressBar"></div></div><p id="exportInfo" role="status" class="hint">MP4 si el navegador lo permite; si no, WebM.</p></section>
-</aside>
-<section class="workspace"><div class="panel preview"><div class="previewHead"><div><h2>Vista previa</h2><p class="hint">Negro para superponer en DaVinci</p></div><span id="resolution" class="tag">2560 × 1440</span></div><div id="stage" class="stage"><canvas id="canvas" width="2560" height="1440" aria-label="Previsualización de animaciones"></canvas></div><div class="transport"><button id="play">▶ Reproducir</button><input id="seek" aria-label="Buscar posición" type="range" min="0" max="1000" value="0"><span id="clock">00:00 / 00:00</span></div><p id="previewInfo" class="hint">Las escenas se ubican según segundos absolutos.</p></div><div class="panel scenes"><div class="previewHead"><h2>Escenas</h2><span id="sceneCount" class="tag">0 escenas</span></div><div class="post-scene-controls"><p class="hint">Ajusta los tamaños de todas las escenas cargadas sin volver a generar el JSON.</p><div class="control-stack"><label for="textSizeAdjust">Tamaño de fuente <span id="textSizeValue" class="value">200%</span></label><input id="textSizeAdjust" type="range" min="50" max="400" step="5" value="200"></div><div class="control-stack"><label for="iconSizeAdjust">Tamaño de íconos <span id="iconSizeValue" class="value">200%</span></label><input id="iconSizeAdjust" type="range" min="50" max="400" step="5" value="200"></div><div class="control-stack"><label for="strokeAdjust">Grosor de trazos <span id="strokeAdjustValue" class="value">100%</span></label><input id="strokeAdjust" type="range" min="20" max="300" step="5" value="100"><p class="hint">Ajusta al instante el grosor de dibujos vectoriales y líneas, sin cambiar el JSON.</p></div><button id="resetSizeAdjust" type="button" class="subtle full">Restablecer tamaños</button></div><div id="sceneList" class="sceneList"></div><section id="sceneEditor" class="scene-editor" hidden aria-live="polite"></section></div></section>
+<header class="topbar"><a class="brand" href="../index.html"><img src="../img/DaTools.png" alt="" width="30" height="30"><span>DaTools</span></a><span class="page-title">Animotion</span></header>
+<main class="animotion-shell">
+ <div class="anim-dock-toolbar"><div class="dock-help"><strong>Paneles</strong><span>Arrastra desde ⠿ · redimensiona desde la esquina · Alt + rueda para recorrer un panel</span></div><button type="button" id="resetAnimotionDock">Restablecer distribución</button></div>
+ <div class="anim-dock-grid" id="animotionDock" aria-label="Espacio de trabajo reorganizable">
+<section class="panel anim-dock-card dock-project" data-dock="project" data-cols="32" data-rows="35" aria-label="Panel Proyecto"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">01 · GUION</span><h2>Proyecto</h2></div><button class="dock-grip" type="button" aria-label="Mover Proyecto" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content"><label for="srtFile">Subir SRT o TXT (opcional)</label><input accept=".srt,.txt,text/plain" id="srtFile" type="file"/><label for="srtText">Subtítulos SRT o texto normal</label><textarea id="srtText" placeholder="Pega subtítulos con tiempos o un texto normal. Animotion detectará el formato." rows="5"></textarea><div class="actions"><button id="readSrt">Preparar texto</button><button class="subtle" id="srtExample">Ejemplo</button></div><p class="hint" id="srtInfo" role="status">Si no hay timestamps, se calculan tiempos de lectura aproximados (160 palabras/minuto).</p></div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Proyecto" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-appearance" data-dock="appearance" data-cols="32" data-rows="35" aria-label="Panel Apariencia"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">02 · EN VIVO</span><h2>Apariencia</h2></div><button class="dock-grip" type="button" aria-label="Mover Apariencia" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content">
+<div class="settings-group-heading"><span class="settings-kicker">EN VIVO</span><h3>Vista, fondo y apariencia</h3><p>Estos controles actualizan la vista previa y la exportación sin regenerar las escenas.</p></div>
+<div class="two">
+<div><label for="orientation">Formato</label><select id="orientation"><option value="landscape">Horizontal · 2560×1440</option><option value="portrait">Vertical · 1440×2560</option></select></div>
+<div><label for="fps">FPS</label><select id="fps"><option value="30">30</option><option selected="" value="60">60</option></select></div>
+</div>
+<div class="triple color-grid">
+<div><label for="bg">Fondo</label><input id="bg" type="color" value="#000000"/></div>
+<div><label for="fg">Color principal</label><input id="fg" type="color" value="#FFFFFF"/></div>
+<div><label for="accent">Color accent</label><input id="accent" type="color" value="#AA98FF"/></div>
+</div>
+<div class="swatches">
+<span class="swatch"><i id="bgSwatch"></i><strong id="bgValue">#000000</strong></span>
+<span class="swatch"><i id="fgSwatch"></i><strong id="fgValue">#FFFFFF</strong></span>
+<span class="swatch"><i id="accentSwatch"></i><strong id="accentValue">#AA98FF</strong></span>
+</div>
+<div class="global-palette-control">
+<label class="check-label" for="applyGlobalPalette"><input id="applyGlobalPalette" type="checkbox"/> Aplicar paleta global a las escenas cargadas</label>
+<p class="hint">Activado: los cambios de Color principal y Color accent recolorean el texto y las formas/iconos. Al desactivarlo, se detienen las recoloraciones futuras; los colores ya aplicados se conservan.</p>
+</div>
+<div class="control-stack">
+<label for="fontFamily">Tipografía de escenas</label>
+<select id="fontFamily">
+<option value="Outfit">Outfit · Geométrica</option>
+<option value="Inter">Inter · Neutra</option>
+<option value="DM Sans">DM Sans · Moderna</option>
+<option value="Montserrat">Montserrat · Editorial</option>
+<option value="Poppins">Poppins · Redondeada</option>
+<option value="Oswald">Oswald · Condensada</option>
+<option value="Space Grotesk">Space Grotesk · Técnica</option>
+</select>
+<p class="hint">Se aplica localmente a todas las escenas, sin pedirle a la IA que la configure.</p>
+</div>
+<div class="control-stack">
+<label for="backgroundPreset">Estilo de fondo</label>
+<select id="backgroundPreset">
+<option value="solid">Sólido</option>
+<option value="gradient">Gradient</option>
+<option value="grid">Cuadrícula fina</option>
+<option value="diagonal">Cuadros grandes diagonales</option>
+</select>
+<p class="hint">Se aplica a la vista previa y al vídeo exportado, sin modificar las escenas generadas por IA.</p>
+<div class="two background-colors">
+<div><label for="bgEffectColor">Color del efecto</label><input id="bgEffectColor" type="color" value="#AA98FF"/></div>
+<div><label for="bgEffectColor2">Segundo color</label><input id="bgEffectColor2" type="color" value="#5A8DFF"/></div>
+</div>
+<div class="control-stack">
+<label for="bgOpacity">Opacidad del efecto <span class="value" id="bgOpacityValue">35%</span></label>
+<input id="bgOpacity" max="100" min="0" step="1" type="range" value="35"/>
+</div>
+</div>
+</div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Apariencia" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-preview" data-dock="preview" data-cols="32" data-rows="35" aria-label="Panel Vista previa"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">PREVIEW</span><h2>Vista previa</h2></div><button class="dock-fullscreen" id="fullscreenPreview" type="button" title="Ampliar vista previa">⛶ Pantalla completa</button><span id="resolution" class="dock-resolution tag">2560 × 1440</span><button class="dock-grip" type="button" aria-label="Mover Vista previa" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content"><div class="stage" id="stage"><canvas aria-label="Previsualización de animaciones" height="1440" id="canvas" width="2560"></canvas></div><div class="transport"><button id="play">▶ Reproducir</button><input aria-label="Buscar posición" id="seek" max="1000" min="0" type="range" value="0"/><span id="clock">00:00 / 00:00</span></div><p class="hint" id="previewInfo">Las escenas se ubican según segundos absolutos.</p></div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Vista previa" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-export" data-dock="export" data-cols="32" data-rows="35" aria-label="Panel Exportación"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">SALIDA</span><h2>Exportación</h2></div><button class="dock-grip" type="button" aria-label="Mover Exportación" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content"><button class="primary full" id="exportVideo">Exportar video</button><div class="progress"><div id="progressBar"></div></div><p class="hint" id="exportInfo" role="status">MP4 si el navegador lo permite; si no, WebM.</p></div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Exportación" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-direction" data-dock="direction" data-cols="32" data-rows="35" aria-label="Panel Dirección para IA"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">03 · PROMPT</span><h2>Dirección para IA</h2></div><button class="dock-grip" type="button" aria-label="Mover Dirección para IA" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content">
+<div class="settings-group-heading"><span class="settings-kicker">AL GENERAR</span><h3>Dirección para ChatGPT</h3><p>Estos parámetros solo afectan el prompt que copias. Si ya aplicaste escenas, tendrás que generar/importar el JSON de nuevo para verlos reflejados.</p></div>
+<div class="control-stack motion-boldness"><label for="motionBoldness">Audacia del movimiento <strong id="motionBoldnessValue">95%</strong></label><input id="motionBoldness" max="100" min="0" step="5" type="range" value="95"/><p class="hint">Define la intensidad de las animaciones al generar el prompt.</p></div>
+<div class="control-stack"><label for="artDirection">Dirección artística</label><select id="artDirection"><option selected="" value="illustrative">Illustrative · ilustrativa</option><option value="kinetic">Kinetic · enérgica</option><option value="cinematic">Cinematic · cinematográfica</option><option value="graphic">Graphic · gráfica</option><option value="experimental">Experimental · atrevida</option></select></div>
+<div class="two">
+<div><label for="layoutStyle">Composición</label><select id="layoutStyle"><option value="centered">Centrada y limpia</option><option selected="" value="balanced">Balanceada</option><option value="editorial">Editorial / asimétrica</option><option value="dynamic">Dinámica / energética</option></select></div>
+<div><label for="density">Densidad visual</label><select id="density"><option value="minimal">Minimal</option><option value="balanced">Balanceada</option><option selected="" value="rich">Más cargada</option></select></div>
+</div>
+<div class="control-stack">
+<label for="textUsage">Uso de texto</label><select id="textUsage"><option value="low">Poco texto</option><option selected="" value="balanced">Equilibrado</option><option value="high">Más texto en pantalla</option></select>
+</div>
+<div class="control-stack">
+<label for="lineHeightPref">Interlineado sugerido <span class="value" id="lineHeightValue">1.18×</span></label>
+<input id="lineHeightPref" max="1.7" min="0.9" step="0.01" type="range" value="1.18"/>
+</div>
+<div class="control-stack">
+<label for="textWidthPref">Ancho máx. del texto <span class="value" id="textWidthValue">70%</span></label>
+<input id="textWidthPref" max="90" min="40" step="1" type="range" value="70"/>
+</div>
+<div class="control-stack">
+<label for="safeAreaPref">Zona segura <span class="value" id="safeAreaValue">10%</span></label>
+<input id="safeAreaPref" max="18" min="4" step="1" type="range" value="10"/>
+</div>
+<button class="primary full prompt-copy" id="copyPrompt" type="button">✦ Copiar prompt para ChatGPT</button>
+<p class="hint" id="promptInfo">Predeterminado ilustrativo: personajes, objetos, dibujos de pizarra, escenas compuestas y acciones visuales que expliquen el guion. Diagramas solo cuando ayuden a entender.</p>
+</div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Dirección para IA" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-scenes" data-dock="scenes" data-cols="32" data-rows="35" aria-label="Panel Escenas"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">TIMELINE</span><h2>Escenas</h2></div><span class="tag" id="sceneCount">0 escenas</span><button class="dock-grip" type="button" aria-label="Mover Escenas" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content"><div class="post-scene-controls"><p class="hint">Ajusta los tamaños de todas las escenas cargadas sin volver a generar el JSON.</p><div class="control-stack"><label for="textSizeAdjust">Tamaño de fuente <span class="value" id="textSizeValue">200%</span></label><input id="textSizeAdjust" max="400" min="50" step="5" type="range" value="200"/></div><div class="control-stack"><label for="iconSizeAdjust">Tamaño de íconos <span class="value" id="iconSizeValue">200%</span></label><input id="iconSizeAdjust" max="400" min="50" step="5" type="range" value="200"/></div><div class="control-stack"><label for="strokeAdjust">Grosor de trazos <span class="value" id="strokeAdjustValue">100%</span></label><input id="strokeAdjust" max="300" min="20" step="5" type="range" value="100"/><p class="hint">Ajusta al instante el grosor de dibujos vectoriales y líneas, sin cambiar el JSON.</p></div><button class="subtle full" id="resetSizeAdjust" type="button">Restablecer tamaños</button></div><div class="sceneList" id="sceneList"></div><section aria-live="polite" class="scene-editor" hidden="" id="sceneEditor"></section></div></div><button type="button" class="dock-resizer" aria-label="Redimensionar Escenas" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+<section class="panel anim-dock-card dock-json" data-dock="json" data-cols="32" data-rows="35" aria-label="Panel JSON"><div class="anim-dock-body"><div class="dock-heading"><div class="dock-heading-copy"><span class="dock-kicker">04 · IMPORTAR</span><h2>JSON</h2></div><button class="dock-grip" type="button" aria-label="Mover JSON" title="Arrastra para reordenar; flechas para mover" >⠿</button></div><div class="dock-content"><label for="jsonFile">Importar JSON de ChatGPT</label><input accept=".json,application/json,.txt,text/plain" id="jsonFile" type="file"/><label for="jsonText">Guion de animación JSON</label><textarea id="jsonText" placeholder="Pega aquí el JSON generado por ChatGPT... También acepta bloques ```json```." rows="9" spellcheck="false"></textarea><div class="actions"><button class="primary" id="applyJson">Aplicar escenas</button><button id="downloadJson">Guardar JSON</button></div><p class="hint" id="jsonInfo" role="status">Carga un ejemplo o importa tu proyecto. También puedes pegar un bloque ```json``` completo.</p></div></div><button type="button" class="dock-resizer" aria-label="Redimensionar JSON" title="Arrastra la esquina para cambiar ancho y alto" ></button></section>
+ </div><p class="dock-notice" id="animotionDockNotice" aria-live="polite"></p>
 </main>
 <script src="./icons.js" defer></script>
 <script src="./animotion.js" defer></script>
+<script src="./workspace.js" defer></script>
+<div id="renderOverlay" class="render-overlay" role="dialog" aria-modal="true" aria-labelledby="renderTitle" aria-describedby="renderDescription" aria-hidden="true" hidden>
+ <div class="render-dialog">
+  <div class="render-loader" aria-hidden="true"><span></span></div>
+  <div class="render-kicker">ANIMOTION · EXPORTACIÓN</div>
+  <h2 id="renderTitle">Renderizando video</h2>
+  <p id="renderDescription">No cierres la pestaña durante la exportación.</p>
+  <div class="render-metadata"><span id="renderFormat">2560 × 1440 · 60 FPS</span><span id="renderMime">Preparando...</span></div>
+  <div class="render-progress-head"><span>Progreso</span><strong id="renderPercent">0%</strong></div>
+  <div class="render-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso de exportación"><div id="renderFill"></div></div>
+  <div class="render-time"><span id="renderElapsed">Transcurrido 00:00</span><span id="renderRemaining">Restante aprox. --:--</span></div>
+  <button type="button" id="renderCancel">Cancelar exportación</button>
+ </div>
+</div>
 </body></html>
