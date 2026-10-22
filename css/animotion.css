@@ -5,3 +5,40 @@ body{min-height:100vh}.topbar{height:66px;padding:0 var(--space-page);display:fl
 
 /* Biblioteca visual: catálogo local, no modifica el motor de exportación */
 .icon-library .previewHead{align-items:flex-start;flex-wrap:wrap}.icon-library .previewHead>button{flex-shrink:0}.icon-library input[type=search]{display:block;width:100%;background:var(--anim-field);color:var(--color-text);border:0;border-radius:9px;padding:11px;outline:none}.icon-library input[type=search]:focus{outline:2px solid var(--anim-accent)}.icon-category{margin-top:18px}.icon-category h3{font-size:12px;color:var(--color-text-muted);margin:0 0 10px}.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:7px}.icon-choice{display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;padding:10px 4px;min-height:82px;background:var(--anim-field)}.icon-choice svg{height:25px;width:25px;max-width:100%;color:var(--color-text)}.icon-choice span{font-size:10px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.icon-choice:hover{background:var(--color-control-hover)}.icon-library [hidden]{display:none!important}
+
+.post-scene-controls{padding:12px;background:var(--anim-field);border-radius:10px;margin-bottom:12px}.post-scene-controls .hint{margin:0 0 8px}.post-scene-controls .control-stack{margin-top:8px}.post-scene-controls button{margin-top:10px}
+
+
+/* Edición rápida de escenas */
+.sceneItem.selected{outline:1px solid var(--anim-accent);background:#302d39}
+.scene-editor{margin-top:14px;padding:14px;background:#17171b;border:1px solid var(--color-border);border-radius:12px}
+.scene-editor[hidden]{display:none}
+.scene-editor h3{font-size:13px;margin:0;font-weight:750}
+.scene-object-editor{padding-top:12px;margin-top:12px;border-top:1px solid var(--color-border)}
+.scene-object-editor h4{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#c8b9ff;margin:0 0 8px}
+.scene-editor .two{gap:8px}
+.scene-field{min-width:0}
+.scene-field label{margin:8px 0 5px;font-size:11px}
+.scene-field input,.scene-field select{width:100%;min-width:0;background:var(--anim-field);color:var(--color-text);border:0;border-radius:8px;padding:9px;font:inherit;font-size:12px}
+.scene-field input[type=color]{height:36px;padding:3px}
+.scene-field input:focus,.scene-field select:focus{outline:2px solid var(--anim-accent)}
+
+.background-colors{margin-top:8px}.background-colors input[type=color]{display:block;width:100%;height:40px;background:#0e0e10;border:1px solid #2b2b32;border-radius:10px;padding:0}.background-colors label{margin-top:10px}
+
+.global-palette-control{margin-top:12px;padding:11px;background:var(--anim-field);border-radius:10px}.global-palette-control .check-label{display:flex;align-items:flex-start;gap:9px;margin:0;color:var(--color-text);font-size:12px;line-height:1.45}.global-palette-control input[type=checkbox]{accent-color:var(--anim-accent);margin:2px 0 0;flex:0 0 auto}.global-palette-control .hint{margin-top:7px}
+
+/* Separación clara entre ajustes en vivo y parámetros que solo afectan al prompt */
+.settings-group{margin-top:16px;padding:14px;border-radius:12px;min-width:0}
+.settings-group-heading{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--color-border)}
+.settings-group-heading h3{font-size:13px;font-weight:750;margin:5px 0 0;color:var(--color-text)}
+.settings-group-heading p{font-size:11px;line-height:1.55;color:var(--color-text-subtle);margin:6px 0 0}
+.settings-kicker{font-size:9px;font-weight:800;letter-spacing:.14em}
+.realtime-group{background:rgba(110,190,155,.055);border:1px solid rgba(110,190,155,.22)}
+.realtime-group .settings-kicker{color:#8bd8b3}
+.prompt-group{background:rgba(170,152,255,.055);border:1px solid rgba(170,152,255,.22)}
+.prompt-group .settings-kicker{color:#c6b7ff}
+.scene-editor .previewHead{align-items:center}
+.scene-editor-actions{display:flex;align-items:center;gap:8px}
+.scene-editor-close{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;min-height:30px;padding:0;border:1px solid var(--color-border);border-radius:8px;font-size:21px;line-height:1;background:transparent;color:var(--color-text-muted)}
+.scene-editor-close:hover{background:#39313f;color:#fff}
+@media(max-width:760px){.settings-group{padding:11px}.scene-editor-actions{gap:5px}.scene-editor-actions .tag{padding:5px 7px}}
