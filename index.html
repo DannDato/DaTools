@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0b0d">
-  <meta name="description" content="Accede a Trazio, Submotion, Animotion, Toviu e Imanage desde DaTools.">
+  <meta name="description" content="Accede a Trazio, Submotion, Animotion, Toviu, Filer y Teleprompter desde DaTools.">
   <title>DaTools — Herramientas</title>
   <link rel="icon" type="image/png" href="img/DaTools.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
   <div class="page-shell min-h-screen flex flex-col">
     <header class="site-header">
       <div class="dt-wrap mx-auto flex items-center justify-between gap-4 py-5 sm:py-6">
-        <a class="brand flex items-center gap-3" href="./index.html" aria-label="DaTools, inicio">
+        <a class="brand flex items-center gap-3" href="./" aria-label="DaTools, inicio">
           <img class="brand-logo" src="img/DaTools.png" alt="" width="42" height="42">
           <span class="brand-name">Da<span>Tools</span></span>
         </a>
@@ -37,6 +37,8 @@
         <div class="section-heading">
           <h1 id="tools-title">Herramientas<span class="section-period">.</span></h1>
         </div>
+        <p id="reorderHint" class="reorder-hint">Arrastra ⠿ para ordenar · Alt + flechas con el teclado</p>
+        <p id="reorderStatus" class="home-reorder-status" role="status" aria-live="polite"></p>
         <nav class="tool-grid grid" aria-label="Herramientas disponibles">
           <!-- Para incorporar otra herramienta, duplica una tarjeta y cambia su enlace y contenido. -->
           <a class="tool trazio group" href="https://trazio.stream/app" aria-label="Abrir Trazio">
@@ -50,7 +52,7 @@
               <p>Overlays y herramientas de streaming.</p>
             </div>
           </a>
-          <a class="tool submotion group" href="submotion/submotion.html" aria-label="Abrir Submotion">
+          <a class="tool submotion group" href="submotion/submotion" aria-label="Abrir Submotion">
             <div class="tool-top flex items-start justify-between gap-4">
               <div class="tool-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h22M9 15h14M5 21h22"/><path d="M13 27h6"/></svg></div>
               <span class="arrow" aria-hidden="true">↗</span>
@@ -61,7 +63,7 @@
               <p>Subtítulos animados para tus videos.</p>
             </div>
           </a>
-          <a class="tool animotion group" href="animotion/animotion.html" aria-label="Abrir Animotion">
+          <a class="tool animotion group" href="animotion/animotion" aria-label="Abrir Animotion">
             <div class="tool-top flex items-start justify-between gap-4">
               <div class="tool-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="24" height="20" rx="4"/><path d="M12 11l9 5-9 5z"/><path d="M7 3v3M25 26v3"/></svg></div>
               <span class="arrow" aria-hidden="true">↗</span>
@@ -72,7 +74,7 @@
               <p>Escenas y motion graphics a partir de guiones.</p>
             </div>
           </a>
-          <a class="tool toviu group" href="toviu/toviu.html" aria-label="Abrir Toviu">
+          <a class="tool toviu group" href="toviu/toviu" aria-label="Abrir Toviu">
             <div class="tool-top flex items-start justify-between gap-4">
               <div class="tool-icon" aria-hidden="true">
                 <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -95,16 +97,20 @@
               <p>Organiza y abre tus enlaces favoritos.</p>
             </div>
           </a>
-          <a class="tool imanage group" href="imanage/imanage.html" aria-label="Abrir Imanage">
+          <a class="tool imanage group" href="imanage/imanage" aria-label="Abrir Filer">
             <div class="tool-top flex items-start justify-between gap-4">
-              <div class="tool-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="24" height="22" rx="5"/><circle cx="12" cy="12" r="2.6"/><path d="m8 22 6-6 5 4 5-7M15 29h2"/></svg></div>
+              <div class="tool-icon" aria-hidden="true"><img src="img/Filer.svg" alt="" width="32" height="32"></div>
               <span class="arrow" aria-hidden="true">↗</span>
             </div>
             <div class="tool-bottom">
-              <span class="tool-category">IMÁGENES</span>
-              <h3>Imanage</h3>
-              <p>Optimiza imágenes y comprímelas por lotes.</p>
+              <span class="tool-category">ARCHIVOS</span>
+              <h3>Filer</h3>
+              <p>Comprime imágenes y convierte imágenes y audio.</p>
             </div>
+          </a>
+          <a class="tool teleprompter group" href="teleprompter/teleprompter" aria-label="Abrir Teleprompter">
+            <div class="tool-top"><div class="tool-icon" aria-hidden="true"><img src="img/Teleprompter.svg" alt="" width="32" height="32"></div><span class="arrow" aria-hidden="true">↗</span></div>
+            <div class="tool-bottom"><span class="tool-category">GUIONES</span><h3>Teleprompter</h3><p>Lee tus guiones a tu ritmo mientras grabas.</p></div>
           </a>
         </nav>
       </section>
@@ -119,10 +125,11 @@
           </a>
           <nav class="footer-links" aria-label="Herramientas">
             <a href="https://trazio.stream/app">Trazio</a>
-            <a href="submotion/submotion.html">Submotion</a>
-            <a href="animotion/animotion.html">Animotion</a>
-            <a href="toviu/toviu.html">Toviu</a>
-            <a href="imanage/imanage.html">Imanage</a>
+            <a href="submotion/submotion">Submotion</a>
+            <a href="animotion/animotion">Animotion</a>
+            <a href="toviu/toviu">Toviu</a>
+            <a href="imanage/imanage">Filer</a>
+            <a href="teleprompter/teleprompter">Teleprompter</a>
           </nav>
         </div>
         <div class="footer-bottom">
@@ -132,101 +139,6 @@
       </div>
     </footer>
   </div>
-  <script>
-    (() => {
-      const grid = document.querySelector('.tool-grid');
-      if (!grid) return;
-      const cards = Array.from(grid.querySelectorAll(':scope > a.tool'));
-      const key = 'datools.home.card-order.v1';
-      const cardId = card => [...card.classList].find(name => name !== 'tool' && name !== 'group' && !name.startsWith('is-'));
-      const ids = new Set(cards.map(cardId));
-      try {
-        const stored = JSON.parse(localStorage.getItem(key) || '[]');
-        if (Array.isArray(stored)) {
-          stored.filter(id => typeof id === 'string' && ids.has(id)).forEach(id => {
-            const card = cards.find(item => cardId(item) === id);
-            if (card) grid.appendChild(card);
-          });
-        }
-      } catch (_) { /* La página funciona aunque el almacenamiento no esté disponible. */ }
-
-      let gesture = null;
-      let blockClick = false;
-      const save = () => {
-        try { localStorage.setItem(key, JSON.stringify([...grid.children].map(cardId))); } catch (_) {}
-      };
-      const clean = () => {
-        grid.querySelectorAll('.is-reordering,.is-drop-target').forEach(card => {
-          card.classList.remove('is-reordering', 'is-drop-target');
-        });
-      };
-      const finish = () => {
-        if (!gesture) return;
-        clearTimeout(gesture.hold);
-        if (gesture.dragging) {
-          blockClick = true;
-          save();
-          // Algunos navegadores no generan click después de un drag táctil.
-          setTimeout(() => { blockClick = false; }, 350);
-        }
-        clean();
-        gesture = null;
-      };
-
-      grid.addEventListener('pointerdown', event => {
-        if (event.button !== 0 || !event.isPrimary) return;
-        const card = event.target.closest('a.tool');
-        if (!card || card.parentElement !== grid) return;
-        blockClick = false;
-        gesture = {
-          card, pointerId: event.pointerId, x: event.clientX, y: event.clientY,
-          touch: event.pointerType === 'touch', ready: event.pointerType !== 'touch',
-          dragging: false, hold: null
-        };
-        if (gesture.touch) {
-          gesture.hold = setTimeout(() => {
-            if (gesture) {
-              gesture.ready = true;
-              gesture.dragging = true;
-              card.classList.add('is-reordering');
-              card.setPointerCapture(event.pointerId);
-            }
-          }, 320);
-        }
-      });
-      grid.addEventListener('pointermove', event => {
-        if (!gesture || event.pointerId !== gesture.pointerId) return;
-        const dx = event.clientX - gesture.x, dy = event.clientY - gesture.y;
-        if (!gesture.ready) {
-          if (Math.hypot(dx, dy) > 9) { clearTimeout(gesture.hold); gesture = null; }
-          return;
-        }
-        if (!gesture.dragging) {
-          if (Math.hypot(dx, dy) < 8) return;
-          gesture.dragging = true;
-          gesture.card.classList.add('is-reordering');
-          gesture.card.setPointerCapture(event.pointerId);
-        }
-        event.preventDefault();
-        const under = document.elementFromPoint(event.clientX, event.clientY)?.closest('a.tool');
-        grid.querySelectorAll('.is-drop-target').forEach(card => card.classList.remove('is-drop-target'));
-        if (!under || under === gesture.card || under.parentElement !== grid) return;
-        const card = gesture.card;
-        const current = [...grid.children];
-        const before = current.indexOf(card) < current.indexOf(under);
-        grid.insertBefore(card, before ? under.nextSibling : under);
-        under.classList.add('is-drop-target');
-      });
-      grid.addEventListener('pointerup', finish);
-      grid.addEventListener('pointercancel', finish);
-      window.addEventListener('blur', finish);
-      grid.addEventListener('click', event => {
-        if (!blockClick) return;
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        blockClick = false;
-      }, true);
-    })();
-  </script>
+  <script src="js/home-order.js" defer></script>
 </body>
 </html>

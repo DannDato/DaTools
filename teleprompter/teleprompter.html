@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Teleprompter — DaTools</title>
+  <link rel="icon" type="image/svg+xml" href="../img/Teleprompter.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/teleprompter.css">
+  <script src="teleprompter.js" defer></script>
+</head>
+<body>
+  <header class="tp-topbar">
+    <a class="tp-brand" href="../" aria-label="Volver a DaTools"><img src="../img/DaTools.png" alt="" width="29" height="29">DaTools</a>
+    <h1><img src="../img/Teleprompter.svg" alt="" width="25" height="25">Teleprompter</h1>
+    <button id="readingMode" type="button" class="tp-secondary" aria-pressed="false">Modo lectura</button>
+  </header>
+  <main class="tp-layout">
+    <aside class="tp-sidebar" aria-label="Guion y ajustes">
+      <section class="tp-panel tp-script-panel" aria-labelledby="scriptHeading">
+        <div class="tp-panel-heading"><h2 id="scriptHeading">Tu guion</h2><span id="saveStatus" class="tp-save" role="status">Listo</span></div>
+        <label class="tp-sr-only" for="script">Texto del guion</label>
+        <textarea id="script" maxlength="200000" placeholder="Pega tu guion aquí…" spellcheck="true"></textarea>
+        <div class="tp-script-actions"><button type="button" id="importScript" class="tp-secondary">Importar texto</button><button type="button" id="downloadScript" class="tp-text-button" disabled>Guardar TXT ↓</button></div>
+        <input id="scriptFile" type="file" accept=".txt,.md,.srt,text/plain,text/markdown" hidden>
+        <div class="tp-script-meta"><span id="wordCount">0 palabras</span><span id="estimatedTime">0:00 de lectura</span></div>
+      </section>
+      <section class="tp-panel tp-settings" aria-label="Ajustes de lectura">
+        <div class="tp-control-heading"><label for="speed">Velocidad</label><output id="speedValue" for="speed">140 ppm</output></div>
+        <input id="speed" type="range" min="60" max="300" step="5" value="140">
+        <div class="tp-control-heading"><label for="fontSize">Tamaño del texto</label><output id="fontSizeValue" for="fontSize">48 px</output></div>
+        <input id="fontSize" type="range" min="24" max="96" step="2" value="48">
+        <div class="tp-control-heading"><label for="textWidth">Ancho de lectura</label><output id="textWidthValue" for="textWidth">80%</output></div>
+        <input id="textWidth" type="range" min="40" max="100" step="5" value="80">
+        <div class="tp-settings-pair"><div><label for="lineHeight">Interlineado</label><select id="lineHeight"><option value="1.3">Compacto</option><option value="1.6" selected>Normal</option><option value="1.9">Amplio</option></select></div>
+        <div><label for="countdown">Cuenta atrás</label><select id="countdown"><option value="0">Sin espera</option><option value="3" selected>3 segundos</option><option value="5">5 segundos</option></select></div></div>
+        <div class="tp-toggles"><label><input id="mirror" type="checkbox">Modo espejo</label><label><input id="guide" type="checkbox" checked>Guía de lectura</label></div>
+        <div class="tp-colors"><label for="textColor">Texto<input id="textColor" type="color" value="#f5f5f5"></label><label for="backgroundColor">Fondo<input id="backgroundColor" type="color" value="#000000"></label></div>
+      </section>
+      <p class="tp-shortcuts"><kbd>Espacio</kbd> reproducir / pausar<br><kbd>↑</kbd> <kbd>↓</kbd> ajustar velocidad · <kbd>←</kbd> <kbd>→</kbd> mover 5 s<br><kbd>R</kbd> volver al inicio · <kbd>F</kbd> pantalla completa</p>
+    </aside>
+    <section id="readerPanel" class="tp-reader-panel" aria-label="Teleprompter">
+      <div class="tp-reader-toolbar">
+        <div class="tp-transport"><button type="button" id="restart" class="tp-icon-button" title="Volver al inicio (R)" aria-label="Volver al inicio">↺</button><button type="button" id="play" class="tp-primary" disabled>▶ Reproducir</button></div>
+        <button type="button" id="fullscreen" class="tp-secondary" aria-pressed="false">⛶ Pantalla completa</button>
+      </div>
+      <div id="viewport" class="tp-viewport" tabindex="0" aria-label="Guion para leer. Usa la rueda o el desplazamiento táctil para cambiar de posición.">
+        <div id="scriptContent" class="tp-script-content"><div id="readerText" class="tp-reader-text"></div></div>
+        <div id="emptyReader" class="tp-empty"><img src="../img/Teleprompter.svg" alt="" width="48" height="48"><strong>Tu siguiente toma empieza aquí.</strong><span>Pega o importa un guion y dale a reproducir.</span></div>
+      </div>
+      <div id="guideBand" class="tp-guide" aria-hidden="true"><span>▸</span></div>
+      <div id="countdownOverlay" class="tp-countdown" hidden><span id="countdownNumber" role="status" aria-live="polite"></span></div>
+      <div class="tp-reader-footer"><label class="tp-sr-only" for="seek">Posición de lectura</label><input id="seek" type="range" min="0" max="1000" value="0" aria-valuetext="Inicio del guion"><div class="tp-reader-meta"><span id="playStatus" role="status">Esperando guion</span><span id="clock">0:00 / 0:00</span></div></div>
+    </section>
+  </main>
+  <div id="notice" class="tp-notice" role="status" hidden></div>
+</body>
+</html>

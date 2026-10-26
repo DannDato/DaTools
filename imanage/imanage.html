@@ -4,32 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d10">
-  <meta name="description" content="Imanage: optimiza imágenes JPG, PNG y WebP en tu navegador, una a una o por lotes, sin subir archivos a ningún servidor.">
-  <title>Imanage — DaTools</title>
-  <link rel="icon" type="image/png" href="../img/DaTools.png">
+  <meta name="description" content="Filer: comprime imágenes y convierte imágenes y audio localmente en tu navegador.">
+  <title>Filer — DaTools</title>
+  <link rel="icon" type="image/svg+xml" href="../img/Filer.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/theme.css">
   <link rel="stylesheet" href="../css/imanage.css">
+  <script src="vendor/pako.min.js" defer></script>
+  <script src="vendor/UPNG.js" defer></script>
+  <script src="files.js" defer></script>
+  <script src="vendor/UTIF.js" defer></script>
+  <script src="vendor/omggif.js" defer></script>
+  <script src="image-codecs.js" defer></script>
   <script src="imanage.js" defer></script>
+  <script src="converter.js" defer></script>
+  <script src="audio-engine.js" defer></script>
+  <script src="audio.js" defer></script>
 </head>
-<body>
+<body data-filer-tool="compresion">
   <div class="im-shell">
     <header class="im-topbar">
-      <a class="im-back" href="../index.html" aria-label="Volver a DaTools">
+      <a class="im-back" href="../" aria-label="Volver a DaTools">
         <img src="../img/DaTools.png" alt="" width="29" height="29">
         <span>Da<span class="im-muted-brand">Tools</span></span>
       </a>
-      <span class="im-title-top">Imanage</span>
-      <span class="im-private"><span class="im-private-dot"></span>100% LOCAL</span>
+      <span class="im-title-top"><img src="../img/Filer.svg" alt="" width="26" height="26">Filer</span>
     </header>
 
     <main class="im-main">
+      <div class="im-tabs" role="tablist" aria-label="Herramientas multimedia">
+        <button type="button" id="tab-compression" role="tab" aria-selected="true" aria-controls="panel-compression" tabindex="0">Compresor de imágenes</button>
+        <button type="button" id="tab-converter" role="tab" aria-selected="false" aria-controls="panel-converter" tabindex="-1">Convertidor de imágenes</button>
+        <button type="button" id="tab-audio" role="tab" aria-selected="false" aria-controls="panel-audio" tabindex="-1">Convertidor de audio</button>
+      </div>
+      <section id="panel-compression" role="tabpanel" aria-labelledby="tab-compression">
       <div class="im-layout">
         <aside class="im-sidebar" aria-label="Archivos y configuración">
-          <section class="im-panel im-upload-panel">
-            <div class="im-section-head"><div><div class="im-eyebrow">01 · ENTRADA</div><h2>Seleccionar imágenes</h2></div></div>
+          <section class="im-panel im-upload-panel" aria-label="Seleccionar imágenes">
             <div class="im-dropzone" id="dropzone" tabindex="0" role="button" aria-label="Seleccionar imágenes JPG, PNG o WebP; también puedes arrastrarlas aquí">
               <div class="im-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
               <strong>Arrastra tus imágenes</strong>
@@ -37,13 +50,16 @@
               <small>JPG · PNG · WEBP</small>
             </div>
             <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
-            <div class="im-upload-foot"><span>Una o varias a la vez</span><span><span class="im-dot"></span> Sin subir archivos</span></div>
           </section>
 
-          <section class="im-panel im-settings-panel">
-            <div class="im-section-head"><div><div class="im-eyebrow">02 · AJUSTES</div><h2>Compresión</h2></div></div>
-            <div class="im-control-head"><label for="quality">Calidad de JPG y WebP</label><output id="quality-value" for="quality">80%</output></div>
-            <input id="quality" type="range" min="35" max="95" value="80" step="1">
+          <section class="im-panel im-settings-panel" aria-label="Ajustes de compresión">
+            <label class="im-select-label" for="compression-mode">Modo de compresión</label>
+            <select id="compression-mode">
+              <option value="auto">Menor peso · permite convertir a WebP</option>
+              <option value="original" selected>Conservar formato original</option>
+            </select>
+            <div class="im-control-head"><label for="quality">Calidad de imagen</label><output id="quality-value" for="quality">60%</output></div>
+            <input id="quality" type="range" min="10" max="95" value="60" step="1">
             <div class="im-range-ticks"><span>Menor peso</span><span>Mayor calidad</span></div>
             <label class="im-select-label" for="max-size">Resolución máxima</label>
             <select id="max-size">
@@ -53,15 +69,12 @@
               <option value="1280">Hasta 1280 px</option>
               <option value="800">Hasta 800 px</option>
             </select>
-            <div class="im-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>Se conserva el formato. Los PNG se reexportan sin ajustar su calidad. Si optimizar aumenta el peso, mantenemos el original.</span></div>
-            <button type="button" id="optimize" class="im-primary" disabled><span class="im-button-icon" aria-hidden="true">✦</span> Optimizar imágenes <span aria-hidden="true">→</span></button>
-            <button type="button" id="cancel" class="im-cancel" hidden>Cancelar procesamiento</button>
           </section>
         </aside>
 
         <section class="im-results" aria-label="Resultados de compresión">
           <div class="im-panel im-files-panel">
-            <div class="im-files-head"><h2>Archivos <span id="files-count">0</span></h2><button id="clear" type="button" class="im-text-button" disabled>Limpiar todo</button></div>
+            <div class="im-files-head"><h2>Archivos <span id="files-count">0</span></h2><div class="im-batch-actions"><button id="clear" type="button" class="im-text-button" disabled>Limpiar todo</button><button type="button" id="cancel" class="im-cancel" hidden>Cancelar</button><button type="button" id="optimize" class="im-primary" disabled>Comprimir todo</button></div></div>
             <div class="im-progress" id="progress-block" hidden>
               <div class="im-progress-info"><span id="progress-label">Procesando...</span><strong id="progress-percent">0%</strong></div>
               <div class="im-track" role="progressbar" aria-label="Progreso de optimización" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track"><div id="progress-fill"></div></div>
@@ -69,13 +82,97 @@
             <div id="empty-state" class="im-empty"><div class="im-empty-icon" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="2"><rect x="19" y="12" width="82" height="65" rx="12"/><circle cx="45" cy="36" r="7"/><path d="m30 64 21-20 14 13 14-20 12 14" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 86h26" stroke-linecap="round"/></svg></div><strong>Aún no hay imágenes</strong><span>Arrastra archivos al recuadro o selecciónalos para empezar.</span></div>
             <div id="file-list" class="im-file-list" aria-live="polite"></div>
             <div class="im-footer-actions" id="download-area" hidden>
-              <div class="im-download-copy"><strong id="download-heading">Tus imágenes están listas</strong><span id="download-caption">Mismo nombre. Mismo formato.</span></div>
-              <button type="button" id="download-all" class="im-primary im-download-button" disabled>Descargar</button>
+              <div class="im-download-copy"><strong id="download-heading">Tus imágenes están listas</strong><span id="download-caption">La extensión se ajusta al formato de salida.</span></div>
             </div>
           </div>
         </section>
       </div>
-      <p class="im-bottom-note"><span class="im-private-dot"></span> Tus archivos nunca salen de este dispositivo. Algunas imágenes ya optimizadas pueden no reducir más su peso. La reexportación puede eliminar metadatos.</p>
+      </section>
+      <section id="panel-converter" role="tabpanel" aria-labelledby="tab-converter" hidden>
+      <div class="im-layout">
+        <aside class="im-sidebar im-converter-sidebar" aria-label="Archivos y configuración">
+          <section class="im-panel im-settings-panel" aria-label="Ajustes de conversión">
+            <label class="im-select-label" for="cv-format">Convertir a</label>
+            <select id="cv-format">
+              <option value="png">PNG</option><option value="jpg">JPG / JPEG</option><option value="webp">WebP</option>
+              <option value="ico">ICO · icono</option><option value="bmp">BMP</option><option value="gif">GIF · imagen fija</option>
+              <option value="tiff">TIFF</option><option value="svg">SVG · imagen incrustada</option>
+            </select>
+            <div id="cv-quality-control"><div class="im-control-head"><label for="cv-quality">Calidad de imagen</label><output id="cv-quality-value" for="cv-quality">85%</output></div>
+            <input id="cv-quality" type="range" min="10" max="100" value="85" step="1"></div>
+            <label class="im-select-label" for="cv-max-size">Resolución máxima</label>
+            <select id="cv-max-size"><option value="0">Mantener original</option><option value="2560">Hasta 2560 px</option><option value="1920">Hasta 1920 px</option><option value="1280">Hasta 1280 px</option><option value="800">Hasta 800 px</option></select>
+            <div id="cv-ico-control" hidden><label class="im-select-label" for="cv-ico-size">Tamaño del icono</label>
+            <select id="cv-ico-size"><option value="multi">Multitamaño · 16 a 256 px</option><option value="16">16 × 16</option><option value="32">32 × 32</option><option value="48">48 × 48</option><option value="64">64 × 64</option><option value="128">128 × 128</option><option value="256">256 × 256</option></select></div>
+            <div id="cv-background-control" hidden><label class="im-select-label" for="cv-background">Fondo para transparencias</label><input id="cv-background" type="color" value="#ffffff"></div>
+            <p class="im-format-hint" id="cv-format-hint">PNG conserva la transparencia y los colores.</p>
+          </section>
+          <section class="im-panel im-upload-panel" aria-label="Seleccionar imágenes">
+            <div class="im-dropzone" id="cv-dropzone" tabindex="0" role="button" aria-label="Seleccionar imágenes para convertir; también puedes arrastrarlas aquí">
+              <div class="im-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
+              <strong>Arrastra tus imágenes</strong>
+              <span>o haz clic para explorar archivos</span>
+              <small>PNG · JPG · WEBP · GIF · BMP · ICO · SVG · TIFF · AVIF</small>
+            </div>
+            <input id="cv-file-input" type="file" accept="image/*,.ico,.tif,.tiff,.avif,.svg,.bmp,.gif" multiple hidden>
+          </section>
+        </aside>
+
+        <section class="im-results" aria-label="Resultados de conversión">
+          <div class="im-panel im-files-panel">
+            <div class="im-files-head"><h2>Archivos <span id="cv-files-count">0</span></h2><div class="im-batch-actions"><button id="cv-clear" type="button" class="im-text-button" disabled>Limpiar todo</button><button type="button" id="cv-cancel" class="im-cancel" hidden>Cancelar</button><button type="button" id="cv-optimize" class="im-primary" disabled>Convertir todo</button></div></div>
+            <div class="im-progress" id="cv-progress-block" hidden>
+              <div class="im-progress-info"><span id="cv-progress-label">Procesando...</span><strong id="cv-progress-percent">0%</strong></div>
+              <div class="im-track" role="progressbar" aria-label="Progreso de conversión" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="cv-progress-track"><div id="cv-progress-fill"></div></div>
+            </div>
+            <div id="cv-empty-state" class="im-empty"><div class="im-empty-icon" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="2"><rect x="19" y="12" width="82" height="65" rx="12"/><circle cx="45" cy="36" r="7"/><path d="m30 64 21-20 14 13 14-20 12 14" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 86h26" stroke-linecap="round"/></svg></div><strong>Aún no hay imágenes</strong><span>Arrastra archivos al recuadro o selecciónalos para empezar.</span></div>
+            <div id="cv-file-list" class="im-file-list" aria-live="polite"></div>
+            <div class="im-footer-actions" id="cv-download-area" hidden>
+              <div class="im-download-copy"><strong id="cv-download-heading">Tus imágenes están listas</strong><span id="cv-download-caption">La extensión se ajusta al formato de salida.</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </section>
+      <section id="panel-audio" role="tabpanel" aria-labelledby="tab-audio" hidden>
+      <div class="im-layout">
+        <aside class="im-sidebar im-converter-sidebar im-audio-sidebar" aria-label="Archivos y configuración">
+          <section class="im-panel im-settings-panel" aria-label="Ajustes de audio">
+            <label class="im-select-label" for="au-format">Convertir a</label>
+            <select id="au-format"><option value="mp3">MP3</option><option value="wav">WAV</option><option value="flac">FLAC</option><option value="ogg">OGG / Vorbis</option><option value="opus">Opus</option><option value="m4a">M4A / AAC</option></select>
+            <label class="im-select-label" for="au-bitrate">Calidad · bitrate</label>
+            <select id="au-bitrate"><option value="64">64 kbps</option><option value="96">96 kbps</option><option value="128">128 kbps</option><option value="192" selected>192 kbps</option><option value="256">256 kbps</option><option value="320">320 kbps</option></select>
+            <div class="im-audio-settings-pair"><div><label class="im-select-label" for="au-sample-rate">Frecuencia</label><select id="au-sample-rate"><option value="0">Original</option><option value="22050">22.05 kHz</option><option value="44100">44.1 kHz</option><option value="48000">48 kHz</option></select></div>
+            <div><label class="im-select-label" for="au-channels">Canales</label><select id="au-channels"><option value="0">Original</option><option value="1">Mono</option><option value="2">Estéreo</option></select></div></div>
+            <p class="im-format-hint" id="au-format-hint">MP3 permite ajustar el peso mediante el bitrate.</p>
+          </section>
+          <section class="im-panel im-upload-panel" aria-label="Seleccionar audios">
+            <div class="im-dropzone" id="au-dropzone" tabindex="0" role="button" aria-label="Seleccionar audios para convertir; también puedes arrastrarlas aquí">
+              <div class="im-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></div>
+              <strong>Arrastra tus audios</strong>
+              <span>o haz clic para explorar archivos</span>
+              <small>MP3 · WAV · FLAC · OGG · OPUS · M4A · VIDEO</small>
+            </div>
+            <input id="au-file-input" type="file" accept="audio/*,video/*,.mp3,.wav,.flac,.ogg,.opus,.m4a,.aac,.aiff,.aif,.wma,.mp4,.webm,.mkv,.mov" multiple hidden>
+          </section>
+        </aside>
+
+        <section class="im-results" aria-label="Resultados de conversión">
+          <div class="im-panel im-files-panel">
+            <div class="im-files-head"><h2>Archivos <span id="au-files-count">0</span></h2><div class="im-batch-actions"><button id="au-clear" type="button" class="im-text-button" disabled>Limpiar todo</button><button type="button" id="au-cancel" class="im-cancel" hidden>Cancelar</button><button type="button" id="au-optimize" class="im-primary" disabled>Convertir todo</button></div></div>
+            <div class="im-progress" id="au-progress-block" hidden>
+              <div class="im-progress-info"><span id="au-progress-label">Procesando...</span><strong id="au-progress-percent">0%</strong></div>
+              <div class="im-track" role="progressbar" aria-label="Progreso de conversión" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="au-progress-track"><div id="au-progress-fill"></div></div>
+            </div>
+            <div id="au-empty-state" class="im-empty"><div class="im-empty-icon" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="2"><rect x="19" y="12" width="82" height="65" rx="12"/><circle cx="45" cy="36" r="7"/><path d="m30 64 21-20 14 13 14-20 12 14" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 86h26" stroke-linecap="round"/></svg></div><strong>Aún no hay audios</strong><span>Arrastra archivos al recuadro o selecciónalos para empezar.</span></div>
+            <div id="au-file-list" class="im-file-list" aria-live="polite"></div>
+            <div class="im-footer-actions" id="au-download-area" hidden>
+              <div class="im-download-copy"><strong id="au-download-heading">Tus audios están listos</strong><span id="au-download-caption">La extensión se ajusta al formato de salida.</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </section>
     </main>
   </div>
   <div id="toast" class="im-toast" role="status" aria-live="polite"></div>
