@@ -5,7 +5,7 @@ function updateProjectTray() {
   let candidate = null;
   let error = '';
   if (text) {
-    try { candidate = validate(JSON.parse(extractJsonText(text))); }
+    try { candidate = !jsonDraftDirty && sizeBaseProject ? project : validate(JSON.parse(extractJsonText(text))); }
     catch (problem) { error = problem.message; }
   }
   const active = !text && project.scenes.length > 0;

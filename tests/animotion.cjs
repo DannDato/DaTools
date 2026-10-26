@@ -75,10 +75,17 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     await page.locator('#play').click();await page.waitForFunction(()=>position>0);
     await page.locator('#play').click();assert.equal(await page.evaluate(()=>playing),false);
     await page.locator('.sceneItem').first().click();
+    assert.ok(await page.locator('#sceneEditor').isVisible());
+    assert.equal(await page.locator('#sceneEditor').evaluate(node=>Boolean(node.closest('#animotionDock'))),false);
+    assert.ok(await page.locator('#sceneEditor').evaluate(node=>node.getBoundingClientRect().height>=560));
+    await page.getByRole('button',{name:'Cerrar editor de escena',exact:true}).click();
+    assert.ok(await page.locator('#sceneEditor').isHidden());
+    await page.locator('.sceneItem').first().click();
     assert.equal(await page.getByLabel('Entrada',{exact:true}).first().inputValue(),'whip');
     assert.equal(await page.getByLabel('Movimiento',{exact:true}).first().inputValue(),'orbit');
     await page.locator('#textSizeAdjust').fill('200');
     await page.getByLabel('Texto',{exact:true}).fill('Editado después de escalar');
+    await page.locator('#deselectObject').click();
     await page.locator('#iconSizeAdjust').fill('150');
     assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].text),'Editado después de escalar');
     assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].size),180);
@@ -87,7 +94,7 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     await page.locator('#applyGlobalPalette').check();
     await page.reload();
     assert.ok(await page.locator('#applyGlobalPalette').isChecked());
-    assert.equal(await page.locator('#textSizeAdjust').inputValue(),'200');
+    assert.equal(await page.locator('#textSizeAdjust').inputValue(),'100');
     assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].size),180);
     assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].text),'Editado después de escalar');
     await fillJson('{');await page.locator('#bgOpacity').fill('55');
@@ -149,6 +156,86 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     await page.waitForFunction(()=>document.querySelector('#exportInfo').textContent.includes('Fallo simulado'));
     assert.ok(await page.locator('#renderOverlay').isHidden());assert.ok(await page.locator('#play').isEnabled());
     await page.evaluate(()=>{window.MediaRecorder=window.NativeRecorder;});
+    // Selección por canvas, arrastre, formulario conectado y escalado desde la esquina.
+    await page.locator('#canvas').scrollIntoViewIfNeeded();
+    const canvasPoint=async(x,y)=>page.locator('#canvas').evaluate((node,{x,y})=>{
+      const r=node.getBoundingClientRect(),scale=Math.min(r.width/node.width,r.height/node.height);
+      return {x:r.left+(r.width-node.width*scale)/2+x*node.width*scale,y:r.top+(r.height-node.height*scale)/2+y*node.height*scale,scale};
+    },{x,y});
+    let p=await canvasPoint(.3,.5);await page.mouse.click(p.x,p.y);
+    assert.equal(await page.evaluate(()=>selectedObjectIndex),1);
+    assert.equal(await page.locator('.scene-object-editor').count(),1);
+    assert.match(await page.locator('.scene-object-editor h4').textContent(),/Objeto 2.*rect/);
+    await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+40,p.y+20,{steps:6});await page.mouse.up();
+    const moved=await page.evaluate(()=>({x:project.scenes[0].objects[1].x,y:project.scenes[0].objects[1].y}));
+    assert.ok(Math.abs(moved.x-(.3+40/(2560*p.scale)))<.00001);
+    assert.ok(Math.abs(moved.y-(.5+20/(1440*p.scale)))<.00001);
+    assert.equal(await page.evaluate(()=>sizeBaseProject.scenes[0].objects[1].x),moved.x);
+    await page.getByLabel('X (0–1)',{exact:true}).fill('.42');
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].x),.42);
+    await page.locator('#canvas').scrollIntoViewIfNeeded();
+    p=await canvasPoint(.42+.15/2,moved.y+.1/2);
+    await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+25,p.y+20,{steps:5});await page.mouse.up();
+    assert.ok(await page.evaluate(()=>project.scenes[0].objects[1].width>.15));
+    await page.keyboard.press('ArrowRight');
+    assert.ok(await page.evaluate(()=>project.scenes[0].objects[1].x>.42));
+    await page.locator('.scene-layer[data-object-index="0"]').click();
+    assert.equal(await page.evaluate(()=>selectedObjectIndex),0);
+    await page.getByLabel('Texto',{exact:true}).fill('Texto desde la capa seleccionada');
+    assert.equal(await page.evaluate(()=>JSON.parse(document.querySelector('#jsonText').value).scenes[0].objects[0].text),'Texto desde la capa seleccionada');
+    await page.reload();
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].text),'Texto desde la capa seleccionada');
+    assert.ok(await page.evaluate(()=>project.scenes[0].objects[1].width>.15));
+    // En vertical, seleccionar el objeto superior y alcanzar el inferior por capas.
+    await apply({fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
+      {type:'rect',x:.5,y:.5,width:.4,height:.4,color:'#AA98FF'},
+      {type:'circle',x:.5,y:.5,size:200,color:'#FFFFFF'}
+    ]}]});
+    await page.locator('#canvas').scrollIntoViewIfNeeded();p=await canvasPoint(.5,.5);await page.mouse.click(p.x,p.y);
+    assert.equal(await page.evaluate(()=>selectedObjectIndex),1);
+    await page.mouse.move(p.x,p.y);await page.mouse.down();await page.mouse.move(p.x+15,p.y+25,{steps:5});await page.mouse.up();
+    assert.ok(Math.abs(await page.evaluate(()=>project.scenes[0].objects[1].y)-(.5+25/(2560*p.scale)))<.00001);
+    await page.locator('.scene-layer[data-object-index="0"]').click();
+    await page.getByLabel('Ancho (0–3× lienzo)',{exact:true}).fill('.3');
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].width),.3);
+    const editDownload=page.waitForEvent('download');await page.locator('#exportVideo').click();
+    assert.ok((await fs.stat(await (await editDownload).path())).size>1000);
+    await page.waitForFunction(()=>document.querySelector('#renderOverlay').hidden);
+    assert.equal(await page.locator('.selection-canvas').count(),1);
+    await apply({...fixture,resolution:[2560,1440]});
+    await page.locator('.sceneItem').first().click();
+    // Visibilidad: el objeto permanece en capas, desaparece del renderer y vuelve con deshacer.
+    await page.locator('.scene-layer[data-object-index="1"]').click();
+    await page.locator('#canvas').focus();
+    await page.keyboard.press('Backspace');
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].hidden),true);
+    assert.equal(await page.evaluate(()=>sizeBaseProject.scenes[0].objects[1].hidden),true);
+    assert.equal(await page.evaluate(()=>JSON.parse(document.querySelector('#jsonText').value).scenes[0].objects[1].hidden),true);
+    assert.deepEqual(await page.evaluate(()=>Array.from(ctx.getImageData(Math.round(canvas.width*.3),Math.round(canvas.height*.5),1,1).data).slice(0,3)),[0,0,0]);
+    await page.keyboard.press('Control+z');assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].hidden),false);
+    await page.keyboard.press('Backspace');await page.keyboard.press('Backspace');
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].hidden),false);
+    await page.getByRole('button',{name:'Ocultar objeto 2',exact:true}).click();
+    assert.ok(await page.getByRole('button',{name:'Mostrar objeto 2',exact:true}).isVisible());
+    await page.reload();assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].hidden),true);
+    await page.getByRole('button',{name:'Mostrar objeto 2',exact:true}).click();
+    // Backspace dentro de un campo conserva su función de edición.
+    await page.locator('.scene-layer[data-object-index="0"]').click();
+    await page.getByLabel('Texto',{exact:true}).focus();await page.keyboard.press('End');await page.keyboard.press('Backspace');
+    assert.equal(await page.evaluate(()=>project.scenes[0].objects[0].hidden),false);
+    // Límite real: tras 25 movimientos, solo se pueden recuperar los últimos 20.
+    await page.reload();assert.equal(await page.evaluate(()=>editHistory.length),0);
+    await page.locator('.scene-layer[data-object-index="1"]').click();await page.locator('#canvas').focus();
+    const initialX=await page.evaluate(()=>project.scenes[0].objects[1].x);
+    for(let i=0;i<25;i++)await page.keyboard.press('ArrowRight');
+    assert.equal(await page.evaluate(()=>editHistory.length),20);
+    for(let i=0;i<20;i++)await page.keyboard.press('Control+z');
+    const oldestX=await page.evaluate(()=>project.scenes[0].objects[1].x);
+    assert.ok(Math.abs(oldestX-(initialX+5/2560))<.000001);
+    await page.keyboard.press('Control+z');assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].x),oldestX);
+    await page.getByLabel('X (0–1)',{exact:true}).fill('.4');await page.getByLabel('X (0–1)',{exact:true}).fill('.41');
+    assert.equal(await page.evaluate(()=>editHistory.length),1);
+    await page.keyboard.press('Control+z');assert.equal(await page.evaluate(()=>project.scenes[0].objects[1].x),oldestX);
     await page.evaluate(()=>{document.querySelector('#jsonCode').open=false;document.querySelectorAll('.anim-dock-body').forEach(node=>node.scrollTop=0);window.scrollTo(0,0);});
     if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'animotion-desktop.png'),fullPage:true});
     await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

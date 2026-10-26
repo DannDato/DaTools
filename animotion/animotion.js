@@ -26,6 +26,10 @@ const persistentControls = [...document.querySelectorAll('input[id], select[id],
   .filter(control => control.type !== 'file' && control.id !== 'seek');
 let storedUiState = null;
 let selectedSceneIndex = -1;
+let selectedObjectIndex = 0;
+var appearanceGlobals = null;
+function globalAppearance(id) { return appearanceGlobals?.[id] ?? $(id).value; }
+function objectColorControl(object) { return object.type === 'text' ? 'fg' : object.type === 'vector' ? 'vectorColor' : object.paletteSlot === 'secondary' ? 'elementColor2' : 'accent'; }
 try {
   storedUiState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
 } catch (_) {
@@ -33,22 +37,29 @@ try {
 }
 
 function persistUiState(event) {
+  if (typeof appearanceEditor !== 'undefined' && appearanceEditor.pending) {
+    if (event?.type === 'input' && event.target.closest('.dock-appearance')) return;
+    appearanceEditor.flush();return;
+  }
   try {
     const controls = {};
     persistentControls.forEach(control => {
-      controls[control.id] = control.type === 'checkbox' ? control.checked : control.value;
+      controls[control.id] = control.type === 'checkbox' ? control.checked : globalAppearance(control.id);
     });
     const state = {
       controls,
       baseJsonText: sizeBaseProject ? JSON.stringify(sizeBaseProject) : null,
       draftDirty: jsonDraftDirty,
-      selectedSceneIndex
+      selectedSceneIndex, selectedObjectIndex
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (_) {
     // El almacenamiento puede estar deshabilitado o lleno; la herramienta debe seguir funcionando.
   }
   if (typeof updateProjectTray === 'function') updateProjectTray();
+  if (typeof appearanceEditor !== 'undefined') appearanceEditor.sync();
+  if (typeof objectTools !== 'undefined') objectTools.sync();
+  if (typeof editHistory !== 'undefined') editHistory.record();
 }
 
 function restoreUiState() {
@@ -65,6 +76,7 @@ function restoreUiState() {
     } else if (typeof value === 'string') control.value = value;
   }
   selectedSceneIndex = Number.isInteger(storedUiState.selectedSceneIndex) ? storedUiState.selectedSceneIndex : -1;
+  selectedObjectIndex = Number.isInteger(storedUiState.selectedObjectIndex) ? storedUiState.selectedObjectIndex : 0;
   return true;
 }
 
@@ -189,8 +201,10 @@ function cuesToSrt(items) {
 
 function paletteSettings() {
   return {
-    primary: $("fg").value.toUpperCase(),
-    accent: $("accent").value.toUpperCase(),
+    primary: globalAppearance('fg').toUpperCase(),
+    accent: globalAppearance('accent').toUpperCase(),
+    elements2: globalAppearance('elementColor2').toUpperCase(),
+    vectors: globalAppearance('vectorColor').toUpperCase(),
     orientation: $("orientation").value,
     fps: Number($("fps").value),
     lineHeight: Number($("lineHeightPref").value),
@@ -223,7 +237,7 @@ function buildPrompt(items) {
   };
   const sample = {version:1,resolution,fps:s.fps,scenes:[{
     start:items[0].start,end:items[0].end,objects:[
-      {type:"vector",x:0.5,y:0.44,size:360,color:s.accent,enter:"draw",idle:"none",delay:0,duration:0.8,shapes:[
+      {type:"vector",x:0.5,y:0.44,size:360,color:s.vectors,enter:"draw",idle:"none",delay:0,duration:0.8,shapes:[
         {kind:"rect",x:0,y:0,width:1.3,height:0.9,strokeWidth:0.035,fill:false},
         {kind:"line",points:[{x:-0.4,y:0},{x:0.4,y:0}],strokeWidth:0.025}
       ]},
@@ -237,7 +251,7 @@ Explica el contenido con imágenes compuestas y acciones visuales claras. No tra
 
 DIRECCIÓN
 - Lienzo ${resolution.join(" × ")}, ${s.fps} FPS. Fondo y tipografía se controlan en la aplicación: no los añadas al JSON.
-- Paleta: principal ${s.primary}, acento ${s.accent}. Permite colores adicionales solo si son necesarios para distinguir partes o evitar que un elemento se funda con su fondo.
+- Paleta por función: texto ${s.primary}; formas e iconos principales ${s.accent}; formas e iconos secundarios ${s.elements2}; vectores ${s.vectors}. Usa paletteSlot:"secondary" en formas/iconos del grupo secundario, y paletteSlot:"primary" en los demás. Permite colores adicionales solo cuando el contenido lo necesite.
 - Estilo ${s.artDirection}: ${directions[s.artDirection] || directions.illustrative}
 - Composición ${s.layoutStyle}: ${layouts[s.layoutStyle]}
 - Densidad ${s.density}: ${densities[s.density]}
@@ -362,11 +376,21 @@ function validate(raw) {
         }
         return {
           type: obj.type,
+          hidden: obj.hidden === true,
+          paletteSlot: obj.paletteSlot === 'secondary' ? 'secondary' : 'primary',
+          individualStyle: obj.individualStyle === true,
+          fontFamily: [...$('fontFamily').options].some(option=>option.value===obj.fontFamily) ? obj.fontFamily : obj.individualStyle === true && obj.type === 'text' ? globalAppearance('fontFamily') : null,
+          strokeMultiplier: typeof obj.strokeMultiplier === 'number' ? finite(obj.strokeMultiplier,1,.2,3) : obj.individualStyle === true ? Number(globalAppearance('strokeAdjust'))/100 : null,
+          inheritedStyle: obj.inheritedStyle && typeof obj.inheritedStyle === 'object' ? {
+            size:finite(obj.inheritedStyle.size,88,1,8192),width:finite(obj.inheritedStyle.width,.3,0,3),height:finite(obj.inheritedStyle.height,.15,0,3),
+            color:/^#[0-9a-f]{6}$/i.test(obj.inheritedStyle.color)?obj.inheritedStyle.color:'#FFFFFF',
+            strokes:Array.isArray(obj.inheritedStyle.strokes)?obj.inheritedStyle.strokes.map(value=>finite(value,.035,.0001,.25)):[]
+          }:null,
           text: String(obj.text ?? "").slice(0, 400),
           name: allowedIcons.has(obj.name) ? obj.name : "star",
           x: finite(obj.x, 0.5, -1, 2),
           y: finite(obj.y, 0.5, -1, 2),
-          size: finite(obj.size, 88, 1, 1200),
+          size: finite(obj.size, 88, 1, obj.type === 'vector' ? 8192 : 1200),
           width: finite(obj.width, 0.3, 0, 3),
           height: finite(obj.height, 0.15, 0, 3),
           radius: finite(obj.radius, 20, 0, 500),
@@ -392,7 +416,7 @@ function validate(raw) {
             r: finite(shape?.r, 0.25, 0, 1.5),
             width: finite(shape?.width, 0.5, 0, 3),
             height: finite(shape?.height, 0.5, 0, 3),
-            strokeWidth: finite(shape?.strokeWidth, 0.035, 0.003, 0.25),
+            strokeWidth: finite(shape?.strokeWidth, 0.035, 0.0001, 0.25),
             fill: shape?.fill === true,
             closed: shape?.closed === true
           })) : []
@@ -471,15 +495,15 @@ function wrapTextLines(text, maxWidth) {
 }
 
 // Multiplicador visual: no modifica los valores strokeWidth guardados en el JSON.
-function strokeScale() {
-  return Number($("strokeAdjust").value) / 100;
+function strokeScale(object) {
+  return object?.strokeMultiplier ?? Number(globalAppearance('strokeAdjust')) / 100;
 }
 
-function iconPath(name, size) {
+function iconPath(name, size, multiplier = strokeScale()) {
   const compactLineIcon = name === "sparkles" || name === "star";
   const safeSize = compactLineIcon ? size * 0.76 : size;
   const s = safeSize / 2;
-  ctx.lineWidth = safeSize * (compactLineIcon ? 0.075 : 0.09) * strokeScale();
+  ctx.lineWidth = safeSize * (compactLineIcon ? 0.075 : 0.09) * multiplier;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   ctx.beginPath();
@@ -587,7 +611,9 @@ function iconPath(name, size) {
 }
 
 function drawObject(object, t, total, w, h) {
-  const time = t - object.delay;
+  if (object.hidden) return;
+  const editPose = typeof canvasEditor !== 'undefined' && canvasEditor.editing && !playing && !exporting;
+  const time = editPose ? object.duration : t - object.delay;
   if (time < 0) return;
 
   const p = smooth(time / object.duration);
@@ -658,6 +684,7 @@ function drawObject(object, t, total, w, h) {
 
   const ending = smooth((total - t) / Math.min(0.28, total * 0.18));
   alpha *= ending;
+  if (editPose) { alpha = 1;scale = 1;dx = 0;dy = 0;rot = 0; }
   if (alpha <= 0) return;
 
   ctx.save();
@@ -670,9 +697,10 @@ function drawObject(object, t, total, w, h) {
 
   const factor = w / 2560;
   const size = object.size * factor;
+  let pickBounds = null;
 
   if (object.type === "text") {
-    ctx.font = `${object.weight} ${size}px "${$("fontFamily").value}", sans-serif`;
+    ctx.font = `${object.weight} ${size}px "${object.fontFamily || globalAppearance('fontFamily')}", sans-serif`;
     ctx.textBaseline = "middle";
     ctx.textAlign = object.align;
 
@@ -691,7 +719,7 @@ function drawObject(object, t, total, w, h) {
     let lineHeight = 0;
     // Reducir lo mínimo necesario para mantener incluso párrafos largos visibles.
     for (let attempt = 0; attempt < 24; attempt++) {
-      ctx.font = `${object.weight} ${fittedSize}px "${$("fontFamily").value}", sans-serif`;
+      ctx.font = `${object.weight} ${fittedSize}px "${object.fontFamily || globalAppearance('fontFamily')}", sans-serif`;
       lines = wrapTextLines(visibleText, allowedWidth);
       lineHeight = fittedSize * object.lineHeight;
       if (lines.length * lineHeight <= maxBlockHeight || fittedSize <= 12) break;
@@ -716,6 +744,7 @@ function drawObject(object, t, total, w, h) {
     const shiftX = left < safeMargin ? safeMargin - left : right > w - safeMargin ? w - safeMargin - right : 0;
     const shiftY = top < safeMargin ? safeMargin - top : bottom > h - safeMargin ? h - safeMargin - bottom : 0;
     ctx.translate(shiftX / scale, shiftY / scale);
+    pickBounds = {x:localMinX,y:localMinY,width:Math.max(1,blockWidth),height:Math.max(1,blockHeight)};
     lines.forEach((line, index) => {
       const y = (index - (lines.length - 1) / 2) * lineHeight;
       ctx.fillText(line, anchorX, y, allowedWidth);
@@ -737,7 +766,7 @@ function drawObject(object, t, total, w, h) {
   }
 
   if (object.type === "line") {
-    ctx.lineWidth = Math.max(0.25, size * 0.035 * strokeScale());
+    ctx.lineWidth = Math.max(0.25, size * 0.035 * strokeScale(object));
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(-(object.width * w) / 2, 0);
@@ -746,7 +775,7 @@ function drawObject(object, t, total, w, h) {
   }
 
   if (object.type === "icon") {
-    if (!vectorIcon(object.name, size)) iconPath(object.name, size);
+    if (!vectorIcon(object.name, size)) iconPath(object.name, size, strokeScale(object));
   }
 
   if (object.type === "vector") {
@@ -758,7 +787,7 @@ function drawObject(object, t, total, w, h) {
       const localProgress = clamp(progress * totalShapes - index, 0, 1);
       if (localProgress <= 0) return;
       ctx.save();
-      ctx.lineWidth = Math.max(0.2, shape.strokeWidth * size * 0.58 * strokeScale());
+      ctx.lineWidth = Math.max(0.2, shape.strokeWidth * size * 0.58 * strokeScale(object));
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       const px = value => value * unit;
@@ -797,6 +826,7 @@ function drawObject(object, t, total, w, h) {
     });
   }
 
+  if (typeof canvasEditor !== 'undefined' && editPose) canvasEditor.record(object, pickBounds, ctx.getTransform());
   ctx.restore();
 }
 
@@ -872,6 +902,7 @@ function drawBackground(t, w, h) {
 }
 
 function render(t) {
+  if (typeof canvasEditor !== 'undefined') canvasEditor.begin();
   const w = canvas.width;
   const h = canvas.height;
   drawBackground(t, w, h);
@@ -882,6 +913,7 @@ function render(t) {
       drawObject(object, t - scene.start, scene.end - scene.start, w, h);
     }
   }
+  if (typeof canvasEditor !== 'undefined') canvasEditor.paint();
 }
 
 function seek(t) {
@@ -921,6 +953,8 @@ function sceneList() {
     const button = document.createElement("button");
     button.className = `sceneItem${index === selectedSceneIndex ? " selected" : ""}`;
     button.type = "button";
+    button.setAttribute('aria-controls', 'sceneEditor');
+    button.setAttribute('aria-expanded', String(index === selectedSceneIndex));
     const time = document.createElement("time");
     time.textContent = `${fmt(scene.start)}–${fmt(scene.end)}`;
     const text = document.createElement("span");
@@ -929,9 +963,11 @@ function sceneList() {
     button.addEventListener("click", () => {
       stop();
       selectedSceneIndex = index;
+      selectedObjectIndex = 0;
       seek(scene.start + 0.04);
       sceneList();
-      renderSceneEditor(index);
+      $('sceneEditor').scrollIntoView({behavior:'smooth',block:'start'});
+      $('sceneEditor').querySelector('h3')?.focus({preventScroll:true});
       persistUiState();
     });
     $("sceneList").append(button);
@@ -958,6 +994,7 @@ function renderSceneEditor(index) {
   heading.className = "previewHead";
   const title = document.createElement("h3");
   title.textContent = `Editar escena ${index + 1}`;
+  title.tabIndex = -1;
   const headingActions = document.createElement("div");
   headingActions.className = "scene-editor-actions";
   const timeTag = document.createElement("span");
@@ -973,6 +1010,8 @@ function renderSceneEditor(index) {
     selectedSceneIndex = -1;
     editor.hidden = true;
     for (const item of $("sceneList").querySelectorAll(".sceneItem")) item.classList.remove("selected");
+    for (const item of $('sceneList').querySelectorAll('.sceneItem')) item.setAttribute('aria-expanded','false');
+    $('sceneList').querySelectorAll('.sceneItem')[index]?.focus();
     persistUiState();
   });
   headingActions.append(timeTag, closeButton);
@@ -1003,9 +1042,33 @@ function renderSceneEditor(index) {
     persistUiState();
   });
 
+  selectedObjectIndex = selectedObjectIndex < 0 ? -1 : clamp(selectedObjectIndex,0,Math.max(0,scene.objects.length-1));
+  const layers = document.createElement('div');layers.className = 'scene-layers';
+  const layersTitle = document.createElement('h4');layersTitle.textContent = 'Objetos · de arriba hacia abajo';layers.append(layersTitle);
+  scene.objects.map((object,objectIndex)=>({object,objectIndex})).reverse().forEach(({object,objectIndex})=>{
+    const layer = document.createElement('button');layer.type = 'button';layer.className = 'scene-layer';
+    layer.dataset.objectIndex = objectIndex;
+    layer.setAttribute('aria-pressed',String(objectIndex === selectedObjectIndex));
+    layer.textContent = `${objectIndex+1} · ${object.type} · ${object.type === 'text' ? object.text : object.type === 'icon' ? object.name : 'Forma'}`;
+    layer.addEventListener('click',()=>{
+      selectedObjectIndex = objectIndex;
+      if (typeof canvasEditor !== 'undefined') canvasEditor.activateScene(index);
+      renderSceneEditor(index);render(position);persistUiState();
+      $('sceneEditor').querySelector(`[data-object-index="${objectIndex}"]`)?.focus({preventScroll:true});
+    });
+    const row = document.createElement('div');row.className = 'scene-layer-row';row.classList.toggle('is-hidden',object.hidden);
+    const visibility = document.createElement('button');visibility.type = 'button';visibility.className = 'layer-visibility';
+    visibility.setAttribute('aria-label',`${object.hidden ? 'Mostrar' : 'Ocultar'} objeto ${objectIndex+1}`);
+    visibility.title = `${object.hidden ? 'Mostrar' : 'Ocultar'} · Backspace en modo edición`;
+    visibility.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>${object.hidden ? '<path d="m3 3 18 18"/>' : ''}</svg>`;
+    visibility.addEventListener('click',()=>{toggleObjectVisibility(index,objectIndex);$('sceneEditor').querySelectorAll('.layer-visibility')[scene.objects.length-1-objectIndex]?.focus({preventScroll:true});});
+    row.append(layer,visibility);layers.append(row);
+  });editor.append(layers);
   scene.objects.forEach((object, objectIndex) => {
+    if (objectIndex !== selectedObjectIndex) return;
     const group = document.createElement("div");
     group.className = "scene-object-editor";
+    group.dataset.sceneIndex = index;group.dataset.objectIndex = objectIndex;
     const objectTitle = document.createElement("h4");
     objectTitle.textContent = `Objeto ${objectIndex + 1} · ${object.type}`;
     group.append(objectTitle);
@@ -1058,18 +1121,24 @@ function renderSceneEditor(index) {
     sizeFields.className = "two";
     sizeFields.append(
       makeSceneField("Tamaño", "number", object.size, value => {
-        const next = clamp(Number(value) || 1, 1, 1200);
+        const next = clamp(Number(value) || 1, 1, object.type === 'vector' ? 8192 : 1200);
         object.size = next;
-        const scale = object.type === "text"
+        const scale = object.individualStyle ? 1 : object.type === "text"
           ? Number($("textSizeAdjust").value) / 100
           : object.type === "icon" ? Number($("iconSizeAdjust").value) / 100 : 1;
         if (sizeBaseProject?.scenes[index]?.objects[objectIndex]) {
           sizeBaseProject.scenes[index].objects[objectIndex].size = next / scale;
         }
-      }, {min: 1, max: 1200, step: 1}),
+      }, {min: 1, max: object.type === 'vector' ? 8192 : 1200, step: 1}),
       makeSceneField("Color", "color", object.color, value => { object.color = value; }, {})
     );
     group.append(sizeFields);
+    if (object.type === 'vector') {
+      group.append(makeSceneField('Grosor del dibujo','number',object.shapes[0]?.strokeWidth ?? .035,value=>{
+        const width = clamp(Number(value) || .0001,.0001,.25);
+        for (const shape of object.shapes) shape.strokeWidth = width;
+      },{min:.0001,max:.25,step:.001}));
+    }
 
     const motionFields = document.createElement("div");
     motionFields.className = "two";
@@ -1093,10 +1162,16 @@ function renderSceneEditor(index) {
     );
     group.append(animationFields);
 
-    const syncBase = () => {
+    const syncBase = event => {
       const baseObject = sizeBaseProject?.scenes[index]?.objects[objectIndex];
+      if (event.target.type === 'color' && typeof appearanceEditor !== 'undefined') {
+        if (baseObject) baseObject.color = object.color;
+        if (event.type === 'input') appearanceEditor.preview();else appearanceEditor.flush();
+        return;
+      }
       if (baseObject) {
-        for (const key of ["text", "name", "x", "y", "width", "height", "radius", "color", "weight", "enter", "idle", "delay", "duration", "amplitude", "speed", "lineHeight", "maxWidth", "align"]) {
+        if (object.type === 'vector') baseObject.shapes = JSON.parse(JSON.stringify(object.shapes));
+        for (const key of ["text", "name", "x", "y", "width", "height", "radius", "color", "weight", "enter", "idle", "delay", "duration", "amplitude", "speed", "lineHeight", "maxWidth", "align", "individualStyle", "fontFamily", "strokeMultiplier", "inheritedStyle", "paletteSlot"]) {
           baseObject[key] = object[key];
         }
       }
@@ -1144,9 +1219,24 @@ function makeSceneField(labelText, type, value, onValue, options = {}) {
   if (options.min !== undefined) input.min = options.min;
   if (options.max !== undefined) input.max = options.max;
   if (options.step !== undefined) input.step = options.step;
-  input.addEventListener("input", () => onValue(input.value));
+  input.addEventListener("input", () => {
+    const group = input.closest('.scene-object-editor');
+    if (group && typeof appearanceEditor !== 'undefined') appearanceEditor.protect(Number(group.dataset.sceneIndex),Number(group.dataset.objectIndex));
+    onValue(input.value);
+  });
   wrapper.append(label, input);
   return wrapper;
+}
+
+function toggleObjectVisibility(sceneIndex,objectIndex) {
+  if (exporting) return;
+  const object = project.scenes[sceneIndex]?.objects[objectIndex];
+  if (!object) return;
+  stop();selectedSceneIndex = sceneIndex;selectedObjectIndex = objectIndex;
+  object.hidden = !object.hidden;
+  const base = sizeBaseProject?.scenes[sceneIndex]?.objects[objectIndex];
+  if (base) base.hidden = object.hidden;
+  syncProjectJson();sceneList();render(position);persistUiState();
 }
 
 function updateSceneSummary(index) {
@@ -1161,12 +1251,10 @@ function updateSceneSummary(index) {
 
 function applyGlobalPaletteToScenes() {
   if (!$("applyGlobalPalette").checked || !sizeBaseProject) return;
-  const primary = $("fg").value;
-  const accent = $("accent").value;
   const recolor = target => {
     for (const scene of target.scenes || []) {
       for (const object of scene.objects || []) {
-        object.color = object.type === "text" ? primary : accent;
+        if (!object.individualStyle) object.color = globalAppearance(objectColorControl(object));
       }
     }
   };
@@ -1184,12 +1272,17 @@ function updateSizeAdjustments() {
   if (!sizeBaseProject) return;
 
   project = JSON.parse(JSON.stringify(sizeBaseProject));
-  const textScale = Number($("textSizeAdjust").value) / 100;
-  const iconScale = Number($("iconSizeAdjust").value) / 100;
+  const textScale = Number(globalAppearance('textSizeAdjust')) / 100;
+  const iconScale = Number(globalAppearance('iconSizeAdjust')) / 100;
   for (const scene of project.scenes) {
     for (const object of scene.objects) {
+      if (object.individualStyle) continue;
       if (object.type === "text") object.size = clamp(object.size * textScale, 1, 1200);
-      if (object.type === "icon") object.size = clamp(object.size * iconScale, 1, 1200);
+      if (object.type !== "text") {
+        object.size = clamp(object.size * iconScale,1,object.type === 'vector' ? 8192 : 1200);
+        if (object.type === 'rect' || object.type === 'line') object.width = clamp(object.width * iconScale,0,3);
+        if (object.type === 'rect') object.height = clamp(object.height * iconScale,0,3);
+      }
     }
   }
   syncProjectJson();
@@ -1199,20 +1292,21 @@ function updateSizeAdjustments() {
 }
 
 function apply(preserveSizeControls = false) {
+  if (typeof editHistory !== 'undefined') editHistory.begin();
   try {
     const parsed = JSON.parse(extractJsonText($("jsonText").value));
     project = validate(parsed);
     if (!preserveSizeControls) $('orientation').value = project.resolution[1] > project.resolution[0] ? 'portrait' : 'landscape';
     sizeBaseProject = JSON.parse(JSON.stringify(project));
     if ($("applyGlobalPalette").checked) {
-      const primary = $("fg").value;
-      const accent = $("accent").value;
       for (const scene of sizeBaseProject.scenes) {
-        for (const object of scene.objects) object.color = object.type === "text" ? primary : accent;
+        for (const object of scene.objects) if (!object.individualStyle) object.color = globalAppearance(objectColorControl(object));
       }
       project = JSON.parse(JSON.stringify(sizeBaseProject));
     }
     if (!preserveSizeControls) {
+      selectedObjectIndex = -1;
+      if (appearanceGlobals) { appearanceGlobals.textSizeAdjust = "100";appearanceGlobals.iconSizeAdjust = "100"; }
       $("textSizeAdjust").value = "100";
       $("iconSizeAdjust").value = "100";
     }
@@ -1234,6 +1328,8 @@ function apply(preserveSizeControls = false) {
     persistUiState();
   } catch (error) {
     $("jsonInfo").textContent = `⚠ ${error.message}`;
+  } finally {
+    if (typeof editHistory !== 'undefined') editHistory.end();
   }
 }
 
@@ -1275,7 +1371,8 @@ for (const id of ["bgEffectColor", "bgEffectColor2", "bgOpacity"]) {
   });
 }
 $("fontFamily").addEventListener("change", async () => {
-  try { await document.fonts.load(`700 32px "${$("fontFamily").value}"`); } catch (_) { /* Mantener fallback del sistema. */ }
+  if (typeof appearanceEditor !== 'undefined') appearanceEditor.adjust('fontFamily');
+  try { await document.fonts.load(`700 32px "${$('fontFamily').value}"`); } catch (_) { /* Mantener fallback del sistema. */ }
   render(position); persistUiState();
 });
 $("fps").addEventListener("change", () => {
@@ -1303,13 +1400,15 @@ $("clearJson").addEventListener("click", () => {
 });
 $("copyPrompt").addEventListener("click", copyPrompt);
 $("applyJson").addEventListener("click", () => apply(false));
-$("textSizeAdjust").addEventListener("input", updateSizeAdjustments);
-$("iconSizeAdjust").addEventListener("input", updateSizeAdjustments);
+$("textSizeAdjust").addEventListener("input", () => appearanceEditor.adjust('textSizeAdjust'));
+$("iconSizeAdjust").addEventListener("input", () => appearanceEditor.adjust('iconSizeAdjust'));
 $("strokeAdjust").addEventListener("input", () => {
+  if (typeof appearanceEditor !== 'undefined') { appearanceEditor.adjust('strokeAdjust');return; }
   $("strokeAdjustValue").textContent = `${$("strokeAdjust").value}%`;
   render(position);
 });
 $("resetSizeAdjust").addEventListener("click", () => {
+  if (typeof appearanceEditor !== 'undefined') { appearanceEditor.resetSizes();return; }
   $("textSizeAdjust").value = "100";
   $("iconSizeAdjust").value = "100";
   $("strokeAdjust").value = "100";
@@ -1317,11 +1416,11 @@ $("resetSizeAdjust").addEventListener("click", () => {
   updateSizeAdjustments();
 });
 
-for (const id of ["bg", "fg", "accent"]) {
+for (const id of ["bg", "fg", "accent", "elementColor2", "vectorColor"]) {
   $(id).addEventListener("input", () => {
     updateColorChips();
     if (id === "bg") render(position);
-    else if ($("applyGlobalPalette").checked) applyGlobalPaletteToScenes();
+    else if (typeof appearanceEditor !== 'undefined') { appearanceEditor.adjust(id);return; }
     persistUiState();
   });
 }
@@ -1391,6 +1490,7 @@ function renderProgress(time, total) {
 
 $("exportVideo").addEventListener("click", async () => {
   if (exporting || !duration) return;
+  if (typeof canvasEditor !== 'undefined' && canvasEditor.busy) return;
   if (!("MediaRecorder" in window) || !canvas.captureStream) {
     $("exportInfo").textContent = "Tu navegador no admite grabación de Canvas.";
     return;
@@ -1531,7 +1631,7 @@ $("exportVideo").addEventListener("click", async () => {
 
 persistentControls.forEach(control => {
   if (control.id === 'jsonText') control.addEventListener('input', () => { jsonDraftDirty = true; });
-  control.addEventListener("input", persistUiState);
+  if (control.tagName !== 'SELECT') control.addEventListener("input", persistUiState);
   control.addEventListener("change", persistUiState);
 });
 
