@@ -65,7 +65,7 @@ const server=http.createServer(async(req,res)=>{
     // Texto con HTML se muestra literalmente, sin ejecutarlo.
     await page.locator('#readingMode').click();await page.locator('#script').fill('<img src=x onerror="window.injected=true">');assert.equal(await page.locator('#readerText img').count(),0);
     const home=await browser.newPage();await home.route('**/*',route=>route.request().url().startsWith(`http://127.0.0.1:${server.address().port}/`)?route.continue():route.abort());
-    await home.goto(`http://127.0.0.1:${server.address().port}/index.html`);await home.locator('.tool.teleprompter').click();assert.ok(home.url().endsWith('/teleprompter/teleprompter'));await home.close();
+    await home.goto(`http://127.0.0.1:${server.address().port}/index.html`);await home.locator('.tool.teleprompter').click();assert.ok(home.url().endsWith('/teleprompter/teleprompter.html'));await home.close();
     assert.deepEqual(errors,[]);console.log('PASS: lectura/pausa, posición, autosave/recarga, tamaño, espejo, guía, atajos, cuenta atrás, fin, SRT/TXT, fullscreen, móvil, almacenamiento bloqueado y texto seguro.');
   }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
 })().catch(error=>{console.error(error);process.exitCode=1;});

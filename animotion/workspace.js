@@ -6,29 +6,27 @@
   if (!grid) return;
 
   const notice = document.getElementById('animotionDockNotice');
-  const storageKey = 'animotion.workspace.v2';
-  // Preset aprobado: Proyecto/JSON | Dirección IA | Vista previa/Escenas | Apariencia/Exportación.
-  // Una fila mide 16px (8px de celda + 8px de separación); las alturas de cada
-  // columna suman 106 filas para mantener sus bases alineadas.
+  const storageKey = 'animotion.workspace.v5';
+  // Proyecto/JSON | Dirección IA y Vista previa con Escenas debajo | Apariencia.
+  // Las columnas suman 55 filas: 17+38 a la izquierda y 38+17 en el centro.
   const defaults = {
-    project:    {cols:16, rows:36},
-    json:       {cols:16, rows:70},
-    direction:  {cols:16, rows:106},
-    preview:    {cols:48, rows:40},
-    scenes:     {cols:48, rows:66},
-    appearance: {cols:16, rows:77},
-    export:     {cols:16, rows:29}
+    project:    {cols:16, rows:17},
+    json:       {cols:16, rows:38},
+    direction:  {cols:16, rows:38},
+    preview:    {cols:48, rows:38},
+    scenes:     {cols:64, rows:17},
+    appearance: {cols:16, rows:55}
   };
   // Los primeros cuatro ocupan toda la anchura; CSS Grid coloca los siguientes
   // debajo de su compañero de columna gracias a grid-auto-flow: row dense.
-  const defaultOrder = ['project','direction','preview','appearance','json','scenes','export'];
+  const defaultOrder = ['project','direction','preview','appearance','json','scenes'];
   const cards = new Map([...grid.querySelectorAll('.anim-dock-card')].map(card => [card.dataset.dock, card]));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const compact = () => window.innerWidth <= 1690;
+  const compact = () => window.innerWidth <= 1100;
   const activeExport = () => typeof exporting !== 'undefined' && exporting;
   const constrain = (value, min, max) => Math.min(max, Math.max(min, value));
-  const minWidths = {project:260,appearance:255,preview:450,export:220,direction:270,scenes:300,json:240};
-  const minRows = {project:24,appearance:24,preview:25,export:18,direction:24,scenes:23,json:24};
+  const minWidths = {project:180,appearance:180,preview:360,direction:180,scenes:300,json:180};
+  const minRows = {project:16,appearance:24,preview:25,direction:24,scenes:16,json:20};
   let drag = null;
   let resizing = null;
 
@@ -47,6 +45,8 @@
   }
 
   function setSize(card, cols, rows) {
+    if (!Number.isFinite(cols)) cols = defaults[card.dataset.dock].cols;
+    if (!Number.isFinite(rows)) rows = defaults[card.dataset.dock].rows;
     const c = constrain(Math.round(cols), minCols(card), 96);
     const r = constrain(Math.round(rows), minRows[card.dataset.dock], 170);
     card.dataset.cols = String(c);
@@ -59,6 +59,12 @@
     try {
       const data = JSON.parse(localStorage.getItem(storageKey) || 'null');
       if (!data || !Array.isArray(data.order) || typeof data.sizes !== 'object') return null;
+      // Conservar el orden personalizado al retirar el antiguo panel de exportación.
+      if (data.order.includes('export')) {
+        data.order = data.order.filter(id => id !== 'export');
+        if (data.sizes?.appearance) data.sizes.appearance.rows = Number(data.sizes.appearance.rows) + Number(data.sizes.export?.rows || 29);
+        delete data.sizes?.export;
+      }
       if (data.order.length !== defaultOrder.length || new Set(data.order).size !== defaultOrder.length) return null;
       if (!data.order.every(id => cards.has(id))) return null;
       return data;

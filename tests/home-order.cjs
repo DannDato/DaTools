@@ -38,7 +38,7 @@ async function drag(page,source,target){
     // Una herramienta nueva se añade al final del orden guardado, sin adelantar las demás.
     await page.evaluate(ids=>localStorage.setItem('datools.home.card-order.v1',JSON.stringify([...ids.filter(id=>id!=='teleprompter'),'missing','trazio'])),original);
     await page.reload();assert.equal((await order(page)).at(-1),'teleprompter');
-    await page.locator('.tool.teleprompter').click();assert.ok(page.url().endsWith('/teleprompter/teleprompter'));
+    await page.locator('.tool.teleprompter').click();assert.ok(page.url().endsWith('/teleprompter/teleprompter.html'));
     const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
     mobile.on('pageerror',error=>errors.push(error.message));await mobile.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());await mobile.goto(url);
     const mobileOriginal=await order(mobile),cdp=await mobile.context().newCDPSession(mobile);
