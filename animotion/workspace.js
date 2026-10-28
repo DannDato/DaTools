@@ -121,6 +121,11 @@
   function screenScrollWheel(event) {
     // Scroll general como Submotion; Alt + rueda o scrollbar para scroll interno.
     if (event.altKey || event.ctrlKey || event.metaKey || activeExport()) return;
+    const promptBody=event.target.closest('.dock-direction .anim-dock-body');
+    if(promptBody){
+      const remaining=promptBody.scrollHeight-promptBody.clientHeight;
+      if((event.deltaY>0&&promptBody.scrollTop<remaining-1)||(event.deltaY<0&&promptBody.scrollTop>1))return;
+    }
     const textarea = event.target.closest('textarea');
     if (textarea && textarea === document.activeElement && textarea.scrollHeight > textarea.clientHeight) return;
     const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);

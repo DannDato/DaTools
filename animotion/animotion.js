@@ -27,6 +27,20 @@ const persistentControls = [...document.querySelectorAll('input[id], select[id],
 let storedUiState = null;
 let selectedSceneIndex = -1;
 let selectedObjectIndex = 0;
+let multiSelection = {scene:-1,indices:[]};
+function selectionIndices() {
+  if (!project.scenes[selectedSceneIndex]?.objects[selectedObjectIndex]) return [];
+  if (multiSelection.scene !== selectedSceneIndex || !multiSelection.indices.includes(selectedObjectIndex)) return [selectedObjectIndex];
+  return multiSelection.indices.filter(index=>project.scenes[selectedSceneIndex].objects[index]);
+}
+function setObjectSelection(scene,indices,primary=indices.at(-1)??-1) {
+  selectedSceneIndex=scene;multiSelection={scene,indices:[...new Set(indices)].filter(index=>project.scenes[scene]?.objects[index])};
+  selectedObjectIndex=multiSelection.indices.includes(primary)?primary:multiSelection.indices.at(-1)??-1;
+}
+function toggleObjectSelection(scene,index) {
+  const indices=scene===selectedSceneIndex?selectionIndices():[];
+  setObjectSelection(scene,indices.includes(index)?indices.filter(value=>value!==index):[...indices,index]);
+}
 var appearanceGlobals = null;
 function globalAppearance(id) { return appearanceGlobals?.[id] ?? $(id).value; }
 function objectColorControl(object) { return object.type === 'text' ? 'fg' : object.type === 'vector' ? 'vectorColor' : object.paletteSlot === 'secondary' ? 'elementColor2' : 'accent'; }
@@ -50,7 +64,9 @@ function persistUiState(event) {
       controls,
       baseJsonText: sizeBaseProject ? JSON.stringify(sizeBaseProject) : null,
       draftDirty: jsonDraftDirty,
-      selectedSceneIndex, selectedObjectIndex
+      selectedSceneIndex, selectedObjectIndex, selectedObjects:selectionIndices(),
+      sceneDrafts:typeof sceneCode !== 'undefined' ? sceneCode.drafts() : [],
+      projectName:typeof projectFile !== 'undefined' ? projectFile.name : storedUiState?.projectName
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (_) {
@@ -59,6 +75,8 @@ function persistUiState(event) {
   if (typeof updateProjectTray === 'function') updateProjectTray();
   if (typeof appearanceEditor !== 'undefined') appearanceEditor.sync();
   if (typeof objectTools !== 'undefined') objectTools.sync();
+  if (typeof sceneCode !== 'undefined') sceneCode.sync();
+  if (typeof timelineEditor !== 'undefined') timelineEditor.sync();
   if (typeof editHistory !== 'undefined') editHistory.record();
 }
 
@@ -77,6 +95,7 @@ function restoreUiState() {
   }
   selectedSceneIndex = Number.isInteger(storedUiState.selectedSceneIndex) ? storedUiState.selectedSceneIndex : -1;
   selectedObjectIndex = Number.isInteger(storedUiState.selectedObjectIndex) ? storedUiState.selectedObjectIndex : 0;
+  multiSelection={scene:selectedSceneIndex,indices:Array.isArray(storedUiState.selectedObjects)?storedUiState.selectedObjects.filter(Number.isInteger):[selectedObjectIndex]};
   return true;
 }
 
@@ -214,7 +233,8 @@ function paletteSettings() {
     density: $("density").value,
     textUsage: $("textUsage").value,
     motionBoldness: Number($("motionBoldness")?.value ?? 75),
-    artDirection: $("artDirection")?.value ?? "illustrative"
+    artDirection: $("artDirection")?.value ?? "illustrative",
+    drawingStyle:$('drawingStyle').value,lineStyle:$('promptLineStyle').value,strokeWeight:$('promptStrokeWeight').value,lineCap:$('promptLineCap').value,lineJoin:$('promptLineJoin').value,fillStyle:$('promptFillStyle').value,detail:$('promptDetail').value,resources:$('promptResources').value,rhythm:$('promptRhythm').value,continuity:$('promptContinuity').value,notes:$('promptNotes').value.trim().slice(0,2000)
   };
 }
 
@@ -229,17 +249,37 @@ function buildPrompt(items) {
   };
   const densities = {minimal:"Solo elementos esenciales para explicar la idea.", balanced:"Protagonista y apoyos funcionales con espacio entre grupos.", rich:"Ilustraciones compuestas y detalles funcionales; agrupa para no saturar."};
   const directions = {
-    illustrative:"Ilustración explicativa: personajes, objetos reconocibles y mecanismos dibujados por partes. Prioriza vectores compuestos, siluetas claras y trazos finos.",
+    illustrative:"Ilustración explicativa: personajes, objetos reconocibles y mecanismos dibujados por partes. Prioriza vectores compuestos, siluetas claras y jerarquía legible.",
     kinetic:"Entradas enérgicas y escalonadas, impactos y tipografía breve al servicio del significado.",
     cinematic:"Revelaciones progresivas, escala contrastante y pausas; continuidad visual entre escenas.",
     graphic:"Siluetas, geometría y composición editorial; diagramas solo cuando expliquen relaciones.",
     experimental:"Metáforas visuales y contrastes audaces, manteniendo reconocibles los objetos."
   };
+  const drawings={
+    clean:'Vector limpio: formas precisas, proporciones claras y curvas sugeridas por polilíneas suaves.',
+    whiteboard:'Pizarra explicativa: trazos claros que construyan la idea por partes; flechas, anotaciones y esquemas reconocibles. No supongas una textura real de tiza.',
+    sketch:'Boceto a mano: pequeñas irregularidades deterministas en los puntos de paths, líneas de construcción discretas y siluetas legibles. Evita vibración aleatoria en cada fotograma.',
+    doodle:'Doodle: dibujos espontáneos, expresiones y detalles juguetones hechos con figuras simples; conserva precisión en lo que se explica.',
+    technical:'Plano técnico: alineaciones, ejes, cortes y piezas con proporciones coherentes. Usa líneas auxiliares discretas, sin inventar medidas ni planos exactos.',
+    geometric:'Geometría modular: círculos, polígonos y rectángulos combinados con una retícula consistente.',
+    cartoon:'Caricatura simple: personajes y objetos con proporciones expresivas, contornos reconocibles y pocos detalles funcionales.',
+    silhouette:'Siluetas: masas rellenas y contraste de formas; separa piezas por espacio negativo. Prefiere pop/slide a draw en masas sólidas.',
+    isometric:'Isométrico: sugiere volumen con polígonos en tres direcciones coherentes y objetos separados por cara. Es una proyección 2D, no geometría 3D real.',
+    cutout:'Recortes de papel: piezas planas superpuestas, bordes angulares o curvas simplificadas y colores por capa. Sin texturas fotográficas ni sombras raster.'
+  };
+  const lines={solid:'Trazo continuo con lineStyle:"solid".',dashed:'Trazo discontinuo con lineStyle:"dashed".',dotted:'Puntos separados con lineStyle:"dotted" y extremos round.',dashdot:'Trazo técnico raya-punto con lineStyle:"dashdot".',sketch:'Trazo bocetado: usa lineStyle:"solid" y construye pequeñas desviaciones en los puntos de la polilínea; duplicados discretos, no ruido animado.',double:'Doble contorno: usa lineStyle:"solid" en dos paths próximos con una separación local de 0.01–0.025; no inventes un campo double.'};
+  const fills={outline:'Contornos sin relleno: fill:false, stroke:true.',filled:'Masas sólidas: fill:true, stroke:false; deja detalles y separaciones suficientes para reconocer la figura.',mixed:'Combina contorno y relleno: fill:true, stroke:true donde ayude; alterna con piezas abiertas.',hatched:'Rayado: construye pocas líneas paralelas dentro de la silueta, como shapes independientes. Sin patrones de textura ni clips personalizados.'};
+  const details={simple:'3–6 formas esenciales por figura, sin detalle decorativo.',medium:'7–14 formas cuando se necesiten; concentra detalle en el protagonista.',detailed:'15–24 formas en figuras protagonistas si aportan comprensión; simplifica los apoyos y evita puntos redundantes.'};
+  const resources={vectors:'Prioriza dibujos vectoriales originales. No sustituyas un dibujo por un icono genérico.',mixed:'Combina dibujos originales con iconos del catálogo para apoyos convencionales.',symbols:'Prioriza iconos del catálogo, conectores y geometría; construye con vectores lo que el catálogo no represente.'};
+  const rhythms={calm:'Pausas amplias, entradas suaves y pocos movimientos simultáneos.',flowing:'Entradas encadenadas y movimiento moderado con tiempo suficiente para comprender cada paso.',snappy:'Entradas cortas y enérgicas, con escalonamiento legible; no conviertas todo en impactos simultáneos.',sequential:'Explica paso a paso: partes y detalles aparecen en orden con delay, duration y visibleDuration, sin keyframes.'};
+  const continuity={consistent:'Mantén proporciones, colores y convenciones de dibujo entre escenas.',evolving:'Repite la misma ilustración en escenas sucesivas y añade o transforma sus piezas con nuevas composiciones; no uses morph.',varied:'Varía encuadres y composiciones según el contenido, conservando la paleta y el estilo elegidos.'};
+  const strokeWidth={hairline:.012,light:.025,regular:.035,bold:.065}[s.strokeWeight]||.035;
+  const nativeLineStyle=['solid','dashed','dotted','dashdot'].includes(s.lineStyle)?s.lineStyle:'solid';
   const sample = {version:1,resolution,fps:s.fps,scenes:[{
     start:items[0].start,end:items[0].end,objects:[
       {type:"vector",x:0.5,y:0.44,size:360,color:s.vectors,enter:"draw",idle:"none",delay:0,duration:0.8,shapes:[
-        {kind:"rect",x:0,y:0,width:1.3,height:0.9,strokeWidth:0.035,fill:false},
-        {kind:"line",points:[{x:-0.4,y:0},{x:0.4,y:0}],strokeWidth:0.025}
+        {kind:"rect",x:0,y:0,width:1.3,height:0.9,strokeWidth,lineStyle:nativeLineStyle,lineCap:s.lineStyle==='dotted'?'round':s.lineCap,lineJoin:s.lineJoin,fill:s.fillStyle==='filled'||s.fillStyle==='mixed',stroke:s.fillStyle!=='filled'},
+        {kind:"line",points:[{x:-0.4,y:0},{x:0.4,y:0}],strokeWidth,lineStyle:nativeLineStyle,lineCap:s.lineStyle==='dotted'?'round':s.lineCap,lineJoin:s.lineJoin}
       ]},
       {type:"text",text:"Idea clave",x:0.5,y:0.72,size:92,color:s.primary,weight:700,enter:"type",idle:"none",delay:0.2,duration:0.6,lineHeight:s.lineHeight,maxWidth:s.textWidth/100,align:"center"}
     ]
@@ -259,20 +299,34 @@ DIRECCIÓN
 - Interlineado ${s.lineHeight.toFixed(2)}; ancho de texto sugerido ${(s.textWidth/100).toFixed(2)} del lienzo; zona segura ${s.safeArea}% por lado.
 - Audacia ${s.motionBoldness}/100: ${s.motionBoldness < 30 ? "movimiento sutil" : s.motionBoldness < 65 ? "movimiento moderado y variado" : "entradas expresivas, contraste de escala y escalonamiento legible"}.
 
+DIBUJO, TRAZO Y ACABADO
+- Dibujo: ${drawings[s.drawingStyle] || drawings.clean}
+- Trazo: ${lines[s.lineStyle] || lines.solid}
+- Grosor sugerido: strokeWidth ${strokeWidth}, relativo a size. Ajústalo por jerarquía, sin perder legibilidad.
+- Extremos lineCap:"${s.lineStyle==='dotted'?'round':s.lineCap}"; uniones lineJoin:"${s.lineJoin}".
+- Relleno: ${fills[s.fillStyle] || fills.outline}
+- Detalle: ${details[s.detail] || details.medium}
+- Recursos: ${resources[s.resources] || resources.vectors}
+- Ritmo: ${rhythms[s.rhythm] || rhythms.flowing}
+- Continuidad: ${continuity[s.continuity] || continuity.consistent}
+- Estas elecciones de dibujo, trazo y relleno prevalecen sobre la etiqueta general de dirección artística. El ritmo organiza el tiempo; la audacia ajusta la intensidad dentro de ese ritmo.
+- Para capas y trazos suaves puedes usar opacity (0–1) en el objeto. El motor admite vectores planos y patrones de línea; no pinceles raster, acuarela real, desenfoques de objeto ni texturas fotográficas.
+${s.notes?'INDICACIONES VISUALES PERSONALES (resuélvelas dentro de las funciones y del esquema del motor):\n'+s.notes:''}
+
 TIEMPO Y LÍMITES DEL MOTOR
 - Usa segundos absolutos del guion. start >= 0, end > start, hasta 10800 s. No reinicies el reloj en cada escena.
 - Cubre todo el guion. Puedes agrupar fragmentos relacionados en una escena. Evita solapamientos salvo composición deliberada; deja pausas solo si existen en el contenido.
 - delay es relativo al inicio de la escena. duration es la duración de entrada, no la duración de la escena: delay + duration debe dejar tiempo para ver el objeto antes de end.
-- Los objetos permanecen hasta el final de su escena y tienen un desvanecimiento final automático. No existen keyframes, morph, trayectorias personalizadas, grupos animados ni propiedades de salida. Sugiere acciones con partes independientes, entradas escalonadas, idle y escenas sucesivas; no inventes campos para simular funciones ausentes.
+- visibleDuration es opcional: indica cuántos segundos permanece el objeto desde delay. Si es null o se omite, permanece hasta el final de su escena. Tiene un desvanecimiento final automático. No existen keyframes, morph, trayectorias personalizadas, grupos animados ni salidas personalizadas. Sugiere acciones con partes independientes, entradas escalonadas, idle y escenas sucesivas.
 - El orden de objects es el orden de dibujo: fondos y formas detrás primero; detalles y texto encima al final. Los objetos no se evitan ni se distribuyen automáticamente.
 
 ESQUEMA
 Raíz: {version:1,resolution:[ancho,alto],fps:30|60,scenes:[{start,end,objects:[]}]}.
 Tipos permitidos: ${[...allowedTypes].join(", ")}.
-Campos comunes: type,x,y,size,color,enter,idle,delay,duration,amplitude,speed.
+Campos comunes: type,x,y,size,color,opacity,enter,idle,delay,duration,amplitude,speed.
 - x/y son el centro del objeto en fracciones del lienzo. Mantén la figura completa dentro de la zona segura, no solo su centro.
 - size y radius son píxeles de referencia a 2560 px de ancho; se multiplican por ancho/2560 al dibujar. En vertical, ten en cuenta ese factor al dimensionar texto e ilustraciones.
-- color: #RRGGBB. amplitude: 0–5; speed: 0.1–5; delay: 0–30 s; duration: 0.05–6 s.
+- color: #RRGGBB. amplitude: 0–5; speed: 0.1–5; delay: 0–10800 s; duration: 0.05–6 s para la entrada; visibleDuration: null o 0.05–10800 s de visibilidad. Mantén delay + visibleDuration dentro de la escena y duration dentro de ese intervalo.
 - text: añade text (máximo 400 caracteres), weight (100–900), lineHeight (0.7–2.2), maxWidth (fracción del ancho del lienzo), align (left|center|right).
 - rect: width y height como fracciones del ancho y alto del lienzo, radius en píxeles de referencia.
 - circle: size es el diámetro de referencia.
@@ -283,7 +337,7 @@ Campos comunes: type,x,y,size,color,enter,idle,delay,duration,amplitude,speed.
   · path/polygon: points con dos o más puntos {x,y}; closed:true cierra la figura.
   · circle: x,y,r.
   · rect: x,y,width,height (x/y es su centro).
-  · strokeWidth es relativo a size, NO píxeles: usa normalmente 0.025–0.06. fill:true rellena formas cerradas. Cada objeto vector comparte un solo color; separa colores y partes móviles en objetos distintos.
+  · strokeWidth es relativo a size, NO píxeles: usa el grosor sugerido según jerarquía. fill:true rellena formas cerradas; stroke:true dibuja además el contorno. lineStyle: solid|dashed|dotted|dashdot; lineCap: round|butt|square; lineJoin: round|bevel|miter. No añadas estos campos al root: van dentro de cada shape. Cada objeto vector comparte un solo color; separa colores y partes móviles en objetos distintos.
 Entradas enter: ${[...allowedEnter].join(", ")}.
 Movimientos idle: ${[...allowedIdle].join(", ")}.
 Usa draw para vectores y type para texto cuando ayude. El dibujo revela shapes en orden; divide los detalles que deban aparecer a tiempos distintos. No uses fade o el mismo efecto para todo.
@@ -328,7 +382,7 @@ async function copyPrompt() {
       finally { temp.remove(); previousFocus?.focus?.(); }
     }
     $("copyPrompt").textContent = "✓ Prompt copiado";
-    $("promptInfo").textContent = `Prompt copiado · ${next.length} fragmentos · paleta ${$("bg").value.toUpperCase()} / ${$("fg").value.toUpperCase()} / ${$("accent").value.toUpperCase()}. Pégalo en ChatGPT.`;
+    $("promptInfo").textContent = `Prompt copiado · ${next.length} fragmentos · ${$('drawingStyle').selectedOptions[0].textContent}. Pégalo en ChatGPT.`;
     setTimeout(() => $("copyPrompt").textContent = "✦ Copiar prompt para ChatGPT", 2200);
   } catch {
     $("promptInfo").textContent = "No se pudo copiar automáticamente. Abre la página desde HTTPS o localhost e inténtalo de nuevo.";
@@ -346,7 +400,7 @@ function extractJsonText(raw) {
   return fence ? fence[1].trim() : trimmed;
 }
 
-function validate(raw) {
+function validate(raw, options = {}) {
   if (!raw || typeof raw !== "object" || !Array.isArray(raw.scenes)) {
     throw Error("Se requiere un objeto con scenes: []");
   }
@@ -395,10 +449,12 @@ function validate(raw) {
           height: finite(obj.height, 0.15, 0, 3),
           radius: finite(obj.radius, 20, 0, 500),
           color: /^#[0-9a-f]{6}$/i.test(obj.color) ? obj.color : "#FFFFFF",
+          opacity:finite(obj.opacity,1,0,1),
           weight: finite(obj.weight, 700, 100, 900),
           enter: allowedEnter.has(obj.enter) ? obj.enter : (obj.type === "vector" ? "draw" : (obj.type === "text" ? "type" : "pop")),
           idle: allowedIdle.has(obj.idle) ? obj.idle : (obj.type === "text" ? "breathe" : "float"),
-          delay: finite(obj.delay, 0, 0, 30),
+          delay: finite(obj.delay, 0, 0, 10800),
+          visibleDuration: typeof obj.visibleDuration === 'number' ? finite(obj.visibleDuration,1,.05,10800) : null,
           duration: finite(obj.duration, 0.9, 0.05, 6),
           amplitude: finite(obj.amplitude, 1, 0, 5),
           speed: finite(obj.speed, 1, 0.1, 5),
@@ -417,6 +473,10 @@ function validate(raw) {
             width: finite(shape?.width, 0.5, 0, 3),
             height: finite(shape?.height, 0.5, 0, 3),
             strokeWidth: finite(shape?.strokeWidth, 0.035, 0.0001, 0.25),
+            lineStyle:['solid','dashed','dotted','dashdot'].includes(shape?.lineStyle)?shape.lineStyle:'solid',
+            lineCap:['round','butt','square'].includes(shape?.lineCap)?shape.lineCap:'round',
+            lineJoin:['round','bevel','miter'].includes(shape?.lineJoin)?shape.lineJoin:'round',
+            stroke:typeof shape?.stroke==='boolean'?shape.stroke:shape?.fill!==true,
             fill: shape?.fill === true,
             closed: shape?.closed === true
           })) : []
@@ -430,12 +490,12 @@ function validate(raw) {
     resolution: resolution[1] > resolution[0] ? [1440, 2560] : [2560, 1440],
     fps,
     background: /^#[0-9a-f]{6}$/i.test(raw.background) ? raw.background : "#000000",
-    scenes: scenes.sort((a, b) => a.start - b.start)
+    scenes: options.preserveOrder ? scenes : scenes.sort((a, b) => a.start - b.start)
   };
 }
 
 function endTime() {
-  return [...project.scenes, ...cues].reduce((end, item) => Math.max(end, item.end), 0);
+  return (project.scenes.length ? project.scenes : cues).reduce((end, item) => Math.max(end, item.end), 0);
 }
 
 function syncDuration() {
@@ -613,6 +673,8 @@ function iconPath(name, size, multiplier = strokeScale()) {
 function drawObject(object, t, total, w, h) {
   if (object.hidden) return;
   const editPose = typeof canvasEditor !== 'undefined' && canvasEditor.editing && !playing && !exporting;
+  const objectEnd = object.visibleDuration == null ? total : Math.min(total,object.delay+object.visibleDuration);
+  if (!editPose && t >= objectEnd) return;
   const time = editPose ? object.duration : t - object.delay;
   if (time < 0) return;
 
@@ -682,13 +744,13 @@ function drawObject(object, t, total, w, h) {
     if (object.idle === "drift") { dx += Math.sin(u * 1.1) * 18 * amplitude; dy += Math.cos(u * 1.4) * 10 * amplitude; }
   }
 
-  const ending = smooth((total - t) / Math.min(0.28, total * 0.18));
+  const ending = smooth((objectEnd - t) / Math.max(.001,Math.min(0.28,(objectEnd-object.delay)*.18)));
   alpha *= ending;
   if (editPose) { alpha = 1;scale = 1;dx = 0;dy = 0;rot = 0; }
   if (alpha <= 0) return;
 
   ctx.save();
-  ctx.globalAlpha = alpha;
+  ctx.globalAlpha = alpha * (object.opacity ?? 1);
   ctx.translate(object.x * w + dx * w / 2560, object.y * h + dy * h / 1440);
   ctx.rotate(rot);
   ctx.scale(scale, scale);
@@ -788,14 +850,17 @@ function drawObject(object, t, total, w, h) {
       if (localProgress <= 0) return;
       ctx.save();
       ctx.lineWidth = Math.max(0.2, shape.strokeWidth * size * 0.58 * strokeScale(object));
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
+      ctx.lineCap = shape.lineCap || 'round';
+      ctx.lineJoin = shape.lineJoin || 'round';ctx.miterLimit=2;
+      const width=ctx.lineWidth;
+      ctx.setLineDash(shape.lineStyle==='dashed'?[width*4,width*2.5]:shape.lineStyle==='dotted'?[width*.01,width*2.8]:shape.lineStyle==='dashdot'?[width*4,width*2,width*.01,width*2]:[]);
+      const finishShape=()=>{if(shape.fill&&localProgress>=1)ctx.fill();if(shape.stroke!==false||(shape.fill&&localProgress<1))ctx.stroke();};
       const px = value => value * unit;
       if (shape.kind === "circle") {
         ctx.beginPath();
         ctx.arc(px(shape.x), px(shape.y), Math.max(0, px(shape.r)), -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * localProgress);
-        if (shape.fill && localProgress >= 1) { ctx.closePath(); ctx.fill(); }
-        else ctx.stroke();
+        if (shape.fill && localProgress >= 1) ctx.closePath();
+        finishShape();
       } else if (shape.kind === "rect") {
         const rw = px(shape.width), rh = px(shape.height), rx = px(shape.x), ry = px(shape.y);
         const corners = [[rx-rw/2,ry-rh/2],[rx+rw/2,ry-rh/2],[rx+rw/2,ry+rh/2],[rx-rw/2,ry+rh/2],[rx-rw/2,ry-rh/2]];
@@ -806,7 +871,7 @@ function drawObject(object, t, total, w, h) {
           const j=Math.floor(scaled), f=scaled-j;
           ctx.lineTo(corners[j][0]+(corners[j+1][0]-corners[j][0])*f,corners[j][1]+(corners[j+1][1]-corners[j][1])*f);
         }
-        if (shape.fill && localProgress >= 1) ctx.fill(); else ctx.stroke();
+        finishShape();
       } else {
         const pts = shape.kind === "line" ? shape.points.slice(0, 2) : shape.points;
         if (!pts.length) { ctx.restore(); return; }
@@ -820,7 +885,7 @@ function drawObject(object, t, total, w, h) {
           ctx.lineTo(px(a.x + (b.x-a.x)*f), px(a.y + (b.y-a.y)*f));
         }
         if (shape.closed && localProgress >= 1) ctx.closePath();
-        if (shape.fill && localProgress >= 1) ctx.fill(); else ctx.stroke();
+        finishShape();
       }
       ctx.restore();
     });
@@ -914,6 +979,7 @@ function render(t) {
     }
   }
   if (typeof canvasEditor !== 'undefined') canvasEditor.paint();
+  if (typeof timelineEditor !== 'undefined') timelineEditor.updatePlayhead(t);
 }
 
 function seek(t) {
@@ -964,6 +1030,7 @@ function sceneList() {
       stop();
       selectedSceneIndex = index;
       selectedObjectIndex = 0;
+      setObjectSelection(index,[0]);
       seek(scene.start + 0.04);
       sceneList();
       $('sceneEditor').scrollIntoView({behavior:'smooth',block:'start'});
@@ -1048,10 +1115,11 @@ function renderSceneEditor(index) {
   scene.objects.map((object,objectIndex)=>({object,objectIndex})).reverse().forEach(({object,objectIndex})=>{
     const layer = document.createElement('button');layer.type = 'button';layer.className = 'scene-layer';
     layer.dataset.objectIndex = objectIndex;
-    layer.setAttribute('aria-pressed',String(objectIndex === selectedObjectIndex));
+    layer.setAttribute('aria-pressed',String(selectionIndices().includes(objectIndex)));
     layer.textContent = `${objectIndex+1} · ${object.type} · ${object.type === 'text' ? object.text : object.type === 'icon' ? object.name : 'Forma'}`;
-    layer.addEventListener('click',()=>{
-      selectedObjectIndex = objectIndex;
+    layer.title='Shift + clic para añadir o quitar de la selección';
+    layer.addEventListener('click',event=>{
+      if(event.shiftKey)toggleObjectSelection(index,objectIndex);else setObjectSelection(index,[objectIndex]);
       if (typeof canvasEditor !== 'undefined') canvasEditor.activateScene(index);
       renderSceneEditor(index);render(position);persistUiState();
       $('sceneEditor').querySelector(`[data-object-index="${objectIndex}"]`)?.focus({preventScroll:true});
@@ -1064,8 +1132,14 @@ function renderSceneEditor(index) {
     visibility.addEventListener('click',()=>{toggleObjectVisibility(index,objectIndex);$('sceneEditor').querySelectorAll('.layer-visibility')[scene.objects.length-1-objectIndex]?.focus({preventScroll:true});});
     row.append(layer,visibility);layers.append(row);
   });editor.append(layers);
+  if(selectionIndices().length>1){
+    const summary=document.createElement('div');summary.className='scene-multi-summary';
+    const description=document.createElement('p');description.textContent=`${selectionIndices().length} objetos seleccionados. Arrástralos juntos en la vista previa o ajusta su apariencia. Shift + clic añade o quita objetos.`;
+    summary.append(description,makeDeleteObjectsButton(index));
+    editor.append(summary);
+  }
   scene.objects.forEach((object, objectIndex) => {
-    if (objectIndex !== selectedObjectIndex) return;
+    if (selectionIndices().length > 1 || objectIndex !== selectedObjectIndex) return;
     const group = document.createElement("div");
     group.className = "scene-object-editor";
     group.dataset.sceneIndex = index;group.dataset.objectIndex = objectIndex;
@@ -1133,11 +1207,13 @@ function renderSceneEditor(index) {
       makeSceneField("Color", "color", object.color, value => { object.color = value; }, {})
     );
     group.append(sizeFields);
+    group.append(makeSceneField('Opacidad','number',object.opacity,value=>{object.opacity=clamp(Number(value)||0,0,1);},{min:0,max:1,step:.05}));
     if (object.type === 'vector') {
       group.append(makeSceneField('Grosor del dibujo','number',object.shapes[0]?.strokeWidth ?? .035,value=>{
         const width = clamp(Number(value) || .0001,.0001,.25);
         for (const shape of object.shapes) shape.strokeWidth = width;
       },{min:.0001,max:.25,step:.001}));
+      group.append(makeSceneField('Tipo de trazo','select',object.shapes[0]?.lineStyle||'solid',value=>{for(const shape of object.shapes)shape.lineStyle=value;},{options:[['solid','Continuo'],['dashed','Discontinuo'],['dotted','Punteado'],['dashdot','Raya y punto']]}));
     }
 
     const motionFields = document.createElement("div");
@@ -1155,7 +1231,8 @@ function renderSceneEditor(index) {
     const animationFields = document.createElement("div");
     animationFields.className = "two";
     animationFields.append(
-      makeSceneField("Retraso (s)", "number", object.delay, value => { object.delay = clamp(Number(value) || 0, 0, 30); }, {min: 0, max: 30, step: 0.05}),
+      makeSceneField("Retraso (s)", "number", object.delay, value => { object.delay = clamp(Number(value) || 0, 0, 10800); }, {min: 0, max: 10800, step: 0.05}),
+      makeSceneField("Tiempo visible (s)", "number", object.visibleDuration, value => { object.visibleDuration = value === '' ? null : clamp(Number(value) || .05,.05,10800); }, {min:.05,max:10800,step:.05,placeholder:'Hasta el final de la escena',title:'Vacío: permanece hasta el final de la escena. Es independiente de su animación de entrada.'}),
       makeSceneField("Duración entrada (s)", "number", object.duration, value => { object.duration = clamp(Number(value) || 0.05, 0.05, 6); }, {min: 0.05, max: 6, step: 0.05}),
       makeSceneField("Amplitud", "number", object.amplitude, value => { object.amplitude = clamp(Number(value) || 0, 0, 5); }, {min: 0, max: 5, step: 0.1}),
       makeSceneField("Velocidad", "number", object.speed, value => { object.speed = clamp(Number(value) || 0.1, 0.1, 5); }, {min: 0.1, max: 5, step: 0.1})
@@ -1171,7 +1248,7 @@ function renderSceneEditor(index) {
       }
       if (baseObject) {
         if (object.type === 'vector') baseObject.shapes = JSON.parse(JSON.stringify(object.shapes));
-        for (const key of ["text", "name", "x", "y", "width", "height", "radius", "color", "weight", "enter", "idle", "delay", "duration", "amplitude", "speed", "lineHeight", "maxWidth", "align", "individualStyle", "fontFamily", "strokeMultiplier", "inheritedStyle", "paletteSlot"]) {
+        for (const key of ["text", "name", "x", "y", "width", "height", "radius", "color", "opacity", "weight", "enter", "idle", "delay", "duration", "visibleDuration", "amplitude", "speed", "lineHeight", "maxWidth", "align", "individualStyle", "fontFamily", "strokeMultiplier", "inheritedStyle", "paletteSlot"]) {
           baseObject[key] = object[key];
         }
       }
@@ -1187,8 +1264,28 @@ function renderSceneEditor(index) {
     };
     group.addEventListener("input", syncBase);
     group.addEventListener("change", syncBase);
+    group.append(makeDeleteObjectsButton(index));
     editor.append(group);
   });
+  if (typeof sceneCode !== 'undefined') sceneCode.mount(index,editor);
+}
+
+function makeDeleteObjectsButton(sceneIndex) {
+  const button=document.createElement('button');button.type='button';button.id='deleteSelectedObjects';button.className='delete-objects';
+  const count=selectionIndices().length;button.textContent=count===1?'Eliminar objeto…':`Eliminar ${count} objetos…`;
+  button.title='Eliminar de la escena con confirmación';
+  button.addEventListener('click',()=>{
+    if(exporting||selectedSceneIndex!==sceneIndex||canvasEditor.busy)return;
+    appearanceEditor.flush();
+    const indices=selectionIndices().sort((a,b)=>b-a);if(!indices.length)return;
+    const target=indices.length===1?`el objeto ${indices[0]+1}`:`los ${indices.length} objetos seleccionados`;
+    if(!confirm(`¿Eliminar ${target} de la escena ${sceneIndex+1}? Se borrarán de la escena, no solo se ocultarán. Puedes recuperarlos con Deshacer.`))return;
+    stop();
+    for(const index of indices){project.scenes[sceneIndex].objects.splice(index,1);sizeBaseProject.scenes[sceneIndex].objects.splice(index,1);}
+    setObjectSelection(sceneIndex,[]);syncProjectJson();sceneList();render(position);persistUiState();
+    $('sceneEditor').querySelector('h3')?.focus({preventScroll:true});
+  });
+  return button;
 }
 
 function makeSceneField(labelText, type, value, onValue, options = {}) {
@@ -1215,7 +1312,9 @@ function makeSceneField(labelText, type, value, onValue, options = {}) {
   if (type === 'select' && ![...input.options].some(option => option.value === String(value))) {
     const option = document.createElement('option');option.value = String(value);option.textContent = String(value);input.append(option);
   }
-  input.value = value;
+  input.value = value ?? '';
+  if (options.placeholder) input.placeholder=options.placeholder;
+  if (options.title) input.title=options.title;
   if (options.min !== undefined) input.min = options.min;
   if (options.max !== undefined) input.max = options.max;
   if (options.step !== undefined) input.step = options.step;
@@ -1233,6 +1332,7 @@ function toggleObjectVisibility(sceneIndex,objectIndex) {
   const object = project.scenes[sceneIndex]?.objects[objectIndex];
   if (!object) return;
   stop();selectedSceneIndex = sceneIndex;selectedObjectIndex = objectIndex;
+  setObjectSelection(sceneIndex,[objectIndex]);
   object.hidden = !object.hidden;
   const base = sizeBaseProject?.scenes[sceneIndex]?.objects[objectIndex];
   if (base) base.hidden = object.hidden;
@@ -1292,13 +1392,15 @@ function updateSizeAdjustments() {
 }
 
 function apply(preserveSizeControls = false) {
+  if(!preserveSizeControls&&typeof canvasEditor!=='undefined'&&canvasEditor.busy){$('jsonInfo').textContent='Termina el arrastre antes de reemplazar las escenas.';return;}
   if (typeof editHistory !== 'undefined') editHistory.begin();
   try {
     const parsed = JSON.parse(extractJsonText($("jsonText").value));
-    project = validate(parsed);
+    project = validate(parsed,{preserveOrder:preserveSizeControls});
+    if (!preserveSizeControls && typeof sceneCode !== 'undefined') sceneCode.clear();
     if (!preserveSizeControls) $('orientation').value = project.resolution[1] > project.resolution[0] ? 'portrait' : 'landscape';
     sizeBaseProject = JSON.parse(JSON.stringify(project));
-    if ($("applyGlobalPalette").checked) {
+    if (!preserveSizeControls && $("applyGlobalPalette").checked) {
       for (const scene of sizeBaseProject.scenes) {
         for (const object of scene.objects) if (!object.individualStyle) object.color = globalAppearance(objectColorControl(object));
       }
@@ -1306,6 +1408,7 @@ function apply(preserveSizeControls = false) {
     }
     if (!preserveSizeControls) {
       selectedObjectIndex = -1;
+      setObjectSelection(selectedSceneIndex,[]);
       if (appearanceGlobals) { appearanceGlobals.textSizeAdjust = "100";appearanceGlobals.iconSizeAdjust = "100"; }
       $("textSizeAdjust").value = "100";
       $("iconSizeAdjust").value = "100";
@@ -1444,8 +1547,12 @@ $("srtFile").addEventListener("change", async event => {
 
 async function importJsonFile(file) {
   try { if (file) {
+    if (file.size > 25 * 1024 * 1024) throw Error('El archivo supera 25 MB.');
+    const text = await file.text();
+    let document=null;try{document=JSON.parse(extractJsonText(text));}catch(_){}
+    if(document?.format === 'datools-animotion-project' && typeof projectFile !== 'undefined') { projectFile.openDocument(document,file.name);return; }
     if (file.size > 5 * 1024 * 1024) throw Error('El JSON supera 5 MB.');
-    $("jsonText").value = await file.text();
+    $("jsonText").value = text;
     $('jsonInfo').textContent = '';
     jsonDraftDirty = true;
     persistUiState({target: {id: "jsonText"}});

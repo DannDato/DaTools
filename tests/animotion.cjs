@@ -140,7 +140,7 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     assert.ok(await page.locator('main').evaluate(node=>node.inert));
     await page.keyboard.press('Escape');await page.waitForFunction(()=>document.querySelector('#renderOverlay').hidden);
     assert.equal(await page.locator('main').evaluate(node=>node.inert),false);
-    const downloading=page.waitForEvent('download',{timeout:30000});await page.locator('#exportVideo').click();const download=await downloading;
+    const downloading=page.waitForEvent('download',{timeout:30000}).catch(async error=>{error.message+='\nEstado de exportación: '+await page.locator('#exportInfo').textContent();throw error;});await page.locator('#exportVideo').click();const download=await downloading;
     const videoPath=await download.path();assert.ok((await fs.stat(videoPath)).size>1000);
     // Decodificar el archivo generado confirma que la salida es realmente un video.
     const bytes=await fs.readFile(videoPath);

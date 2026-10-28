@@ -72,6 +72,21 @@
 <p class="hint panel-help">Estos parámetros solo afectan el prompt que copias. Si ya aplicaste escenas, tendrás que generar/importar el JSON de nuevo para verlos reflejados.</p>
 <div class="control-stack motion-boldness"><label for="motionBoldness">Audacia del movimiento <strong id="motionBoldnessValue">95%</strong></label><input id="motionBoldness" max="100" min="0" step="5" type="range" value="95"/><p class="hint">Define la intensidad de las animaciones al generar el prompt.</p></div>
 <div class="control-stack"><label for="artDirection">Dirección artística</label><select id="artDirection"><option selected="" value="illustrative">Illustrative · ilustrativa</option><option value="kinetic">Kinetic · enérgica</option><option value="cinematic">Cinematic · cinematográfica</option><option value="graphic">Graphic · gráfica</option><option value="experimental">Experimental · atrevida</option></select></div>
+<div class="control-stack"><label for="drawingStyle">Estilo de dibujo</label><select id="drawingStyle"><option value="clean">Vector limpio</option><option value="whiteboard">Pizarra explicativa</option><option value="sketch">Boceto a mano</option><option value="doodle">Doodle / garabato</option><option value="technical">Plano técnico</option><option value="geometric">Geométrico</option><option value="cartoon">Caricatura simple</option><option value="silhouette">Siluetas</option><option value="isometric">Isométrico</option><option value="cutout">Recortes de papel</option></select></div>
+<details class="prompt-options"><summary>Trazo y acabado</summary><div class="two">
+<div><label for="promptLineStyle">Tipo de trazo</label><select id="promptLineStyle"><option value="solid">Continuo</option><option value="dashed">Discontinuo</option><option value="dotted">Punteado</option><option value="dashdot">Raya y punto</option><option value="sketch">Bocetado</option><option value="double">Doble contorno</option></select></div>
+<div><label for="promptStrokeWeight">Grosor sugerido</label><select id="promptStrokeWeight"><option value="hairline">Muy fino</option><option value="light">Fino</option><option value="regular" selected>Medio</option><option value="bold">Grueso</option></select></div>
+<div><label for="promptLineCap">Extremos</label><select id="promptLineCap"><option value="round">Redondos</option><option value="butt">Rectos</option><option value="square">Cuadrados</option></select></div>
+<div><label for="promptLineJoin">Uniones</label><select id="promptLineJoin"><option value="round">Redondeadas</option><option value="bevel">Biseladas</option><option value="miter">Angulares</option></select></div>
+<div><label for="promptFillStyle">Rellenos</label><select id="promptFillStyle"><option value="outline">Solo contornos</option><option value="filled">Masas sólidas</option><option value="mixed">Contorno y relleno</option><option value="hatched">Rayado / trama</option></select></div>
+<div><label for="promptDetail">Detalle</label><select id="promptDetail"><option value="simple">Esencial</option><option value="medium" selected>Intermedio</option><option value="detailed">Detallado</option></select></div>
+</div></details>
+<details class="prompt-options"><summary>Recursos y narrativa visual</summary>
+<div class="control-stack"><label for="promptResources">Recursos visuales</label><select id="promptResources"><option value="vectors">Dibujos originales</option><option value="mixed">Dibujos e iconos</option><option value="symbols">Iconos y geometría</option></select></div>
+<div class="control-stack"><label for="promptRhythm">Ritmo de animación</label><select id="promptRhythm"><option value="flowing">Fluido</option><option value="calm">Pausado</option><option value="snappy">Enérgico</option><option value="sequential">Paso a paso</option></select></div>
+<div class="control-stack"><label for="promptContinuity">Entre escenas</label><select id="promptContinuity"><option value="consistent">Mismo lenguaje visual</option><option value="evolving">Ilustración que evoluciona</option><option value="varied">Variar composiciones</option></select></div>
+</details>
+<div class="control-stack"><label for="promptNotes">Indicaciones visuales propias</label><textarea id="promptNotes" rows="3" maxlength="2000" placeholder="Ej. diagramas de máquinas, personajes de palitos, sin iconos..." spellcheck="true"></textarea></div>
 <div class="two">
 <div><label for="layoutStyle">Composición</label><select id="layoutStyle"><option value="centered">Centrada y limpia</option><option selected="" value="balanced">Balanceada</option><option value="editorial">Editorial / asimétrica</option><option value="dynamic">Dinámica / energética</option></select></div>
 <div><label for="density">Densidad visual</label><select id="density"><option value="minimal">Minimal</option><option value="balanced">Balanceada</option><option selected="" value="rich">Más cargada</option></select></div>
@@ -121,8 +136,11 @@
 <script src="./pencil-tool.js" defer></script>
 <script src="./appearance-editor.js" defer></script>
 <script src="./object-tools.js" defer></script>
+<script src="./scene-code.js" defer></script>
 <script src="./edit-history.js" defer></script>
 <script src="./workspace.js" defer></script>
+<script src="./project-file.js" defer></script>
+<script src="./timeline.js" defer></script>
 <div id="renderOverlay" class="render-overlay" role="dialog" aria-modal="true" aria-labelledby="renderTitle" aria-describedby="renderDescription" aria-hidden="true" hidden>
  <div class="render-dialog">
   <div class="render-loader" aria-hidden="true"><span></span></div>

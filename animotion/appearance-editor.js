@@ -27,9 +27,11 @@ var appearanceEditor = (() => {
   }
   function sync(){
     const object=selected(),base=sizeBaseProject?.scenes[selectedSceneIndex]?.objects[selectedObjectIndex];
+    const group=selectionIndices().map(index=>project.scenes[selectedSceneIndex].objects[index]);
     for(const id of ids){$(id).value=globalAppearance(id);$(id).disabled=false;}
     const protectedCount=project.scenes.reduce((n,scene)=>n+scene.objects.filter(item=>item.individualStyle).length,0);
     $('appearanceScope').textContent=object?`Objeto ${selectedObjectIndex+1} · ${object.type}${object.individualStyle?' · individual':''}`:`Todas las escenas${protectedCount?' · '+protectedCount+' protegidos':''}`;
+    if(group.length>1)$('appearanceScope').textContent=`${group.length} objetos seleccionados`;
     $('deselectObject').hidden=!object;$('inheritAppearance').hidden=!object?.individualStyle;
     selectedColor.hidden=!object;
     $('selectedObjectColor').disabled=!object||exporting;
@@ -44,6 +46,15 @@ var appearanceEditor = (() => {
       $('textSizeAdjust').disabled=object.type!=='text';$('iconSizeAdjust').disabled=object.type==='text';
       $('strokeAdjust').value=String(Math.round(strokeScale(object)*100));
       $('strokeAdjust').disabled=!hasStroke(object);
+      if(group.length>1){
+        for(const id of colors)$(id).disabled=true;
+        $('fontFamily').disabled=!group.every(item=>item.type==='text');
+        $('textSizeAdjust').disabled=!group.every(item=>item.type==='text');
+        $('iconSizeAdjust').disabled=!group.every(item=>item.type!=='text');
+        $('strokeAdjust').disabled=!group.every(hasStroke);
+        $('selectedObjectColorValue').value=group.every(item=>item.color===object.color)?object.color.toUpperCase():'Varios colores';
+        $('inheritAppearance').hidden=!group.some(item=>item.individualStyle);
+      }
     }
     hide($('orientation').closest('.two'),Boolean(object));
     hide($('bg').parentElement,Boolean(object));
@@ -51,7 +62,7 @@ var appearanceEditor = (() => {
     hide(document.querySelector('.global-palette-control'),Boolean(object));
     hide($('backgroundPreset').closest('.control-stack'),Boolean(object));
     for(const id of colors)hide($(id).parentElement,Boolean(object)&&$(id).disabled);
-    hide($('fontFamily').closest('.control-stack'),Boolean(object)&&object.type!=='text');
+    hide($('fontFamily').closest('.control-stack'),Boolean(object)&&$('fontFamily').disabled);
     for(const id of ['textSizeAdjust','iconSizeAdjust','strokeAdjust'])hide($(id).closest('.control-stack'),Boolean(object)&&$(id).disabled);
     for(const [control,label] of [['textSizeAdjust','textSizeValue'],['iconSizeAdjust','iconSizeValue'],['strokeAdjust','strokeAdjustValue']])$(label).textContent=$(control).value+'%';
     updateColorChips();
@@ -59,6 +70,8 @@ var appearanceEditor = (() => {
   function syncFields(){
     const object=selected();if(!object)return;
     $('selectedObjectColor').value=object.color;$('selectedObjectColorValue').value=object.color.toUpperCase();
+    const group=selectionIndices().map(index=>project.scenes[selectedSceneIndex].objects[index]);
+    if(group.length>1&&!group.every(item=>item.color===object.color))$('selectedObjectColorValue').value='Varios colores';
     const values={'Color':object.color,'Tamaño':object.size,'Ancho (0–3× lienzo)':object.width,'Alto (0–3× lienzo)':object.height,'Longitud (0–3× lienzo)':object.width};
     for(const label of $('sceneEditor').querySelectorAll('.scene-object-editor label')){
       if(Object.hasOwn(values,label.textContent)){
@@ -86,8 +99,11 @@ var appearanceEditor = (() => {
       if((id==='fontFamily'||id==='fg'||id==='textSizeAdjust')&&object.type!=='text')return;
       if(id==='iconSizeAdjust'&&object.type==='text')return;
       if(colors.includes(id)&&$(id).disabled)return;
-      protect(selectedSceneIndex,selectedObjectIndex);
-      const base=sizeBaseProject.scenes[selectedSceneIndex].objects[selectedObjectIndex],origin=base.inheritedStyle||base;
+      if($(id).disabled)return;
+      for(const index of selectionIndices()){
+      const object=project.scenes[selectedSceneIndex].objects[index];
+      protect(selectedSceneIndex,index);
+      const base=sizeBaseProject.scenes[selectedSceneIndex].objects[index],origin=base.inheritedStyle||base;
       if(colors.includes(id)){
         object.color=base.color=value;
         if(id==='elementColor2')object.paletteSlot=base.paletteSlot='secondary';
@@ -101,6 +117,7 @@ var appearanceEditor = (() => {
         if(object.type==='rect'||object.type==='line')object.width=base.width=clamp(origin.width*ratio,.01,3);
         if(object.type==='rect')object.height=base.height=clamp(origin.height*ratio,.01,3);
       }
+      }
       preview();return;
     }
     appearanceGlobals[id]=value;
@@ -111,32 +128,40 @@ var appearanceEditor = (() => {
     if(id==='fontFamily'||id==='strokeAdjust'){preview();return;}
     if(sizeBaseProject)updateSizeAdjustments();else{render(position);persistUiState();}
   }
-  function deselect(){selectedObjectIndex=-1;if(selectedSceneIndex>=0)renderSceneEditor(selectedSceneIndex);render(position);persistUiState();}
+  function deselect(){setObjectSelection(selectedSceneIndex,[]);if(selectedSceneIndex>=0)renderSceneEditor(selectedSceneIndex);render(position);persistUiState();}
   function inherit(){
-    const object=selected(),base=sizeBaseProject?.scenes[selectedSceneIndex]?.objects[selectedObjectIndex];if(!object||!base)return;
+    if(!selected())return;
+    for(const index of selectionIndices()){
+    const object=project.scenes[selectedSceneIndex].objects[index],base=sizeBaseProject?.scenes[selectedSceneIndex]?.objects[index];if(!base)continue;
     const origin=base.inheritedStyle;
     if(origin){base.size=origin.size;base.width=origin.width;base.height=origin.height;for(let i=0;i<base.shapes.length;i++)if(origin.strokes[i]!=null)base.shapes[i].strokeWidth=origin.strokes[i];}
     base.color=globalAppearance(objectColorControl(object));base.individualStyle=false;base.fontFamily=null;base.strokeMultiplier=null;base.inheritedStyle=null;
+    }
     updateSizeAdjustments();
   }
   function resetSizes(){
     if(typeof editHistory!=='undefined')editHistory.begin();
     try{
       const object=selected();
-      for(const id of object?(object.type==='text'?['textSizeAdjust']:['iconSizeAdjust',...(hasStroke(object)?['strokeAdjust']:[])]):['textSizeAdjust','iconSizeAdjust','strokeAdjust']){$(id).value='100';adjust(id);}
+      for(const id of object?(object.type==='text'?['textSizeAdjust']:['iconSizeAdjust',...(hasStroke(object)?['strokeAdjust']:[])]):['textSizeAdjust','iconSizeAdjust','strokeAdjust']){if($(id).disabled)continue;$(id).value='100';adjust(id);}
       flush();
     }finally{if(typeof editHistory!=='undefined')editHistory.end();}
   }
   $('deselectObject').addEventListener('click',deselect);$('inheritAppearance').addEventListener('click',inherit);
   $('selectedObjectColor').addEventListener('input',()=>{
     const object=selected();if(!object||exporting)return;
+    if(selectionIndices().length>1){
+      const value=$('selectedObjectColor').value;
+      for(const index of selectionIndices()){protect(selectedSceneIndex,index);project.scenes[selectedSceneIndex].objects[index].color=value;sizeBaseProject.scenes[selectedSceneIndex].objects[index].color=value;}
+      preview();return;
+    }
     const control=objectColorControl(object);$(control).value=$('selectedObjectColor').value;adjust(control);
   });
   $('selectedObjectColor').addEventListener('change',flush);
   document.querySelector('.dock-appearance').addEventListener('change',flush);
   document.addEventListener('focusout',flush,true);
   document.addEventListener('pointerdown',()=>flush(),true);
-  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='z')flush();},true);
+  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&['z','y'].includes(event.key.toLowerCase()))flush();},true);
   window.addEventListener('pagehide',flush);
   const paletteLabel=document.querySelector('label[for="applyGlobalPalette"]');
   paletteLabel.lastChild.textContent=' Aplicar paleta al importar escenas';

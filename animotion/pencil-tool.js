@@ -82,6 +82,7 @@ var pencilTool = (() => {
       selectedSceneIndex=drawing.sceneIndex;selectedObjectIndex=scene.objects.length;scene.objects.push(object);
       sizeBaseProject.scenes[selectedSceneIndex].objects.push(JSON.parse(JSON.stringify(object)));
     }
+    setObjectSelection(selectedSceneIndex,[selectedObjectIndex]);
     syncProjectJson();sceneList();seek(project.scenes[selectedSceneIndex].start);persistUiState();
   }
   function paint(pen){
