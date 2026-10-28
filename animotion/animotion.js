@@ -77,6 +77,7 @@ function persistUiState(event) {
   if (typeof objectTools !== 'undefined') objectTools.sync();
   if (typeof sceneCode !== 'undefined') sceneCode.sync();
   if (typeof timelineEditor !== 'undefined') timelineEditor.sync();
+  if (typeof workflow !== 'undefined') workflow.sync();
   if (typeof editHistory !== 'undefined') editHistory.record();
 }
 
@@ -361,6 +362,7 @@ async function copyPrompt() {
   const {next} = prepareCues();
   if (!next.length) {
     $("srtInfo").textContent = "Pega un SRT o texto normal antes de copiar el prompt.";
+    if(typeof workflow!=='undefined'&&workflow.stage==='create')$('srtText').focus();
     return;
   }
 
@@ -523,6 +525,7 @@ function resize() {
 }
 
 function updateColorChips() {
+  syncBackgroundControls();
   const pairs = [["bg", "bgSwatch", "bgValue"], ["fg", "fgSwatch", "fgValue"], ["accent", "accentSwatch", "accentValue"]];
   for (const [inputId, chipId, labelId] of pairs) {
     const value = $(inputId).value.toUpperCase();
@@ -916,54 +919,22 @@ function drawBackground(t, w, h) {
   const opacity = clamp(Number($("bgOpacity").value) / 100, 0, 1);
   if (opacity <= 0) return;
 
-  if (preset === "gradient") {
-    const spots = [
-      {x: 0.18, y: 0.22, color: color1},
-      {x: 0.82, y: 0.3, color: color2},
-      {x: 0.52, y: 0.84, color: color1}
-    ];
-    spots.forEach(({x, y, color}) => {
-      const radius = Math.max(w, h) * 0.55;
-      const gradient = ctx.createRadialGradient(w * x, h * y, 0, w * x, h * y, radius);
-      gradient.addColorStop(0, hexToRgba(color, opacity * 0.8));
-      gradient.addColorStop(0.55, hexToRgba(color, opacity * 0.28));
-      gradient.addColorStop(1, hexToRgba(color, 0));
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, w, h);
-    });
-    return;
-  }
+  backgroundRenderer.draw(ctx,preset,w,h,{time:t,mode:$("backgroundMotion").value,speed:Number($("backgroundSpeed").value)/100,color1,color2,opacity});
+}
 
-  ctx.save();
-  ctx.lineWidth = Math.max(1, w / 2560);
-  if (preset === "grid") {
-    const step = Math.max(42, Math.round(w / 32));
-    ctx.strokeStyle = hexToRgba(color1, opacity);
-    for (let x = 0; x <= w; x += step) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-    }
-    ctx.strokeStyle = hexToRgba(color2, opacity);
-    for (let y = 0; y <= h; y += step) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-    }
-  } else if (preset === "diagonal") {
-    // Retícula rotada para producir cuadros grandes inclinados, no una cuadrícula recta.
-    const step = Math.max(150, Math.round(w / 14));
-    const offset = (t * Math.max(18, w * 0.012)) % step;
-    const diagonalSpan = Math.ceil((w + h) / step) * step + step * 2;
-    ctx.translate(w / 2, h / 2);
-    ctx.rotate(Math.PI / 4);
-    ctx.translate(-w / 2, -h / 2);
-    ctx.strokeStyle = hexToRgba(color1, opacity);
-    for (let x = -diagonalSpan; x <= w + diagonalSpan; x += step) {
-      ctx.beginPath(); ctx.moveTo(x + offset, -diagonalSpan); ctx.lineTo(x + offset, h + diagonalSpan); ctx.stroke();
-    }
-    ctx.strokeStyle = hexToRgba(color2, opacity);
-    for (let y = -diagonalSpan; y <= h + diagonalSpan; y += step) {
-      ctx.beginPath(); ctx.moveTo(-diagonalSpan, y + offset); ctx.lineTo(w + diagonalSpan, y + offset); ctx.stroke();
-    }
-  }
-  ctx.restore();
+function syncBackgroundControls(){
+  const preset=$("backgroundPreset").value,mode=$("backgroundMotion").value;
+  const labels=backgroundRenderer.motions[preset]||['Movimiento','Alternativo'];
+  for(let i=0;i<2;i++)if($("backgroundMotion").options[i].textContent!==labels[i])$("backgroundMotion").options[i].textContent=labels[i];
+  document.querySelector('.background-animation').hidden=preset==='solid';
+  document.querySelector('.background-speed').hidden=mode==='still';
+  $("backgroundSpeedValue").textContent=$("backgroundSpeed").value+'%';
+}
+
+async function loadCanvasFonts(){
+  const fonts=new Set([`700 32px "${globalAppearance('fontFamily')}"`]);
+  for(const scene of project.scenes)for(const object of scene.objects)if(object.type==='text')fonts.add(`${object.weight} 32px "${object.fontFamily||globalAppearance('fontFamily')}"`);
+  await Promise.all([...fonts].map(font=>document.fonts.load(font).catch(()=>[])));
 }
 
 function render(t) {
@@ -986,6 +957,17 @@ function seek(t) {
   position = Math.max(0, t);
   syncDuration();
   render(position);
+}
+
+// La selección sigue al scrub, sin reconstruir el inspector dentro de una misma escena.
+function selectSceneAtTime(t) {
+  const time=clamp(t,0,endTime());
+  let index=project.scenes.findLastIndex(scene=>time>=scene.start&&time<scene.end);
+  if(index<0&&time===endTime())index=project.scenes.findLastIndex(scene=>scene.end===time);
+  if(index===selectedSceneIndex)return;
+  if(typeof appearanceEditor!=='undefined')appearanceEditor.flush();
+  setObjectSelection(index,[]);
+  sceneList();persistUiState();
 }
 
 function stop() {
@@ -1031,9 +1013,11 @@ function sceneList() {
       selectedSceneIndex = index;
       selectedObjectIndex = 0;
       setObjectSelection(index,[0]);
-      seek(scene.start + 0.04);
+      if(typeof workflow!=='undefined')workflow.enterEditor({tab:'object'});
+      if(typeof workflow!=='undefined'&&workflow.stage==='edit')canvasEditor.activateScene(index);
+      else seek(scene.start);
       sceneList();
-      $('sceneEditor').scrollIntoView({behavior:'smooth',block:'start'});
+      if(typeof workflow==='undefined'||workflow.stage==='free')$('sceneEditor').scrollIntoView({behavior:'smooth',block:'start'});
       $('sceneEditor').querySelector('h3')?.focus({preventScroll:true});
       persistUiState();
     });
@@ -1120,6 +1104,7 @@ function renderSceneEditor(index) {
     layer.title='Shift + clic para añadir o quitar de la selección';
     layer.addEventListener('click',event=>{
       if(event.shiftKey)toggleObjectSelection(index,objectIndex);else setObjectSelection(index,[objectIndex]);
+      if(typeof workflow!=='undefined')workflow.enterEditor({tab:'object'});
       if (typeof canvasEditor !== 'undefined') canvasEditor.activateScene(index);
       renderSceneEditor(index);render(position);persistUiState();
       $('sceneEditor').querySelector(`[data-object-index="${objectIndex}"]`)?.focus({preventScroll:true});
@@ -1268,6 +1253,7 @@ function renderSceneEditor(index) {
     editor.append(group);
   });
   if (typeof sceneCode !== 'undefined') sceneCode.mount(index,editor);
+  if (typeof workflow !== 'undefined') workflow.sync();
 }
 
 function makeDeleteObjectsButton(sceneIndex) {
@@ -1429,6 +1415,8 @@ function apply(preserveSizeControls = false) {
     stop();
     seek(0);
     persistUiState();
+    if(!preserveSizeControls&&typeof workflow!=='undefined')workflow.enterEditor({tab:'appearance'});
+    loadCanvasFonts().then(()=>{if(!exporting)render(position);});
   } catch (error) {
     $("jsonInfo").textContent = `⚠ ${error.message}`;
   } finally {
@@ -1459,23 +1447,28 @@ const boldness = $("motionBoldness");
 if (boldness) boldness.addEventListener("input", () => { $("motionBoldnessValue").textContent = `${boldness.value}%`; });
 
 $("seek").addEventListener("input", event => {
-  if (exporting) return;
-  seek(Number(event.target.value) / 1000);
+  if (exporting || (typeof canvasEditor!=='undefined'&&canvasEditor.busy)) return;
+  const time=clamp(Number(event.target.value)/1000,0,endTime());
+  selectSceneAtTime(time);
+  if(!playing&&typeof canvasEditor!=='undefined')canvasEditor.previewAt(time);
+  else seek(time);
   if (playing) startStamp = performance.now() - position * 1000;
 });
+$("seek").addEventListener('change',()=>{if(!exporting)persistUiState();});
 
 $("orientation").addEventListener("change", resize);
-$("backgroundPreset").addEventListener("change", () => { render(position); persistUiState(); });
+$("backgroundPreset").addEventListener("change", () => { syncBackgroundControls();render(position); });
+$("backgroundMotion").addEventListener("change",()=>{syncBackgroundControls();render(position);});
+$("backgroundSpeed").addEventListener("input",()=>{syncBackgroundControls();appearanceEditor.preview({projectChanged:false});});
 for (const id of ["bgEffectColor", "bgEffectColor2", "bgOpacity"]) {
   $(id).addEventListener("input", () => {
     $("bgOpacityValue").textContent = `${$("bgOpacity").value}%`;
-    render(position);
-    persistUiState();
+    appearanceEditor.preview({projectChanged:false});
   });
 }
 $("fontFamily").addEventListener("change", async () => {
   if (typeof appearanceEditor !== 'undefined') appearanceEditor.adjust('fontFamily');
-  try { await document.fonts.load(`700 32px "${$('fontFamily').value}"`); } catch (_) { /* Mantener fallback del sistema. */ }
+  await loadCanvasFonts();
   render(position); persistUiState();
 });
 $("fps").addEventListener("change", () => {
@@ -1522,7 +1515,7 @@ $("resetSizeAdjust").addEventListener("click", () => {
 for (const id of ["bg", "fg", "accent", "elementColor2", "vectorColor"]) {
   $(id).addEventListener("input", () => {
     updateColorChips();
-    if (id === "bg") render(position);
+    if (id === "bg") {appearanceEditor.preview({projectChanged:false});return;}
     else if (typeof appearanceEditor !== 'undefined') { appearanceEditor.adjust(id);return; }
     persistUiState();
   });
@@ -1593,18 +1586,30 @@ function renderProgress(time, total) {
   $("renderRemaining").textContent = `Restante aprox. ${formatRenderTime(Math.max(0, total - time))}`;
   $("renderOverlay").querySelector('[role="progressbar"]').setAttribute("aria-valuenow", String(Math.floor(pct)));
   $("progressBar").style.width = `${pct.toFixed(1)}%`;
+  if($('workflowExportProgress')){
+    $('workflowExportFill').style.width=`${pct.toFixed(1)}%`;
+    $('workflowExportPercent').textContent=`${Math.floor(pct)}%`;
+    $('workflowExportElapsed').textContent=`Transcurrido ${formatRenderTime(time)}`;
+    $('workflowExportRemaining').textContent=`Restante aprox. ${formatRenderTime(Math.max(0,total-time))}`;
+    $('workflowExportProgress').querySelector('[role=progressbar]').setAttribute('aria-valuenow',String(Math.floor(pct)));
+  }
 }
 
 $("exportVideo").addEventListener("click", async () => {
   if (exporting || !duration) return;
   if (typeof canvasEditor !== 'undefined' && canvasEditor.busy) return;
+  const inline=typeof workflow!=='undefined'&&workflow.stage==='export';
+  const report=message=>{
+    $('exportInfo').textContent=message;
+    if(inline){$('workflowExportProgress').hidden=false;$('workflowExportStatus').textContent=message;}
+  };
   if (!("MediaRecorder" in window) || !canvas.captureStream) {
-    $("exportInfo").textContent = "Tu navegador no admite grabación de Canvas.";
+    report("Tu navegador no admite grabación de Canvas.");
     return;
   }
   const mime = preferredMime();
   if (!mime) {
-    $("exportInfo").textContent = "No hay formato de grabación compatible.";
+    report("No hay formato de grabación compatible.");
     return;
   }
 
@@ -1614,7 +1619,7 @@ $("exportVideo").addEventListener("click", async () => {
   button.disabled = true;
   $("play").disabled = true;
   const overlay = $("renderOverlay");
-  const cancelButton = $("renderCancel");
+  const cancelButton = inline?$('workflowExportCancel'):$("renderCancel");
   const fps = Number($("fps").value);
   let stream, recorder, raf = 0, exportStart = 0;
   let chunks = [];
@@ -1624,16 +1629,17 @@ $("exportVideo").addEventListener("click", async () => {
   let started = false;
 
   const previousFocus = document.activeElement;
-  const lockedElements = [document.querySelector('main'), document.querySelector('header')].filter(Boolean);
+  const lockedElements = (inline?[document.querySelector('header'),document.querySelector('.dock-appearance'),document.querySelector('.dock-preview .transport')]:[document.querySelector('main'),document.querySelector('header')]).filter(Boolean);
   const previousInert = lockedElements.map(element => element.inert);
   lockedElements.forEach(element => element.inert = true);
-  overlay.hidden = false;
-  overlay.setAttribute("aria-hidden", "false");
+  overlay.hidden = inline;
+  overlay.setAttribute("aria-hidden", String(inline));
+  if(inline){$('workflowExport').disabled=true;cancelButton.hidden=false;report('Preparando video…');}
   $("renderFormat").textContent = `${canvas.width} × ${canvas.height} · ${fps} FPS`;
   $("renderMime").textContent = mime.includes("mp4") ? "MP4" : "WebM";
   renderProgress(0, duration);
   cancelButton.disabled = false;
-  cancelButton.focus();
+  if(!inline)cancelButton.focus();
 
   const finish = () => {
     if (finalized) return;
@@ -1647,17 +1653,18 @@ $("exportVideo").addEventListener("click", async () => {
     overlay.hidden = true;
     overlay.setAttribute("aria-hidden", "true");
     lockedElements.forEach((element, index) => element.inert = previousInert[index]);
-    overlay.removeEventListener('keydown', overlayKeys);
+    (inline?document:overlay).removeEventListener('keydown', overlayKeys);
     document.removeEventListener('visibilitychange', checkVisibility);
     cancelButton.onclick = null;
-    previousFocus?.focus?.();
+    if(inline){$('workflowExport').disabled=false;cancelButton.hidden=true;}
+    previousFocus?.focus?.({preventScroll:true});
     seek(0);
   };
   const abort = message => {
     if (finished || cancelled) return;
     cancelled = true;
     cancelButton.disabled = true;
-    $("exportInfo").textContent = typeof message === 'string' ? message : "Exportación cancelada. No se guardó ningún archivo.";
+    report(typeof message === 'string' ? message : "Exportación cancelada. No se guardó ningún archivo.");
     chunks = [];
     cancelAnimationFrame(raf);
     try {
@@ -1670,13 +1677,14 @@ $("exportVideo").addEventListener("click", async () => {
   };
   const overlayKeys = event => {
     if (event.key === 'Escape') { event.preventDefault(); abort(); }
-    else if (event.key === 'Tab') { event.preventDefault(); cancelButton.focus(); }
+    else if (!inline && event.key === 'Tab') { event.preventDefault(); cancelButton.focus(); }
   };
   const checkVisibility = () => { if (document.hidden) abort('Exportación detenida al ocultar la pestaña. Mantén Animotion visible para grabar sin saltos.'); };
-  overlay.addEventListener('keydown', overlayKeys);
+  (inline?document:overlay).addEventListener('keydown', overlayKeys);
   document.addEventListener('visibilitychange', checkVisibility);
   cancelButton.onclick = abort;
   try {
+    await loadCanvasFonts();
     await document.fonts.ready;
     if (cancelled) { finish(); return; }
     render(0);
@@ -1689,7 +1697,7 @@ $("exportVideo").addEventListener("click", async () => {
       if (!cancelled && event.data.size) chunks.push(event.data);
     };
     recorder.onerror = () => {
-      $("exportInfo").textContent = "Error al grabar el video.";
+      report("Error al grabar el video.");
       chunks = [];
       finish();
     };
@@ -1705,19 +1713,20 @@ $("exportVideo").addEventListener("click", async () => {
         a.download = `animotion-${canvas.width}x${canvas.height}.${ext}`;
         a.click();
         setTimeout(() => URL.revokeObjectURL(url), 60000);
-        $("exportInfo").textContent = `Video generado: ${ext.toUpperCase()} · ${(blob.size / 1048576).toFixed(1)} MB`;
-      } else $("exportInfo").textContent = "No se generaron datos de video.";
+        report(`Video generado: ${ext.toUpperCase()} · ${(blob.size / 1048576).toFixed(1)} MB`);
+      } else report("No se generaron datos de video.");
       finish();
     };
     recorder.start(1000);
     started = true;
-    $("exportInfo").textContent = "Grabando en tiempo real: mantén esta pestaña visible.";
+    report("Grabando en tiempo real: mantén esta pestaña visible.");
     exportStart = performance.now();
     const step = now => {
       if (!exporting || cancelled || finalized) return;
       const elapsed = Math.min((now - exportStart) / 1000, duration);
       render(elapsed);
       renderProgress(elapsed, duration);
+      if(inline){$('seek').value=Math.round(elapsed*1000);$('clock').textContent=`${fmt(elapsed)} / ${fmt(duration)}`;}
       if (elapsed >= duration) {
         finished = true;
         cancelButton.disabled = true;
@@ -1728,7 +1737,7 @@ $("exportVideo").addEventListener("click", async () => {
     };
     raf = requestAnimationFrame(step);
   } catch (error) {
-    $("exportInfo").textContent = `No se pudo exportar: ${error.message}`;
+    report(`No se pudo exportar: ${error.message}`);
     if (started && recorder?.state === "recording") {
       cancelled = true;
       recorder.stop();

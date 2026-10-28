@@ -2,7 +2,7 @@
 
 // Historial de la sesión: un arrastre o una edición continua cuentan como un paso.
 var editHistory = (() => {
-  const ids=['orientation','fps','bg','fg','accent','elementColor2','vectorColor','applyGlobalPalette','fontFamily','backgroundPreset','bgEffectColor','bgEffectColor2','bgOpacity','textSizeAdjust','iconSizeAdjust','strokeAdjust'];
+  const ids=['orientation','fps','bg','fg','accent','elementColor2','vectorColor','applyGlobalPalette','fontFamily','backgroundPreset','backgroundMotion','backgroundSpeed','bgEffectColor','bgEffectColor2','bgOpacity','textSizeAdjust','iconSizeAdjust','strokeAdjust'];
   const steps=[],future=[];
   let restoring=false,depth=0,group=null,lastGroup=null,groupTarget=null;
   const undoButton=document.createElement('button');undoButton.type='button';undoButton.className='history-undo';undoButton.textContent='↶';

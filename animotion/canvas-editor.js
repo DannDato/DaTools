@@ -70,6 +70,7 @@ var canvasEditor = (() => {
     if(shift)toggleObjectSelection(sceneIndex,index);
     else if(sceneIndex!==selectedSceneIndex||!selectionIndices().includes(index))setObjectSelection(sceneIndex,[index]);
     else selectedObjectIndex=index;
+    if(typeof workflow!=='undefined')workflow.enterEditor({tab:'object'});
     sceneList();persistUiState();
   }
   function commit(){

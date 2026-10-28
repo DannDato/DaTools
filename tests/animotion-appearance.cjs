@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     const objects=()=>[{type:'text',text:'Texto',x:.5,y:.3,size:100,color:'#ffffff'},
       {type:'icon',name:'star',x:.3,y:.5,size:80,color:'#aa98ff'},
       {type:'vector',x:.7,y:.5,size:200,color:'#aa98ff',shapes:[{kind:'line',points:[{x:-1,y:0},{x:1,y:0}],strokeWidth:.03}]}];

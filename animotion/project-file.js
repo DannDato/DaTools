@@ -82,6 +82,8 @@ var projectFile = (() => {
         updateColorChips();updatePromptControlLabels();$('strokeAdjustValue').textContent=globalAppearance('strokeAdjust')+'%';$('bgOpacityValue').textContent=$('bgOpacity').value+'%';$('pencilWidthValue').value=$('pencilWidth').value;
         seek(saved.time);persistUiState();
       }finally{editHistory.reset();}
+      if(typeof workflow!=='undefined')workflow.enterEditor({tab:'appearance'});
+      loadCanvasFonts().then(()=>{if(!exporting)render(position);});
       message(`Proyecto abierto: ${name}.`);return true;
     }catch(problem){message(`No se pudo abrir el proyecto: ${problem.message}`,true);return false;}
   }

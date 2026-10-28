@@ -1,0 +1,152 @@
+.workflow-area[hidden],#animotionDock[hidden],#workflowTimeline[hidden],.workflow-empty[hidden],.workflow-custom[hidden],.workflow-presets[hidden]{display:none!important}
+@font-face{font-family:'Gotham';src:local('Gotham'),local('Gotham Book'),local('Gotham Bold');font-display:swap}
+.workflow-nav{display:flex;align-items:center;gap:12px;margin-bottom:16px;scroll-margin-top:82px}
+.workflow-nav>[role=tablist]{display:flex;flex:1;background:#151518;border:1px solid #29292d;border-radius:12px;padding:5px;gap:4px}
+.workflow-nav [role=tab]{flex:1;background:transparent;color:#96969f;border:0;min-height:42px;border-radius:8px;font-size:14px}
+.workflow-nav [aria-selected=true],.inspector-tabs [aria-selected=true]{background:#263e36;color:#b9ecdc}
+.workflow-nav button:disabled{opacity:.35;cursor:default}
+.workflow-options{position:relative}.workflow-options summary{list-style:none;cursor:pointer;font-size:23px;padding:8px 14px;background:#1b1b20;border-radius:9px}
+.workflow-options[open]>button{position:absolute;right:0;top:48px;z-index:20;width:150px;box-shadow:0 8px 30px #000}
+.workflow-area{display:grid;gap:16px;align-items:start;min-width:0}
+.workflow-create{grid-template-columns:minmax(0,1fr) minmax(300px,.85fr);max-width:1100px;margin:auto}
+.workflow-edit,.workflow-export{grid-template-columns:minmax(0,1fr) 340px}
+.workflow-stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+.workflow-area .anim-dock-card{padding:0;min-width:0;min-height:0;height:auto;overflow:visible;border:1px solid #29292e;border-radius:14px;background:linear-gradient(150deg,#19191f,#101013)}
+.workflow-area .anim-dock-body{height:auto;overflow:visible;padding:14px;display:flex;flex-direction:column;gap:10px}
+.workflow-area .dock-content{overflow:visible;min-height:0;display:flex;flex-direction:column;gap:10px}
+.workflow-area .dock-heading{position:static;min-height:30px;margin:0;padding:0;gap:8px}
+.workflow-area .dock-grip,.workflow-area .dock-resizer{display:none!important}
+.workflow-area .dock-project textarea{min-height:160px;max-height:350px}
+.workflow-presets{display:grid;grid-template-columns:1fr auto;gap:8px}.workflow-presets label{grid-column:1/-1;margin:0}.workflow-presets select{min-width:0}.workflow-presets button{font-size:12px;padding:9px 12px}
+.workflow-custom{display:flex;flex-direction:column;gap:12px;padding-block:8px}
+.workflow-prompt .workflow-custom{max-height:max(240px,calc(100dvh - 410px));overflow:auto;padding-right:4px;scrollbar-gutter:stable}
+.workflow-area .dock-json .dock-kicker{font-size:0}.workflow-area .dock-json .dock-kicker:after{content:'Proyecto de IA';font-size:11px}
+.workflow-area .dock-preview .stage{margin:auto;max-width:100%}
+.workflow-area .dock-preview .stage.portrait{width:min(100%,320px,calc(55vh * 9 / 16))}
+.workflow-area .dock-preview .dock-heading{flex-wrap:wrap}
+.workflow-area .dock-scenes .sceneList{display:flex;overflow-x:auto;overflow-y:hidden;gap:8px;max-height:none;padding:2px 2px 8px;align-items:stretch}
+.workflow-area .sceneItem{flex:0 0 190px;min-width:0;display:flex;flex-direction:column;align-items:start;justify-content:center;gap:5px;white-space:normal}
+.workflow-area .sceneItem span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}.workflow-area .sceneItem time{white-space:nowrap}
+.workflow-inspector{min-width:0;border:1px solid #29292e;border-radius:14px;background:#131317;position:sticky;top:82px;overflow:hidden}
+.inspector-tabs{display:flex;padding:6px;gap:3px;border-bottom:1px solid #29292e}.inspector-tabs button{flex:1;border:0;background:transparent;font-size:11px;padding:10px 5px;min-width:0}
+.workflow-inspector-content{max-height:calc(100dvh - 160px);overflow:auto;overscroll-behavior:auto;scrollbar-gutter:stable;scroll-padding-block:14px}
+.workflow-inspector .dock-appearance{border:0;border-radius:0;background:transparent}
+.workflow-edit[data-inspector=appearance] #sceneEditor,.workflow-edit:not([data-inspector=appearance]) .dock-appearance{display:none!important}
+.workflow-inspector #sceneEditor{display:flex;flex-direction:column;gap:12px;margin:0;padding:14px;min-height:0;border:0;border-radius:0;background:transparent;scroll-margin-top:140px}
+.workflow-inspector #sceneEditor[hidden]{display:none!important}
+.workflow-edit[data-inspector=object] .scene-code-panel{display:none!important}
+.workflow-edit[data-inspector=json] #sceneEditor>:not(.scene-code-panel){display:none!important}
+.workflow-inspector .scene-code-panel{grid-column:auto;width:100%;min-width:0;min-height:0;border:0;padding:0;margin:0}
+.workflow-edit[data-inspector=json] .workflow-inspector-content{max-height:none;overflow:visible;scrollbar-gutter:auto}
+.workflow-edit[data-inspector=json] .scene-code-panel{height:clamp(340px,calc(100dvh - 240px),800px)}
+.workflow-inspector #sceneJsonText{flex:1;min-height:140px;max-height:none;resize:none}
+.workflow-inspector .scene-code-panel>:not(textarea){flex-shrink:0}
+.workflow-inspector .scene-layers{max-height:none;overflow:visible}
+.workflow-inspector .scene-object-editor{min-width:0;grid-template-columns:repeat(2,minmax(0,1fr))}
+.workflow-empty{padding:22px;color:#90909a;font-size:13px}
+.workflow-timeline-toggle{display:flex;justify-content:flex-end}.workflow-timeline-toggle button{font-size:12px;background:#19191f;color:#b4b4bd}.workflow-timeline-toggle button[aria-expanded=true]{color:#a9e4d2}
+#workflowTimeline .timeline-panel{margin:0;min-width:0}
+#workflowTimeline .timeline-scroll{overscroll-behavior-y:auto;scrollbar-gutter:stable}
+.workflow-export-summary{padding:22px}.workflow-export-summary h2{font-size:16px;margin:0 0 12px}.workflow-export-summary p{color:#a0a0aa;font-size:13px;line-height:1.7;margin-bottom:18px}
+#workflowExportProgress[hidden],#workflowExportCancel[hidden]{display:none!important}
+#workflowExportProgress{margin-top:18px;min-width:0}
+.workflow-export-progress-head,.workflow-export-times{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin-bottom:9px}
+.workflow-export-progress-head strong{color:#a9e4d2}
+.workflow-export-times{flex-wrap:wrap;color:#9999a5;font-size:11px}
+#workflowExportProgress .render-track{margin-bottom:12px}
+#workflowExportStatus{overflow-wrap:anywhere}
+#workflowExportCancel{width:100%;color:#ffaaaa;background:#352326}
+.workflow-export .preview-export{display:none}
+.workflow-export .dock-appearance .dock-content>:not(.export-format-controls){display:none!important}
+.workflow-export .export-format-controls{display:grid!important}.workflow-export .export-format-controls>div{display:block!important}
+.workflow-export .dock-appearance .dock-kicker{font-size:0}.workflow-export .dock-appearance .dock-kicker:after{content:'Formato de salida';font-size:11px}
+.workflow-export .canvas-edit-toggle,.workflow-export .pencil-options,.workflow-export #pencilTool,.workflow-export #exportVideo{display:none!important}
+.workflow-export .transport{grid-template-columns:auto minmax(20px,1fr) auto}
+.animotion-shell:not([data-workflow-step=free])>.scene-editor,.animotion-shell:not([data-workflow-step=free])>.timeline-panel,.animotion-shell:not([data-workflow-step=free])>.anim-dock-footer,.animotion-shell:not([data-workflow-step=free])>.dock-notice{display:none!important}
+.project-file-actions .history-undo{flex:0 0 32px;width:32px;min-width:32px;padding:0}
+.workflow-area :is(input,select,textarea,button):focus-visible,.workflow-nav :is(button,summary):focus-visible,.inspector-tabs button:focus-visible{outline:2px solid #a9e4d2;outline-offset:2px}
+.workflow-area :is(.two,.triple)>*,.workflow-presets>*{min-width:0}
+.workflow-area :is(.scene-code-actions,.previewHead,.scene-editor-actions){flex-wrap:wrap}
+.workflow-area .pencil-options{flex-wrap:wrap}
+.workflow-area .stage:not(.is-editing):not(.is-drawing) #canvas{touch-action:pan-y}
+.workflow-inspector .scene-code-heading{flex-wrap:wrap;gap:8px}
+.workflow-area :is(.workflow-custom,.workflow-inspector-content,.sceneList){scrollbar-width:thin;scrollbar-color:#3b6258 transparent}
+@media(max-width:1050px){.workflow-edit,.workflow-export{grid-template-columns:minmax(0,1fr) 300px}.workflow-area .dock-resolution{display:none}.workflow-area .dock-heading button{font-size:11px}}
+@media(max-width:760px){.workflow-create,.workflow-edit,.workflow-export{grid-template-columns:minmax(0,1fr)}.workflow-inspector{position:static}.workflow-inspector-content{max-height:none}.workflow-prompt .workflow-custom{max-height:none}.workflow-nav{gap:7px}.workflow-nav [role=tab]{font-size:12px;min-height:38px}.workflow-options summary{padding:6px 10px}.workflow-area .anim-dock-body{padding:11px}.workflow-inspector #sceneJsonText{min-height:280px}.topbar .brand span{display:none}.project-file-actions{gap:4px}.project-file-actions .history-undo{width:28px;min-width:28px;flex-basis:28px}.workflow-area .dock-preview .dock-heading{gap:5px}.workflow-area .dock-preview .dock-heading-copy{flex:1 0 100%}}
+
+/* En tabletas y ventanas bajas, la página lleva el desplazamiento vertical.
+   Solo conservan scroll propio el código, las pistas y la tira de escenas. */
+@media(max-width:980px),(max-height:650px){
+  .workflow-inspector{position:static}
+  .workflow-inspector-content{max-height:none;overflow:visible;scrollbar-gutter:auto}
+  .workflow-prompt .workflow-custom{max-height:none;overflow:visible;scrollbar-gutter:auto}
+}
+@media(min-width:761px) and (max-width:980px){
+  .workflow-edit,.workflow-export{grid-template-columns:minmax(0,1fr)}
+  .workflow-inspector .dock-appearance .dock-content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:12px 20px}
+  .workflow-inspector .dock-appearance .dock-content>:is(.appearance-scope,.object-tools){grid-column:1/-1}
+  .workflow-export .workflow-output{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+}
+@media(max-width:760px){
+  .workflow-nav{scroll-margin-top:69px}
+  .workflow-edit[data-inspector=json] .scene-code-panel{height:clamp(420px,70dvh,650px)}
+  .workflow-inspector #sceneJsonText{min-height:140px}
+  .workflow-area .dock-preview .transport{grid-template-columns:auto minmax(0,1fr) 36px}
+  .workflow-area .dock-preview .transport #play{grid-column:1;grid-row:1;justify-self:start}
+  .workflow-area .dock-preview .transport #clock{grid-column:2/4;grid-row:1}
+  .workflow-area .dock-preview .transport #seek{grid-column:1/3;grid-row:2}
+  .workflow-area .dock-preview .transport #exportVideo{grid-column:3;grid-row:2}
+  .workflow-export .dock-preview .transport #seek{grid-column:1/-1}
+  .workflow-area .pencil-options input[type=range]{flex:1;max-width:150px}
+}
+@media(max-width:360px){
+  .topbar{gap:6px;padding-inline:10px}.topbar .page-title{font-size:15px}
+  .workflow-presets{grid-template-columns:minmax(0,1fr)}.workflow-presets button{justify-self:start}
+  .inspector-tabs button{font-size:10px;padding-inline:4px}
+  .workflow-area .dock-preview .dock-heading button{padding-inline:7px}
+}
+
+/* Las etapas ocupan el lugar del título en la navegación principal. */
+.topbar{grid-template-columns:minmax(0,1fr) minmax(280px,420px) minmax(0,1fr)}
+.topbar .workflow-nav{width:100%;min-width:0;margin:0;gap:7px}
+.topbar .workflow-nav>[role=tablist]{min-width:0;padding:4px;border-radius:10px}
+.topbar .workflow-nav [role=tab]{min-width:0;min-height:34px;padding:7px 12px;font-size:12px}
+.topbar .workflow-options summary{font-size:20px;padding:4px 10px}
+.topbar .workflow-options[open]>button{top:42px}
+.animotion-shell{scroll-margin-top:82px}
+@media(min-width:761px) and (max-width:1000px){
+  .topbar{grid-template-columns:auto minmax(250px,1fr) auto;gap:12px;padding-inline:15px}
+  .topbar .brand span{display:none}
+}
+@media(max-width:760px){
+  .topbar{height:auto;min-height:108px;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:40px 44px;gap:4px 12px;padding:7px 12px 9px}
+  .topbar .brand{grid-column:1;grid-row:1}
+  .topbar .project-file-actions{grid-column:2;grid-row:1}
+  .topbar .workflow-nav{grid-column:1/-1;grid-row:2}
+  .topbar .workflow-nav [role=tab]{min-height:32px}
+  .animotion-shell{scroll-margin-top:122px}
+}
+
+/* Reserva el alto de la barra, herramientas y transporte antes de dimensionar el lienzo. */
+.workflow-area .dock-preview:not(:fullscreen) .stage{
+  width:min(100%,calc(var(--preview-fit-height,calc(100dvh - 250px)) * 16 / 9));
+}
+.workflow-area .dock-preview:not(:fullscreen) .stage.portrait{
+  width:min(100%,calc(var(--preview-fit-height,calc(100dvh - 250px)) * 9 / 16));
+}
+@media(min-width:981px){
+  .workflow-edit,.workflow-export{
+    grid-template-columns:minmax(0,min(calc(var(--preview-fit-height,calc(100dvh - 250px)) * 16 / 9 + 30px),calc(100% - 356px))) minmax(340px,1fr);
+  }
+}
+
+/* El proceso de creación se lee de izquierda a derecha, con todo a la vista. */
+.workflow-create{grid-template-columns:minmax(0,.95fr) minmax(0,1.1fr) minmax(0,1fr);max-width:none;gap:16px;align-items:start}
+.workflow-create .workflow-custom{max-height:none;overflow:visible;scrollbar-gutter:auto}
+.workflow-create .dock-project .dock-kicker,.workflow-create .dock-direction .dock-kicker{font-size:0}
+.workflow-create .dock-project .dock-kicker:after{content:'1 · Pegar guion';font-size:11px}
+.workflow-create .dock-direction .dock-kicker:after{content:'2 · Ajustes y copiar prompt';font-size:11px}
+.workflow-create .dock-json .dock-kicker:after{content:'3 · Pegar JSON';font-size:11px}
+.workflow-create #srtText{min-height:240px}
+@media(min-width:681px) and (max-width:980px){.workflow-create{grid-template-columns:repeat(2,minmax(0,1fr))}.workflow-create .workflow-json{grid-column:1/-1}}
+@media(max-width:680px){.workflow-create{grid-template-columns:minmax(0,1fr)}.workflow-create #srtText{min-height:200px}}

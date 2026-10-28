@@ -33,6 +33,7 @@ var timelineEditor = (() => {
     updatePlayhead(position);
   }
   function select(sceneIndex,objectIndex){
+    if(typeof workflow!=='undefined')workflow.enterEditor({tab:'object'});
     setObjectSelection(sceneIndex,objectIndex==null?[]:[objectIndex]);sceneList();
   }
   function makeRow(sceneIndex,objectIndex){

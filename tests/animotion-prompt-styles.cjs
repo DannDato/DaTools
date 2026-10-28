@@ -20,7 +20,7 @@ const server=http.createServer(async(req,res)=>{
     const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
-    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion');
+    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion?step=free');
     const prompt=()=>page.evaluate(()=>buildPrompt([{start:0,end:2,text:'Una idea para ilustrar.'}]));
     const variants=[];
     for(const value of ['clean','whiteboard','sketch','doodle','technical','geometric','cartoon','silhouette','isometric','cutout']){await page.locator('#drawingStyle').selectOption(value);variants.push(await prompt());}

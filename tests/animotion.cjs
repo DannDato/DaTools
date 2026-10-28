@@ -30,7 +30,7 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     const layout=await page.evaluate(()=>Object.fromEntries([...document.querySelectorAll('.anim-dock-card')].map(node=>{
       const r=node.getBoundingClientRect();return [node.dataset.dock,{x:r.x,y:r.y,right:r.right,bottom:r.bottom}];
     })));
@@ -258,7 +258,7 @@ const fixture={fps:30,resolution:[1440,2560],scenes:[{start:0,end:.6,objects:[
     assert.equal(await page.locator('#srtText').inputValue(),'');assert.equal(await page.evaluate(()=>project.scenes.length),1);
     await noStorage.addInitScript(()=>{Storage.prototype.setItem=()=>{throw Error('blocked');};});
     await noStorage.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await noStorage.goto(origin+'/animotion/animotion');
+    await noStorage.goto(origin+'/animotion/animotion?step=free');
     await noStorage.locator('#jsonCode summary').click();await noStorage.locator('#jsonText').fill(JSON.stringify(fixture));await noStorage.locator('#applyJson').click();
     assert.ok(await noStorage.locator('#play').isEnabled());await noStorage.close();
     assert.deepEqual(errors,[]);

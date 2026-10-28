@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     await page.locator('#jsonCode summary').click();await page.locator('#jsonText').fill(JSON.stringify({fps:30,resolution:[2560,1440],scenes:[{start:0,end:2,objects:[{type:'text',text:'Eliminar primero'},{type:'circle',size:100},{type:'rect',width:.2,height:.2}]},{start:2,end:4,objects:[{type:'text',text:'Conservar otra escena'}]}]}));await page.locator('#applyJson').click();
     await page.locator('.sceneItem').first().click();
     assert.equal(await page.locator('#deleteSelectedObjects').textContent(),'Eliminar objeto…');

@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     const fixture={fps:30,resolution:[2560,1440],scenes:[{start:0,end:2,objects:[{type:'text',text:'Primera',size:100}]},{start:2,end:4,objects:[{type:'text',text:'Segunda',size:80}]}]};
     await page.locator('#jsonCode summary').click();await page.locator('#jsonText').fill(JSON.stringify(fixture));await page.locator('#applyJson').click();
     await page.locator('#textSizeAdjust').fill('150');await page.locator('.sceneItem').nth(1).click();

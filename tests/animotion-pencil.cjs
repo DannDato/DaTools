@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     const point=async(x,y)=>page.locator('#canvas').evaluate((node,{x,y})=>{
       const r=node.getBoundingClientRect(),s=Math.min(r.width/node.width,r.height/node.height);
       return {x:r.left+(r.width-node.width*s)/2+x*node.width*s,y:r.top+(r.height-node.height*s)/2+y*node.height*s};

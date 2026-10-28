@@ -20,7 +20,7 @@ const server=http.createServer(async(req,res)=>{
     const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
-    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion');
+    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion?step=free');
     const fixture={fps:30,resolution:[2560,1440],scenes:[{start:0,end:4,objects:[
       {type:'rect',x:.25,y:.5,width:.1,height:.1,color:'#ff0000',enter:'none',idle:'none',duration:.5},
       {type:'circle',x:.75,y:.5,size:200,color:'#0000ff',enter:'none',idle:'none',delay:.5,visibleDuration:2,duration:.5}

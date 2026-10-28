@@ -20,7 +20,7 @@ const server=http.createServer(async(req,res)=>{
     const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
-    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion');
+    await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await page.goto(origin+'/animotion/animotion?step=free');
     await page.locator('#jsonCode summary').click();await page.locator('#jsonText').fill(JSON.stringify({fps:30,resolution:[2560,1440],scenes:[
       {start:5,end:7,objects:[{type:'text',text:'Conservar escala original',size:800}]},
       {start:0,end:4,objects:[{type:'icon',name:'database',size:80},{type:'vector',size:200,shapes:[{kind:'path',points:[{x:-1,y:0},{x:0,y:-1},{x:1,y:0}],strokeWidth:.03}]}]}
@@ -57,7 +57,7 @@ const server=http.createServer(async(req,res)=>{
     const restored=await page.evaluate(()=>({scenes:JSON.stringify(project.scenes),base:JSON.stringify(sizeBaseProject.scenes),settings:Object.fromEntries(persistentControls.filter(c=>!['jsonText','srtText'].includes(c.id)).map(c=>[c.id,c.type==='checkbox'?c.checked:globalAppearance(c.id)])),script:document.querySelector('#srtText').value,draft:document.querySelector('#jsonText').value,sceneDraft:document.querySelector('#sceneJsonText').value,selection:selectionIndices(),scene:selectedSceneIndex,position}));
     assert.deepEqual(restored,before);assert.equal(await page.evaluate(()=>editHistory.length),0);assert.equal(await page.evaluate(()=>editHistory.redoLength),0);
     const cleanContext=await browser.newContext(),fresh=await cleanContext.newPage();fresh.on('pageerror',error=>errors.push(error.message));
-    await cleanContext.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await fresh.goto(origin+'/animotion/animotion');
+    await cleanContext.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());await fresh.goto(origin+'/animotion/animotion?step=free');
     await fresh.locator('#projectFileInput').setInputFiles(input);await fresh.waitForFunction(()=>document.querySelector('#projectFileInput').value==='');
     assert.match(await fresh.locator('#projectFileStatus').textContent(),/Proyecto abierto/);
     assert.equal(await fresh.evaluate(()=>JSON.stringify(project.scenes)),before.scenes);

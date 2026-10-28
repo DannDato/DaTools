@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     assert.ok(await page.getByRole('button',{name:'Rehacer cambio',exact:true}).isDisabled());
     await page.locator('#jsonCode summary').click();await page.locator('#jsonText').fill(JSON.stringify({fps:30,resolution:[2560,1440],scenes:[{start:0,end:2,objects:[{type:'rect',x:.2,y:.4,width:.15,height:.1,color:'#ff0000'},{type:'circle',x:.5,y:.4,size:180,color:'#00ff00'}]}]}));await page.locator('#applyJson').click();
     await page.locator('.sceneItem').first().click();await page.locator('.scene-layer[data-object-index="0"]').click();await page.locator('#canvas').focus();

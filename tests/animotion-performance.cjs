@@ -21,7 +21,7 @@ const server=http.createServer(async(req,res)=>{
     page.on('pageerror',error=>errors.push(error.message));
     const origin=`http://127.0.0.1:${server.address().port}`;
     await page.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
-    await page.goto(origin+'/animotion/animotion');
+    await page.goto(origin+'/animotion/animotion?step=free');
     const scenes=Array.from({length:200},(_,index)=>({start:index*2,end:index*2+2,objects:[
       {type:'text',text:'Un proyecto grande para probar el color',x:.5,y:.2,size:100},
       {type:'vector',x:.3,y:.5,size:200,shapes:[{kind:'line',points:[{x:-1,y:0},{x:1,y:0}]}]},
@@ -62,6 +62,36 @@ const server=http.createServer(async(req,res)=>{
     await page.locator('.scene-layer[data-object-index="3"]').click();assert.ok(await page.locator('#strokeAdjust').isHidden());assert.ok(await page.locator('#accent').isVisible());assert.ok(await page.locator('#elementColor2').isVisible());
     await page.locator('#deselectObject').click();
     for(const id of ['orientation','fps','bg','fg','accent','elementColor2','vectorColor','fontFamily','backgroundPreset','bgOpacity','applyGlobalPalette','textSizeAdjust','iconSizeAdjust','strokeAdjust'])assert.ok(await page.locator('#'+id).isVisible(),id+' debe volver al deseleccionar');
+    await page.locator('#backgroundPreset').selectOption('aurora');
+    const allColors=await page.evaluate(async()=>{
+      const results=[];
+      for(const id of ['bg','bgEffectColor','bgEffectColor2','fg','accent','elementColor2','vectorColor']){
+        const counts={render:0,storage:0,json:0,editor:0},original={render,syncProjectJson,renderSceneEditor,storage:Storage.prototype.setItem};
+        render=(...args)=>{counts.render++;return original.render(...args);};
+        syncProjectJson=(...args)=>{counts.json++;return original.syncProjectJson(...args);};
+        renderSceneEditor=(...args)=>{counts.editor++;return original.renderSceneEditor(...args);};
+        Storage.prototype.setItem=function(...args){counts.storage++;return original.storage.apply(this,args);};
+        const input=document.getElementById(id),start=performance.now();
+        for(let i=0;i<80;i++){input.value='#'+(0x330000+i).toString(16);input.dispatchEvent(new Event('input',{bubbles:true}));}
+        const during={...counts},inputMs=performance.now()-start;
+        await new Promise(resolve=>requestAnimationFrame(resolve));
+        input.dispatchEvent(new Event('change',{bubbles:true}));results.push({id,during,committed:{...counts},inputMs});
+        render=original.render;syncProjectJson=original.syncProjectJson;renderSceneEditor=original.renderSceneEditor;Storage.prototype.setItem=original.storage;
+      }
+      return results;
+    });
+    for(const result of allColors){
+      assert.equal(result.during.storage,0,result.id+' sin guardados durante arrastre');
+      assert.equal(result.during.json,0,result.id+' sin serializar durante arrastre');
+      assert.equal(result.committed.render,1,result.id+' un render');
+      assert.equal(result.committed.storage,1,result.id+' un guardado');assert.equal(result.committed.editor,0);
+      if(['bg','bgEffectColor','bgEffectColor2'].includes(result.id))assert.equal(result.committed.json,0);
+    }
+    // Un ajuste del fondo no sobrescribe un borrador JSON sin aplicar.
+    await page.locator('#jsonText').fill('{ borrador pendiente');
+    await page.locator('#bgEffectColor').fill('#987654');await page.locator('#bgEffectColor').dispatchEvent('change');
+    assert.equal(await page.locator('#jsonText').inputValue(),'{ borrador pendiente');
+    console.log('PASS: los siete colores globales/fondo agrupan 80 entradas en un render y un guardado; los fondos conservan borradores JSON.');
     assert.deepEqual(errors,[]);
     console.log(`PASS: 800 objetos; 80 cambios de color → 1 render de previsualización, 1 serialización/guardado, 0 validaciones y 0 reconstrucciones del formulario; ${measured.inputMs.toFixed(1)} ms de entrada, ${measured.commitMs.toFixed(1)} ms de confirmación. Sincronización y controles contextuales verificados.`);
   }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}

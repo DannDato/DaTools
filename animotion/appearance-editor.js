@@ -12,7 +12,7 @@ var appearanceEditor = (() => {
   scope.title='Los objetos editados individualmente quedan protegidos. Fondo, formato y FPS siempre afectan al proyecto completo.';
   document.querySelector('.dock-appearance .dock-content').prepend(scope);
   const selected=()=>project.scenes[selectedSceneIndex]?.objects[selectedObjectIndex];
-  let pending=false,frame=0,saveTimer=0;
+  let pending=false,modelPending=false,frame=0,saveTimer=0;
   const hasStroke=object=>['vector','line'].includes(object.type)||(object.type==='icon'&&!iconData[object.name]);
   const hide=(node,hidden)=>{if(node)node.hidden=hidden;};
   function protect(sceneIndex,objectIndex){
@@ -84,11 +84,15 @@ var appearanceEditor = (() => {
   }
   function flush(){
     if(!pending)return;
-    pending=false;clearTimeout(saveTimer);cancelAnimationFrame(frame);frame=0;
-    syncProjectJson();updateSceneSummary(selectedSceneIndex);render(position);persistUiState();
+    const needsRender=Boolean(frame),needsJson=modelPending;
+    pending=false;modelPending=false;clearTimeout(saveTimer);cancelAnimationFrame(frame);frame=0;
+    if(needsJson){syncProjectJson();updateSceneSummary(selectedSceneIndex);}
+    if(needsRender)render(position);
+    persistUiState();
   }
-  function preview(){
-    pending=true;syncFields();
+  function preview({projectChanged=true}={}){
+    pending=true;modelPending ||= projectChanged;
+    if(projectChanged)syncFields();
     if(!frame)frame=requestAnimationFrame(()=>{frame=0;render(position);});
     clearTimeout(saveTimer);saveTimer=setTimeout(flush,160);
   }
