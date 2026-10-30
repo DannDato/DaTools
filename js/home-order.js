@@ -9,8 +9,8 @@
     card.dataset.toolId=[...card.classList].find(name=>!['tool','group'].includes(name)&&!name.startsWith('is-'));
     card.draggable=false;card.setAttribute('aria-describedby','reorderHint');
     card.querySelectorAll('img').forEach(img=>img.draggable=false);
-    const grip=document.createElement('span');grip.className='tool-grip';grip.textContent='⠿';grip.setAttribute('aria-hidden','true');grip.title='Arrastra para ordenar';
-    card.querySelector('.tool-top').prepend(grip);
+    // const grip=document.createElement('span');grip.className='tool-grip';grip.textContent='⠿';grip.setAttribute('aria-hidden','true');grip.title='Arrastra para ordenar';
+    // card.querySelector('.tool-top').prepend(grip);
   }
   try{
     const stored=JSON.parse(localStorage.getItem(key)||'[]');
