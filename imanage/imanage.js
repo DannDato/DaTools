@@ -426,7 +426,7 @@
   });
   elements.clear.addEventListener('click', clearAll);
   const tabs = [...document.querySelectorAll('.im-tabs [role="tab"]')];
-  const tabValues = {'tab-compression':'compresion','tab-converter':'convertidor','tab-audio':'audio'};
+  const tabValues = {'tab-compression':'compresion','tab-converter':'convertidor','tab-audio':'audio','tab-video':'video'};
   function selectTab(tab, focus = false, writeUrl = true) {
     for (const item of tabs) {
       const active = item === tab;

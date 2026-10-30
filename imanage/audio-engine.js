@@ -7,7 +7,7 @@
     if(window.FFmpegWASM)return Promise.resolve();
     if(!scriptPromise)scriptPromise=new Promise((resolve,reject)=>{
       const script=document.createElement('script');script.src=new URL('ffmpeg.js',base).href;
-      const fail=()=>{clearTimeout(timeout);script.remove();scriptPromise=null;reject(Error('No se pudo cargar el motor de audio.'));};
+      const fail=()=>{clearTimeout(timeout);script.remove();scriptPromise=null;reject(Error('No se pudo cargar el motor multimedia.'));};
       const timeout=setTimeout(fail,30000);
       script.onload=()=>{clearTimeout(timeout);resolve();};script.onerror=fail;document.head.append(script);
     });
@@ -16,7 +16,7 @@
   class AudioEngine {
     constructor(){this.ffmpeg=null;this.loading=null;this.abortLoad=null;this.generation=0;this.logs=[];this.onProgress=()=>{};}
     async load(){
-      if(location.protocol==='file:')throw Error('Abre DaTools mediante localhost o HTTPS para usar el motor de audio.');
+      if(location.protocol==='file:')throw Error('Abre DaTools mediante localhost o HTTPS para usar el motor multimedia.');
       if(this.ffmpeg?.loaded)return this.ffmpeg;
       if(this.loading)return this.loading;
       const generation=this.generation;
@@ -30,7 +30,7 @@
         ffmpeg.on('progress',({progress})=>this.onProgress(Math.min(.99,Math.max(0,progress))));
         const timeout=setTimeout(()=>{if(this.ffmpeg===ffmpeg)ffmpeg.terminate();},60000);
         try{await ffmpeg.load({coreURL:new URL('ffmpeg-core.js',base).href,wasmURL:new URL('ffmpeg-core.wasm',base).href});}
-        catch(error){ffmpeg.terminate();if(this.ffmpeg===ffmpeg)this.ffmpeg=null;throw Error('No se pudo iniciar el motor de audio. Reintenta la conversión.');}
+        catch(error){ffmpeg.terminate();if(this.ffmpeg===ffmpeg)this.ffmpeg=null;throw Error('No se pudo iniciar el motor multimedia. Reintenta la conversión.');}
         finally{clearTimeout(timeout);}
         if(generation!==this.generation)throw Error('Conversión cancelada.');return ffmpeg;
       })(),aborted]);

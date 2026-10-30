@@ -29,7 +29,7 @@ async function ready(page){
     const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[],requests=[];
     page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>requests.push(request.url()));
     await page.goto(`http://127.0.0.1:${server.address().port}/imanage/imanage.html`);
-    assert.deepEqual(await page.locator('[role=tab]').allTextContents(),['Compresor de imágenes','Convertidor de imágenes','Convertidor de audio']);
+    assert.deepEqual(await page.locator('[role=tab]').allTextContents(),['Compresor de imágenes','Convertidor de imágenes','Convertidor de audio','Video → GIF']);
     await page.locator('#tab-audio').click();assert.equal(new URL(page.url()).searchParams.get('tab'),'audio');
     await page.reload();assert.equal(await page.locator('#tab-audio').getAttribute('aria-selected'),'true');
     await page.evaluate(()=>{const original=ImanageAudioEngine.prototype.load,seen=new WeakSet();window.__audioLogs=[];ImanageAudioEngine.prototype.load=async function(){const ffmpeg=await original.call(this);if(!seen.has(ffmpeg)){seen.add(ffmpeg);ffmpeg.on('log',({message})=>{window.__audioLogs.push(message);if(window.__audioLogs.length>20)window.__audioLogs.shift();});}return ffmpeg;};});

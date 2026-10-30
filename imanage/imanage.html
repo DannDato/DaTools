@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d10">
-  <meta name="description" content="Filer: comprime imágenes y convierte imágenes y audio localmente en tu navegador.">
+  <meta name="description" content="Filer: comprime imágenes y convierte imágenes, audio y video a GIF localmente en tu navegador.">
   <title>Filer — DaTools</title>
   <link rel="icon" type="image/svg+xml" href="../img/Filer.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,8 @@
   <script src="converter.js" defer></script>
   <script src="audio-engine.js" defer></script>
   <script src="audio.js" defer></script>
+  <script src="video-engine.js" defer></script>
+  <script src="video.js" defer></script>
 </head>
 <body data-filer-tool="compresion">
   <div class="im-shell">
@@ -39,6 +41,7 @@
         <button type="button" id="tab-compression" role="tab" aria-selected="true" aria-controls="panel-compression" tabindex="0">Compresor de imágenes</button>
         <button type="button" id="tab-converter" role="tab" aria-selected="false" aria-controls="panel-converter" tabindex="-1">Convertidor de imágenes</button>
         <button type="button" id="tab-audio" role="tab" aria-selected="false" aria-controls="panel-audio" tabindex="-1">Convertidor de audio</button>
+        <button type="button" id="tab-video" role="tab" aria-selected="false" aria-controls="panel-video" tabindex="-1">Video → GIF</button>
       </div>
       <section id="panel-compression" role="tabpanel" aria-labelledby="tab-compression">
       <div class="im-layout">
@@ -173,6 +176,23 @@
           </div>
         </section>
       </div>
+      </section>
+      <section id="panel-video" role="tabpanel" aria-labelledby="tab-video" hidden>
+        <div class="im-layout">
+          <aside class="im-sidebar im-converter-sidebar" aria-label="Video y configuración del GIF">
+            <section class="im-panel im-settings-panel" aria-label="Ajustes del GIF">
+              <label class="im-select-label" for="vg-max-size">Lado máximo del GIF</label><select id="vg-max-size"><option value="160">160 px</option><option value="320">320 px</option><option value="480">480 px</option><option value="640" selected>640 px</option><option value="960">960 px</option><option value="1280">1280 px</option></select>
+              <div class="im-audio-settings-pair"><div><label class="im-select-label" for="vg-fps">Fotogramas</label><select id="vg-fps"><option value="6">6 FPS</option><option value="10">10 FPS</option><option value="12" selected>12 FPS</option><option value="15">15 FPS</option><option value="20">20 FPS</option><option value="24">24 FPS</option><option value="30">30 FPS</option></select></div><div><label class="im-select-label" for="vg-colors">Colores</label><select id="vg-colors"><option value="32">32</option><option value="64">64</option><option value="128" selected>128</option><option value="256">256</option></select></div></div>
+              <label class="im-select-label" for="vg-dither">Acabado</label><select id="vg-dither"><option value="bayer">Equilibrado · menor peso</option><option value="sierra2_4a">Suave · mejores degradados</option><option value="none">Sin tramado</option></select>
+              <label class="im-select-label" for="vg-loop">Repetición</label><select id="vg-loop"><option value="0">En bucle</option><option value="-1">Una sola vez</option></select>
+            </section>
+            <section class="im-panel im-upload-panel" aria-label="Seleccionar videos"><div class="im-dropzone" id="vg-dropzone" tabindex="0" role="button" aria-label="Seleccionar videos para convertir a GIF"><div class="im-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m-4 4 4-4 4 4M4 16v3h16v-3"/></svg></div><strong>Arrastra tus videos</strong><span>o haz clic para explorar archivos</span><small>MP4 · WEBM · MOV · MKV · AVI</small></div><input id="vg-file-input" type="file" accept="video/*,.mp4,.webm,.mov,.mkv,.avi,.m4v,.mpeg,.mpg,.ogv" multiple hidden></section>
+          </aside>
+          <section class="im-results" aria-label="Videos y GIFs"><div class="im-panel im-files-panel"><div class="im-files-head"><h2>Archivos <span id="vg-files-count">0</span></h2><div class="im-batch-actions"><button id="vg-clear" type="button" class="im-text-button" disabled>Limpiar todo</button><button id="vg-cancel" type="button" class="im-cancel" hidden>Cancelar</button><button id="vg-optimize" type="button" class="im-primary" disabled>Convertir todo</button></div></div>
+            <div class="im-progress" id="vg-progress-block" hidden><div class="im-progress-info"><span id="vg-progress-label">Procesando…</span><strong id="vg-progress-percent">0%</strong></div><div class="im-track" id="vg-progress-track" role="progressbar" aria-label="Progreso de conversión a GIF" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="vg-progress-fill"></div></div></div>
+            <div id="vg-empty-state" class="im-empty"><div class="im-empty-icon" aria-hidden="true"><svg viewBox="0 0 120 96" fill="none" stroke="currentColor" stroke-width="2"><rect x="15" y="16" width="90" height="64" rx="12"/><path d="m50 33 26 15-26 15z"/></svg></div><strong>Aún no hay videos</strong><span>Selecciona un video para crear tu GIF.</span></div><div id="vg-file-list" class="im-file-list" aria-live="polite"></div>
+          </div></section>
+        </div>
       </section>
     </main>
   </div>

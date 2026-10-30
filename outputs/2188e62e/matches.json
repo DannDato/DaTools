@@ -1,0 +1,3861 @@
+{
+  "source": 560,
+  "edits": [
+    {
+      "row": 103,
+      "email": "jennifer.ramos9838@alumnos.udg.mx",
+      "name": "RAMOS RAMIREZ JENNIFER DANIEL",
+      "source": "RAMOS RAMIREZ JENNIFER DANIELA"
+    },
+    {
+      "row": 104,
+      "email": "cesar.saldana7758@alumnos.udg.mx",
+      "name": "SALDANA RAMIREZ CESAR",
+      "source": "SALDAÑA RAMIREZ CESAR"
+    },
+    {
+      "row": 105,
+      "email": "ana.saucedo4223@alumnos.udg.mx",
+      "name": "SAUCEDO ANDRADE ANA KAREN",
+      "source": "SAUCEDO ANDRADE ANA KAREN"
+    },
+    {
+      "row": 106,
+      "email": "lilia.trujillo5657@alumnos.udg.mx",
+      "name": "TRUJILLO JUAREZ LILIA PATRICIA",
+      "source": "TRUJILLO JUAREZ LILIA PATRICIA"
+    },
+    {
+      "row": 107,
+      "email": "jothan.valdez6260@alumnos.udg.mx",
+      "name": "VALDEZ MOLINA JOTHAN ALEXANDE",
+      "source": "VALDEZ MOLINA JOTHAN ALEXANDER"
+    },
+    {
+      "row": 108,
+      "email": "destiny.vallejo5485@alumnos.udg.mx",
+      "name": "VALLEJO SEGURA DESTINY MONSERR",
+      "source": "VALLEJO SEGURA DESTINY MONSERRAT"
+    },
+    {
+      "row": 109,
+      "email": "miguel.zuniga9065@alumnos.udg.mx",
+      "name": "ZUNIGA VILLARREAL MIGUEL ANGEL",
+      "source": "ZUÑIGA VILLARREAL MIGUEL ANGEL"
+    },
+    {
+      "row": 110,
+      "email": "eduardo.alvarez2008@alumnos.udg.mx",
+      "name": "ALVAREZ HERNANDEZ EDUARDO DE JESU",
+      "source": "ALVAREZ HERNANDEZ EDUARDO DE JESUS"
+    },
+    {
+      "row": 111,
+      "email": "alicia.avila6798@alumnos.udg.mx",
+      "name": "AVILA MORAN ALICIA MONTSERR",
+      "source": "AVILA MORAN ALICIA MONTSERRAT"
+    },
+    {
+      "row": 112,
+      "email": "miranda.barajas8746@alumnos.udg.mx",
+      "name": "BARAJAS CARDENAS MIRANDA JOAMILE",
+      "source": "BARAJAS CARDENAS MIRANDA JOAMILETH"
+    },
+    {
+      "row": 113,
+      "email": "justin.bracamontes0208@alumnos.udg.mx",
+      "name": "BRACAMONTES HERNANDEZ JUSTIN ALEXANDE",
+      "source": "BRACAMONTES HERNANDEZ JUSTIN ALEXANDER"
+    },
+    {
+      "row": 114,
+      "email": "cain.cardona9761@alumnos.udg.mx",
+      "name": "CARDONA SOLIS RAY CAIN",
+      "source": "CARDONA SOLIS RAY CAIN"
+    },
+    {
+      "row": 115,
+      "email": "eros.castanon9048@alumnos.udg.mx",
+      "name": "CASTANON TORRES EROS ISRAEL",
+      "source": "CASTAÑON TORRES EROS ISRAEL"
+    },
+    {
+      "row": 116,
+      "email": "evelyn.garcia8435@alumnos.udg.mx",
+      "name": "GARCIA VALDES EVELYN DAIANNA",
+      "source": "GARCIA VALDES EVELYN DAIANNA"
+    },
+    {
+      "row": 117,
+      "email": "alondra.gollaz4368@alumnos.udg.mx",
+      "name": "GOLLAZ SALCEDO ALONDRA ISABEL",
+      "source": "GOLLAZ SALCEDO ALONDRA ISABEL"
+    },
+    {
+      "row": 118,
+      "email": "daniela.guerrero9210@alumnos.udg.mx",
+      "name": "GUERRERO OCHOA DANIELA",
+      "source": "GUERRERO OCHOA DANIELA"
+    },
+    {
+      "row": 119,
+      "email": "gerardo.guerrero9212@alumnos.udg.mx",
+      "name": "GUERRERO RUBIO GERARDO",
+      "source": "GUERRERO RUBIO GERARDO"
+    },
+    {
+      "row": 120,
+      "email": "christian.hernandez9546@alumnos.udg.mx",
+      "name": "HERNANDEZ MORENO CHRISTIAN AXEL",
+      "source": "HERNANDEZ MORENO CHRISTIAN AXEL"
+    },
+    {
+      "row": 121,
+      "email": "estephany.martinez9579@alumnos.udg.mx",
+      "name": "MARTINEZ GONZALEZ ESTEPHANY ELIZA",
+      "source": "MARTINEZ GONZALEZ ESTEPHANY ELIZABETH"
+    },
+    {
+      "row": 122,
+      "email": "maria.martinez3339@alumnos.udg.mx",
+      "name": "MARTINEZ MARTINEZ MARIA DE LOS AN",
+      "source": "MARTINEZ MARTINEZ MARIA DE LOS ANGELES"
+    },
+    {
+      "row": 123,
+      "email": "yessica.martinez6897@alumnos.udg.mx",
+      "name": "MARTINEZ REYES YESSICA VIANNEY",
+      "source": "MARTINEZ REYES YESSICA VIANNEY"
+    },
+    {
+      "row": 124,
+      "email": "alejandro.martinez2746@alumnos.udg.mx",
+      "name": "MARTINEZ SANCHEZ ALEJANDRO ISRAE",
+      "source": "MARTINEZ SANCHEZ ALEJANDRO ISRAEL"
+    },
+    {
+      "row": 125,
+      "email": "nayeli.mercado3387@alumnos.udg.mx",
+      "name": "MERCADO GONZALEZ NAYELI",
+      "source": "MERCADO GONZALEZ NAYELI"
+    },
+    {
+      "row": 126,
+      "email": "miriam.miranda9217@alumnos.udg.mx",
+      "name": "MIRANDA HERNANDEZ MIRIAM LIIZETH",
+      "source": "MIRANDA HERNANDEZ MIRIAM LIIZETH"
+    },
+    {
+      "row": 127,
+      "email": "ana.monreal9208@alumnos.udg.mx",
+      "name": "MONREAL MORAN ANA SOFIA",
+      "source": "MONREAL MORAN ANA SOFIA"
+    },
+    {
+      "row": 128,
+      "email": "andrea.montiel8391@alumnos.udg.mx",
+      "name": "MONTIEL ALVARADO ANDREA MONTSERR",
+      "source": "MONTIEL ALVARADO ANDREA MONTSERRAT"
+    },
+    {
+      "row": 129,
+      "email": "alejandra.morales2459@alumnos.udg.mx",
+      "name": "MORALES PEREZ ALEJANDRA JEANE",
+      "source": "MORALES PEREZ ALEJANDRA JEANETH"
+    },
+    {
+      "row": 130,
+      "email": "dariana.murillo5070@alumnos.udg.mx",
+      "name": "MURILLO RIVERA DARIANA CRISTAL",
+      "source": "MURILLO RIVERA DARIANA CRISTAL"
+    },
+    {
+      "row": 131,
+      "email": "jessica.nieves9213@alumnos.udg.mx",
+      "name": "NIEVES RAMOS JESSICA JOHANA",
+      "source": "NIEVES RAMOS JESSICA JOHANA"
+    },
+    {
+      "row": 132,
+      "email": "daniela.ramirez8632@alumnos.udg.mx",
+      "name": "RAMIREZ LEOS DANIELA ALEXAND",
+      "source": "RAMIREZ LEOS DANIELA ALEXANDRA ARANZAZU"
+    },
+    {
+      "row": 134,
+      "email": "sofia.rodriguez0868@alumnos.udg.mx",
+      "name": "RODRIGUEZ ALMANZOR SOFIA GUADALUPE",
+      "source": "RODRIGUEZ ALMANZOR SOFIA GUADALUPE"
+    },
+    {
+      "row": 135,
+      "email": "karla.rodriguez7321@alumnos.udg.mx",
+      "name": "RODRIGUEZ ALVAREZ KARLA ESTEFANYA",
+      "source": "RODRIGUEZ ALVAREZ KARLA ESTEFANYA"
+    },
+    {
+      "row": 137,
+      "email": "yuyuen.rosas6865@alumnos.udg.mx",
+      "name": "ROSAS ZOREQUE YUYUEN VIYIN",
+      "source": "ROSAS ZOREQUE YUYUEN VIYIN"
+    },
+    {
+      "row": 138,
+      "email": "maria.ruedas1671@alumnos.udg.mx",
+      "name": "RUEDAS GONZALEZ MARIA FERNANDA",
+      "source": "RUEDAS GONZALEZ MARIA FERNANDA"
+    },
+    {
+      "row": 139,
+      "email": "carlos.salazar2732@alumnos.udg.mx",
+      "name": "SALAZAR RAMIREZ CARLOS ALEJANDR",
+      "source": "SALAZAR RAMIREZ CARLOS ALEJANDRO"
+    },
+    {
+      "row": 140,
+      "email": "julian.villegas0247@alumnos.udg.mx",
+      "name": "VILLEGAS QUINTERO JULIAN",
+      "source": "VILLEGAS QUINTERO JULIAN"
+    },
+    {
+      "row": 141,
+      "email": "monica.vizcarra2732@alumnos.udg.mx",
+      "name": "VIZCARRA RODRIGUEZ MONICA ESMERALD",
+      "source": "VIZCARRA RODRIGUEZ MONICA ESMERALDA"
+    },
+    {
+      "row": 142,
+      "email": "zyanya.aguirre6961@alumnos.udg.mx",
+      "name": "AGUIRRE LOPEZ ZYANYA LUCIA",
+      "source": "AGUIRRE LOPEZ ZYANYA LUCIA"
+    },
+    {
+      "row": 143,
+      "email": "lidia.casanova8174@alumnos.udg.mx",
+      "name": "CASANOVA CASTRO LIDIA YULIANNA",
+      "source": "CASANOVA CASTRO LIDIA YULIANNA"
+    },
+    {
+      "row": 144,
+      "email": "ana.castiilo7978@alumnos.udg.mx",
+      "name": "CASTILLO CASTILLO ANA ISABEL",
+      "source": "CASTILLO CASTILLO ANA ISABEL"
+    },
+    {
+      "row": 145,
+      "email": "luis.caudillo5481@alumnos.udg.mx",
+      "name": "CAUDILLO CERRILLOS LUIS FERNANDO",
+      "source": "CAUDILLO CERRILLOS LUIS FERNANDO"
+    },
+    {
+      "row": 146,
+      "email": "azul.delatorre1112@alumnos.udg.mx",
+      "name": "DE LA TORRE OLVERA AZUL BRIANA",
+      "source": "DE LA TORRE OLVERA AZUL BRIANA"
+    },
+    {
+      "row": 147,
+      "email": "daniela.diaz0987@alumnos.udg.mx",
+      "name": "DIAZ FLORES DANIELA",
+      "source": "DIAZ FLORES DANIELA"
+    },
+    {
+      "row": 148,
+      "email": "pilar.figueroa3553@alumnos.udg.mx",
+      "name": "FIGUEROA GONZALEZ PILAR GUADALUPE",
+      "source": "FIGUEROA GONZALEZ PILAR GUADALUPE"
+    },
+    {
+      "row": 149,
+      "email": "adolfo.garcia8948@alumnos.udg.mx",
+      "name": "GARCIA ESPARZA ADOLFO CRISTIAN",
+      "source": "GARCIA ESPARZA ADOLFO CRISTIANO"
+    },
+    {
+      "row": 150,
+      "email": "luis.garcia1035@alumnos.udg.mx",
+      "name": "GARCIA LOPEZ LUIS ANGEL",
+      "source": "GARCIA LOPEZ LUIS ANGEL"
+    },
+    {
+      "row": 151,
+      "email": "aaron.gonzalez5263@alumnos.udg.mx",
+      "name": "GONZALEZ GONZALEZ AARON",
+      "source": "GONZALEZ GONZALEZ AARON"
+    },
+    {
+      "row": 152,
+      "email": "khristopher.guzman0958@alumnos.udg.mx",
+      "name": "GUZMAN GUTIERREZ KHRISTOPHER",
+      "source": "GUZMAN GUTIERREZ KHRISTOPHER"
+    },
+    {
+      "row": 153,
+      "email": "claudia.hernandez5928@alumnos.udg.mx",
+      "name": "HERNANDEZ GARCIA CLAUDIA LIZBETH",
+      "source": "HERNANDEZ GARCIA CLAUDIA LIZBETH"
+    },
+    {
+      "row": 154,
+      "email": "ximena.lugardo0956@alumnos.udg.mx",
+      "name": "LUGARDO GONZALEZ XIMENA",
+      "source": "LUGARDO GONZALEZ XIMENA"
+    },
+    {
+      "row": 155,
+      "email": "karla.macias1008@alumnos.udg.mx",
+      "name": "MACIAS TAVARES KARLA VICTORIA",
+      "source": "MACIAS TAVARES KARLA VICTORIA"
+    },
+    {
+      "row": 156,
+      "email": "andrea.maradiaga1000@alumnos.udg.mx",
+      "name": "MARADIAGA AGUIRRE ANDREA MARIA",
+      "source": "MARADIAGA AGUIRRE ANDREA MARIA"
+    },
+    {
+      "row": 157,
+      "email": "diana.mercado5566@alumnos.udg.mx",
+      "name": "MERCADO ARVIZU DIANA JACQUELIN",
+      "source": "MERCADO ARVIZU DIANA JACQUELINE"
+    },
+    {
+      "row": 158,
+      "email": "brissa.perez4027@alumnos.udg.mx",
+      "name": "PEREZ GARATE BRISSA PAOLA",
+      "source": "PEREZ GARATE BRISSA PAOLA"
+    },
+    {
+      "row": 159,
+      "email": "samanta.ramos6771@alumnos.udg.mx",
+      "name": "RAMOS RODRIGUEZ SAMANTA GYSSEL",
+      "source": "RAMOS RODRIGUEZ SAMANTA GYSSEL"
+    },
+    {
+      "row": 160,
+      "email": "hernan.reyes0966@alumnos.udg.mx",
+      "name": "REYES GONZALEZ HERNAN",
+      "source": "REYES GONZALEZ HERNAN"
+    },
+    {
+      "row": 161,
+      "email": "Veronica.rodriguez2264@alumnos.udg.mx",
+      "name": "RODRIGUEZ MENDEZ VERONICA ESTEFA",
+      "source": "RODRIGUEZ MENDEZ VERONICA ESTEFANIA"
+    },
+    {
+      "row": 162,
+      "email": "jessica.salcedo4404@alumnos.udg.mx",
+      "name": "SALCEDO MONTELONGO JESSICA JULIET",
+      "source": "SALCEDO MONTELONGO JESSICA JULIET"
+    },
+    {
+      "row": 163,
+      "email": "abril.sanchez1082@alumnos.udg.mx",
+      "name": "SANCHEZ CONTRERAS ABRIL FERNANDA",
+      "source": "SANCHEZ CONTRERAS ABRIL FERNANDA"
+    },
+    {
+      "row": 164,
+      "email": "nadia.sanchez4566@alumnos.udg.mx",
+      "name": "SANCHEZ JIMENEZ NADIA MARLENE",
+      "source": "SANCHEZ JIMENEZ NADIA MARLENE"
+    },
+    {
+      "row": 165,
+      "email": "karen.vazquez4765@alumnos.udg.mx",
+      "name": "VAZQUEZ GONZALEZ KAREN SARAI",
+      "source": "VAZQUEZ GONZALEZ KAREN SARAI"
+    },
+    {
+      "row": 166,
+      "email": "leilani.zapien1094@alumnos.udg.mx",
+      "name": "ZAPIEN CASTRO LEILANI",
+      "source": "ZAPIEN CASTRO LEILANI"
+    },
+    {
+      "row": 167,
+      "email": "kaleb.alvarez1374@alumnos.udg.mx",
+      "name": "ALVAREZ GUTIERREZ KALEB JULIAN",
+      "source": "ALVAREZ GUTIERREZ KALEB JULIAN"
+    },
+    {
+      "row": 168,
+      "email": "ana.arteaga8736@alumnos.udg.mx",
+      "name": "ARTEAGA GUZMAN ANA ABIGAIL",
+      "source": "ARTEAGA GUZMAN ANA ABIGAIL"
+    },
+    {
+      "row": 169,
+      "email": "edwin.basulto4777@alumnos.udg.mx",
+      "name": "BASULTO ZAMORA EDWIN JESUS",
+      "source": "BASULTO ZAMORA EDWIN JESUS"
+    },
+    {
+      "row": 170,
+      "email": "melany.carabes4841@alumnos.udg.mx",
+      "name": "CARABES RODRIGUEZ MELANY GUADALUP",
+      "source": "CARABES RODRIGUEZ MELANY GUADALUPE"
+    },
+    {
+      "row": 171,
+      "email": "priscila.felix4586@alumnos.udg.mx",
+      "name": "FELIX ABARCA PRISCILA SARAHI",
+      "source": "FELIX ABARCA PRISCILA SARAHI"
+    },
+    {
+      "row": 172,
+      "email": "melanie.garcia0105@alumnos.udg.mx",
+      "name": "GARCIA MORA MELANIE RAQUEL",
+      "source": "GARCIA MORA MELANIE RAQUEL"
+    },
+    {
+      "row": 173,
+      "email": "yoselin.garcia5003@alumnos.udg.mx",
+      "name": "GARCIA SILVA YOSELIN ALEJAND",
+      "source": "GARCIA SILVA YOSELIN ALEJANDRA"
+    },
+    {
+      "row": 174,
+      "email": "evelyn.gaytan7695@alumnos.udg.mx",
+      "name": "GAYTAN CAZARES EVELYN DANAH",
+      "source": "GAYTAN CAZARES EVELYN DANAH"
+    },
+    {
+      "row": 175,
+      "email": "getzemani.gonzalez7761@alumnos.udg.mx",
+      "name": "GONZALEZ CABRERA GETZEMANI",
+      "source": "GONZALEZ CABRERA GETZEMANI"
+    },
+    {
+      "row": 176,
+      "email": "maria.hernandez5759@alumnos.udg.mx",
+      "name": "HERNANDEZ BAYARDO MARIA ALEXANIA",
+      "source": "HERNANDEZ BAYARDO MARIA ALEXANIA"
+    },
+    {
+      "row": 177,
+      "email": "arisbeth.hernandez5457@alumnos.udg.mx",
+      "name": "HERNANDEZ CARMONA ARISBETH",
+      "source": "HERNANDEZ CARMONA ARISBETH"
+    },
+    {
+      "row": 178,
+      "email": "adolfo.hernandez9578@alumnos.udg.mx",
+      "name": "HERNANDEZ GUTIERREZ ADOLFO ALDAHIR",
+      "source": "HERNANDEZ GUTIERREZ ADOLFO ALDAHIR"
+    },
+    {
+      "row": 179,
+      "email": "evelyn.hernandez4252@alumnos.udg.mx",
+      "name": "HERNANDEZ ORIHUELA EVELYN MONTSERR",
+      "source": "HERNANDEZ ORIHUELA EVELYN MONTSERRAT"
+    },
+    {
+      "row": 180,
+      "email": "renata.jimenez5939@alumnos.udg.mx",
+      "name": "JIMENEZ RENATA GUADALUP",
+      "source": "JIMENEZ  RENATA GUADALUPE"
+    },
+    {
+      "row": 181,
+      "email": "julieta.leon4225@alumnos.udg.mx",
+      "name": "LEON PALOMO JULIETA ALEJAND",
+      "source": "LEON PALOMO JULIETA ALEJANDRA"
+    },
+    {
+      "row": 182,
+      "email": "aily.limon7807@alumnos.udg.mx",
+      "name": "LIMON MORENO AILY IMELDA",
+      "source": "LIMON MORENO AILY IMELDA"
+    },
+    {
+      "row": 183,
+      "email": "jocelyne.loera4823@alumnos.udg.mx",
+      "name": "LOERA ROSALES JOCELYNE VANESS",
+      "source": "LOERA ROSALES JOCELYNE VANESSA"
+    },
+    {
+      "row": 184,
+      "email": "juan.magallanes4281@alumnos.udg.mx",
+      "name": "MAGALLANES GARCIA JUAN PABLO",
+      "source": "MAGALLANES GARCIA JUAN PABLO"
+    },
+    {
+      "row": 185,
+      "email": "mariana.maldonado5667@alumnos.udg.mx",
+      "name": "MALDONADO MARISCAL MARIANA",
+      "source": "MALDONADO MARISCAL MARIANA"
+    },
+    {
+      "row": 186,
+      "email": "edwin.merino4234@alumnos.udg.mx",
+      "name": "MERINO MERINO EDWIN BENIGNO",
+      "source": "MERINO MERINO EDWIN BENIGNO"
+    },
+    {
+      "row": 187,
+      "email": "madian.munoz8030@alumnos.udg.mx",
+      "name": "MUNOZ LEON MADIAN SINAI",
+      "source": "MUÑOZ LEON MADIAN SINAI"
+    },
+    {
+      "row": 188,
+      "email": "jimena.olvera5828@alumnos.udg.mx",
+      "name": "OLVERA HERNANDEZ JIMENA ITZEL",
+      "source": "OLVERA HERNANDEZ JIMENA ITZEL"
+    },
+    {
+      "row": 189,
+      "email": "arellys.osuna9628@alumnos.udg.mx",
+      "name": "OSUNA AREVALO ARELLYS MONTSER",
+      "source": "OSUNA AREVALO ARELLYS MONTSERRATH"
+    },
+    {
+      "row": 190,
+      "email": "alondra.perez9576@alumnos.udg.mx",
+      "name": "PEREZ NUNO ALONDRA NATHALY",
+      "source": "PEREZ NUÑO ALONDRA NATHALY"
+    },
+    {
+      "row": 191,
+      "email": "laura.ramirez7192@alumnos.udg.mx",
+      "name": "RAMIREZ CASTORENA LAURA BELEN",
+      "source": "RAMIREZ CASTORENA LAURA BELEN"
+    },
+    {
+      "row": 192,
+      "email": "jorge.salcedo3788@alumnos.udg.mx",
+      "name": "SALCEDO ESTRADA JORGE IVAN",
+      "source": "SALCEDO ESTRADA JORGE IVAN"
+    },
+    {
+      "row": 193,
+      "email": "angela.urencio4219@alumnos.udg.mx",
+      "name": "URENCIO VALLESTEROS ANGELA NATALIA",
+      "source": "URENCIO VALLESTEROS ANGELA NATALIA"
+    },
+    {
+      "row": 194,
+      "email": "paola.vazquez1649@alumnos.udg.mx",
+      "name": "VAZQUEZ RODRIGUEZ PAOLA MARISOL",
+      "source": "VAZQUEZ RODRIGUEZ PAOLA MARISOL"
+    },
+    {
+      "row": 195,
+      "email": "fatima.aguilera2446@alumnos.udg.mx",
+      "name": "AGUILERA VAZQUEZ FATIMA MONSERRA",
+      "source": "AGUILERA VAZQUEZ FATIMA MONSERRAT"
+    },
+    {
+      "row": 196,
+      "email": "maria.amaya0243@alumnos.udg.mx",
+      "name": "AMAYA VAZQUEZ MARIA DEL CARME",
+      "source": "AMAYA VAZQUEZ MARIA DEL CARMEN"
+    },
+    {
+      "row": 197,
+      "email": "julissa.armenta5694@alumnos.udg.mx",
+      "name": "ARMENTA ROSALES JULISSA GISELLE",
+      "source": "ARMENTA ROSALES JULISSA GISELLE"
+    },
+    {
+      "row": 198,
+      "email": "mariana.buenrostro0630@alumnos.udg.mx",
+      "name": "BUENROSTRO ROSAS MARIANA",
+      "source": "BUENROSTRO ROSAS MARIANA"
+    },
+    {
+      "row": 199,
+      "email": "andrea.castellon9225@alumnos.udg.mx",
+      "name": "CASTELLON TRUJILLO ANDREA DANNAY",
+      "source": "CASTELLON TRUJILLO ANDREA DANNAY"
+    },
+    {
+      "row": 200,
+      "email": "angel.dominguez8637@alumnos.udg.mx",
+      "name": "DOMINGUEZ AYALA ANGEL URIEL",
+      "source": "DOMINGUEZ AYALA ANGEL URIEL"
+    },
+    {
+      "row": 201,
+      "email": "danae.garcia5668@alumnos.udg.mx",
+      "name": "GARCIA CHAVEZ DANAE LEILANI",
+      "source": "GARCIA CHAVEZ DANAE LEILANI"
+    },
+    {
+      "row": 202,
+      "email": "mariana.garcia4989@alumnos.udg.mx",
+      "name": "GARCIA RAMOS MARIANA MONTSER",
+      "source": "GARCIA RAMOS MARIANA MONTSERRAT"
+    },
+    {
+      "row": 203,
+      "email": "marcela.gonzalez1015@alumnos.udg.mx",
+      "name": "GONZALEZ ARAGON MARCELA ADRIANA",
+      "source": "GONZALEZ ARAGON MARCELA ADRIANA"
+    },
+    {
+      "row": 204,
+      "email": "flor.hernandez5677@alumnos.udg.mx",
+      "name": "HERNANDEZ DIAZ FLOR PAULINA",
+      "source": "HERNANDEZ DIAZ FLOR PAULINA"
+    },
+    {
+      "row": 205,
+      "email": "valentina.martinez4198@alumnos.udg.mx",
+      "name": "MARTINEZ GUTIERREZ VALENTINA",
+      "source": "MARTINEZ GUTIERREZ VALENTINA"
+    },
+    {
+      "row": 206,
+      "email": "cristina.mejia8329@alumnos.udg.mx",
+      "name": "MEJIA ALVAREZ CRISTINA MIROSL",
+      "source": "MEJIA ALVAREZ CRISTINA MIROSLAVA"
+    },
+    {
+      "row": 207,
+      "email": "valeria.mendoza5649@alumnos.udg.mx",
+      "name": "MENDOZA AGUIRRE VALERIA",
+      "source": "MENDOZA AGUIRRE VALERIA"
+    },
+    {
+      "row": 208,
+      "email": "brayan.morales7035@alumnos.udg.mx",
+      "name": "MORALES ARTEAGA BRAYAN ALEXIS",
+      "source": "MORALES ARTEAGA BRAYAN ALEXIS"
+    },
+    {
+      "row": 209,
+      "email": "juan.oliva0163@alumnos.udg.mx",
+      "name": "OLIVA ARTEAGA JUAN PABLO",
+      "source": "OLIVA ARTEAGA JUAN PABLO"
+    },
+    {
+      "row": 210,
+      "email": "nayeli.olmos6053@alumnos.udg.mx",
+      "name": "OLMOS CABRERA NAYELI ALEJANDR",
+      "source": "OLMOS CABRERA NAYELI ALEJANDRA"
+    },
+    {
+      "row": 211,
+      "email": "lia.ornelas@alumnos.udg.mx",
+      "name": "ORNELAS MUNETON LIA NOHEMI",
+      "source": "ORNELAS MUÑETON LIA NOHEMI"
+    },
+    {
+      "row": 212,
+      "email": "naomi.pajar3352@alumnos.udg.mx",
+      "name": "PAJAR BUSTAMANTE NAOMI YUNNUEN",
+      "source": "PAJAR BUSTAMANTE NAOMI YUNNUEN"
+    },
+    {
+      "row": 213,
+      "email": "galia.ramirez8658@alumnos.udg.mx",
+      "name": "RAMIREZ ARAIZA GALIA ITZHEL GU",
+      "source": "RAMIREZ ARAIZA GALIA ITZHEL GUADALUPE"
+    },
+    {
+      "row": 214,
+      "email": "bryan.ramirez2525@alumnos.udg.mx",
+      "name": "RAMIREZ LOPEZ BRYAN GIOVANNI",
+      "source": "RAMIREZ LOPEZ BRYAN GIOVANNI"
+    },
+    {
+      "row": 215,
+      "email": "karla.sanchez9782@alumnos.udg.mx",
+      "name": "SANCHEZ LIRA KARLA DANIELA",
+      "source": "SANCHEZ LIRA KARLA DANIELA"
+    },
+    {
+      "row": 216,
+      "email": "andrea.torres2558@alumnos.udg.mx",
+      "name": "TORRES FLORES ANDREA DENISSE",
+      "source": "TORRES FLORES ANDREA DENISSE"
+    },
+    {
+      "row": 217,
+      "email": "ana.torres1376@alumnos.udg.mx",
+      "name": "TORRES LOPEZ ANA PAOLA",
+      "source": "TORRES LOPEZ ANA PAOLA"
+    },
+    {
+      "row": 218,
+      "email": "neidy.urincho3596@alumnos.udg.mx",
+      "name": "URINCHO JULIAN NEIDY ESMERALDA",
+      "source": "URINCHO JULIAN NEIDY ESMERALDA"
+    },
+    {
+      "row": 219,
+      "email": "angel.villalobos6224@alumnos.udg.mx",
+      "name": "VILLALOBOS ESPARZA ANGEL DANIEL",
+      "source": "VILLALOBOS ESPARZA ANGEL DANIEL"
+    },
+    {
+      "row": 220,
+      "email": "daniela.alonso5729@alumnos.udg.mx",
+      "name": "ALONSO MAESTRO DANIELA GISELLE",
+      "source": "ALONSO MAESTRO DANIELA GISELLE"
+    },
+    {
+      "row": 221,
+      "email": "missy.campa9507@alumnos.udg.mx",
+      "name": "CAMPA SANCHEZ MISSY NOEMI",
+      "source": "CAMPA SANCHEZ MISSY NOEMI"
+    },
+    {
+      "row": 222,
+      "email": "betsabe.canales5713@alumnos.udg.mx",
+      "name": "CANALES MARTINEZ BETSABE",
+      "source": "CANALES MARTINEZ BETSABE"
+    },
+    {
+      "row": 224,
+      "email": "norma.cernas2412@alumnos.udg.mx",
+      "name": "CERNAS JAUREGUI NORMA CAROLINA",
+      "source": "CERNAS JAUREGUI NORMA CAROLINA"
+    },
+    {
+      "row": 225,
+      "email": "irving.cruz5702@alumnos.udg.mx",
+      "name": "CRUZ LOPEZ IRVING DANIEL",
+      "source": "CRUZ LOPEZ IRVING DANIEL"
+    },
+    {
+      "row": 226,
+      "email": "athziri.fernandez5961@alumnos.udg.mx",
+      "name": "FERNANDEZ ALEJO ATHZIRI KARINA",
+      "source": "FERNANDEZ ALEJO ATHZIRI KARINA"
+    },
+    {
+      "row": 227,
+      "email": "citlalli.garcia1423@alumnos.udg.mx",
+      "name": "GARCIA DELGADILLO CITLALLI MONSER",
+      "source": "GARCIA DELGADILLO CITLALLI MONSERRAT"
+    },
+    {
+      "row": 228,
+      "email": "esetfany.guzman8483@alumnos.udg.mx",
+      "name": "GUZMAN ALVIZO ESTEFANY JACQUE",
+      "source": "GUZMAN ALVIZO ESTEFANY JACQUELINE"
+    },
+    {
+      "row": 229,
+      "email": "veronica.hernandez0970@alumnos.udg.mx",
+      "name": "HERNANDEZ BARAJAS VERONICA JACQUE",
+      "source": "HERNANDEZ BARAJAS VERONICA JACQUELINE"
+    },
+    {
+      "row": 230,
+      "email": "maritza.lopez7665@alumnos.udg.mx",
+      "name": "LOPEZ GONZALEZ MARITZA JANETH",
+      "source": "LOPEZ GONZALEZ MARITZA JANETH"
+    },
+    {
+      "row": 231,
+      "email": "jose.marquez2764@alumnos.udg.mx",
+      "name": "MARQUEZ NUNO JOSE MANUEL",
+      "source": "MARQUEZ NUÑO JOSE MANUEL"
+    },
+    {
+      "row": 232,
+      "email": "america.olivares5824@alumnos.udg.mx",
+      "name": "OLIVARES AYALA AMERICA AIDE",
+      "source": "OLIVARES AYALA AMERICA AIDE"
+    },
+    {
+      "row": 233,
+      "email": "mariana.perez0235@alumnos.udg.mx",
+      "name": "PEREZ MORANDO MARIANA PAOLA",
+      "source": "PEREZ MORANDO MARIANA PAOLA"
+    },
+    {
+      "row": 234,
+      "email": "paola.preciado2118@alumnos.udg.mx",
+      "name": "PRECIADO BARAJAS PAOLA DANIELA",
+      "source": "PRECIADO BARAJAS PAOLA DANIELA"
+    },
+    {
+      "row": 235,
+      "email": "samantha.ramos5041@alumnos.udg.mx",
+      "name": "RAMOS MENDEZ SAMANTHA ABIGAI",
+      "source": "RAMOS MENDEZ SAMANTHA ABIGAIL"
+    },
+    {
+      "row": 236,
+      "email": "monica.regalado0005@alumnos.udg.mx",
+      "name": "REGALADO CRISOSTO MONICA PATRICIA",
+      "source": "REGALADO CRISOSTO MONICA PATRICIA"
+    },
+    {
+      "row": 237,
+      "email": "aida.rivas7552@alumnos.udg.mx",
+      "name": "RIVAS CABRERA AIDA ESTEFANIA",
+      "source": "RIVAS CABRERA AIDA ESTEFANIA"
+    },
+    {
+      "row": 238,
+      "email": "josselyn.rosales5388@alumnos.udg.mx",
+      "name": "ROSALES REYES JOSSELYN YARELL",
+      "source": "ROSALES REYES JOSSELYN YARELLI"
+    },
+    {
+      "row": 239,
+      "email": "gael.tapia5497@alumnos.udg.mx",
+      "name": "TAPIA DIAZ GAEL JOSUE",
+      "source": "TAPIA DIAZ GAEL JOSUE"
+    },
+    {
+      "row": 240,
+      "email": "casandra.torres0088@alumnos.udg.mx",
+      "name": "TORRES MEDINA CASANDRA NOEMI",
+      "source": "TORRES MEDINA CASANDRA NOEMI"
+    },
+    {
+      "row": 241,
+      "email": "selene.velador9388@alumnos.udg.mx",
+      "name": "VELADOR MENDOZA SELENE PAOLA",
+      "source": "VELADOR MENDOZA SELENE PAOLA"
+    },
+    {
+      "row": 242,
+      "email": "karol.velasco3749@alumnos.udg.mx",
+      "name": "VELASCO ALVARADO KAROL PAOLA",
+      "source": "VELASCO ALVARADO KAROL PAOLA"
+    },
+    {
+      "row": 243,
+      "email": "fernanda.villalobos5175@alumnos.udg.mx",
+      "name": "VILLALOBOS RODRIGUEZ FERNANDA IRAIS",
+      "source": "VILLALOBOS RODRIGUEZ FERNANDA IRAIS"
+    },
+    {
+      "row": 244,
+      "email": "maria.villareal5686@alumnos.udg.mx",
+      "name": "VILLARREAL LARA MARIA FERNANDA",
+      "source": "VILLARREAL LARA MARIA FERNANDA GUADALUPE"
+    },
+    {
+      "row": 245,
+      "email": "brenda.yanez0893@alumnos.udg.mx",
+      "name": "YANEZ GOMEZ BRENDA NICOLE",
+      "source": "YAÑEZ GOMEZ BRENDA NICOLE"
+    },
+    {
+      "row": 246,
+      "email": "frida.abarca8756@alumnos.udg.mx",
+      "name": "ABARCA ULLOA FRIDA MICHELLE",
+      "source": "ABARCA ULLOA FRIDA MICHELLE"
+    },
+    {
+      "row": 247,
+      "email": "montserrat.aguilar5553@alumnos.udg.mx",
+      "name": "AGUILAR OROZCO MONTSERRAT",
+      "source": "AGUILAR OROZCO MONTSERRAT"
+    },
+    {
+      "row": 248,
+      "email": "angeles.aguirre1167@alumnos.udg.mx",
+      "name": "AGUIRRE ESTRADA ANGELES ELENA",
+      "source": "AGUIRRE ESTRADA ANGELES ELENA"
+    },
+    {
+      "row": 249,
+      "email": "angel.arias2924@alumnos.udg.mx",
+      "name": "ARIAS JIMENEZ ANGEL EDUARDO",
+      "source": "ARIAS JIMENEZ ANGEL EDUARDO"
+    },
+    {
+      "row": 250,
+      "email": "jennifer.castro6116@alumnos.udg.mx",
+      "name": "CASTRO GARIBAY JENNIFER ANDREA",
+      "source": "CASTRO GARIBAY JENNIFER ANDREA"
+    },
+    {
+      "row": 251,
+      "email": "lucia.castro9969@alumnos.udg.mx",
+      "name": "CASTRO TORRES LUCIA LIBERTAD",
+      "source": "CASTRO TORRES LUCIA LIBERTAD"
+    },
+    {
+      "row": 252,
+      "email": "naomi.hernandez4181@alumnos.udg.mx",
+      "name": "HERNANDEZ GARCIA NAOMI",
+      "source": "HERNANDEZ GARCIA NAOMI"
+    },
+    {
+      "row": 253,
+      "email": "carlos.lira1159@alumnos.udg.mx",
+      "name": "LIRA SIERRA CARLOS ALBERTO",
+      "source": "LIRA SIERRA CARLOS ALBERTO"
+    },
+    {
+      "row": 254,
+      "email": "emily.martinez4409@alumnos.udg.mx",
+      "name": "MARTINEZ GONZALEZ EMILY JOCELYN",
+      "source": "MARTINEZ GONZALEZ EMILY JOCELYN"
+    },
+    {
+      "row": 255,
+      "email": "ailyn.padilla1246@alumnos.udg.mx",
+      "name": "PADILLA VALLE AILYN",
+      "source": "PADILLA VALLE AILYN"
+    },
+    {
+      "row": 256,
+      "email": "virginia.ruiz1235@alumnos.udg.mx",
+      "name": "RUIZ LOPEZ VIRGINIA ALEXA",
+      "source": "RUIZ LOPEZ VIRGINIA ALEXA"
+    },
+    {
+      "row": 257,
+      "email": "rosa.sandoval5340@alumnos.udg.mx",
+      "name": "SANDOVAL NUNEZ ROSA MARLEN",
+      "source": "SANDOVAL NUÑEZ ROSA MARLEN"
+    },
+    {
+      "row": 258,
+      "email": "brenda.soto8694@alumnos.udg.mx",
+      "name": "SOTO TREJO BRENDA LIZETTE",
+      "source": "SOTO TREJO BRENDA LIZETTE"
+    },
+    {
+      "row": 259,
+      "email": "fatima.barreto6957@alumnos.udg.mx",
+      "name": "BARRETO GUERRERO FATIMA ROCIO",
+      "source": "BARRETO GUERRERO FATIMA ROCIO"
+    },
+    {
+      "row": 260,
+      "email": "Silvia.corzo1265@alumnos.udg.mx",
+      "name": "CORZO HERNANDEZ SILVIA SOPHIA",
+      "source": "CORZO HERNANDEZ SILVIA SOPHIA"
+    },
+    {
+      "row": 261,
+      "email": "ariana.deloera5580@alumnos.udg.mx",
+      "name": "DE LOERA BRIONES ARIANA LIZETTE",
+      "source": "DE LOERA BRIONES ARIANA LIZETTE"
+    },
+    {
+      "row": 262,
+      "email": "lucia.farias7271@alumnos.udg.mx",
+      "name": "FARIAS RODRIGUEZ LUCIA ESMERALDA",
+      "source": "FARIAS RODRIGUEZ LUCIA ESMERALDA"
+    },
+    {
+      "row": 263,
+      "email": "julieta.lara1207@alumnos.udg.mx",
+      "name": "LARA CASTILLO JULIETA PAULINA",
+      "source": "LARA CASTILLO JULIETA PAULINA"
+    },
+    {
+      "row": 264,
+      "email": "itzel.madera1196@alumnos.udg.mx",
+      "name": "MADERA SANCHEZ ITZEL AURORA",
+      "source": "MADERA SANCHEZ ITZEL AURORA"
+    },
+    {
+      "row": 265,
+      "email": "emmanuel.pascacio1109@alumnos.udg.mx",
+      "name": "PASCACIO GUTIERREZ EMMANUEL DE JES",
+      "source": "PASCACIO GUTIERREZ EMMANUEL DE JESUS"
+    },
+    {
+      "row": 266,
+      "email": "pablo.sanchez0676@alumnos.udg.mx",
+      "name": "SANCHEZ ALDRETE PABLO GILDARDO",
+      "source": "SANCHEZ ALDRETE PABLO GILDARDO"
+    },
+    {
+      "row": 267,
+      "email": "evelin.avina1550@alumnos.udg.mx",
+      "name": "AVINA SALAZAR EVELIN MICHAEL",
+      "source": "AVIÑA SALAZAR EVELIN MICHAEL"
+    },
+    {
+      "row": 268,
+      "email": "dileiny.cervantes6817@alumnos.udg.mx",
+      "name": "CERVANTES PARADA DILEINY NAOMY",
+      "source": "CERVANTES PARADA DILEINY NAOMY"
+    },
+    {
+      "row": 269,
+      "email": "patricia.correa9945@alumnos.udg.mx",
+      "name": "CORREA VILLALOBOS PATRICIA JANET",
+      "source": "CORREA VILLALOBOS PATRICIA JANET"
+    },
+    {
+      "row": 270,
+      "email": "melina.flores6398@alumnos.udg.mx",
+      "name": "FLORES VILLALOBOS MELINA GUADALUP",
+      "source": "FLORES VILLALOBOS MELINA GUADALUPE"
+    },
+    {
+      "row": 271,
+      "email": "mikelen.garcia4926@alumnos.udg.mx",
+      "name": "GARCIA DIAZ MIKELEN YAEL",
+      "source": "GARCIA DIAZ MIKELEN YAEL"
+    },
+    {
+      "row": 272,
+      "email": "belen.gomez5263@alumnos.udg.mx",
+      "name": "GOMEZ LOPEZ BELEN ALEJANDRA",
+      "source": "GOMEZ LOPEZ BELEN ALEJANDRA"
+    },
+    {
+      "row": 273,
+      "email": "julio.gonzalez9780@alumnos.udg.mx",
+      "name": "GONZALEZ GUTIERREZ JULIO VLADIMIR",
+      "source": "GONZALEZ GUTIERREZ JULIO VLADIMIR"
+    },
+    {
+      "row": 274,
+      "email": "laura.gonzalez8749@alumnos.udg.mx",
+      "name": "GONZALEZ JARERO LAURA SARAI",
+      "source": "GONZALEZ JARERO LAURA SARAI"
+    },
+    {
+      "row": 275,
+      "email": "diego.guardado8814@alumnos.udg.mx",
+      "name": "GUARDADO BECERRA DIEGO RAFAEL",
+      "source": "GUARDADO BECERRA DIEGO RAFAEL"
+    },
+    {
+      "row": 276,
+      "email": "danae.jimenez5498@alumnos.udg.mx",
+      "name": "JIMENEZ LUJAN DANAE ELIZABETH",
+      "source": "JIMENEZ LUJAN DANAE ELIZABETH"
+    },
+    {
+      "row": 277,
+      "email": "gustavo.larios9378@alumnos.udg.mx",
+      "name": "LARIOS MURILLO GUSTAVO ANGEL",
+      "source": "LARIOS MURILLO GUSTAVO ANGEL"
+    },
+    {
+      "row": 278,
+      "email": "sophia.lopez5195@alumnos.udg.mx",
+      "name": "LOPEZ INIGUEZ SOPHIA ABRIL",
+      "source": "LOPEZ IÑIGUEZ SOPHIA ABRIL"
+    },
+    {
+      "row": 279,
+      "email": "gilberto.lozano5798@alumnos.udg.mx",
+      "name": "LOZANO HERNANDEZ GILBERTO",
+      "source": "LOZANO HERNANDEZ GILBERTO"
+    },
+    {
+      "row": 280,
+      "email": "miguel.martinez3308@alumnos.udg.mx",
+      "name": "MARTINEZ GOMEZ MIGUEL ANGEL",
+      "source": "MARTINEZ GOMEZ MIGUEL ANGEL"
+    },
+    {
+      "row": 281,
+      "email": "Santos.mendoza1898@alumnos.udg.mx",
+      "name": "MENDOZA MONTES DE OCA SANTOS JAMABIEL",
+      "source": "MENDOZA MONTES DE OCA SANTOS JAMABIEL"
+    },
+    {
+      "row": 282,
+      "email": "axel.nava2475@alumnos.udg.mx",
+      "name": "NAVA RUIZ AXEL IAN",
+      "source": "NAVA RUIZ AXEL IAN"
+    },
+    {
+      "row": 283,
+      "email": "monica.palos7760@alumnos.udg.mx",
+      "name": "PALOS FRIAS MONICA FERNANDA",
+      "source": "PALOS FRIAS MONICA FERNANDA"
+    },
+    {
+      "row": 284,
+      "email": "christian.perez9125@alumnos.udg.mx",
+      "name": "PEREZ BONALES CHRISTIAN LEONE",
+      "source": "PEREZ BONALES CHRISTIAN LEONEL"
+    },
+    {
+      "row": 285,
+      "email": "evelyn.resendiz1254@alumnos.udg.mx",
+      "name": "RESENDIZ ALMERAYA EVELYN ALEJANDR",
+      "source": "RESENDIZ ALMERAYA EVELYN ALEJANDRA"
+    },
+    {
+      "row": 286,
+      "email": "karla.rojo5018@alumnos.udg.mx",
+      "name": "ROJO CONTRERAS KARLA NATALIA",
+      "source": "ROJO CONTRERAS KARLA NATALIA"
+    },
+    {
+      "row": 287,
+      "email": "antonio.salazar5311@alumnos.udg.mx",
+      "name": "SALAZAR HERRERA ANTONIO",
+      "source": "SALAZAR HERRERA ANTONIO"
+    },
+    {
+      "row": 288,
+      "email": "edson.salazar2442@alumnos.udg.mx",
+      "name": "SALAZAR MIRANDA EDSON YAHIR",
+      "source": "SALAZAR MIRANDA EDSON YAHIR"
+    },
+    {
+      "row": 289,
+      "email": "carlos.sanchez9481@alumnos.udg.mx",
+      "name": "SANCHEZ TOLEDO CARLOS EDUARDO",
+      "source": "SANCHEZ TOLEDO CARLOS EDUARDO"
+    },
+    {
+      "row": 290,
+      "email": "fatima.soria5490@alumnos.udg.mx",
+      "name": "SORIA SAHAGUN FATIMA ARACELY",
+      "source": "SORIA SAHAGUN FATIMA ARACELY"
+    },
+    {
+      "row": 291,
+      "email": "gael.soto6368@alumnos.udg.mx",
+      "name": "SOTO FRANCO GAEL ALEJANDRO",
+      "source": "SOTO FRANCO GAEL ALEJANDRO"
+    },
+    {
+      "row": 292,
+      "email": "angel.valle6495@alumnos.udg.mx",
+      "name": "VALLE GONZALEZ ANGEL GUILLERMO",
+      "source": "VALLE GONZALEZ ANGEL GUILLERMO"
+    },
+    {
+      "row": 293,
+      "email": "ezequiel.vera4779@alumnos.udg.mx",
+      "name": "VERA ORTIZ EZEQUIEL",
+      "source": "VERA ORTIZ EZEQUIEL"
+    },
+    {
+      "row": 294,
+      "email": "alberto.zavala4499@alumnos.udg.mx",
+      "name": "ZAVALA GUTIERREZ ALBERTO EFRAIN",
+      "source": "ZAVALA GUTIERREZ ALBERTO EFRAIN"
+    },
+    {
+      "row": 295,
+      "email": "evelyn.aguilar1900@alumnos.udg.mx",
+      "name": "AGUILAR FIERROS EVELYN ESTRELLA",
+      "source": "AGUILAR FIERROS EVELYN ESTRELLA"
+    },
+    {
+      "row": 296,
+      "email": "viviana.altamirano2453@alumnos.udg.mx",
+      "name": "ALTAMIRANO TRUJILLO VIVIANA JUDITH",
+      "source": "ALTAMIRANO TRUJILLO VIVIANA JUDITH"
+    },
+    {
+      "row": 297,
+      "email": "midori.alvarez1329@alumnos.udg.mx",
+      "name": "ALVAREZ SILVA MIDORI SAMANTHA",
+      "source": "ALVAREZ SILVA MIDORI SAMANTHA"
+    },
+    {
+      "row": 298,
+      "email": "alejandra.castro1346@alumnos.udg.mx",
+      "name": "CASTRO VELAZQUEZ ALEJANDRA ESTEF",
+      "source": "CASTRO VELAZQUEZ ALEJANDRA ESTEFANIA"
+    },
+    {
+      "row": 299,
+      "email": "Sofia.desantiago4731@alumnos.udg.mx",
+      "name": "DE SANTIAGO GONZALEZ SOFIA LIZBETH",
+      "source": "DE SANTIAGO GONZALEZ SOFIA LIZBETH"
+    },
+    {
+      "row": 300,
+      "email": "miriam.delangel6230@alumnos.udg.mx",
+      "name": "DEL ANGEL DIAZ MIRIAM ELIZABET",
+      "source": "DEL ANGEL DIAZ MIRIAM ELIZABETH"
+    },
+    {
+      "row": 301,
+      "email": "ariadna.fernandez1315@alumnos.udg.mx",
+      "name": "FERNANDEZ VALENCIA ARIADNA XIMENA",
+      "source": "FERNANDEZ VALENCIA ARIADNA XIMENA"
+    },
+    {
+      "row": 302,
+      "email": "kasandra.gomez1927@alumnos.udg.mx",
+      "name": "GOMEZ RIVERA KASANDRA",
+      "source": "GOMEZ RIVERA KASANDRA"
+    },
+    {
+      "row": 303,
+      "email": "cinthia.gonzalez7309@alumnos.udg.mx",
+      "name": "GONZALEZ ORTEGA CINTHIA NAYELI",
+      "source": "GONZALEZ ORTEGA CINTHIA NAYELI"
+    },
+    {
+      "row": 304,
+      "email": "debora.guarneros5605@alumnos.udg.mx",
+      "name": "GUARNEROS ALVARADO DEBORA SUGEY",
+      "source": "GUARNEROS ALVARADO DEBORA SUGEY"
+    },
+    {
+      "row": 305,
+      "email": "gabriela.gutierrez1347@alumnos.udg.mx",
+      "name": "GUTIERREZ HERNANDEZ GABRIELA",
+      "source": "GUTIERREZ HERNANDEZ GABRIELA"
+    },
+    {
+      "row": 306,
+      "email": "evelyn.macias2528@alumnos.udg.mx",
+      "name": "MACIAS SOSA EVELYN MELISSA",
+      "source": "MACIAS SOSA EVELYN MELISSA"
+    },
+    {
+      "row": 307,
+      "email": "paola.mercado8521@alumnos.udg.mx",
+      "name": "MERCADO RAMIREZ PAOLA VIRIDIANA",
+      "source": "MERCADO RAMIREZ PAOLA VIRIDIANA"
+    },
+    {
+      "row": 308,
+      "email": "luisa.moreno4786@alumnos.udg.mx",
+      "name": "MORENO ROJAS LUISA MADAI",
+      "source": "MORENO ROJAS LUISA MADAI"
+    },
+    {
+      "row": 309,
+      "email": "viayra.munoz1571@alumnos.udg.mx",
+      "name": "MUNOZ SANDOVAL VIAYRA ELAINNE",
+      "source": "MUÑOZ SANDOVAL VIAYRA ELAINNE"
+    },
+    {
+      "row": 310,
+      "email": "jmartin.ortega@alumnos.udg.mx",
+      "name": "ORTEGA RAMIREZ JONATHAN MARTIN",
+      "source": "ORTEGA RAMIREZ JONATHAN MARTIN"
+    },
+    {
+      "row": 311,
+      "email": "joselinne.perez6188@alumnos.udg.mx",
+      "name": "PEREZ VELASCO JOSELINNE FERNA",
+      "source": "PEREZ VELASCO JOSELINNE FERNANDA"
+    },
+    {
+      "row": 312,
+      "email": "juan.pena8975@alumnos.udg.mx",
+      "name": "PENA FIGUEROA JUAN PABLO",
+      "source": "PEÑA FIGUEROA JUAN PABLO"
+    },
+    {
+      "row": 313,
+      "email": "nelly.robles7649@alumnos.udg.mx",
+      "name": "ROBLES ESTRADA NELLY FERNANDA",
+      "source": "ROBLES ESTRADA NELLY FERNANDA"
+    },
+    {
+      "row": 314,
+      "email": "lluvia.rodriguez3673@alumnos.udg.mx",
+      "name": "RODRIGUEZ RIOS LLUVIA JOSELINE",
+      "source": "RODRIGUEZ RIOS LLUVIA JOSELINE"
+    },
+    {
+      "row": 315,
+      "email": "maria.ruiz1337@alumnos.udg.mx",
+      "name": "RUIZ SIMENTAL MARIA FERNANDA",
+      "source": "RUIZ SIMENTAL MARIA FERNANDA"
+    },
+    {
+      "row": 316,
+      "email": "jetsuri.vargas0892@alumnos.udg.mx",
+      "name": "VARGAS GOMEZ JETSURI UZIEL",
+      "source": "VARGAS GOMEZ JETSURI UZIEL"
+    },
+    {
+      "row": 317,
+      "email": "abril.vargas0866@alumnos.udg.mx",
+      "name": "VARGAS LOPEZ ABRIL NATALY",
+      "source": "VARGAS LOPEZ ABRIL NATALY"
+    },
+    {
+      "row": 318,
+      "email": "zondury.vega1053@alumnos.udg.mx",
+      "name": "VEGA COMPARAN ZONDURY ANDREA",
+      "source": "VEGA COMPARAN ZONDURY ANDREA"
+    },
+    {
+      "row": 319,
+      "email": "irving.araujo5255@alumnos.udg.mx",
+      "name": "ARAUJO RAMIREZ IRVING GILBERTO",
+      "source": "ARAUJO RAMIREZ IRVING GILBERTO"
+    },
+    {
+      "row": 320,
+      "email": "valeria.bravo4079@alumnos.udg.mx",
+      "name": "BRAVO PEREZ VALERIA MICHELL",
+      "source": "BRAVO PEREZ VALERIA MICHELLE"
+    },
+    {
+      "row": 321,
+      "email": "valeria.cardenas3620@alumnos.udg.mx",
+      "name": "CARDENAS VALERIA LIZETTE",
+      "source": "CARDENAS  VALERIA LIZETTE"
+    },
+    {
+      "row": 322,
+      "email": "sofia.cardenas5669@alumnos.udg.mx",
+      "name": "CARDENAS TAPIA SOFIA FERNANDA",
+      "source": "CARDENAS TAPIA SOFIA FERNANDA"
+    },
+    {
+      "row": 323,
+      "email": "deisy.castro4016@alumnos.udg.mx",
+      "name": "CASTRO PENA DEISY GUADALUPE",
+      "source": "CASTRO PEÑA DEISY GUADALUPE"
+    },
+    {
+      "row": 324,
+      "email": "itzia.correa3679@alumnos.udg.mx",
+      "name": "CORREA SANCHEZ ITZIA MARIANA",
+      "source": "CORREA SANCHEZ ITZIA MARIANA"
+    },
+    {
+      "row": 325,
+      "email": "aldo.cortez@alumnos.udg.mx",
+      "name": "CORTEZ VALDEZ ALDO MAURICIO",
+      "source": "CORTEZ VALDEZ ALDO MAURICIO"
+    },
+    {
+      "row": 326,
+      "email": "rolando.cuevas6192@alumnos.udg.mx",
+      "name": "CUEVAS ALCARAZ ROLANDO OSIEL",
+      "source": "CUEVAS ALCARAZ ROLANDO OSIEL"
+    },
+    {
+      "row": 327,
+      "email": "elibeth.estrada@alumnos.udg.mx",
+      "name": "ESTRADA HERNANDEZ ANDREA ELIBETH",
+      "source": "ESTRADA HERNANDEZ ANDREA ELIBETH"
+    },
+    {
+      "row": 328,
+      "email": "danely.flores6492@alumnos.udg.mx",
+      "name": "FLORES CASTANEDA DANELY JHOANA",
+      "source": "FLORES CASTAÑEDA DANELY JHOANA"
+    },
+    {
+      "row": 329,
+      "email": "daniela.geronimo7552@alumnos.udg.mx",
+      "name": "GERONIMO MEJIA DANIELA SOFIA",
+      "source": "GERONIMO MEJIA DANIELA SOFIA"
+    },
+    {
+      "row": 330,
+      "email": "zamira.heredia6173@alumnos.udg.mx",
+      "name": "HEREDIA PECH ZAMIRA ELIZABET",
+      "source": "HEREDIA PECH ZAMIRA ELIZABETH"
+    },
+    {
+      "row": 331,
+      "email": "brandon.hernandez5592@alumnos.udg.mx",
+      "name": "HERNANDEZ CERRITOS BRANDON",
+      "source": "HERNANDEZ CERRITOS BRANDON"
+    },
+    {
+      "row": 332,
+      "email": "lizbeth.hernandez5358@alumnos.udg.mx",
+      "name": "HERNANDEZ HERNANDEZ LIZBETH",
+      "source": "HERNANDEZ HERNANDEZ LIZBETH"
+    },
+    {
+      "row": 333,
+      "email": "esteban.lmartinez@alumnos.udg.mx",
+      "name": "LOPEZ MARTINEZ ESTEBAN ALEJAND",
+      "source": "LOPEZ MARTINEZ ESTEBAN ALEJANDRO"
+    },
+    {
+      "row": 334,
+      "email": "nancy.lopez3309@alumnos.udg.mx",
+      "name": "LOPEZ MENDOZA NANCY MARLENE",
+      "source": "LOPEZ MENDOZA NANCY MARLENE"
+    },
+    {
+      "row": 335,
+      "email": "brian.mmunoz@alumnos.udg.mx",
+      "name": "MUNOZ MUNOZ BRIAN ALBERTO",
+      "source": "MUÑOZ MUÑOZ BRIAN ALBERTO"
+    },
+    {
+      "row": 336,
+      "email": "oscar.naranjo6194@alumnos.udg.mx",
+      "name": "NARANJO JIMENEZ OSCAR DARIO",
+      "source": "NARANJO JIMENEZ OSCAR DARIO"
+    },
+    {
+      "row": 337,
+      "email": "maria.navarro1323@alumnos.udg.mx",
+      "name": "NAVARRO CASTRO MARIA BELEN",
+      "source": "NAVARRO CASTRO MARIA BELEN"
+    },
+    {
+      "row": 338,
+      "email": "fatima.orozco5436@alumnos.udg.mx",
+      "name": "OROZCO SANCHEZ FATIMA",
+      "source": "OROZCO SANCHEZ FATIMA"
+    },
+    {
+      "row": 339,
+      "email": "julia.perez2276@alumnos.udg.mx",
+      "name": "PEREZ BATISTA JULIA BELEN",
+      "source": "PEREZ BATISTA JULIA BELEN"
+    },
+    {
+      "row": 340,
+      "email": "miroslava.quintero5643@alumnos.udg.mx",
+      "name": "QUINTERO GOMEZ MIROSLAVA",
+      "source": "QUINTERO GOMEZ MIROSLAVA"
+    },
+    {
+      "row": 341,
+      "email": "isela.ruelas1418@alumnos.udg.mx",
+      "name": "RUELAS VIVANCO ISELA ALESSANDR",
+      "source": "RUELAS VIVANCO ISELA ALESSANDRA"
+    },
+    {
+      "row": 342,
+      "email": "hugo.saucedo5928@alumnos.udg.mx",
+      "name": "SAUCEDO ROSALES HUGO DAVID",
+      "source": "SAUCEDO ROSALES HUGO DAVID"
+    },
+    {
+      "row": 343,
+      "email": "melanie.suarez8964@alumnos.udg.mx",
+      "name": "SUAREZ PACHECO MELANIE SOFIA",
+      "source": "SUAREZ PACHECO MELANIE SOFIA"
+    },
+    {
+      "row": 344,
+      "email": "cynthia.vazquez4601@alumnos.udg.mx",
+      "name": "VAZQUEZ HIGAREDA CYNTHIA DENISSE",
+      "source": "VAZQUEZ HIGAREDA CYNTHIA DENISSE"
+    },
+    {
+      "row": 345,
+      "email": "brian.alvarez4746@alumnos.udg.mx",
+      "name": "ALVAREZ NAVARRO BRIAN IVAN",
+      "source": "ALVAREZ NAVARRO BRIAN IVAN"
+    },
+    {
+      "row": 346,
+      "email": "edgar.arenas1194@alumnos.udg.mx",
+      "name": "ARENAS VAZQUEZ EDGAR ALEJANDRO",
+      "source": "ARENAS VAZQUEZ EDGAR ALEJANDRO"
+    },
+    {
+      "row": 347,
+      "email": "abigail.bazaldua7808@alumnos.udg.mx",
+      "name": "BAZALDUA VAZQUEZ ABIGAIL",
+      "source": "BAZALDUA VAZQUEZ ABIGAIL"
+    },
+    {
+      "row": 348,
+      "email": "jimena.bonilla7551@alumnos.udg.mx",
+      "name": "BONILLA GARABITO JIMENA",
+      "source": "BONILLA GARABITO JIMENA"
+    },
+    {
+      "row": 349,
+      "email": "isabel.carrera6364@alumnos.udg.mx",
+      "name": "CARRERA ISABEL MARIAH",
+      "source": "CARRERA  ISABEL MARIAH"
+    },
+    {
+      "row": 350,
+      "email": "liliana.covarrubias0591@alumnos.udg.mx",
+      "name": "COVARRUBIAS CANELA LILIANA JANETH",
+      "source": "COVARRUBIAS CANELA LILIANA JANETH"
+    },
+    {
+      "row": 351,
+      "email": "geraldine.cruz3858@alumnos.udg.mx",
+      "name": "CRUZ MARQUEZ GERALDINE",
+      "source": "CRUZ MARQUEZ GERALDINE"
+    },
+    {
+      "row": 352,
+      "email": "sofía.estrada5437@alumnos.udg.mx",
+      "name": "ESTRADA DIAZ SOFIA FERNANDA",
+      "source": "ESTRADA DIAZ SOFIA FERNANDA"
+    },
+    {
+      "row": 353,
+      "email": "sara.gallo6218@alumnos.udg.mx",
+      "name": "GALLO ARROYO SARA REGINA",
+      "source": "GALLO ARROYO SARA REGINA"
+    },
+    {
+      "row": 354,
+      "email": "fernanda.gonzalez5034@alumnos.udg.mx",
+      "name": "GONZALEZ GAMEZ FERNANDA",
+      "source": "GONZALEZ GAMEZ FERNANDA"
+    },
+    {
+      "row": 355,
+      "email": "brandon.gonzalez2968@alumnos.udg.mx",
+      "name": "GONZALEZ SAENZ BRANDON",
+      "source": "GONZALEZ SAENZ BRANDON"
+    },
+    {
+      "row": 356,
+      "email": "erika.larios6262@alumnos.udg.mx",
+      "name": "LARIOS VAZQUEZ ERIKA GUADALUPE",
+      "source": "LARIOS VAZQUEZ ERIKA GUADALUPE"
+    },
+    {
+      "row": 357,
+      "email": "santa.lazo3698@alumnos.udg.mx",
+      "name": "LAZO RODRIGUEZ SANTA MONICA",
+      "source": "LAZO RODRIGUEZ SANTA MONICA"
+    },
+    {
+      "row": 358,
+      "email": "german.mendoza1833@alumnos.udg.mx",
+      "name": "MENDOZA MARTINEZ GERMAN",
+      "source": "MENDOZA MARTINEZ GERMAN"
+    },
+    {
+      "row": 359,
+      "email": "paulina.meza4220@alumnos.udg.mx",
+      "name": "MEZA CHAVEZ PAULINA",
+      "source": "MEZA CHAVEZ PAULINA"
+    },
+    {
+      "row": 360,
+      "email": "hannia.nolasco@alumnos.udg.mx",
+      "name": "NOLASCO WILLIAMS HANNIA ESTEFANY",
+      "source": "NOLASCO WILLIAMS HANNIA ESTEFANY"
+    },
+    {
+      "row": 361,
+      "email": "francisco.reyes3639@alumnos.udg.mx",
+      "name": "REYES MORALES FRANCISCO DANIE",
+      "source": "REYES MORALES FRANCISCO DANIEL"
+    },
+    {
+      "row": 362,
+      "email": "dennis.rodriguez0690@alumnos.udg.mx",
+      "name": "RODRIGUEZ AGUILAR DENNIS PILAR",
+      "source": "RODRIGUEZ AGUILAR DENNIS PILAR"
+    },
+    {
+      "row": 363,
+      "email": "paola.tejeda1044@alumnos.udg.mx",
+      "name": "TEJEDA OLVERA PAOLA AZENNET",
+      "source": "TEJEDA OLVERA PAOLA AZENNET"
+    },
+    {
+      "row": 364,
+      "email": "melanie.tinoco5695@alumnos.udg.mx",
+      "name": "TINOCO SILVA MELANIE XIMENA",
+      "source": "TINOCO SILVA MELANIE XIMENA"
+    },
+    {
+      "row": 365,
+      "email": "cesar.torres0316@alumnos.udg.mx",
+      "name": "TORRES ABUNDIS CESAR GAEL",
+      "source": "TORRES ABUNDIS CESAR GAEL"
+    },
+    {
+      "row": 366,
+      "email": "hilary.zamora8263@alumnos.udg.mx",
+      "name": "ZAMORA ORTIZ HILARY MONSERRA",
+      "source": "ZAMORA ORTIZ HILARY MONSERRAT"
+    },
+    {
+      "row": 367,
+      "email": "monica.avalos3046@alumnos.udg.mx",
+      "name": "AVALOS ORTEGA MONICA ALEJANDR",
+      "source": "AVALOS ORTEGA MONICA ALEJANDRA"
+    },
+    {
+      "row": 368,
+      "email": "carlos.calle8091@alumnos.udg.mx",
+      "name": "CALLE VILLALOBOS CARLOS EDUARDO",
+      "source": "CALLE VILLALOBOS CARLOS EDUARDO"
+    },
+    {
+      "row": 369,
+      "email": "alessandra.carrazco4862@alumnos.udg.mx",
+      "name": "CARRAZCO LUPIAN ALESSANDRA YAMI",
+      "source": "CARRAZCO LUPIAN ALESSANDRA YAMILET"
+    },
+    {
+      "row": 370,
+      "email": "juan.flores9897@alumnos.udg.mx",
+      "name": "FLORES MARTINEZ JUAN PABLO",
+      "source": "FLORES MARTINEZ JUAN PABLO"
+    },
+    {
+      "row": 371,
+      "email": "fatima.flores6035@alumnos.udg.mx",
+      "name": "FLORES ROSAS FATIMA",
+      "source": "FLORES ROSAS FATIMA"
+    },
+    {
+      "row": 372,
+      "email": "alanna.galvan4955@alumnos.udg.mx",
+      "name": "GALVAN CAMACHO ALANNA YUNUEN",
+      "source": "GALVAN CAMACHO ALANNA YUNUEN"
+    },
+    {
+      "row": 373,
+      "email": "elvira.miramontes6623@alumnos.udg.mx",
+      "name": "MIRAMONTES SANCHEZ ELVIRA VALERIA",
+      "source": "MIRAMONTES SANCHEZ ELVIRA VALERIA"
+    },
+    {
+      "row": 374,
+      "email": "andrea.ortega2868@alumnos.udg.mx",
+      "name": "ORTEGA FLORES ANDREA CAROLINA",
+      "source": "ORTEGA FLORES ANDREA CAROLINA"
+    },
+    {
+      "row": 375,
+      "email": "salvador.ortiz0322@alumnos.udg.mx",
+      "name": "ORTIZ GONZALEZ SALVADOR",
+      "source": "ORTIZ GONZALEZ SALVADOR"
+    },
+    {
+      "row": 376,
+      "email": "gerardo.perez9707@alumnos.udg.mx",
+      "name": "PEREZ TURRADO GERARDO DAMIAN",
+      "source": "PEREZ TURRADO GERARDO DAMIAN"
+    },
+    {
+      "row": 377,
+      "email": "karol.prado6625@alumnos.udg.mx",
+      "name": "PRADO MICHEL KAROL SANTIAGO",
+      "source": "PRADO MICHEL KAROL SANTIAGO"
+    },
+    {
+      "row": 378,
+      "email": "juan.ramirez7073@alumnos.udg.mx",
+      "name": "RAMIREZ LOPEZ JUAN LUIS",
+      "source": "RAMIREZ LOPEZ JUAN LUIS"
+    },
+    {
+      "row": 379,
+      "email": "salvador.salceda2067@alumnos.udg.mx",
+      "name": "SALCEDA CERVANTES SALVADOR",
+      "source": "SALCEDA CERVANTES SALVADOR"
+    },
+    {
+      "row": 380,
+      "email": "jose.santana2827@alumnos.udg.mx",
+      "name": "SANTANA GUERRERO JOSE CARLOS",
+      "source": "SANTANA GUERRERO JOSE CARLOS"
+    },
+    {
+      "row": 381,
+      "email": "emiliano.segovia4394@alumnos.udg.mx",
+      "name": "SEGOVIA AGUINA EMILIANO",
+      "source": "SEGOVIA AGUIÑA EMILIANO"
+    },
+    {
+      "row": 382,
+      "email": "emiliano.soto6061@alumnos.udg.mx",
+      "name": "SOTO GERALDO EMILIANO",
+      "source": "SOTO GERALDO EMILIANO"
+    },
+    {
+      "row": 383,
+      "email": "alan.valencia0775@alumnos.udg.mx",
+      "name": "VALENCIA BARAJAS ALAN",
+      "source": "VALENCIA BARAJAS ALAN"
+    },
+    {
+      "row": 384,
+      "email": "esthefania.fernandez2669@alumnos.udg.mx",
+      "name": "FERNANDEZ ESTHEFANIA NATA",
+      "source": "FERNANDEZ  ESTHEFANIA NATALIE"
+    },
+    {
+      "row": 385,
+      "email": "itzel.guzman6597@alumnos.udg.mx",
+      "name": "GUZMAN LOPEZ ITZEL ALEXANDRA",
+      "source": "GUZMAN LOPEZ ITZEL ALEXANDRA"
+    },
+    {
+      "row": 386,
+      "email": "diego.jimenez9356@alumnos.udg.mx",
+      "name": "JIMENEZ GONZALEZ DIEGO EDUARDO",
+      "source": "JIMENEZ GONZALEZ DIEGO EDUARDO"
+    },
+    {
+      "row": 387,
+      "email": "betania.martinez8512@alumnos.udg.mx",
+      "name": "MARTINEZ MIRANDA BETANIA LIZBET",
+      "source": "MARTINEZ MIRANDA BETANIA LIZBET"
+    },
+    {
+      "row": 388,
+      "email": "omar.michel9297@alumnos.udg.mx",
+      "name": "MICHEL GARCIA OMAR",
+      "source": "MICHEL GARCIA OMAR"
+    },
+    {
+      "row": 389,
+      "email": "valeria.monroy3479@alumnos.udg.mx",
+      "name": "MONROY TREJO VALERIA NATALI",
+      "source": "MONROY TREJO VALERIA NATALI"
+    },
+    {
+      "row": 390,
+      "email": "dilan.pasztor2696@alumnos.udg.mx",
+      "name": "PASZTOR SEGOVIA DILAN IVAN",
+      "source": "PASZTOR SEGOVIA DILAN IVAN"
+    },
+    {
+      "row": 391,
+      "email": "aniram.rangel8620@alumnos.udg.mx",
+      "name": "RANGEL GARCIA ANIRAM CELINA",
+      "source": "RANGEL GARCIA ANIRAM CELINA"
+    },
+    {
+      "row": 392,
+      "email": "ulises.rodriguez5870@alumnos.udg.mx",
+      "name": "RODRIGUEZ RENTERIA ULISES EDUARDO",
+      "source": "RODRIGUEZ RENTERIA ULISES EDUARDO"
+    },
+    {
+      "row": 393,
+      "email": "valeria.salas2657@alumnos.udg.mx",
+      "name": "SALAS ISAAC VALERIA ALHELI",
+      "source": "SALAS ISAAC VALERIA ALHELI"
+    },
+    {
+      "row": 394,
+      "email": "jacqueline.sanchez2695@alumnos.udg.mx",
+      "name": "SANCHEZ DEL TORO JACQUELINE",
+      "source": "SANCHEZ DEL TORO JACQUELINE"
+    },
+    {
+      "row": 395,
+      "email": "renzo.toscano6326@alumnos.udg.mx",
+      "name": "TOSCANO ZUNIGA RENZO",
+      "source": "TOSCANO ZUÑIGA RENZO"
+    },
+    {
+      "row": 396,
+      "email": "arantza.vivanco9197@alumnos.udg.mx",
+      "name": "VIVANCO TORRES ARANTZA VALERIA",
+      "source": "VIVANCO TORRES ARANTZA VALERIA"
+    },
+    {
+      "row": 397,
+      "email": "katya.amador4538@alumnos.udg.mx",
+      "name": "AMADOR ENRIQUEZ KATYA MARIA",
+      "source": "AMADOR ENRIQUEZ KATYA MARIA"
+    },
+    {
+      "row": 398,
+      "email": "cinthya.avalos6186@alumnos.udg.mx",
+      "name": "AVALOS ANAYA CINTHYA ANNETTE",
+      "source": "AVALOS ANAYA CINTHYA ANNETTE GUADALUPE"
+    },
+    {
+      "row": 399,
+      "email": "luz.baeza4619@alumnos.udg.mx",
+      "name": "BAEZA RAMIREZ LUZ MARIA",
+      "source": "BAEZA RAMIREZ LUZ MARIA"
+    },
+    {
+      "row": 400,
+      "email": "andrea.brenes4610@alumnos.udg.mx",
+      "name": "BRENES RODRIGUEZ ANDREA SOFIA",
+      "source": "BRENES RODRIGUEZ ANDREA SOFIA"
+    },
+    {
+      "row": 401,
+      "email": "mariana.castillo4246@alumnos.udg.mx",
+      "name": "CASTILLO RODRIGUEZ MARIANA PAOLA",
+      "source": "CASTILLO RODRIGUEZ MARIANA PAOLA"
+    },
+    {
+      "row": 402,
+      "email": "leslie.cruz5422@alumnos.udg.mx",
+      "name": "CRUZ HERNANDEZ LESLIE MICHELLE",
+      "source": "CRUZ HERNANDEZ LESLIE MICHELLE"
+    },
+    {
+      "row": 403,
+      "email": "maria.flores4625@alumnos.udg.mx",
+      "name": "FLORES GONZALEZ MARIA FERNANDA",
+      "source": "FLORES GONZALEZ MARIA FERNANDA"
+    },
+    {
+      "row": 404,
+      "email": "priscila.gomez4321@alumnos.udg.mx",
+      "name": "GOMEZ HURTADO PRISCILA",
+      "source": "GOMEZ HURTADO PRISCILA"
+    },
+    {
+      "row": 405,
+      "email": "paola.gomez5205@alumnos.udg.mx",
+      "name": "GOMEZ HURTADO PAOLA VALENTINA",
+      "source": "GOMEZ HURTADO PAOLA VALENTINA"
+    },
+    {
+      "row": 406,
+      "email": "naomy.gutierrez4679@alumnos.udg.mx",
+      "name": "GUTIERREZ DELGADILLO NAOMY GALILEA",
+      "source": "GUTIERREZ DELGADILLO NAOMY GALILEA"
+    },
+    {
+      "row": 407,
+      "email": "adanary.hernandez6293@alumnos.udg.mx",
+      "name": "HERNANDEZ QUINTERO ADANARY MONSERR",
+      "source": "HERNANDEZ QUINTERO ADANARY MONSERRAT"
+    },
+    {
+      "row": 408,
+      "email": "emiliano.ledezma7669@alumnos.udg.mx",
+      "name": "LEDEZMA RAMIREZ EMILIANO",
+      "source": "LEDEZMA RAMIREZ EMILIANO"
+    },
+    {
+      "row": 409,
+      "email": "maria.lopez4618@alumnos.udg.mx",
+      "name": "LOPEZ NUNEZ MARIA JOSE",
+      "source": "LOPEZ NUÑEZ MARIA JOSE"
+    },
+    {
+      "row": 410,
+      "email": "naomi.magallanes4225@alumnos.udg.mx",
+      "name": "MAGALLANES LEON NAOMI SCARLETT",
+      "source": "MAGALLANES LEON NAOMI SCARLETT"
+    },
+    {
+      "row": 411,
+      "email": "bertha.mancilla4631@alumnos.udg.mx",
+      "name": "MANCILLA INIGUEZ BERTHA MONSERRA",
+      "source": "MANCILLA IÑIGUEZ BERTHA MONSERRAT"
+    },
+    {
+      "row": 412,
+      "email": "emiliano.manzo4611@alumnos.udg.mx",
+      "name": "MANZO MORENO EMILIANO",
+      "source": "MANZO MORENO EMILIANO"
+    },
+    {
+      "row": 413,
+      "email": "edgar.marquez4200@alumnos.udg.mx",
+      "name": "MARQUEZ OCHOA EDGAR AHARON",
+      "source": "MARQUEZ OCHOA EDGAR AHARON"
+    },
+    {
+      "row": 414,
+      "email": "natalia.martinez6240@alumnos.udg.mx",
+      "name": "MARTINEZ REYES NATALIA JOCELYN",
+      "source": "MARTINEZ REYES NATALIA JOCELYN"
+    },
+    {
+      "row": 415,
+      "email": "anabelle.medina1279@alumnos.udg.mx",
+      "name": "MEDINA GONZALEZ ANABELLE",
+      "source": "MEDINA GONZALEZ ANABELLE"
+    },
+    {
+      "row": 416,
+      "email": "ana.navarro7560@alumnos.udg.mx",
+      "name": "NAVARRO ELIZONDO ANA MARIA GUADA",
+      "source": "NAVARRO ELIZONDO ANA MARIA GUADALUPE"
+    },
+    {
+      "row": 417,
+      "email": "genesis.navarro4263@alumnos.udg.mx",
+      "name": "NAVARRO MURILLO GENESIS CORALIA",
+      "source": "NAVARRO MURILLO GENESIS CORALIA"
+    },
+    {
+      "row": 418,
+      "email": "edna.ornelas6260@alumnos.udg.mx",
+      "name": "ORNELAS SANDOVAL EDNA VALERIA",
+      "source": "ORNELAS SANDOVAL EDNA VALERIA"
+    },
+    {
+      "row": 419,
+      "email": "angela.palma4598@alumnos.udg.mx",
+      "name": "PALMA REYES ANGELA MAKENSE",
+      "source": "PALMA REYES ANGELA MAKENSE"
+    },
+    {
+      "row": 420,
+      "email": "estefania.reynoso5596@alumnos.udg.mx",
+      "name": "REYNOSO CHAVARIN ESTEFANIA MONTS",
+      "source": "REYNOSO CHAVARIN ESTEFANIA MONTSERRAT"
+    },
+    {
+      "row": 421,
+      "email": "ana.rrosales@alumnos.udg.mx",
+      "name": "RODRIGUEZ ROSALES ANA KAREN",
+      "source": "RODRIGUEZ ROSALES ANA KAREN"
+    },
+    {
+      "row": 422,
+      "email": "axel.rojas4085@alumnos.udg.mx",
+      "name": "ROJAS BAYARDO AXEL",
+      "source": "ROJAS BAYARDO AXEL"
+    },
+    {
+      "row": 423,
+      "email": "jose.sanchez7545@alumnos.udg.mx",
+      "name": "SANCHEZ NUNEZ JOSE ALFONSO",
+      "source": "SANCHEZ NUÑEZ JOSE ALFONSO"
+    },
+    {
+      "row": 424,
+      "email": "alicia.tepepa@alumnos.udg.mx",
+      "name": "TEPEPA OLGUIN ALICIA ISABEL",
+      "source": "TEPEPA OLGUIN ALICIA ISABEL"
+    },
+    {
+      "row": 425,
+      "email": "frida.valdivia6279@alumnos.udg.mx",
+      "name": "VALDIVIA HERNANDEZ FRIDA ITZEL",
+      "source": "VALDIVIA HERNANDEZ FRIDA ITZEL"
+    },
+    {
+      "row": 426,
+      "email": "valeria.valencia3061@alumnos.udg.mx",
+      "name": "VALENCIA HUIPIO VALERIA CAROLIN",
+      "source": "VALENCIA HUIPIO VALERIA CAROLINA"
+    },
+    {
+      "row": 427,
+      "email": "javier.acosta8282@alumnos.udg.mx",
+      "name": "ACOSTA GARCIA JAVIER EMILIANO",
+      "source": "ACOSTA GARCIA JAVIER EMILIANO"
+    },
+    {
+      "row": 428,
+      "email": "cesar.alvarado4447@alumnos.udg.mx",
+      "name": "ALVARADO MARQUEZ CESAR EMILIANO",
+      "source": "ALVARADO MARQUEZ CESAR EMILIANO"
+    },
+    {
+      "row": 429,
+      "email": "angela.avalos2228@alumnos.udg.mx",
+      "name": "AVALOS HERNANDEZ ANGELA NAOMI",
+      "source": "AVALOS HERNANDEZ ANGELA NAOMI"
+    },
+    {
+      "row": 430,
+      "email": "valeria.casillas6889@alumnos.udg.mx",
+      "name": "CASILLAS SUAREZ VALERIA JOSELYN",
+      "source": "CASILLAS SUAREZ VALERIA JOSELYN"
+    },
+    {
+      "row": 431,
+      "email": "Karla.corona6620@alumnos.udg.mx",
+      "name": "CORONA FERNANDEZ KARLA MERARY YA",
+      "source": "CORONA FERNANDEZ KARLA MERARY YAZMIN"
+    },
+    {
+      "row": 432,
+      "email": "melinda.dedios7972@alumnos.udg.mx",
+      "name": "DE DIOS MORA MELINDA MARIEL",
+      "source": "DE DIOS MORA MELINDA MARIEL"
+    },
+    {
+      "row": 433,
+      "email": "alexa.flores1341@alumnos.udg.mx",
+      "name": "FLORES BALTAZAR ALEXA YURIDIA",
+      "source": "FLORES BALTAZAR ALEXA YURIDIA"
+    },
+    {
+      "row": 434,
+      "email": "diana.garcia0772@alumnos.udg.mx",
+      "name": "GARCIA BARRERA DIANA SOFIA",
+      "source": "GARCIA BARRERA DIANA SOFIA"
+    },
+    {
+      "row": 435,
+      "email": "hannah.garcia9154@alumnos.udg.mx",
+      "name": "GARCIA LORA HANNAH VALERIA",
+      "source": "GARCIA LORA HANNAH VALERIA"
+    },
+    {
+      "row": 436,
+      "email": "jade.gaytan2269@alumnos.udg.mx",
+      "name": "GAYTAN RIOS JADE JANET",
+      "source": "GAYTAN RIOS JADE JANET"
+    },
+    {
+      "row": 437,
+      "email": "luis.huizar1364@alumnos.udg.mx",
+      "name": "HUIZAR MUNGUIA LUIS ANGEL",
+      "source": "HUIZAR MUNGUIA LUIS ANGEL"
+    },
+    {
+      "row": 438,
+      "email": "janeth.juarez1337@alumnos.udg.mx",
+      "name": "JUAREZ LOPEZ JANETH",
+      "source": "JUAREZ LOPEZ JANETH"
+    },
+    {
+      "row": 439,
+      "email": "miguel.larios4904@alumnos.udg.mx",
+      "name": "LARIOS HERNANDEZ MIGUEL DE JESUS",
+      "source": "LARIOS HERNANDEZ MIGUEL DE JESUS"
+    },
+    {
+      "row": 440,
+      "email": "jeralise.lopez6111@alumnos.udg.mx",
+      "name": "LOPEZ MENDOZA JERALISE",
+      "source": "LOPEZ MENDOZA JERALISE"
+    },
+    {
+      "row": 441,
+      "email": "keila.macias7284@alumnos.udg.mx",
+      "name": "MACIAS GOMEZ KEILA KIRIATH",
+      "source": "MACIAS GOMEZ KEILA KIRIATH"
+    },
+    {
+      "row": 443,
+      "email": "brittany.nolasco4099@alumnos.udg.mx",
+      "name": "NOLASCO GUTIERREZ BRITTANY DANIEL",
+      "source": "NOLASCO GUTIERREZ BRITTANY DANIELA"
+    },
+    {
+      "row": 444,
+      "email": "naomi.rios1356@alumnos.udg.mx",
+      "name": "RIOS HERRERA NAOMI",
+      "source": "RIOS HERRERA NAOMI"
+    },
+    {
+      "row": 445,
+      "email": "zafiro.rodriguez8564@alumnos.udg.mx",
+      "name": "RODRIGUEZ VAZQUEZ ZAFIRO POLETTE",
+      "source": "RODRIGUEZ VAZQUEZ ZAFIRO POLETTE GUADALUPE"
+    },
+    {
+      "row": 446,
+      "email": "alanna.sanchez5680@alumnos.udg.mx",
+      "name": "SANCHEZ DELGADO ALANNA YAMILE",
+      "source": "SANCHEZ DELGADO ALANNA YAMILE"
+    },
+    {
+      "row": 447,
+      "email": "katya.torres8666@alumnos.udg.mx",
+      "name": "TORRES ROCHA KATYA MONTSERRA",
+      "source": "TORRES ROCHA KATYA MONTSERRAT"
+    },
+    {
+      "row": 448,
+      "email": "hanna.valdivia6280@alumnos.udg.mx",
+      "name": "VALDIVIA MIGUEL HANNA GABRIELA",
+      "source": "VALDIVIA MIGUEL HANNA GABRIELA"
+    },
+    {
+      "row": 449,
+      "email": "evelyn.vargas1384@alumnos.udg.mx",
+      "name": "VARGAS CERVANTES EVELYN ALEJANDR",
+      "source": "VARGAS CERVANTES EVELYN ALEJANDRA"
+    },
+    {
+      "row": 450,
+      "email": "Zaida.vazquez1419@alumnos.udg.mx",
+      "name": "VAZQUEZ RAMIREZ ZAIDA YAMILE",
+      "source": "VAZQUEZ RAMIREZ ZAIDA YAMILE"
+    },
+    {
+      "row": 451,
+      "email": "lidia.venegas0721@alumnos.udg.mx",
+      "name": "VENEGAS CARDENAS LIDIA GORETTY",
+      "source": "VENEGAS CARDENAS LIDIA GORETTY"
+    },
+    {
+      "row": 452,
+      "email": "maria.vicente6010@alumnos.udg.mx",
+      "name": "VICENTE GALLEGOS MARIA DEL CARME",
+      "source": "VICENTE GALLEGOS MARIA DEL CARMEN"
+    },
+    {
+      "row": 453,
+      "email": "brayan.arizaga9924@alumnos.udg.mx",
+      "name": "ARIZAGA CISNEROS BRAYAN JOSE",
+      "source": "ARIZAGA CISNEROS BRAYAN JOSE"
+    },
+    {
+      "row": 454,
+      "email": "fatima.becerra5309@alumnos.udg.mx",
+      "name": "BECERRA PRECIADO FATIMA MONTSERR",
+      "source": "BECERRA PRECIADO FATIMA MONTSERRAT"
+    },
+    {
+      "row": 455,
+      "email": "atziri.coronel4754@alumnos.udg.mx",
+      "name": "CORONEL PAJARITO ATZIRI YANETH",
+      "source": "CORONEL PAJARITO ATZIRI YANETH"
+    },
+    {
+      "row": 456,
+      "email": "carolina.esparza4180@alumnos.udg.mx",
+      "name": "ESPARZA BARBA CAROLINA",
+      "source": "ESPARZA BARBA CAROLINA"
+    },
+    {
+      "row": 457,
+      "email": "Rosenda.franco3063@alumnos.udg.mx",
+      "name": "FRANCO HERNANDEZ ROSENDA",
+      "source": "FRANCO HERNANDEZ ROSENDA"
+    },
+    {
+      "row": 458,
+      "email": "dayana.gallardo2104@alumnos.udg.mx",
+      "name": "GALLARDO ALEMAN DAYANA KARINA",
+      "source": "GALLARDO ALEMAN DAYANA KARINA"
+    },
+    {
+      "row": 459,
+      "email": "yaretzi.garcia6558@alumnos.udg.mx",
+      "name": "GARCIA OCHOA YARETZI NOEMI",
+      "source": "GARCIA OCHOA YARETZI NOEMI"
+    },
+    {
+      "row": 460,
+      "email": "andrea.garcia0901@alumnos.udg.mx",
+      "name": "GARCIA VELAZQUEZ ANDREA MONTSERR",
+      "source": "GARCIA VELAZQUEZ ANDREA MONTSERRAT"
+    },
+    {
+      "row": 461,
+      "email": "selene.hernandez8996@alumnos.udg.mx",
+      "name": "HERNANDEZ PADILLA SELENE CAROLINA",
+      "source": "HERNANDEZ PADILLA SELENE CAROLINA"
+    },
+    {
+      "row": 462,
+      "email": "daniela.herrera5836@alumnos.udg.mx",
+      "name": "HERRERA BARAJAS DANIELA",
+      "source": "HERRERA BARAJAS DANIELA"
+    },
+    {
+      "row": 463,
+      "email": "carlos.jimenez4325@alumnos.udg.mx",
+      "name": "JIMENEZ ESPINOZA CARLOS IGNACIO",
+      "source": "JIMENEZ ESPINOZA CARLOS IGNACIO"
+    },
+    {
+      "row": 464,
+      "email": "jennifer.morales2109@alumnos.udg.mx",
+      "name": "MORALES GARCIA JENNIFER KAROLI",
+      "source": "MORALES GARCIA JENNIFER KAROLINA"
+    },
+    {
+      "row": 465,
+      "email": "maria.ocegueda5614@alumnos.udg.mx",
+      "name": "OCEGUEDA SOTO MARIA ISABEL",
+      "source": "OCEGUEDA SOTO MARIA ISABEL"
+    },
+    {
+      "row": 466,
+      "email": "jessica.ontiveros5843@alumnos.udg.mx",
+      "name": "ONTIVEROS VAZQUEZ JESSICA PAOLA",
+      "source": "ONTIVEROS VAZQUEZ JESSICA PAOLA"
+    },
+    {
+      "row": 467,
+      "email": "veronica.ortega4391@alumnos.udg.mx",
+      "name": "ORTEGA VALDEZ VERONICA SARAHI",
+      "source": "ORTEGA VALDEZ VERONICA SARAHI"
+    },
+    {
+      "row": 468,
+      "email": "vanessa.ortiz5690@alumnos.udg.mx",
+      "name": "ORTIZ SEGURA VANESSA JAZMIN",
+      "source": "ORTIZ SEGURA VANESSA JAZMIN"
+    },
+    {
+      "row": 469,
+      "email": "andrea.ramirez5297@alumnos.udg.mx",
+      "name": "RAMIREZ GUTIERREZ ANDREA DEL CARM",
+      "source": "RAMIREZ GUTIERREZ ANDREA DEL CARMEN"
+    },
+    {
+      "row": 470,
+      "email": "ana.rodriguez9143@alumnos.udg.mx",
+      "name": "RODRIGUEZ VAZQUEZ ANA KAREN",
+      "source": "RODRIGUEZ VAZQUEZ ANA KAREN"
+    },
+    {
+      "row": 471,
+      "email": "estefany.rojas0302@alumnos.udg.mx",
+      "name": "ROJAS GALINDO ESTEFANY LIZETT",
+      "source": "ROJAS GALINDO ESTEFANY LIZETTE"
+    },
+    {
+      "row": 472,
+      "email": "cesar.rosas5890@alumnos.udg.mx",
+      "name": "ROSAS BAYARDO CESAR ADRIAN",
+      "source": "ROSAS BAYARDO CESAR ADRIAN"
+    },
+    {
+      "row": 473,
+      "email": "ana.salas6560@alumnos.udg.mx",
+      "name": "SALAS HARO ANA LAURA",
+      "source": "SALAS HARO ANA LAURA"
+    },
+    {
+      "row": 474,
+      "email": "fryda.salazar3680@alumnos.udg.mx",
+      "name": "SALAZAR GUERRERO FRYDA SOFIA",
+      "source": "SALAZAR GUERRERO FRYDA SOFIA"
+    },
+    {
+      "row": 475,
+      "email": "valeria.salazar2107@alumnos.udg.mx",
+      "name": "SALAZAR ROBLES VALERIA",
+      "source": "SALAZAR ROBLES VALERIA"
+    },
+    {
+      "row": 476,
+      "email": "moises.terrones5897@alumnos.udg.mx",
+      "name": "TERRONES ALVIZO MOISES",
+      "source": "TERRONES ALVIZO MOISES"
+    },
+    {
+      "row": 477,
+      "email": "susana.alvarez5788@alumnos.udg.mx",
+      "name": "ALVAREZ MEDINA SUSANA YAQUELIN",
+      "source": "ALVAREZ MEDINA SUSANA YAQUELIN"
+    },
+    {
+      "row": 478,
+      "email": "zahira.barajas5692@alumnos.udg.mx",
+      "name": "BARAJAS BELTRAN ZAHIRA RUBI",
+      "source": "BARAJAS BELTRAN ZAHIRA RUBI"
+    },
+    {
+      "row": 479,
+      "email": "erick.barajas8528@alumnos.udg.mx",
+      "name": "BARAJAS LOPEZ ERICK FIDEL",
+      "source": "BARAJAS LOPEZ ERICK FIDEL"
+    },
+    {
+      "row": 480,
+      "email": "monica.castro9944@alumnos.udg.mx",
+      "name": "CASTRO RIVAS MONICA PRISCILL",
+      "source": "CASTRO RIVAS MONICA PRISCILLA"
+    },
+    {
+      "row": 481,
+      "email": "alma.correa5304@alumnos.udg.mx",
+      "name": "CORREA GAMEZ ALMA ELENA",
+      "source": "CORREA GAMEZ ALMA ELENA"
+    },
+    {
+      "row": 482,
+      "email": "maria.cruz4334@alumnos.udg.mx",
+      "name": "CRUZ HERNANDEZ MARIA JOSE",
+      "source": "CRUZ HERNANDEZ MARIA JOSE"
+    },
+    {
+      "row": 483,
+      "email": "jocelin.delatorre2434@alumnos.udg.mx",
+      "name": "DE LA TORRE RUIZ JOCELIN",
+      "source": "DE LA TORRE RUIZ JOCELIN"
+    },
+    {
+      "row": 484,
+      "email": "yarazet.diaz0805@alumnos.udg.mx",
+      "name": "DIAZ FLORES YARAZET HORTENC",
+      "source": "DIAZ FLORES YARAZET HORTENCIA"
+    },
+    {
+      "row": 485,
+      "email": "yazmin.hernandez7509@alumnos.udg.mx",
+      "name": "HERNANDEZ GARCIA YAZMIN ANZURY",
+      "source": "HERNANDEZ GARCIA YAZMIN ANZURY"
+    },
+    {
+      "row": 486,
+      "email": "nicole.huerta2550@alumnos.udg.mx",
+      "name": "HUERTA GONZALEZ NICOLE MELANI",
+      "source": "HUERTA GONZALEZ NICOLE MELANI"
+    },
+    {
+      "row": 487,
+      "email": "vanessa.nuno6306@alumnos.udg.mx",
+      "name": "NUNO SANTIAGO VANESSA",
+      "source": "NUÑO SANTIAGO VANESSA"
+    },
+    {
+      "row": 488,
+      "email": "estefania.olarte9144@alumnos.udg.mx",
+      "name": "OLARTE ATZIN ESTEFANIA",
+      "source": "OLARTE ATZIN ESTEFANIA"
+    },
+    {
+      "row": 489,
+      "email": "montserrat.venegas2039@alumnos.udg.mx",
+      "name": "VENEGAS JIMENEZ MONTSERRAT",
+      "source": "VENEGAS JIMENEZ MONTSERRAT"
+    },
+    {
+      "row": 490,
+      "email": "alexis.aguayo1479@alumnos.udg.mx",
+      "name": "AGUAYO IBARROLA ALEXIS ANTONIO",
+      "source": "AGUAYO IBARROLA ALEXIS ANTONIO"
+    },
+    {
+      "row": 491,
+      "email": "natalia.aguilar6544@alumnos.udg.mx",
+      "name": "AGUILAR ROBLES NATALIA",
+      "source": "AGUILAR ROBLES NATALIA"
+    },
+    {
+      "row": 492,
+      "email": "alexis.aguirre6400@alumnos.udg.mx",
+      "name": "AGUIRRE GAETA ALEXIS YAIR",
+      "source": "AGUIRRE GAETA ALEXIS YAIR"
+    },
+    {
+      "row": 493,
+      "email": "natalia.barrales8764@alumnos.udg.mx",
+      "name": "BARRALES GARCIA NATALIA",
+      "source": "BARRALES GARCIA NATALIA"
+    },
+    {
+      "row": 494,
+      "email": "erika.bautista5232@alumnos.udg.mx",
+      "name": "BAUTISTA GARCIA ERIKA FERNANDA",
+      "source": "BAUTISTA GARCIA ERIKA FERNANDA"
+    },
+    {
+      "row": 495,
+      "email": "andrea.bernal4097@alumnos.udg.mx",
+      "name": "BERNAL MONTAL ANDREA MONSERRA",
+      "source": "BERNAL MONTAL ANDREA MONSERRAT"
+    },
+    {
+      "row": 496,
+      "email": "carla.casillas0657@alumnos.udg.mx",
+      "name": "CASILLAS SOSA CARLA JACQUELIN",
+      "source": "CASILLAS SOSA CARLA JACQUELINE"
+    },
+    {
+      "row": 497,
+      "email": "triana.cuevas5038@alumnos.udg.mx",
+      "name": "CUEVAS RAMOS TRIANA MELISSA",
+      "source": "CUEVAS RAMOS TRIANA MELISSA"
+    },
+    {
+      "row": 498,
+      "email": "gabriela.delamora9384@alumnos.udg.mx",
+      "name": "DE LA MORA AGUILAR GABRIELA MARIBE",
+      "source": "DE LA MORA AGUILAR GABRIELA MARIBEL"
+    },
+    {
+      "row": 499,
+      "email": "barbara.esparza4085@alumnos.udg.mx",
+      "name": "ESPARZA GONZALEZ BARBARA XIMENA",
+      "source": "ESPARZA GONZALEZ BARBARA XIMENA"
+    },
+    {
+      "row": 500,
+      "email": "edgar.flores6178@alumnos.udg.mx",
+      "name": "FLORES RUIZ EDGAR NIRIEL",
+      "source": "FLORES RUIZ EDGAR NIRIEL"
+    },
+    {
+      "row": 501,
+      "email": "andrea.galvan0634@alumnos.udg.mx",
+      "name": "GALVAN GODINEZ ANDREA MONSERRA",
+      "source": "GALVAN GODINEZ ANDREA MONSERRAT"
+    },
+    {
+      "row": 502,
+      "email": "greco.garcia0674@alumnos.udg.mx",
+      "name": "GARCIA AGUIRRE GRECO RAZIEL",
+      "source": "GARCIA AGUIRRE GRECO RAZIEL"
+    },
+    {
+      "row": 503,
+      "email": "jorge.guerrero4752@alumnos.udg.mx",
+      "name": "GUERRERO GOMEZ JORGE LEONARDO",
+      "source": "GUERRERO GOMEZ JORGE LEONARDO"
+    },
+    {
+      "row": 504,
+      "email": "dylan.hermosillo7586@alumnos.udg.mx",
+      "name": "HERMOSILLO DIAZ DYLAN ULISES",
+      "source": "HERMOSILLO DIAZ DYLAN ULISES"
+    },
+    {
+      "row": 505,
+      "email": "andrea.martinez9607@alumnos.udg.mx",
+      "name": "MARTINEZ MEJIA ANDREA",
+      "source": "MARTINEZ MEJIA ANDREA"
+    },
+    {
+      "row": 506,
+      "email": "alejandro.martinez5978@alumnos.udg.mx",
+      "name": "MARTINEZ ROMERO ALEJANDRO",
+      "source": "MARTINEZ ROMERO ALEJANDRO"
+    },
+    {
+      "row": 507,
+      "email": "axel.medina4949@alumnos.udg.mx",
+      "name": "MEDINA DABALOS AXEL OSWALDO",
+      "source": "MEDINA DABALOS AXEL OSWALDO"
+    },
+    {
+      "row": 508,
+      "email": "jimena.mora0667@alumnos.udg.mx",
+      "name": "MORA ZAMBRANO JIMENA VALENTIN",
+      "source": "MORA ZAMBRANO JIMENA VALENTINA"
+    },
+    {
+      "row": 509,
+      "email": "agaly.orozco3069@alumnos.udg.mx",
+      "name": "OROZCO DE LA TORRE AGALY CELIC",
+      "source": "OROZCO DE LA TORRE AGALY CELIC"
+    },
+    {
+      "row": 510,
+      "email": "mauricio.patino7409@alumnos.udg.mx",
+      "name": "PATINO BORBOA MAURICIO",
+      "source": "PATIÑO BORBOA MAURICIO"
+    },
+    {
+      "row": 511,
+      "email": "maria.rivera0660@alumnos.udg.mx",
+      "name": "RIVERA MARTINEZ MARIA FERNANDA",
+      "source": "RIVERA MARTINEZ MARIA FERNANDA"
+    },
+    {
+      "row": 512,
+      "email": "oscar.rivera1350@alumnos.udg.mx",
+      "name": "RIVERA RODRIGUEZ OSCAR URIEL",
+      "source": "RIVERA RODRIGUEZ OSCAR URIEL"
+    },
+    {
+      "row": 513,
+      "email": "yocelin.sanchez7321@alumnos.udg.mx",
+      "name": "SANCHEZ MEJIA YOCELIN CELESTE",
+      "source": "SANCHEZ MEJIA YOCELIN CELESTE"
+    },
+    {
+      "row": 514,
+      "email": "natalia.sanchez9112@alumnos.udg.mx",
+      "name": "SANCHEZ RUBIO NATALIA MONSERR",
+      "source": "SANCHEZ RUBIO NATALIA MONSERRAT"
+    },
+    {
+      "row": 515,
+      "email": "diana.sanchez0672@alumnos.udg.mx",
+      "name": "SANCHEZ VARGAS DIANA VALERIA",
+      "source": "SANCHEZ VARGAS DIANA VALERIA"
+    },
+    {
+      "row": 516,
+      "email": "christopher.sandoval7306@alumnos.udg.mx",
+      "name": "SANDOVAL ROBLES CHRISTOPHER",
+      "source": "SANDOVAL ROBLES CHRISTOPHER"
+    },
+    {
+      "row": 517,
+      "email": "galilea.song0631@alumnos.udg.mx",
+      "name": "SONG VERA GALILEA",
+      "source": "SONG VERA GALILEA"
+    },
+    {
+      "row": 518,
+      "email": "dana.torres6632@alumnos.udg.mx",
+      "name": "TORRES SANCHEZ PADILLA DANA NICOLE",
+      "source": "TORRES SANCHEZ PADILLA DANA NICOLE"
+    },
+    {
+      "row": 519,
+      "email": "rodrigo.vargas0665@alumnos.udg.mx",
+      "name": "VARGAS URBAR RODRIGO",
+      "source": "VARGAS URBAR RODRIGO"
+    },
+    {
+      "row": 520,
+      "email": "emilio.velazquez1703@alumnos.udg.mx",
+      "name": "VELAZQUEZ JARERO EMILIO URIEL",
+      "source": "VELAZQUEZ JARERO EMILIO URIEL"
+    },
+    {
+      "row": 521,
+      "email": "paulina.villalobos4484@alumnos.udg.mx",
+      "name": "VILLALOBOS CONTRERAS PAULINA",
+      "source": "VILLALOBOS CONTRERAS PAULINA"
+    },
+    {
+      "row": 522,
+      "email": "michelle.acevedo3602@alumnos.udg.mx",
+      "name": "ACEVEDO CHACON MICHELLE NATALI",
+      "source": "ACEVEDO CHACON MICHELLE NATALIA"
+    },
+    {
+      "row": 523,
+      "email": "nayeli.aguayo5304@alumnos.udg.mx",
+      "name": "AGUAYO MANCILLA NAYELI GUADALUP",
+      "source": "AGUAYO MANCILLA NAYELI GUADALUPE"
+    },
+    {
+      "row": 524,
+      "email": "angel.aguilar4849@alumnos.udg.mx",
+      "name": "AGUILAR ALARCON ANGEL",
+      "source": "AGUILAR ALARCON ANGEL"
+    },
+    {
+      "row": 525,
+      "email": "jorge.alamillo5207@alumnos.udg.mx",
+      "name": "ALAMILLO LOPEZ JORGE ANTONIO",
+      "source": "ALAMILLO LOPEZ JORGE ANTONIO"
+    },
+    {
+      "row": 526,
+      "email": "david.amador7872@alumnos.udg.mx",
+      "name": "AMADOR AGUILA DAVID",
+      "source": "AMADOR AGUILA DAVID"
+    },
+    {
+      "row": 527,
+      "email": "juan.amador5194@alumnos.udg.mx",
+      "name": "AMADOR RAMIREZ JUAN PABLO",
+      "source": "AMADOR RAMIREZ JUAN PABLO"
+    },
+    {
+      "row": 528,
+      "email": "maria.arechiga3477@alumnos.udg.mx",
+      "name": "ARECHIGA GARCIA MARIA FERNANDA",
+      "source": "ARECHIGA GARCIA MARIA FERNANDA"
+    },
+    {
+      "row": 529,
+      "email": "janette.arreola4677@alumnos.udg.mx",
+      "name": "ARREOLA RAMIREZ JANETTE ALEJAND",
+      "source": "ARREOLA RAMIREZ JANETTE ALEJANDRA"
+    },
+    {
+      "row": 530,
+      "email": "juan.cabrera4993@alumnos.udg.mx",
+      "name": "CABRERA SUAREZ JUAN PABLO",
+      "source": "CABRERA SUAREZ JUAN PABLO"
+    },
+    {
+      "row": 531,
+      "email": "luisa.castaneda5292@alumnos.udg.mx",
+      "name": "CASTANEDA TORRES LUISA MARIA",
+      "source": "CASTAÑEDA TORRES LUISA MARIA"
+    },
+    {
+      "row": 532,
+      "email": "danna.celis8800@alumnos.udg.mx",
+      "name": "CELIS RODRIGUEZ DANA CAROLINA",
+      "source": "CELIS RODRIGUEZ DANA CAROLINA"
+    },
+    {
+      "row": 534,
+      "email": "sonia.delapena5062@alumnos.udg.mx",
+      "name": "DE LA PENA LOPEZ SONIA ALONDRA",
+      "source": "DE LA PEÑA LOPEZ SONIA ALONDRA"
+    },
+    {
+      "row": 535,
+      "email": "evelin.diaz6361@alumnos.udg.mx",
+      "name": "DIAZ IBARRA EVELIN CELIK",
+      "source": "DIAZ IBARRA EVELIN CELIK"
+    },
+    {
+      "row": 536,
+      "email": "angela.flores0510@alumnos.udg.mx",
+      "name": "FLORES CAMACHO ANGELA JANET",
+      "source": "FLORES CAMACHO ANGELA JANET"
+    },
+    {
+      "row": 537,
+      "email": "dulce.fruiz@alumnos.udg.mx",
+      "name": "FLORES RUIZ DULCE NOEMI",
+      "source": "FLORES RUIZ DULCE NOEMI"
+    },
+    {
+      "row": 538,
+      "email": "ana.franco5052@alumnos.udg.mx",
+      "name": "FRANCO PADILLA ANA SOFIA",
+      "source": "FRANCO PADILLA ANA SOFIA"
+    },
+    {
+      "row": 539,
+      "email": "jesus.gaspar4309@alumnos.udg.mx",
+      "name": "GASPAR HERNANDEZ JESUS MISSAEL",
+      "source": "GASPAR HERNANDEZ JESUS MISSAEL"
+    },
+    {
+      "row": 540,
+      "email": "christian.gonzalez5081@alumnos.udg.mx",
+      "name": "GONZALEZ GARCIA CHRISTIAN YUNNU",
+      "source": "GONZALEZ GARCIA CHRISTIAN YUNNUEN"
+    },
+    {
+      "row": 541,
+      "email": "alejandro.gonzalez3811@alumnos.udg.mx",
+      "name": "GONZALEZ LUNA ALEJANDRO URIEL",
+      "source": "GONZALEZ LUNA ALEJANDRO URIEL"
+    },
+    {
+      "row": 542,
+      "email": "mishelle.guerrero6549@alumnos.udg.mx",
+      "name": "GUERRERO MEDINA MISHELLE ALEXAN",
+      "source": "GUERRERO MEDINA MISHELLE ALEXANDRA"
+    },
+    {
+      "row": 543,
+      "email": "natsumi.kataoka5072@alumnos.udg.mx",
+      "name": "KATAOKA HERNANDEZ NATSUMI",
+      "source": "KATAOKA HERNANDEZ NATSUMI"
+    },
+    {
+      "row": 544,
+      "email": "alondra.lopez5495@alumnos.udg.mx",
+      "name": "LOPEZ TAPIA ALONDRA ESTEFAN",
+      "source": "LOPEZ TAPIA ALONDRA ESTEFANIA"
+    },
+    {
+      "row": 545,
+      "email": "alejandro.mejia5843@alumnos.udg.mx",
+      "name": "MEJIA GONZALEZ ALEJANDRO EMMAN",
+      "source": "MEJIA GONZALEZ ALEJANDRO EMMANUEL"
+    },
+    {
+      "row": 546,
+      "email": "ricardo.montes5975@alumnos.udg.mx",
+      "name": "MONTES HERRERA RICARDO DANIEL",
+      "source": "MONTES HERRERA RICARDO DANIEL"
+    },
+    {
+      "row": 547,
+      "email": "fernanda.murillo5194@alumnos.udg.mx",
+      "name": "MURILLO HERNANDEZ FERNANDA ELIZAB",
+      "source": "MURILLO HERNANDEZ FERNANDA ELIZABETH"
+    },
+    {
+      "row": 548,
+      "email": "katia.palacios6510@alumnos.udg.mx",
+      "name": "PALACIOS CONTRERAS KATIA LARISSA",
+      "source": "PALACIOS CONTRERAS KATIA LARISSA"
+    },
+    {
+      "row": 550,
+      "email": "gael.ramirez3592@alumnos.udg.mx",
+      "name": "RAMIREZ SANDOVAL GAEL ALEJANDRO",
+      "source": "RAMIREZ SANDOVAL GAEL ALEJANDRO"
+    },
+    {
+      "row": 551,
+      "email": "ian.richarte9194@alumnos.udg.mx",
+      "name": "RICHARTE LOPEZ IAN AXEL",
+      "source": "RICHARTE LOPEZ IAN AXEL"
+    },
+    {
+      "row": 552,
+      "email": "edgar.rodriguez3799@alumnos.udg.mx",
+      "name": "RODRIGUEZ GUTIERREZ EDGAR ALEJANDRO",
+      "source": "RODRIGUEZ GUTIERREZ EDGAR ALEJANDRO"
+    },
+    {
+      "row": 553,
+      "email": "joselin.rojo5174@alumnos.udg.mx",
+      "name": "ROJO LARIOS JOSELIN GUADALU",
+      "source": "ROJO LARIOS JOSELIN GUADALUPE"
+    },
+    {
+      "row": 554,
+      "email": "jose.tapia5177@alumnos.udg.mx",
+      "name": "TAPIA LOMAS JOSE LUIS",
+      "source": "TAPIA LOMAS JOSE LUIS"
+    },
+    {
+      "row": 555,
+      "email": "sofia.valdez5047@alumnos.udg.mx",
+      "name": "VALDEZ HERNANDEZ SOFIA REGINA",
+      "source": "VALDEZ HERNANDEZ SOFIA REGINA"
+    },
+    {
+      "row": 556,
+      "email": "bryan.vazquez8875@alumnos.udg.mx",
+      "name": "VAZQUEZ PANTALEON BRYAN ALEJANDRO",
+      "source": "VAZQUEZ PANTALEON BRYAN ALEJANDRO"
+    },
+    {
+      "row": 557,
+      "email": "valeria.zarate5084@alumnos.udg.mx",
+      "name": "ZARATE MONTES VALERIA SOFIA",
+      "source": "ZARATE MONTES VALERIA SOFIA"
+    },
+    {
+      "row": 558,
+      "email": "fernanda.zepeda5058@alumnos.udg.mx",
+      "name": "ZEPEDA VICTOR FERNANDA YARELI",
+      "source": "ZEPEDA VICTOR FERNANDA YARELI"
+    },
+    {
+      "row": 559,
+      "email": "rebeca.amador2408@alumnos.udg.mx",
+      "name": "AMADOR ROSAS REBECA",
+      "source": "AMADOR ROSAS REBECA"
+    },
+    {
+      "row": 560,
+      "email": "citlally.amedellin@alumnos.udg.mx",
+      "name": "ANAYA MEDELLIN CITLALLY ALEJAN",
+      "source": "ANAYA MEDELLIN CITLALLY ALEJANDRA"
+    },
+    {
+      "row": 561,
+      "email": "itzel.boites9632@alumnos.udg.mx",
+      "name": "BOITES LOPEZ ITZEL",
+      "source": "BOITES LOPEZ ITZEL"
+    },
+    {
+      "row": 562,
+      "email": "diana.bravo5259@alumnos.udg.mx",
+      "name": "BRAVO ROBLES DIANA GUADALUPE",
+      "source": "BRAVO ROBLES DIANA GUADALUPE"
+    },
+    {
+      "row": 563,
+      "email": "kena.carmona8344@alumnos.udg.mx",
+      "name": "CARMONA MAGANA KENA ZOE",
+      "source": "CARMONA MAGAÑA KENA ZOE"
+    },
+    {
+      "row": 564,
+      "email": "ingrid.garay5695@alumnos.udg.mx",
+      "name": "GARAY PADILLA INGRID DAYANA",
+      "source": "GARAY PADILLA INGRID DAYANA"
+    },
+    {
+      "row": 565,
+      "email": "Vanessa.garcia5193@alumnos.udg.mx",
+      "name": "GARCIA GONZALEZ VANESSA ITZEL",
+      "source": "GARCIA GONZALEZ VANESSA ITZEL"
+    },
+    {
+      "row": 566,
+      "email": "daniela.gomez6004@alumnos.udg.mx",
+      "name": "GOMEZ GOMEZ DANIELA JULIANA",
+      "source": "GOMEZ GOMEZ DANIELA JULIANA"
+    },
+    {
+      "row": 567,
+      "email": "dania.guerrero5196@alumnos.udg.mx",
+      "name": "GUERRERO ANGUIANO DANIA JANETTE",
+      "source": "GUERRERO ANGUIANO DANIA JANETTE"
+    },
+    {
+      "row": 568,
+      "email": "valeria.meza2431@alumnos.udg.mx",
+      "name": "MEZA CORONADO VALERIA MICHELL",
+      "source": "MEZA CORONADO VALERIA MICHELLE"
+    },
+    {
+      "row": 571,
+      "email": "daniel.padilla1798@alumnos.udg.mx",
+      "name": "PADILLA GARCIA DANIEL ALEJANDR",
+      "source": "PADILLA GARCIA DANIEL ALEJANDRO"
+    },
+    {
+      "row": 572,
+      "email": "ximena.plascencia5630@alumnos.udg.mx",
+      "name": "PLASCENCIA AGREDANO XIMENA",
+      "source": "PLASCENCIA AGREDANO XIMENA"
+    },
+    {
+      "row": 573,
+      "email": "diego.ramon1208@alumnos.udg.mx",
+      "name": "RAMON TRUJILLO DIEGO ELOY",
+      "source": "RAMON TRUJILLO DIEGO ELOY"
+    },
+    {
+      "row": 574,
+      "email": "yara.real3580@alumnos.udg.mx",
+      "name": "REAL MENDEZ YARA LUISA GAIL",
+      "source": "REAL MENDEZ YARA LUISA GAIL"
+    },
+    {
+      "row": 575,
+      "email": "evelyn.rodriguez2677@alumnos.udg.mx",
+      "name": "RODRIGUEZ DE LA MORA EVELYN PRISCILA",
+      "source": "RODRIGUEZ DE LA MORA EVELYN PRISCILA"
+    },
+    {
+      "row": 576,
+      "email": "mariana.rodriguez6000@alumnos.udg.mx",
+      "name": "RODRIGUEZ MARTINEZ MARIANA ARACELI",
+      "source": "RODRIGUEZ MARTINEZ MARIANA ARACELI"
+    },
+    {
+      "row": 577,
+      "email": "giselle.rosales5664@alumnos.udg.mx",
+      "name": "ROSALES CARRILLO GISELLE",
+      "source": "ROSALES CARRILLO GISELLE"
+    },
+    {
+      "row": 578,
+      "email": "uriel.sanchez5806@alumnos.udg.mx",
+      "name": "SANCHEZ OCAMPO URIEL KALID",
+      "source": "SANCHEZ OCAMPO URIEL KALID"
+    },
+    {
+      "row": 579,
+      "email": "tania.sepulveda1320@alumnos.udg.mx",
+      "name": "SEPULVEDA CORONEL TANIA CAROLINA",
+      "source": "SEPULVEDA CORONEL TANIA CAROLINA"
+    },
+    {
+      "row": 580,
+      "email": "julio.suarez9995@alumnos.udg.mx",
+      "name": "SUAREZ ARELLANO JULIO ANGEL",
+      "source": "SUAREZ ARELLANO JULIO ANGEL"
+    },
+    {
+      "row": 581,
+      "email": "christopher.suarez9787@alumnos.udg.mx",
+      "name": "SUAREZ FIERRO CHRISTOPHER JOS",
+      "source": "SUAREZ FIERRO CHRISTOPHER JOSAFAT"
+    },
+    {
+      "row": 582,
+      "email": "alma.vega6325@alumnos.udg.mx",
+      "name": "VEGA PEREZ ALMA JUDIT",
+      "source": "VEGA PEREZ ALMA JUDIT"
+    },
+    {
+      "row": 583,
+      "email": "julio.velazquez1818@alumnos.udg.mx",
+      "name": "VELAZQUEZ DIAZ JULIO CESAR",
+      "source": "VELAZQUEZ DIAZ JULIO CESAR"
+    },
+    {
+      "row": 584,
+      "email": "daniela.andrade7625@alumnos.udg.mx",
+      "name": "ANDRADE GARCIA DANIELA",
+      "source": "ANDRADE GARCIA DANIELA"
+    },
+    {
+      "row": 585,
+      "email": "angel.bedoy7550@alumnos.udg.mx",
+      "name": "BEDOY REYES ANGEL LEONARDO",
+      "source": "BEDOY REYES ANGEL LEONARDO"
+    },
+    {
+      "row": 586,
+      "email": "aleysa.braun5672@alumnos.udg.mx",
+      "name": "BRAUN HERNANDEZ ALEYSA",
+      "source": "BRAUN HERNANDEZ ALEYSA"
+    },
+    {
+      "row": 587,
+      "email": "ximena.delgadillo6367@alumnos.udg.mx",
+      "name": "DELGADILLO GARCIA XIMENA ALEXANDR",
+      "source": "DELGADILLO GARCIA XIMENA ALEXANDRA"
+    },
+    {
+      "row": 588,
+      "email": "maria.gonzalez6900@alumnos.udg.mx",
+      "name": "GONZALEZ CARDENAS MARIA JOSE",
+      "source": "GONZALEZ CARDENAS MARIA JOSE"
+    },
+    {
+      "row": 589,
+      "email": "gabriel.gonzalez0924@alumnos.udg.mx",
+      "name": "GONZALEZ CASTRO GABRIEL DE JESU",
+      "source": "GONZALEZ CASTRO GABRIEL DE JESUS"
+    },
+    {
+      "row": 590,
+      "email": "hugo.gonzalez5693@alumnos.udg.mx",
+      "name": "GONZALEZ RAMOS HUGO EMMANUEL",
+      "source": "GONZALEZ RAMOS HUGO EMMANUEL"
+    },
+    {
+      "row": 591,
+      "email": "alan.hernandez2626@alumnos.udg.mx",
+      "name": "HERNANDEZ LANDEROS ALAN DANILO",
+      "source": "HERNANDEZ LANDEROS ALAN DANILO"
+    },
+    {
+      "row": 592,
+      "email": "karla.hernandez6825@alumnos.udg.mx",
+      "name": "HERNANDEZ NUNEZ KARLA",
+      "source": "HERNANDEZ NUÑEZ KARLA"
+    },
+    {
+      "row": 593,
+      "email": "citlali.hernandez9279@alumnos.udg.mx",
+      "name": "HERNANDEZ ROMO CITLALI ELIZABE",
+      "source": "HERNANDEZ ROMO CITLALI ELIZABETH"
+    },
+    {
+      "row": 594,
+      "email": "wendy.ibarra5719@alumnos.udg.mx",
+      "name": "IBARRA CASTILLO WENDY ELISE ALE",
+      "source": "IBARRA CASTILLO WENDY ELISE ALEANDRA"
+    },
+    {
+      "row": 595,
+      "email": "anyelina.jimenez5005@alumnos.udg.mx",
+      "name": "JIMENEZ GUTIERREZ ANYELINA LIZCET",
+      "source": "JIMENEZ GUTIERREZ ANYELINA LIZCETE"
+    },
+    {
+      "row": 596,
+      "email": "daniela.macias1836@alumnos.udg.mx",
+      "name": "MACIAS TORRES DANIELA ALEXAND",
+      "source": "MACIAS TORRES DANIELA ALEXANDRA"
+    },
+    {
+      "row": 597,
+      "email": "luna.martinez6659@alumnos.udg.mx",
+      "name": "MARTINEZ JIMENEZ LUNA JOCELYN",
+      "source": "MARTINEZ JIMENEZ LUNA JOCELYN"
+    },
+    {
+      "row": 598,
+      "email": "ariel.najar1841@alumnos.udg.mx",
+      "name": "NAJAR IBARRA ARIEL YULIANA",
+      "source": "NAJAR IBARRA ARIEL YULIANA"
+    },
+    {
+      "row": 599,
+      "email": "gabriel.oros7634@alumnos.udg.mx",
+      "name": "OROS VILLARAN GABRIEL ALEJAND",
+      "source": "OROS VILLARAN GABRIEL ALEJANDRO"
+    },
+    {
+      "row": 600,
+      "email": "francisco.perez6155@alumnos.udg.mx",
+      "name": "PEREZ GONZALEZ FRANCISCO JAVIE",
+      "source": "PEREZ GONZALEZ FRANCISCO JAVIER"
+    },
+    {
+      "row": 601,
+      "email": "diana.perez5649@alumnos.udg.mx",
+      "name": "PEREZ RIOS DIANA PAOLA",
+      "source": "PEREZ RIOS DIANA PAOLA"
+    },
+    {
+      "row": 602,
+      "email": "brandon.rivera1872@alumnos.udg.mx",
+      "name": "RIVERA RABAGO BRANDON ERNESTO",
+      "source": "RIVERA RABAGO BRANDON ERNESTO"
+    },
+    {
+      "row": 603,
+      "email": "erick.ruvalcaba7089@alumnos.udg.mx",
+      "name": "RUVALCABA SOLIS ERICK VICENTE",
+      "source": "RUVALCABA SOLIS ERICK VICENTE"
+    },
+    {
+      "row": 604,
+      "email": "brenda.tiburcio1137@alumnos.udg.mx",
+      "name": "TIBURCIO GUTIERREZ BRENDA VALERIA",
+      "source": "TIBURCIO GUTIERREZ BRENDA VALERIA"
+    },
+    {
+      "row": 605,
+      "email": "melissa.torres5709@alumnos.udg.mx",
+      "name": "TORRES ARAUJO MELISSA YAMELIT",
+      "source": "TORRES ARAUJO MELISSA YAMELITH"
+    },
+    {
+      "row": 606,
+      "email": "fatima.torres9374@alumnos.udg.mx",
+      "name": "TORRES TORRES FATIMA ABIGAIL",
+      "source": "TORRES TORRES FATIMA ABIGAIL"
+    },
+    {
+      "row": 607,
+      "email": "jose.torres5726@alumnos.udg.mx",
+      "name": "TORRES VAZQUEZ JOSE ANDRES",
+      "source": "TORRES VAZQUEZ JOSE ANDRES"
+    },
+    {
+      "row": 608,
+      "email": "christian.alfaro0810@alumnos.udg.mx",
+      "name": "ALFARO MESA CHRISTIAN DAMIA",
+      "source": "ALFARO MESA CHRISTIAN DAMIAN"
+    },
+    {
+      "row": 609,
+      "email": "angela.ascencio6797@alumnos.udg.mx",
+      "name": "ASCENCIO SANCHEZ ANGELA CRISTINA",
+      "source": "ASCENCIO SANCHEZ ANGELA CRISTINA         "
+    },
+    {
+      "row": 610,
+      "email": "izel.briseno7323@alumnos.udg.mx",
+      "name": "BRISENO SERAFIN IZEL QUETZALLI",
+      "source": "BRISEÑO SERAFIN IZEL QUETZALLI"
+    },
+    {
+      "row": 611,
+      "email": "vanesa.chagollan8265@alumnos.udg.mx",
+      "name": "CHAGOLLAN FAJARDO VANESA",
+      "source": "CHAGOLLAN FAJARDO VANESA"
+    },
+    {
+      "row": 612,
+      "email": "maria.espinoza1801@alumnos.udg.mx",
+      "name": "ESPINOZA GOMEZ MARIA JOSE",
+      "source": "ESPINOZA GOMEZ MARIA JOSE"
+    },
+    {
+      "row": 613,
+      "email": "luis.flores6863@alumnos.udg.mx",
+      "name": "FLORES NERI LUIS FELIPE",
+      "source": "FLORES NERI LUIS FELIPE"
+    },
+    {
+      "row": 614,
+      "email": "indhira.gandara5646@alumnos.udg.mx",
+      "name": "GANDARA VIRGEN INDHIRA VALERIA",
+      "source": "GANDARA VIRGEN INDHIRA VALERIA"
+    },
+    {
+      "row": 615,
+      "email": "jacqueline.gomez9596@alumnos.udg.mx",
+      "name": "GOMEZ ANGULO JACQUELINE",
+      "source": "GOMEZ ANGULO JACQUELINE"
+    },
+    {
+      "row": 616,
+      "email": "samuel.gonzalez9609@alumnos.udg.mx",
+      "name": "GONZALEZ DURAN SAMUEL ALEJANDR",
+      "source": "GONZALEZ DURAN SAMUEL ALEJANDRO"
+    },
+    {
+      "row": 617,
+      "email": "ines.gonzalez7822@alumnos.udg.mx",
+      "name": "GONZALEZ HERNANDEZ MARIA INES",
+      "source": "GONZALEZ HERNANDEZ MARIA INES"
+    },
+    {
+      "row": 618,
+      "email": "angela.gonzalez9562@alumnos.udg.mx",
+      "name": "GONZALEZ VAZQUEZ ANGELA JIMENA",
+      "source": "GONZALEZ VAZQUEZ ANGELA JIMENA"
+    },
+    {
+      "row": 619,
+      "email": "yelen.hernandez6824@alumnos.udg.mx",
+      "name": "HERNANDEZ ESTRADA YELEN YUNUEN",
+      "source": "HERNANDEZ ESTRADA YELEN YUNUEN           "
+    },
+    {
+      "row": 620,
+      "email": "irvin.hernandez8451@alumnos.udg.mx",
+      "name": "HERNANDEZ NAVA IRVIN GARED",
+      "source": "HERNANDEZ NAVA IRVIN GARED"
+    },
+    {
+      "row": 621,
+      "email": "jael.hernandez6712@alumnos.udg.mx",
+      "name": "HERNANDEZ ROSALES JAEL ENRIQUE",
+      "source": "HERNANDEZ ROSALES JAEL ENRIQUE"
+    },
+    {
+      "row": 622,
+      "email": "paula.lopez5311@alumnos.udg.mx",
+      "name": "LOPEZ SALCIDO PAULA JOHANA",
+      "source": "LOPEZ SALCIDO PAULA JOHANA"
+    },
+    {
+      "row": 623,
+      "email": "alexa.michel0560@alumnos.udg.mx",
+      "name": "MICHEL FONSECA ALEXA XIMENA",
+      "source": "MICHEL FONSECA ALEXA XIMENA"
+    },
+    {
+      "row": 624,
+      "email": "francisco.moreno4921@alumnos.udg.mx",
+      "name": "MORENO ZARATE FRANCISCO JAVIE",
+      "source": "MORENO ZARATE FRANCISCO JAVIER"
+    },
+    {
+      "row": 625,
+      "email": "debany.mosqueda6203@alumnos.udg.mx",
+      "name": "MOSQUEDA LOPEZ DEBANY DANNAE",
+      "source": "MOSQUEDA LOPEZ DEBANY DANNAE"
+    },
+    {
+      "row": 626,
+      "email": "lisary.ochoa4888@alumnos.udg.mx",
+      "name": "OCHOA ALCARAZ LISARY EMELY",
+      "source": "OCHOA ALCARAZ LISARY EMELY"
+    },
+    {
+      "row": 627,
+      "email": "natalia.ornelas9604@alumnos.udg.mx",
+      "name": "ORNELAS PEREZ NATALIA ADELINA",
+      "source": "ORNELAS PEREZ NATALIA ADELINA"
+    },
+    {
+      "row": 628,
+      "email": "shanti.ramirez6913@alumnos.udg.mx",
+      "name": "RAMIREZ PULIDO SHANTI GABRIELA",
+      "source": "RAMIREZ PULIDO SHANTI GABRIELA           "
+    },
+    {
+      "row": 629,
+      "email": "gael.rivera9614@alumnos.udg.mx",
+      "name": "RIVERA PARRA GAEL NICOLAS",
+      "source": "RIVERA PARRA GAEL NICOLAS"
+    },
+    {
+      "row": 630,
+      "email": "diego.rodriguez1590@alumnos.udg.mx",
+      "name": "RODRIGUEZ PADILLA DIEGO ARMANDO",
+      "source": "RODRIGUEZ PADILLA DIEGO ARMANDO"
+    },
+    {
+      "row": 631,
+      "email": "jesus.ruiz7100@alumnos.udg.mx",
+      "name": "RUIZ ARENAS JESUS ALEJANDRO",
+      "source": "RUIZ ARENAS JESUS ALEJANDRO"
+    },
+    {
+      "row": 632,
+      "email": "ximena.sandoval6217@alumnos.udg.mx",
+      "name": "SANDOVAL GONZALEZ XIMENA VALENTIN",
+      "source": "SANDOVAL GONZALEZ XIMENA VALENTINA"
+    },
+    {
+      "row": 633,
+      "email": "romina.santillan9617@alumnos.udg.mx",
+      "name": "SANTILLAN LAZARENO ROMINA ITZEL",
+      "source": "SANTILLAN LAZARENO ROMINA ITZEL"
+    },
+    {
+      "row": 634,
+      "email": "ingrid.suarez6038@alumnos.udg.mx",
+      "name": "SUAREZ JIMENEZ INGRID CATALINA",
+      "source": "SUAREZ JIMENEZ INGRID CATALINA"
+    },
+    {
+      "row": 635,
+      "email": "armando.velazquez9589@alumnos.udg.mx",
+      "name": "VELAZQUEZ ALCARAZ ARMANDO RAZIEL",
+      "source": "VELAZQUEZ ALCARAZ ARMANDO RAZIEL"
+    },
+    {
+      "row": 636,
+      "email": "vanessa.zerafin7686@alumnos.udg.mx",
+      "name": "ZERAFIN PEREZ VANESSA",
+      "source": "ZERAFIN PEREZ VANESSA"
+    },
+    {
+      "row": 637,
+      "email": "gabriel.acosta0642@alumnos.udg.mx",
+      "name": "ACOSTA FIGUEROA GABRIEL",
+      "source": "ACOSTA FIGUEROA GABRIEL"
+    },
+    {
+      "row": 638,
+      "email": "andrea.alonso1460@alumnos.udg.mx",
+      "name": "ALONSO JIMENEZ ANDREA JIMENA",
+      "source": "ALONSO JIMENEZ ANDREA JIMENA"
+    },
+    {
+      "row": 639,
+      "email": "diego.becerra1483@alumnos.udg.mx",
+      "name": "BECERRA DURAN DIEGO ALFREDO",
+      "source": "BECERRA DURAN DIEGO ALFREDO"
+    },
+    {
+      "row": 640,
+      "email": "ana.camarillo1579@alumnos.udg.mx",
+      "name": "CAMARILLO AGUIRRE ANA PAOLA",
+      "source": "CAMARILLO AGUIRRE ANA PAOLA"
+    },
+    {
+      "row": 641,
+      "email": "fernando.ceja4628@alumnos.udg.mx",
+      "name": "CEJA MANZANO FERNANDO ANTONI",
+      "source": "CEJA MANZANO FERNANDO ANTONIO"
+    },
+    {
+      "row": 642,
+      "email": "maria.cervantes4608@alumnos.udg.mx",
+      "name": "CERVANTES LOPEZ MARIA FERNANDA",
+      "source": "CERVANTES LOPEZ MARIA FERNANDA"
+    },
+    {
+      "row": 643,
+      "email": "daira.chavez4607@alumnos.udg.mx",
+      "name": "CHAVEZ MARQUEZ DAIRA IVETTE",
+      "source": "CHAVEZ MARQUEZ DAIRA IVETTE"
+    },
+    {
+      "row": 644,
+      "email": "axel.cortes3498@alumnos.udg.mx",
+      "name": "CORTES RODRIGUEZ AXEL RODOLFO",
+      "source": "CORTES RODRIGUEZ AXEL RODOLFO"
+    },
+    {
+      "row": 646,
+      "email": "leonardo.davila3390@alumnos.udg.mx",
+      "name": "DAVILA GUDINO LEONARDO FABIAN",
+      "source": "DAVILA GUDIÑO LEONARDO FABIAN"
+    },
+    {
+      "row": 647,
+      "email": "nataly.diaz2902@alumnos.udg.mx",
+      "name": "DIAZ CHAVEZ NATALY SOFIA",
+      "source": "DIAZ CHAVEZ NATALY SOFIA"
+    },
+    {
+      "row": 648,
+      "email": "byanca.diaz2413@alumnos.udg.mx",
+      "name": "DIAZ GARCIA BYANCA SOFIA",
+      "source": "DIAZ GARCIA BYANCA SOFIA"
+    },
+    {
+      "row": 649,
+      "email": "luis.duron4645@alumnos.udg.mx",
+      "name": "DURON LOPEZ LUIS FERNANDO",
+      "source": "DURON LOPEZ LUIS FERNANDO"
+    },
+    {
+      "row": 652,
+      "email": "edith.lopez4614@alumnos.udg.mx",
+      "name": "LOPEZ JIMENEZ EDITH",
+      "source": "LOPEZ JIMENEZ EDITH"
+    },
+    {
+      "row": 653,
+      "email": "fernanda.morones2087@alumnos.udg.mx",
+      "name": "MORONES PIZ FERNANDA BERENI",
+      "source": "MORONES PIZ FERNANDA BERENICE"
+    },
+    {
+      "row": 654,
+      "email": "gerardo.munozdecote1659@alumnos.udg.mx",
+      "name": "MUNOZ DE COTE TIRADO GERARDO",
+      "source": "MUÑOZ DE COTE TIRADO GERARDO"
+    },
+    {
+      "row": 655,
+      "email": "mariana.pinto4638@alumnos.udg.mx",
+      "name": "PINTO VALDEZ MARIANA",
+      "source": "PINTO VALDEZ MARIANA"
+    },
+    {
+      "row": 656,
+      "email": "fatima.ramirez4617@alumnos.udg.mx",
+      "name": "RAMIREZ VALDES FATIMA ALEJANDR",
+      "source": "RAMIREZ VALDES FATIMA ALEJANDRA"
+    },
+    {
+      "row": 657,
+      "email": "luis.regis4061@alumnos.udg.mx",
+      "name": "REGIS BERNAL LUIS PABLO",
+      "source": "REGIS BERNAL LUIS PABLO"
+    },
+    {
+      "row": 658,
+      "email": "america.reyes8313@alumnos.udg.mx",
+      "name": "REYES MUNOZ AMERICA JANETH",
+      "source": "REYES MUÑOZ AMERICA JANETH"
+    },
+    {
+      "row": 660,
+      "email": "alondra.ruelas1938@alumnos.udg.mx",
+      "name": "RUELAS ARREOLA ALONDRA GUADALU",
+      "source": "RUELAS ARREOLA ALONDRA GUADALUPE"
+    },
+    {
+      "row": 661,
+      "email": "jesus.saldivar4637@alumnos.udg.mx",
+      "name": "SALDIVAR CORDOVA JESUS EMMANUEL",
+      "source": "SALDIVAR CORDOVA JESUS EMMANUEL"
+    },
+    {
+      "row": 662,
+      "email": "stephanie.tavarez4601@alumnos.udg.mx",
+      "name": "TAVAREZ TORRES STEPHANIE GENEV",
+      "source": "TAVAREZ TORRES STEPHANIE GENEVIEVE"
+    }
+  ],
+  "missing": [
+    {
+      "row": 2,
+      "code": 222835386,
+      "name": "ACEVES CORTES  EDUARDO"
+    },
+    {
+      "row": 3,
+      "code": 218563096,
+      "name": "BERNACHE NUÑEZ  ERICK JOSE"
+    },
+    {
+      "row": 4,
+      "code": 226116384,
+      "name": "CANALES GUTIERREZ  CAMILA YAXAI"
+    },
+    {
+      "row": 5,
+      "code": 226116503,
+      "name": "CARDENAS ESCAMILLA  DANNA FERNANDA"
+    },
+    {
+      "row": 6,
+      "code": 226116546,
+      "name": "CASTILLO ORTEGA  PAULA REGINA"
+    },
+    {
+      "row": 7,
+      "code": 226116635,
+      "name": "CEVALLOS MOTTE  VALERIA"
+    },
+    {
+      "row": 8,
+      "code": 222750038,
+      "name": "DIAZ GUDIÑO  FATIMA ESMERALD"
+    },
+    {
+      "row": 9,
+      "code": 226116465,
+      "name": "FAVELA CHAVEZ  REGINA"
+    },
+    {
+      "row": 10,
+      "code": 221653918,
+      "name": "GAZCON GARCIA  BERTHA SHERLYN"
+    },
+    {
+      "row": 11,
+      "code": 226116457,
+      "name": "HERNANDEZ LOPEZ  DENISSE ELIZABE"
+    },
+    {
+      "row": 12,
+      "code": 226116368,
+      "name": "HERNANDEZ MARTINEZ  KAREN ELIZABETH"
+    },
+    {
+      "row": 13,
+      "code": 222552376,
+      "name": "HERNANDEZ MERCADO  KEILA ANOKI"
+    },
+    {
+      "row": 14,
+      "code": 222444662,
+      "name": "HERNANDEZ MIRANDA  JORGE ALBERTO"
+    },
+    {
+      "row": 15,
+      "code": 222451243,
+      "name": "JIMENEZ BECERRA  AKETZALLY"
+    },
+    {
+      "row": 16,
+      "code": 222589989,
+      "name": "LERMA MONROY  SELENE YAZMIN"
+    },
+    {
+      "row": 17,
+      "code": 226116686,
+      "name": "LOPEZ RIVERA  DENISSE ALEJAND"
+    },
+    {
+      "row": 18,
+      "code": 222586017,
+      "name": "MACIAS LUPERCIO  FATIMA VETZABEL"
+    },
+    {
+      "row": 19,
+      "code": 222582038,
+      "name": "MAYORGA GONZALEZ  FATIMA MONSERRA"
+    },
+    {
+      "row": 20,
+      "code": 219202569,
+      "name": "MONTES CRUZ  GIOVANNI"
+    },
+    {
+      "row": 21,
+      "code": 226116414,
+      "name": "MORENO GUTIERREZ  CARLA REGINA"
+    },
+    {
+      "row": 22,
+      "code": 222916637,
+      "name": "MURILLO ALVARADO  SABINE"
+    },
+    {
+      "row": 23,
+      "code": 221453854,
+      "name": "MUÑOZ GONZALEZ  KIMBERLI YOSELI"
+    },
+    {
+      "row": 24,
+      "code": 222796208,
+      "name": "PAREDES BLAS  DEREK YAEL"
+    },
+    {
+      "row": 25,
+      "code": 226116562,
+      "name": "RENTERIA VAZQUEZ  ATZIRI NOEMI"
+    },
+    {
+      "row": 26,
+      "code": 222920901,
+      "name": "REYES REYNOSO  ESTEFANI"
+    },
+    {
+      "row": 27,
+      "code": 226116376,
+      "name": "RODRIGUEZ NUÑEZ  CITLALLI"
+    },
+    {
+      "row": 28,
+      "code": 222796909,
+      "name": "RUELAS GOMEZ  JORDAN ALEJANDR"
+    },
+    {
+      "row": 29,
+      "code": 222414763,
+      "name": "TEJEDA LLAMAS  TRISTAN RICARDO"
+    },
+    {
+      "row": 30,
+      "code": 220556145,
+      "name": "TORRES VALLE  ANGEL GIOVANI"
+    },
+    {
+      "row": 31,
+      "code": 222581325,
+      "name": "VILLALOBOS CANALES  VALERIA NATALY"
+    },
+    {
+      "row": 32,
+      "code": 325030567,
+      "name": "ACUÑA FIGUEROA  JORGE MANUEL"
+    },
+    {
+      "row": 33,
+      "code": 222479679,
+      "name": "ALVARADO GASPAR  SANTIAGO EMMANU"
+    },
+    {
+      "row": 34,
+      "code": 222477803,
+      "name": "BARRON MALE  KITZIA NOHEMI"
+    },
+    {
+      "row": 35,
+      "code": 222925334,
+      "name": "BASULTO RAYAS  MIGUEL ANGEL"
+    },
+    {
+      "row": 36,
+      "code": 222582879,
+      "name": "BONILLA RODRIGUEZ  YARETZI"
+    },
+    {
+      "row": 37,
+      "code": 222763202,
+      "name": "CASTRO RAMOS  SOFIA MONSERRAT"
+    },
+    {
+      "row": 38,
+      "code": 325029178,
+      "name": "CATIVO GALLARDO  FRIDA"
+    },
+    {
+      "row": 39,
+      "code": 222590251,
+      "name": "DE LA TORRE GUTIERREZ  BRAYAN"
+    },
+    {
+      "row": 40,
+      "code": 325031326,
+      "name": "DELGADO JIMENEZ  ARISTOTELES NAZ"
+    },
+    {
+      "row": 41,
+      "code": 325030664,
+      "name": "ESTRADA VILLANUEVA  XIMENA MICHELLE"
+    },
+    {
+      "row": 42,
+      "code": 221590959,
+      "name": "FLORES NUÑEZ  IOAM ISMAEL"
+    },
+    {
+      "row": 43,
+      "code": 221776939,
+      "name": "GOMEZ VERDEJA  IRVING GIOVANNI"
+    },
+    {
+      "row": 44,
+      "code": 222581481,
+      "name": "GUTIERREZ SALCEDO  KARLA MERCEDES"
+    },
+    {
+      "row": 45,
+      "code": 222587595,
+      "name": "GUTIERREZ SANCHEZ  ELISA XIMENA"
+    },
+    {
+      "row": 46,
+      "code": 325031261,
+      "name": "HARO MIRAMONTES  ADRI ANAIS"
+    },
+    {
+      "row": 47,
+      "code": 325029445,
+      "name": "HERNANDEZ GODINEZ  ALEJANDRO"
+    },
+    {
+      "row": 48,
+      "code": 222449826,
+      "name": "MENDEZ GARCIA  ANGEL OSWALDO"
+    },
+    {
+      "row": 49,
+      "code": 325030273,
+      "name": "MICHEL GUERRERO  KAROL FERNANDA"
+    },
+    {
+      "row": 50,
+      "code": 325029305,
+      "name": "MORENO GALVAN  TAIDE PAOLA"
+    },
+    {
+      "row": 51,
+      "code": 325029631,
+      "name": "OROZCO SALAZAR  MARIA REGINA"
+    },
+    {
+      "row": 52,
+      "code": 222561847,
+      "name": "ORQUIZ SANCHEZ  MOISES EDUARDO"
+    },
+    {
+      "row": 53,
+      "code": 222581139,
+      "name": "PADILLA GUTIERREZ  OMAR"
+    },
+    {
+      "row": 54,
+      "code": 222556894,
+      "name": "PEREZ VIZCARRA  XIMENA"
+    },
+    {
+      "row": 55,
+      "code": 222439723,
+      "name": "RODRIGUEZ PEREZ  KEVIN EDUARDO"
+    },
+    {
+      "row": 56,
+      "code": 219500667,
+      "name": "TESISTECO ALVAREZ  CARLOS HUMBERTO"
+    },
+    {
+      "row": 57,
+      "code": 221937932,
+      "name": "VALENCIA NAVARRO  YESENIA KAYLYNN"
+    },
+    {
+      "row": 58,
+      "code": 222660306,
+      "name": "VILLEGAS ALATORRE  FERNANDA MARISO"
+    },
+    {
+      "row": 59,
+      "code": 325029356,
+      "name": "ZEPEDA RAMOS  FRANCISCO EMMANUEL"
+    },
+    {
+      "row": 60,
+      "code": 223141949,
+      "name": "ALVAREZ SANTOS  MELANIE ELIZABE"
+    },
+    {
+      "row": 61,
+      "code": 221485977,
+      "name": "BECERRA VAZQUEZ  VALERIA FERNAND"
+    },
+    {
+      "row": 62,
+      "code": 221042161,
+      "name": "BENAVIDES SOLIS  ELIZABETH"
+    },
+    {
+      "row": 63,
+      "code": 217639927,
+      "name": "BETANCOURT CHAVEZ  NERI DAVID"
+    },
+    {
+      "row": 64,
+      "code": 222442635,
+      "name": "CAMEJO ALCARAZ  YOSELIN"
+    },
+    {
+      "row": 65,
+      "code": 226114233,
+      "name": "CANO BELTRAN  MARIANA YOCELIN"
+    },
+    {
+      "row": 66,
+      "code": 222460617,
+      "name": "CARRION CASTILLO  ILIANA ANGELIKE"
+    },
+    {
+      "row": 67,
+      "code": 221937843,
+      "name": "CASTELLANOS HERNANDEZ  MELISSA"
+    },
+    {
+      "row": 68,
+      "code": 221497363,
+      "name": "CHAVEZ CARBAJAL  JAIME ARAEL"
+    },
+    {
+      "row": 69,
+      "code": 222674498,
+      "name": "CORTES HERRERA  LIZBETH YHAJAIR"
+    },
+    {
+      "row": 70,
+      "code": 221481025,
+      "name": "GARCIA LIMON  DEREK FERNANDO"
+    },
+    {
+      "row": 71,
+      "code": 222548026,
+      "name": "GARCIA MARTINEZ  GUADALUPE ARACE"
+    },
+    {
+      "row": 72,
+      "code": 222447289,
+      "name": "HERNANDEZ ANDRES  NAHOMI DALAY"
+    },
+    {
+      "row": 73,
+      "code": 223169509,
+      "name": "HERNANDEZ RAMIREZ  JESUS ISRAEL"
+    },
+    {
+      "row": 74,
+      "code": 221692204,
+      "name": "LARA TORRES  AYLYNE ABIGAIL"
+    },
+    {
+      "row": 75,
+      "code": 218515679,
+      "name": "LOPEZ ESCALANTE  ALEJANDRA ABIGA"
+    },
+    {
+      "row": 76,
+      "code": 226113466,
+      "name": "LOPEZ LOPEZ  KENIA LORENA"
+    },
+    {
+      "row": 77,
+      "code": 222453378,
+      "name": "MORA JIMENEZ  ARELY"
+    },
+    {
+      "row": 78,
+      "code": 223092689,
+      "name": "NUÑEZ VARGAS  YARA ITZEL"
+    },
+    {
+      "row": 79,
+      "code": 222435973,
+      "name": "PADILLA AVALOS  KEVIN ALEJANDRO"
+    },
+    {
+      "row": 80,
+      "code": 226114071,
+      "name": "PEREZ REAL  LILIA GISELA"
+    },
+    {
+      "row": 81,
+      "code": 222546244,
+      "name": "RAMIREZ ENRIQUEZ  VERONICA GUADALUPE"
+    },
+    {
+      "row": 82,
+      "code": 226113571,
+      "name": "ROMERO GONZALEZ  ARIADNA ELIZABE"
+    },
+    {
+      "row": 83,
+      "code": 222749331,
+      "name": "SANCHEZ PARRA  BRITTANY ANAHI"
+    },
+    {
+      "row": 84,
+      "code": 222748165,
+      "name": "VAZQUEZ FIGUEROA  MARIO AXEL"
+    },
+    {
+      "row": 85,
+      "code": 221461725,
+      "name": "VAZQUEZ MACIAS  BARBARA DENISSE"
+    },
+    {
+      "row": 86,
+      "code": 222494392,
+      "name": "VAZQUEZ RAMIREZ  DANIELA LIZETH"
+    },
+    {
+      "row": 87,
+      "code": 223854988,
+      "name": "AMARAL GARCIA  ARELLYS"
+    },
+    {
+      "row": 88,
+      "code": 223855674,
+      "name": "AVILA AZCARAY  VICTOR MANUEL"
+    },
+    {
+      "row": 89,
+      "code": 219561364,
+      "name": "BRICIO CARRANZA  CIRO HERON"
+    },
+    {
+      "row": 90,
+      "code": 220507713,
+      "name": "CASILLAS ARRIBEÑO  JOHAN ULISES"
+    },
+    {
+      "row": 91,
+      "code": 219549356,
+      "name": "CHAVEZ GUILLEN  ALEJANDRA NARAY"
+    },
+    {
+      "row": 92,
+      "code": 220536047,
+      "name": "CRUZ MURILLO  PAOLA ALEJANDRA"
+    },
+    {
+      "row": 93,
+      "code": 223855135,
+      "name": "FARIAS ACEVEDO  KAROL FERNANDA"
+    },
+    {
+      "row": 94,
+      "code": 220587954,
+      "name": "GARCIA CASTELLANOS  JEHIELI"
+    },
+    {
+      "row": 95,
+      "code": 223856557,
+      "name": "GARCIA GOMEZ  AURORA"
+    },
+    {
+      "row": 96,
+      "code": 219647692,
+      "name": "GAYTAN REYES  GALILEA"
+    },
+    {
+      "row": 97,
+      "code": 220460164,
+      "name": "GOMEZ FONSECA  CESAR HILARIO"
+    },
+    {
+      "row": 98,
+      "code": 220696192,
+      "name": "GONZALEZ RUANO  LAURA GERALDIN"
+    },
+    {
+      "row": 99,
+      "code": 223854937,
+      "name": "PLASCENCIA MANZO  RUBEN"
+    },
+    {
+      "row": 100,
+      "code": 214594418,
+      "name": "QUIJAS ALCANTAR  ARACELI MONTSER"
+    },
+    {
+      "row": 101,
+      "code": 220431725,
+      "name": "RAMIREZ JASSO  CHRISTOPHER DAN"
+    },
+    {
+      "row": 102,
+      "code": 223855321,
+      "name": "RAMIREZ MARISCAL  GIBRAN"
+    },
+    {
+      "row": 133,
+      "code": 223786184,
+      "name": "RAMIREZ VALLE  TANIA MONSERRAT"
+    },
+    {
+      "row": 136,
+      "code": 223951657,
+      "name": "RODRIGUEZ SILVA  RODRIGO"
+    },
+    {
+      "row": 223,
+      "code": 326046785,
+      "name": "CASTAÑO CASTELLANOS  DANNA VALENTINA"
+    },
+    {
+      "row": 442,
+      "code": 226113504,
+      "name": "MESTAS   ALEXANDRA"
+    },
+    {
+      "row": 533,
+      "code": 219877213,
+      "name": "CHAVEZ FLORES  MONSERRAT VALEN"
+    },
+    {
+      "row": 549,
+      "code": 326046556,
+      "name": "PEREZ AMARIS  DENISSETH"
+    },
+    {
+      "row": 569,
+      "code": 326046688,
+      "name": "MIRANDA PEREZ  ROCIO DEL CARME"
+    },
+    {
+      "row": 570,
+      "code": 326046807,
+      "name": "MUÑOZ VILLA  ANDREA"
+    },
+    {
+      "row": 645,
+      "code": 223473364,
+      "name": "CRUZ HUITRON  ANAHI ESMERALDA"
+    },
+    {
+      "row": 650,
+      "code": 223619938,
+      "name": "GARCIA MARTINEZ  YULIANA"
+    },
+    {
+      "row": 651,
+      "code": 223945959,
+      "name": "GONZALEZ VALLE  YAEL ADAIR"
+    },
+    {
+      "row": 659,
+      "code": 223476401,
+      "name": "RODRIGUEZ RAMOS  VALERIA"
+    }
+  ],
+  "conflicts": []
+}

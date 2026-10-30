@@ -37,7 +37,8 @@
         await Promise.all([...used].map(font=>document.fonts.load(font).catch(()=>[])));
         return true;
       }
-      let restored=null;
+      let restored=null,srtDraftDirty=false;
+      function syncSrt(){if(!srtDraftDirty)$('srt').value=serializeSRT();}
       const styleIds=['font','textCase','size','weight','textColor','posX','posY','animation','speed','idleEffect','idleStrength','idleRate','lineHeight'];
       const globalStyle={};
       function styleValue(id,cue){return cue?.style?.[id]??globalStyle[id]??$(id).value;}
@@ -186,7 +187,7 @@
         if (!Number.isFinite(offset) || offset === 0) { $('status').textContent = 'Escribe un desplazamiento distinto de cero.'; return; }
         pause();
         cues = cues.map(cue => { const start = Math.max(0, cue.start + offset); return { ...cue, start, end: Math.max(start + .05, cue.end + offset) }; });
-        $('srt').value = serializeSRT();
+        syncSrt();
         duration = getDuration(); current = Math.min(current, duration);
         $('count').textContent = '(' + cues.length + ')';
         $('cues').replaceChildren();
@@ -218,7 +219,7 @@
         if (!text || !Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) { $('status').textContent = 'Revisa el texto y los tiempos: el fin debe ser posterior al inicio.'; return; }
         cues[editingCueIndex] = {...cues[editingCueIndex],start,end,text};
         cues.sort((a,b) => a.start-b.start);
-        $('srt').value = serializeSRT(); duration = getDuration(); current = Math.min(current, duration);
+        syncSrt(); duration = getDuration(); current = Math.min(current, duration);
         rebuildCueList(); save(); draw(current); closeCueEditor();
         $('status').textContent = 'Subtítulo actualizado.';window.submotionStudio?.changed();
       }
@@ -244,10 +245,10 @@
           return;
         }
         pause();
-        cues = parsed;
+        cues = parsed;srtDraftDirty=false;
         duration = getDuration();
         current = 0;
-        $('srt').value = serializeSRT();
+        syncSrt();
         rebuildCueList();
         $('status').textContent = cues.length + ' fragmentos cargados · duración ' + fmt(duration) + (hasTimestamps ? '' : ' · tiempos estimados desde texto plano');
         draw(0); save();window.submotionStudio?.changed({imported:true});
@@ -522,12 +523,14 @@
         ctx.restore();
       }
 
+      let previousActiveNode=null;
       function draw(t) {
         render(t);
         $('seek').value = duration ? Math.round(t / duration * 1000) : 0;
         $('time').textContent = fmt(t) + ' / ' + fmt(duration);
         const cue = activeCue(t);
-        for (const node of $('cues').children) node.classList.toggle('active', cue === cues[Number(node.dataset.index)]);
+        const node=cue?$('cues').children[cues.indexOf(cue)]:null;
+        if(node!==previousActiveNode){previousActiveNode?.classList.remove('active');node?.classList.add('active');previousActiveNode=node;}
         window.submotionStudio?.onDraw(t);
       }
 
@@ -615,6 +618,7 @@
           document.fonts.add(face);
           gothamLoaded = true;
           $('font').value = 'Gotham';
+          if(window.submotionStudio)window.submotionStudio.setFont('Gotham');else globalStyle.font='Gotham';
           save();
           draw(current);
           $('status').textContent = 'Gotham cargada para esta sesión.';
@@ -635,7 +639,7 @@
       });
       $('load').onclick = load;
       $('closeCueEditor').onclick = closeCueEditor; $('cancelCueEdit').onclick = closeCueEditor; $('saveCueEdit').onclick = commitCueEdit;
-      $('srt').addEventListener('input', save); $('cueSearch').addEventListener('input', () => { renderCueList(); save(); }); $('shiftSeconds').addEventListener('change', save);
+      $('srt').addEventListener('input',()=>{srtDraftDirty=true;save();}); $('cueSearch').addEventListener('input', () => { renderCueList(); save(); }); $('shiftSeconds').addEventListener('change', save);
       $('example').onclick = () => {
         $('srt').value =
           '1\n00:00:01,000 --> 00:00:03,300\nESTO ES UNA PRUEBA\n\n2\n00:00:03,500 --> 00:00:05,600\nDE SUBTÍTULOS ANIMADOS\n\n3\n00:00:06,000 --> 00:00:08,400\nLISTOS PARA DAVINCI';
@@ -957,8 +961,9 @@
       if($('srt').value.trim())load();
       window.submotionCore={get cues(){return cues;},get current(){return current;},get duration(){return duration;},get playing(){return playing;},get recording(){return recording;},get restored(){return restored;},settings,styleIds,globalStyle,styleValue,canvas,ctx,formatText,save,labelValues,ensureFont,pause,
         seek(time){current=Math.max(0,Math.min(getDuration(),time));draw(current);},
-        replace(list){cues=list;duration=getDuration();current=Math.min(current,duration);$('srt').value=serializeSRT();rebuildCueList();draw(current);},
-        refresh(){duration=getDuration();$('srt').value=serializeSRT();rebuildCueList();draw(current);},
+        setDraft(text){$('srt').value=text;srtDraftDirty=text.trim()!==serializeSRT().trim();},
+        replace(list){cues=list;srtDraftDirty=false;duration=getDuration();current=Math.min(current,duration);$('srt').value=serializeSRT();rebuildCueList();draw(current);},
+        refresh(){duration=getDuration();syncSrt();rebuildCueList();draw(current);},
         config(values){for(const id of settings)if(values[id]!=null){$(id).value=values[id];if(styleIds.includes(id))globalStyle[id]=$(id).value;}setOrientation();duration=getDuration();labelValues();draw(current);},
         openCueEditor,rebuildCueList,draw,exportVideo,cancel(){cancelRecording?.();}};
     })();

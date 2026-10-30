@@ -41,7 +41,7 @@ async function waitReady(page){
     await page.goForward();assert.equal(await page.locator('#tab-compression').getAttribute('aria-selected'),'true');
     await page.locator('#tab-converter').click();
     const tabWidths=await page.locator('.im-tabs').evaluate(bar=>({bar:bar.clientWidth,widths:[...bar.children].map(tab=>tab.getBoundingClientRect().width)}));
-    assert.ok(Math.abs(tabWidths.widths[0]-tabWidths.widths[1])<1);assert.ok(tabWidths.widths[0]>tabWidths.bar*.32);
+    assert.ok(Math.abs(tabWidths.widths[0]-tabWidths.widths[1])<1);assert.ok(tabWidths.widths[0]>tabWidths.bar/tabWidths.widths.length*.96);
     const fixture=await page.evaluate(async()=>{
       const canvas=document.createElement('canvas');canvas.width=96;canvas.height=64;
       const ctx=canvas.getContext('2d');ctx.fillStyle='#ee4499';ctx.fillRect(16,16,64,32);
